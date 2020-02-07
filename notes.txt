@@ -1,16 +1,37 @@
 /** TODO **/
 
-# 0.1.2
+#
+    - power/water consumption for equipments
+
+# 0.1.3
+    - change: Category to @MappedSuperClass: -> UserCategory / DepartmentCategory/ RoomCategory / EquipmentCategory
     - main classes
         - entity
-            + User
-            + UserCategory
+            . User, Category
+            . Hospital
+            . Department, Category
+            . Room, Category
+            . Equipment, Category
+            - Manufacturer
         - relations
-            + User - UserCategory
+            . User - UserCategory
+                - configure
+        - methods for Organization classes
+            - add/subtract costs/equipments/rooms/departments
+        - methods for Category classes
+            - add/subtract Organization/Equipment
         - services/repos.
         - controllers
 
 /** DONE **/
+# 0.1.2
+    - main classes
+        - entity
+            + User, Category
+            + Hospital
+            + Department, Category
+            + Room, Category
+            + Equipment, Category
 # 0.1.1
     - main classes
         - entity
@@ -22,7 +43,7 @@
     + menuMain.jsp
     + header.jsp / footer.jsp
     + bootstrap
-# 0.1.0
+# 0.1.0-SNAPSHOT
     + initial configuration
         + appconfig / appinitializer
         + pom.xml
