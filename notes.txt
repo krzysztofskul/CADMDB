@@ -1,11 +1,27 @@
 /** TODO **/
 
-# 0.1.1
+# 0.1.2
     - main classes
-    - relations
-    - bootstrap
+        - entity
+            + User
+            + UserCategory
+        - relations
+            + User - UserCategory
+        - services/repos.
+        - controllers
 
 /** DONE **/
+# 0.1.1
+    - main classes
+        - entity
+            + User
+            + UserCategory
+        - relations
+            + User - UserCategory
+    + HomePageController
+    + menuMain.jsp
+    + header.jsp / footer.jsp
+    + bootstrap
 # 0.1.0
     + initial configuration
         + appconfig / appinitializer
