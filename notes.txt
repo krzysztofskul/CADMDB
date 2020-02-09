@@ -2,7 +2,7 @@
 
 #
     - power/water consumption for equipments
-    - test
+    - test, test
 
 # 0.1.4
     - change: Category to @MappedSuperClass: -> UserCategory / DepartmentCategory/ RoomCategory / EquipmentCategory
