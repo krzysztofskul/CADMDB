@@ -17,7 +17,7 @@ public class DepartmentCategory {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "departmentCategory")
     private List<Department> departmentList = new ArrayList<>();
 
     public DepartmentCategory() {
