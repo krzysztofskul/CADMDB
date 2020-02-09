@@ -1,6 +1,7 @@
-package pl.krzysztofskul.equipment;
+package pl.krzysztofskul.product;
 
-import pl.krzysztofskul.equipment.equipmentCategory.EquipmentCategory;
+import pl.krzysztofskul.manufacturer.Manufacturer;
+import pl.krzysztofskul.product.productCategory.ProductCategory;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 
 import javax.persistence.*;
@@ -9,25 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Equipment {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private EquipmentCategory equipmentCategory;
+    private ProductCategory productCategory;
 
-    private String manufacturer;
+    @ManyToOne
+    private Manufacturer manufacturer;
 
-    private String model;
+    private String modelName;
 
     private BigDecimal price;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "productList")
     private List<Room> roomList = new ArrayList<>();
 
-    public Equipment() {
+    public Product() {
     }
 
     public Long getId() {
@@ -38,28 +40,28 @@ public class Equipment {
         this.id = id;
     }
 
-    public EquipmentCategory getEquipmentCategory() {
-        return equipmentCategory;
+    public ProductCategory getProductCategory() {
+        return productCategory;
     }
 
-    public void setEquipmentCategory(EquipmentCategory equipmentCategory) {
-        this.equipmentCategory = equipmentCategory;
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
-    public String getManufacturer() {
+    public Manufacturer getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(String manufacturer) {
+    public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
 
-    public String getModel() {
-        return model;
+    public String getModelName() {
+        return modelName;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setModelName(String model) {
+        this.modelName = model;
     }
 
     public BigDecimal getPrice() {

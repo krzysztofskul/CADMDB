@@ -1,13 +1,13 @@
-package pl.krzysztofskul.equipment.equipmentCategory;
+package pl.krzysztofskul.product.productCategory;
 
-import pl.krzysztofskul.equipment.Equipment;
+import pl.krzysztofskul.product.Product;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class EquipmentCategory {
+public class ProductCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +17,10 @@ public class EquipmentCategory {
 
     private String name;
 
-    @OneToMany
-    private List<Equipment> equipmentList = new ArrayList<>();
+    @OneToMany(mappedBy = "productCategory")
+    private List<Product> productList = new ArrayList<>();
 
-    public EquipmentCategory() {
+    public ProductCategory() {
     }
 
     public Long getId() {
@@ -47,11 +47,11 @@ public class EquipmentCategory {
         this.name = name;
     }
 
-    public List<Equipment> getEquipmentList() {
-        return equipmentList;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void setEquipmentList(List<Equipment> equipmentList) {
-        this.equipmentList = equipmentList;
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }

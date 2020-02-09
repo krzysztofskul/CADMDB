@@ -20,7 +20,7 @@ public class Department extends Organization {
     @ManyToOne
     private DepartmentCategory departmentCategory;
 
-    @OneToMany
+    @OneToMany(mappedBy = "department")
     private List<Room> roomList = new ArrayList<>();
 
     public Department() {

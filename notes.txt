@@ -3,19 +3,8 @@
 #
     - power/water consumption for equipments
 
-# 0.1.3
+# 0.1.4
     - change: Category to @MappedSuperClass: -> UserCategory / DepartmentCategory/ RoomCategory / EquipmentCategory
-    - main classes
-        - entity
-            . User, Category
-            . Hospital
-            . Department, Category
-            . Room, Category
-            . Equipment, Category
-            - Manufacturer
-        - relations
-            . User - UserCategory
-                - configure
         - methods for Organization classes
             - add/subtract costs/equipments/rooms/departments
         - methods for Category classes
@@ -24,6 +13,16 @@
         - controllers
 
 /** DONE **/
+# 0.1.3
+    + main classes
+        + entity
+            . User, Category
+            . Hospital
+            . Department, Category
+            . Room, Category
+            + Equipment, Category -> Product, ProductCategory
+            + Manufacturer
+        + relations
 # 0.1.2
     - main classes
         - entity
