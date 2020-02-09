@@ -1,6 +1,5 @@
 package pl.krzysztofskul.user;
 
-import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.userCategory.UserCategory;
 
 import javax.persistence.*;
@@ -18,9 +17,6 @@ public class User {
 
     @ManyToOne
     private UserCategory userCategory;
-
-    @ManyToOne
-    private Hospital hospital;
 
     public User() {
     }
@@ -63,13 +59,5 @@ public class User {
 
     public void setUserCategory(UserCategory userCategory) {
         this.userCategory = userCategory;
-    }
-
-    public Hospital getHospital() {
-        return hospital;
-    }
-
-    public void setHospital(Hospital hospital) {
-        this.hospital = hospital;
     }
 }

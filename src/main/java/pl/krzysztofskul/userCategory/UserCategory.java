@@ -17,7 +17,7 @@ public class UserCategory {
 
     private String name;
 
-    @OneToMany(mappedBy = "userCategory")
+    @OneToMany
     private List<User> userList = new ArrayList<>();
 
     public UserCategory() {

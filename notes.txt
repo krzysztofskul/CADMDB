@@ -6,12 +6,12 @@
 
 # 0.1.4
     - change: Category to @MappedSuperClass: -> UserCategory / DepartmentCategory/ RoomCategory / EquipmentCategory
-        - methods for Organization classes
-            - add/subtract costs/equipments/rooms/departments
-        - methods for Category classes
-            - add/subtract Organization/Equipment
-        - services/repos.
-        - controllers
+    - methods for Organization classes
+        - add/subtract costs/equipments/rooms/departments
+    - methods for Category classes
+        - add/subtract Organization/Equipment
+    - services/repos. for main classes
+    - controllers for main classes
 
 /** DONE **/
 # 0.1.3
