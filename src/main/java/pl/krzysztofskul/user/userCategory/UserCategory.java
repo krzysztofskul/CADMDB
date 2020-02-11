@@ -1,4 +1,4 @@
-package pl.krzysztofskul.userCategory;
+package pl.krzysztofskul.user.userCategory;
 
 import pl.krzysztofskul.user.User;
 
@@ -16,6 +16,8 @@ public class UserCategory {
     private String code;
 
     private String name;
+
+    private String description;
 
     @OneToMany(mappedBy = "userCategory")
     private List<User> userList = new ArrayList<>();
@@ -45,6 +47,22 @@ public class UserCategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public void addUser (User user) {

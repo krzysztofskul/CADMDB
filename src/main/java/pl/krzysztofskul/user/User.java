@@ -1,7 +1,9 @@
 package pl.krzysztofskul.user;
 
+import org.mindrot.jbcrypt.BCrypt;
+import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.organization.hospital.Hospital;
-import pl.krzysztofskul.userCategory.UserCategory;
+import pl.krzysztofskul.user.userCategory.UserCategory;
 
 import javax.persistence.*;
 
@@ -15,12 +17,16 @@ public class User {
     private String nameFirst;
     private String nameLast;
     private String email;
+    private String password;
 
     @ManyToOne
     private UserCategory userCategory;
 
     @ManyToOne
     private Hospital hospital;
+
+    @ManyToOne
+    private Manufacturer manufacturer;
 
     public User() {
     }
@@ -57,6 +63,15 @@ public class User {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        //this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
     public UserCategory getUserCategory() {
         return userCategory;
     }
@@ -71,5 +86,13 @@ public class User {
 
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 }

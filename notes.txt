@@ -4,16 +4,31 @@
     - power/water consumption for equipments
     - test, test
 
-# 0.1.4
+# 0.1.X
     - change: Category to @MappedSuperClass: -> UserCategory / DepartmentCategory/ RoomCategory / EquipmentCategory
     - methods for Organization classes
         - add/subtract costs/equipments/rooms/departments
     - methods for Category classes
         - add/subtract Organization/Equipment
-    - services/repos. for main classes
+
+#
+    - Investor class
+    - Designer class
     - controllers for main classes
+    - HomePageService/InitialDB
+
+#
+    - initDB Service/Controller ...
+
 
 /** DONE **/
+# 0.1.4
+    + services/repos. for main classes
+    + User class:  password field added
+        + BCrypt
+    + Manufacturer class: userList field added
+    + getters and setters updates
+
 # 0.1.3
     + main classes
         + entity
