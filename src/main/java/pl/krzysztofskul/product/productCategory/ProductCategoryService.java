@@ -29,6 +29,10 @@ public class ProductCategoryService {
         return productCategoryRepo.findById(id).get();
     }
 
+    public ProductCategory loadByCode(String code) {
+        return productCategoryRepo.findByCode(code);
+    }
+
     public void delete(ProductCategory productCategory) {
         productCategoryRepo.delete(productCategory);
     }

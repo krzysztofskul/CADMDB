@@ -14,6 +14,8 @@ public class Manufacturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     private String details;
 
     @OneToMany(mappedBy = "manufacturer")
@@ -31,6 +33,14 @@ public class Manufacturer {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDetails() {
