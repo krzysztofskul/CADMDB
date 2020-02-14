@@ -29,6 +29,10 @@ public class RoomCategoryService {
         return roomCategoryRepo.findById(id).get();
     }
 
+    public RoomCategory loadByCode(String code) {
+        return roomCategoryRepo.findByCode(code);
+    }
+
     public void delete(RoomCategory roomCategory) {
         roomCategoryRepo.delete(roomCategory);
     }

@@ -5,6 +5,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.manufacturer.ManufacturerService;
+import pl.krzysztofskul.organization.hospital.Hospital;
+import pl.krzysztofskul.organization.hospital.HospitalService;
+import pl.krzysztofskul.organization.hospital.department.Department;
+import pl.krzysztofskul.organization.hospital.department.DepartmentService;
+import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategory;
+import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategoryService;
+import pl.krzysztofskul.organization.hospital.department.room.Room;
+import pl.krzysztofskul.organization.hospital.department.room.RoomService;
+import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
+import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.ProductService;
 import pl.krzysztofskul.product.productCategory.ProductCategory;
@@ -25,6 +35,11 @@ public class InitTestDBService {
     private ManufacturerService manufacturerService;
     private ProductCategoryService productCategoryService;
     private ProductService productService;
+    private RoomCategoryService roomCategoryService;
+    private DepartmentCategoryService departmentCategoryService;
+    private HospitalService hospitalService;
+    private DepartmentService departmentService;
+    private RoomService roomService;
 
     @Autowired
     public InitTestDBService(
@@ -32,13 +47,23 @@ public class InitTestDBService {
             UserService userService,
             ManufacturerService manufacturerService,
             ProductCategoryService productCategoryService,
-            ProductService productService
+            ProductService productService,
+            RoomCategoryService roomCategoryService,
+            DepartmentCategoryService departmentCategoryService,
+            HospitalService hospitalService,
+            DepartmentService departmentService,
+            RoomService roomService
     ) {
         this.userCategoryService = userCategoryService;
         this.userService = userService;
         this.manufacturerService = manufacturerService;
         this.productCategoryService = productCategoryService;
         this.productService = productService;
+        this.roomCategoryService = roomCategoryService;
+        this.departmentCategoryService = departmentCategoryService;
+        this.hospitalService = hospitalService;
+        this.departmentService = departmentService;
+        this.roomService = roomService;
     }
 
     public void createUsersCategory() {
@@ -92,7 +117,14 @@ public class InitTestDBService {
         userService.save(user);
 
         user.setNameFirst("Guest");
-        user.setNameLast("Some-Investor");
+        user.setNameLast("Investor-First");
+        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
+        user.setPassword("test");
+        user.setUserCategory(userCategoryService.loadByCode("INVESTOR"));
+        userService.save(user);
+
+        user.setNameFirst("Guest");
+        user.setNameLast("Investor-Second");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
         user.setUserCategory(userCategoryService.loadByCode("INVESTOR"));
@@ -113,7 +145,14 @@ public class InitTestDBService {
         userService.save(user);
 
         user.setNameFirst("Guest");
-        user.setNameLast("Some-Employee");
+        user.setNameLast("Employee-First");
+        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
+        user.setPassword("test");
+        user.setUserCategory(userCategoryService.loadByCode("EMPLOYEE"));
+        userService.save(user);
+
+        user.setNameFirst("Guest");
+        user.setNameLast("Employee-Second");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
         user.setUserCategory(userCategoryService.loadByCode("EMPLOYEE"));
@@ -147,7 +186,7 @@ public class InitTestDBService {
 
     }
 
-    public void createProducCategories() {
+    public void createProductCategories() {
         ProductCategory productCategory = new ProductCategory();
 
         productCategory.setCode("OR-T");
@@ -172,62 +211,209 @@ public class InitTestDBService {
         product.setProductCategory(productCategoryService.loadByCode("OR-T"));
         product.setModelName("Alpha");
         product.setPrice(BigDecimal.valueOf(50000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
         product.setProductCategory(productCategoryService.loadByCode("OR-T"));
         product.setModelName("Beta");
         product.setPrice(BigDecimal.valueOf(75000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
         product.setProductCategory(productCategoryService.loadByCode("OR-L"));
         product.setModelName("HALOGEN");
         product.setPrice(BigDecimal.valueOf(40000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
         product.setProductCategory(productCategoryService.loadByCode("OR-L"));
         product.setModelName("LED");
         product.setPrice(BigDecimal.valueOf(90000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
         product.setProductCategory(productCategoryService.loadByCode("OR-A"));
         product.setModelName("Fixed");
         product.setPrice(BigDecimal.valueOf(120000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
         product.setProductCategory(productCategoryService.loadByCode("OR-A"));
         product.setModelName("Mobile");
         product.setPrice(BigDecimal.valueOf(130000.00));
+        productService.save(product);
 
         /** 2ND TEST MANUFACTURER PRODUCTS */
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
         product.setProductCategory(productCategoryService.loadByCode("OR-T"));
         product.setModelName("Uno");
         product.setPrice(BigDecimal.valueOf(50000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
         product.setProductCategory(productCategoryService.loadByCode("OR-T"));
         product.setModelName("Duo");
         product.setPrice(BigDecimal.valueOf(75000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
         product.setProductCategory(productCategoryService.loadByCode("OR-L"));
         product.setModelName("2xHALOGEN");
         product.setPrice(BigDecimal.valueOf(80000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
         product.setProductCategory(productCategoryService.loadByCode("OR-L"));
         product.setModelName("2xLED");
         product.setPrice(BigDecimal.valueOf(160000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
         product.setProductCategory(productCategoryService.loadByCode("OR-A"));
         product.setModelName("Fixed");
         product.setPrice(BigDecimal.valueOf(120000.00));
+        productService.save(product);
 
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
         product.setProductCategory(productCategoryService.loadByCode("OR-A"));
         product.setModelName("Mobile");
         product.setPrice(BigDecimal.valueOf(130000.00));
+        productService.save(product);
+
+    }
+
+    public void createRoomCategories() {
+        RoomCategory roomCategory = new RoomCategory();
+
+        roomCategory.setCode("OR-S");
+        roomCategory.setName("Operating Room / Srugical");
+        roomCategoryService.save(roomCategory);
+
+        roomCategory.setCode("OR-NS");
+        roomCategory.setName("Operating Room / Neuro-Srugical");
+        roomCategoryService.save(roomCategory);
+
+        roomCategory.setCode("OR-SP");
+        roomCategory.setName("Surgeon preparation room");
+        roomCategoryService.save(roomCategory);
+
+        roomCategory.setCode("OR-PP");
+        roomCategory.setName("Patient preparation room");
+        roomCategoryService.save(roomCategory);
+
+        roomCategory.setCode("ICR1");
+        roomCategory.setName("Intensive Care Room / 1 bed");
+        roomCategoryService.save(roomCategory);
+
+        roomCategory.setCode("ICR2");
+        roomCategory.setName("Intensive Care Room / 2 beds");
+        roomCategoryService.save(roomCategory);
+
+        roomCategory.setCode("CSSD-C");
+        roomCategory.setName("Cleaning Room");
+        roomCategoryService.save(roomCategory);
+
+        roomCategory.setCode("CSSD-S");
+        roomCategory.setName("Sterilization Room");
+        roomCategoryService.save(roomCategory);
+
+    }
+
+    public void createDepartmentCategories() {
+        DepartmentCategory departmentCategory = new DepartmentCategory();
+
+        departmentCategory.setCode("OT");
+        departmentCategory.setName("Operating Theater");
+        departmentCategoryService.save(departmentCategory);
+
+        departmentCategory.setCode("ICU");
+        departmentCategory.setName("Intensive Care Unit");
+        departmentCategoryService.save(departmentCategory);
+
+        departmentCategory.setCode("CSSD");
+        departmentCategory.setName("Central Sterile Service Department");
+
+    }
+
+    public void createTestHospitals() {
+        Hospital hospital = new Hospital();
+
+        hospital.setName("Hospital Test No. 1");
+        hospital.setBudget(BigDecimal.valueOf(1000000.00));
+        hospital.addUser(userService.loadByEmail("GuestInvestor-First@test.test"));
+        hospital.addUser(userService.loadByEmail("GuestEmployee-First@test.test"));
+        hospitalService.save(hospital);
+
+        hospital.setName("Hospital Test No. 2");
+        hospital.setBudget(BigDecimal.valueOf(2000000.00));
+        hospital.addUser(userService.loadByEmail("GuestInvestor-Second@test.test"));
+        hospital.addUser(userService.loadByEmail("GuestEmployee-Second@test.test"));
+        hospitalService.save(hospital);
+
+    }
+
+    public void createTestDepartments() {
+        Department department = new Department();
+
+        department.setHospital(hospitalService.loadById(Long.valueOf("1")));
+        department.setDepartmentCategory(departmentCategoryService.loadByCode("OT"));
+        department.setBudget(BigDecimal.valueOf(500000.00));
+        departmentService.save(department);
+
+        department.setHospital(hospitalService.loadById(Long.valueOf("1")));
+        department.setDepartmentCategory(departmentCategoryService.loadByCode("ICU"));
+        department.setBudget(BigDecimal.valueOf(400000.00));
+        departmentService.save(department);
+
+        department.setHospital(hospitalService.loadById(Long.valueOf("2")));
+        department.setDepartmentCategory(departmentCategoryService.loadByCode("OT"));
+        department.setBudget(BigDecimal.valueOf(600000.00));
+        departmentService.save(department);
+
+        department.setHospital(hospitalService.loadById(Long.valueOf("2")));
+        department.setDepartmentCategory(departmentCategoryService.loadByCode("CSSD"));
+        department.setBudget(BigDecimal.valueOf(600000.00));
+        departmentService.save(department);
+
+    }
+
+    public void createTestRooms() {
+        Room room = new Room();
+
+        room.setNumber("1.1.1");
+        room.setDepartment(departmentService.loadById(Long.valueOf("1")));
+        room.setRoomCategory(roomCategoryService.loadByCode("OR-S"));
+        roomService.save(room);
+
+        room.setNumber("1.1.2");
+        room.setDepartment(departmentService.loadById(Long.valueOf("1")));
+        room.setRoomCategory(roomCategoryService.loadByCode("OR-SP"));
+        roomService.save(room);
+
+        room.setNumber("1.1.3");
+        room.setDepartment(departmentService.loadById(Long.valueOf("1")));
+        room.setRoomCategory(roomCategoryService.loadByCode("OR-PP"));
+        roomService.save(room);
+
+        room.setNumber("1.2.1");
+        room.setDepartment(departmentService.loadById(Long.valueOf("2")));
+        room.setRoomCategory(roomCategoryService.loadByCode("ICR1"));
+        roomService.save(room);
+
+        room.setNumber("2.1.1");
+        room.setDepartment(departmentService.loadById(Long.valueOf("3")));
+        room.setRoomCategory(roomCategoryService.loadByCode("OR-NS"));
+        roomService.save(room);
+
+        room.setNumber("2.1.2");
+        room.setDepartment(departmentService.loadById(Long.valueOf("3")));
+        room.setRoomCategory(roomCategoryService.loadByCode("OR-SP"));
+        roomService.save(room);
+
+        room.setNumber("2.1.3");
+        room.setDepartment(departmentService.loadById(Long.valueOf("3")));
+        room.setRoomCategory(roomCategoryService.loadByCode("OR-PP"));
+        roomService.save(room);
 
     }
 

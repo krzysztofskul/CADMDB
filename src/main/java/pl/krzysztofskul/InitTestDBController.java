@@ -16,11 +16,18 @@ public class InitTestDBController {
     public String initTestDB() {
 
             initTestDBService.createTestManufacturers();
-            initTestDBService.createProducCategories();
+            initTestDBService.createProductCategories();
             initTestDBService.createTestProducts();
 
             initTestDBService.createUsersCategory();
             initTestDBService.createTestUsers();
+
+            initTestDBService.createDepartmentCategories();
+            initTestDBService.createRoomCategories();
+
+            initTestDBService.createTestHospitals();
+            initTestDBService.createTestDepartments();
+            initTestDBService.createTestRooms();
 
         return "/";
     }

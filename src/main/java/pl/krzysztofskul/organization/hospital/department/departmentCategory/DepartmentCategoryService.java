@@ -29,6 +29,10 @@ public class DepartmentCategoryService {
         return departmentCategoryRepo.findById(id).get();
     }
 
+    public DepartmentCategory loadByCode(String code) {
+        return departmentCategoryRepo.findByCode(code);
+    }
+
     public void delete(DepartmentCategory departmentCategory) {
         departmentCategoryRepo.delete(departmentCategory);
     }

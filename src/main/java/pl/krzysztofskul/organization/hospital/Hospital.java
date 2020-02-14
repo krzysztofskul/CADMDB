@@ -36,4 +36,21 @@ public class Hospital extends Organization {
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
+    
+    public void addUser(User user) {
+        this.userList.add(user);
+    }
+    
+    public void removeUser(User user) {
+        this.userList.remove(user);
+    }
+
+    public void addDepartment(Department department) {
+        this.departmentList.add(department);
+    }
+
+    public void removeDepartment(Department department) {
+        this.departmentList.remove(department);
+    }
+    
 }

@@ -12,6 +12,8 @@ import java.util.List;
 @Entity
 public class Room extends Organization {
 
+    private String number;
+
     @ManyToOne
     private Department department;
 
@@ -27,6 +29,14 @@ public class Room extends Organization {
     private List<Product> productList = new ArrayList<>();
 
     public Room() {
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public Department getDepartment() {

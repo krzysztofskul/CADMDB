@@ -49,4 +49,13 @@ public class Department extends Organization {
     public void setRoomList(List<Room> roomList) {
         this.roomList = roomList;
     }
+
+    public void addRoom(Room room) {
+        this.roomList.add(room);
+    }
+
+    public void removeRoom(Room room) {
+        this.roomList.remove(room);
+    }
+
 }

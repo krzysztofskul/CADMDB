@@ -18,20 +18,28 @@
     - Designer class
     - controllers for main classes
     - HomePageService/InitialDB
+    - DepartmentCategory-RoomCategory Relations
+    - department constructor with fields
+    - room constructor with fields
 
 #
-    - initDB Service/Controller ...
-        + create user categories
-            + create test/guest users
-        + create test manufacturers
-        + create product categories
-            + create test products
-        - create Test Hospital  ...
     - BigDecimal converter
     - readme update
 
 
 /** DONE **/
+# 0.1.6
+    + initDB Service/Controller
+        + create user categories
+            + create test/guest users
+        + create test manufacturers
+        + create product categories
+            + create test products
+        + create Test Hospital
+            + test rooms
+                + room categories
+            + test department
+                + department categories
 # 0.1.5
     - initDB Service/Controller
         + create user categories
