@@ -479,4 +479,19 @@ public class InitTestDBService {
 
     }
 
+    public void addTestProductsToTestRooms() {
+        Room room;
+
+        room = roomService.loadById(Long.valueOf("1"));
+        room.addProduct(productService.loadById(Long.valueOf("1")));
+        room.addProduct(productService.loadById(Long.valueOf("3")));
+        room.addProduct(productService.loadById(Long.valueOf("6")));
+        roomService.save(room);
+
+        room = roomService.loadById(Long.valueOf("5"));
+        room.addProduct(productService.loadById(Long.valueOf("1")));
+        room.addProduct(productService.loadById(Long.valueOf("3")));
+        room.addProduct(productService.loadById(Long.valueOf("5")));
+        roomService.save(room);
+    }
 }

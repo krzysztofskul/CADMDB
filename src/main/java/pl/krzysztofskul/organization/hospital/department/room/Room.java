@@ -62,4 +62,13 @@ public class Room extends Organization {
     public void setRoomCategory(RoomCategory roomCategory) {
         this.roomCategory = roomCategory;
     }
+
+    public void addProduct(Product product) {
+        this.productList.add(product);
+    }
+
+    public void removeProduct(Product product) {
+        this.productList.remove(product);
+    }
+
 }

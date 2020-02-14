@@ -23,12 +23,17 @@
     - room constructor with fields
 
 #
-    - add test products to test rooms
     - BigDecimal converter
     - readme update
+    - budget claculations when add/remove product to/from room
 
 
 /** DONE **/
+# 0.1.7
+    + initDB Service/Controller
+        + add test products to test rooms
+        + add/remove product method to room class
+        + add/remove room method to product class
 # 0.1.6.1
     + code corrections for init Test DB functionality
 # 0.1.6
