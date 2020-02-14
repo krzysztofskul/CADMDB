@@ -13,6 +13,7 @@
 
     <nav class="nav">
         <a class="nav-link active" href="/">HOME</a>
+        <a class="nav-link active" href="/initTestDB">INIT. TEST DB</a>
         <a class="nav-link disabled" href="#">LOREM</a>
         <a class="nav-link disabled" href="#">IPSUM</a>
     </nav>

@@ -23,11 +23,14 @@
     - room constructor with fields
 
 #
+    - add test products to test rooms
     - BigDecimal converter
     - readme update
 
 
 /** DONE **/
+# 0.1.6.1
+    + code corrections for init Test DB functionality
 # 0.1.6
     + initDB Service/Controller
         + create user categories

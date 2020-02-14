@@ -1,7 +1,9 @@
 package pl.krzysztofskul;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@Controller
 public class InitTestDBController {
 
     private InitTestDBService initTestDBService;
@@ -15,21 +17,21 @@ public class InitTestDBController {
     @GetMapping("/initTestDB")
     public String initTestDB() {
 
-            initTestDBService.createTestManufacturers();
-            initTestDBService.createProductCategories();
-            initTestDBService.createTestProducts();
-
             initTestDBService.createUsersCategory();
-            initTestDBService.createTestUsers();
-
             initTestDBService.createDepartmentCategories();
             initTestDBService.createRoomCategories();
+            initTestDBService.createProductCategories();
+
+            initTestDBService.createTestManufacturers();
+            initTestDBService.createTestProducts();
 
             initTestDBService.createTestHospitals();
             initTestDBService.createTestDepartments();
             initTestDBService.createTestRooms();
 
-        return "/";
+            initTestDBService.createTestUsers();
+
+        return "index";
     }
 
 }
