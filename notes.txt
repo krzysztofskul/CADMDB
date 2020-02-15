@@ -24,8 +24,13 @@
 #
     - BigDecimal converter
     - readme update
+    - front-end ...
+        + allHospitals for Admin view
+        - allManufacturers for Admin view
 
 /** DONE **/
+# 0.1.9
+    + allHospitals for Admin view
 # 0.1.8-SNAPSHOT
     + budget calculations for room/department/hospital when add/remove product to/from room (by methods in ProductService)
 # 0.1.7
