@@ -24,11 +24,10 @@
 #
     - BigDecimal converter
     - readme update
-    - front-end ...
-        + allHospitals for Admin view
-        - allManufacturers for Admin view
 
 /** DONE **/
+# 0.1.10
+    + allManufacturers for all users view
 # 0.1.9
     + allHospitals for Admin view
 # 0.1.8-SNAPSHOT
