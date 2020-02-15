@@ -389,14 +389,14 @@ public class InitTestDBService {
 
         hospital = new Hospital();
         hospital.setName("Hospital Test No. 1");
-        hospital.setBudget(BigDecimal.valueOf(1000000.00));
+        hospital.setBudget(BigDecimal.valueOf(10000000.00));
         hospital.addUser(userService.loadByEmail("GuestInvestor-First@test.test"));
         hospital.addUser(userService.loadByEmail("GuestEmployee-First@test.test"));
         hospitalService.save(hospital);
 
         hospital = new Hospital();
         hospital.setName("Hospital Test No. 2");
-        hospital.setBudget(BigDecimal.valueOf(2000000.00));
+        hospital.setBudget(BigDecimal.valueOf(20000000.00));
         hospital.addUser(userService.loadByEmail("GuestInvestor-Second@test.test"));
         hospital.addUser(userService.loadByEmail("GuestEmployee-Second@test.test"));
         hospitalService.save(hospital);
@@ -409,13 +409,13 @@ public class InitTestDBService {
         department = new Department();
         department.setHospital(hospitalService.loadById(Long.valueOf("1")));
         department.setDepartmentCategory(departmentCategoryService.loadByCode("OT"));
-        department.setBudget(BigDecimal.valueOf(500000.00));
+        department.setBudget(BigDecimal.valueOf(5000000.00));
         departmentService.save(department);
 
         department = new Department();
         department.setHospital(hospitalService.loadById(Long.valueOf("1")));
         department.setDepartmentCategory(departmentCategoryService.loadByCode("ICU"));
-        department.setBudget(BigDecimal.valueOf(400000.00));
+        department.setBudget(BigDecimal.valueOf(4000000.00));
         departmentService.save(department);
 
         department = new Department();
@@ -427,7 +427,7 @@ public class InitTestDBService {
         department = new Department();
         department.setHospital(hospitalService.loadById(Long.valueOf("2")));
         department.setDepartmentCategory(departmentCategoryService.loadByCode("CSSD"));
-        department.setBudget(BigDecimal.valueOf(600000.00));
+        department.setBudget(BigDecimal.valueOf(400000.00));
         departmentService.save(department);
 
     }
@@ -439,42 +439,49 @@ public class InitTestDBService {
         room.setNumber("1.1.1");
         room.setDepartment(departmentService.loadById(Long.valueOf("1")));
         room.setRoomCategory(roomCategoryService.loadByCode("OR-S"));
+        room.setBudget(BigDecimal.valueOf(500000.00));
         roomService.save(room);
 
         room = new Room();
         room.setNumber("1.1.2");
         room.setDepartment(departmentService.loadById(Long.valueOf("1")));
         room.setRoomCategory(roomCategoryService.loadByCode("OR-SP"));
+        room.setBudget(BigDecimal.valueOf(300000.00));
         roomService.save(room);
 
         room = new Room();
         room.setNumber("1.1.3");
         room.setDepartment(departmentService.loadById(Long.valueOf("1")));
         room.setRoomCategory(roomCategoryService.loadByCode("OR-PP"));
+        room.setBudget(BigDecimal.valueOf(200000.00));
         roomService.save(room);
 
         room = new Room();
         room.setNumber("1.2.1");
         room.setDepartment(departmentService.loadById(Long.valueOf("2")));
         room.setRoomCategory(roomCategoryService.loadByCode("ICR1"));
+        room.setBudget(BigDecimal.valueOf(400000.00));
         roomService.save(room);
 
         room = new Room();
         room.setNumber("2.1.1");
         room.setDepartment(departmentService.loadById(Long.valueOf("3")));
         room.setRoomCategory(roomCategoryService.loadByCode("OR-NS"));
+        room.setBudget(BigDecimal.valueOf(500000.00));
         roomService.save(room);
 
         room = new Room();
         room.setNumber("2.1.2");
         room.setDepartment(departmentService.loadById(Long.valueOf("3")));
         room.setRoomCategory(roomCategoryService.loadByCode("OR-SP"));
+        room.setBudget(BigDecimal.valueOf(350000.00));
         roomService.save(room);
 
         room = new Room();
         room.setNumber("2.1.3");
         room.setDepartment(departmentService.loadById(Long.valueOf("3")));
         room.setRoomCategory(roomCategoryService.loadByCode("OR-PP"));
+        room.setBudget(BigDecimal.valueOf(250000.00));
         roomService.save(room);
 
     }
@@ -483,15 +490,14 @@ public class InitTestDBService {
         Room room;
 
         room = roomService.loadById(Long.valueOf("1"));
-        room.addProduct(productService.loadById(Long.valueOf("1")));
-        room.addProduct(productService.loadById(Long.valueOf("3")));
-        room.addProduct(productService.loadById(Long.valueOf("6")));
+        productService.addProductToRoom(productService.loadById(Long.valueOf("1")).getId(), room.getId());
+        productService.removeProductFromRoom(productService.loadById(Long.valueOf("1")).getId(), room.getId());
         roomService.save(room);
 
         room = roomService.loadById(Long.valueOf("5"));
-        room.addProduct(productService.loadById(Long.valueOf("1")));
-        room.addProduct(productService.loadById(Long.valueOf("3")));
-        room.addProduct(productService.loadById(Long.valueOf("5")));
+        productService.addProductToRoom(productService.loadById(Long.valueOf("1")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("2")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("3")).getId(), room.getId());
         roomService.save(room);
     }
 }

@@ -17,7 +17,6 @@
     - Investor class
     - Designer class
     - controllers for main classes
-    - HomePageService/InitialDB
     - DepartmentCategory-RoomCategory Relations
     - department constructor with fields
     - room constructor with fields
@@ -25,10 +24,10 @@
 #
     - BigDecimal converter
     - readme update
-    - budget claculations when add/remove product to/from room
-
 
 /** DONE **/
+# 0.1.8-SNAPSHOT
+    + budget calculations for room/department/hospital when add/remove product to/from room (by methods in ProductService)
 # 0.1.7
     + initDB Service/Controller
         + add test products to test rooms
