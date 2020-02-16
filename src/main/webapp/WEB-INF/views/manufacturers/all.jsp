@@ -15,6 +15,11 @@
     <jsp:include page="../header.jsp"/>
 
     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <a href="#" class="btn btn-success float-right">NEW</a>
+            </div>
+        </div>
         <c:forEach items="${manufacturers}" var="manufacturer">
             <div class="row bg-light font-weight-bold">
                 <div class="col-12">
