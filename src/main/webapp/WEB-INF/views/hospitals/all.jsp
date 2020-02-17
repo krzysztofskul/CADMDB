@@ -23,7 +23,12 @@
                 <div class="card-body">
                     <c:forEach items="${hospitals}" var="hospital">
                         <div class="row bg-light font-weight-bold mt-2 border-top border-bottom">
-                            <div class="col-12">ID: ${hospital.id} | ${hospital.name} | ${hospital.budget}</div>
+                            <div class="col-8">
+                                ID: ${hospital.id} | ${hospital.name} | ${hospital.budget}
+                            </div>
+                            <div class="col-4">
+                                <a href="/departments/new?hospitalId=${hospital.id}">ADD DEPARTMENT</a>
+                            </div>
                         </div>
                         <c:forEach items="${hospital.departmentList}" var="department">
                             <div class="row bg-light">
@@ -41,7 +46,7 @@
                     </c:forEach>
                 </div>
                 <div class="card-header">
-                    <a href="/hospitals/new" class="btn btn-success float-right">NEW</a>
+                    <a href="/hospitals/new" class="btn btn-success float-right">NEW HOSPITAL</a>
                 </div>
             </div>
 

@@ -27,12 +27,17 @@
 #
     . new hospital form
         - new department for hospital
+            + new dep. for admin
+            + new dep. for hospital with id
+            - ask form directly after new hospital
         - new room
         - assign products to rooms
     - delete hospital -> ask for sure -> delete departments, rooms -> disconnect products
     - manufacturers all - categorize products
 
 /** DONE **/
+# 0.1.12
+    + add new department to hospital functionality
 # 0.1.11
     + new hospital form
     + front-end modifications
