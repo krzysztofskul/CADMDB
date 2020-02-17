@@ -24,18 +24,26 @@
 #
     - BigDecimal converter
     - readme update
-#
-    . new hospital form
-        - new department for hospital
-            + new dep. for admin
-            + new dep. for hospital with id
-            - ask form directly after new hospital
-        - new room
-        - assign products to rooms
+    - ask form after new hospital, department, room
     - delete hospital -> ask for sure -> delete departments, rooms -> disconnect products
     - manufacturers all - categorize products
 
+# 0.2
+    - front-end update
+    - pom update
+    - readme update
+#
+    . new hospital form
+        + new department for hospital
+            + new dep. for admin
+            + new dep. for hospital with id
+        + new room form
+        - assign products to rooms
+        - new manufacturer form
+
 /** DONE **/
+# 0.1.13
+    + new room form added
 # 0.1.12
     + add new department to hospital functionality
 # 0.1.11

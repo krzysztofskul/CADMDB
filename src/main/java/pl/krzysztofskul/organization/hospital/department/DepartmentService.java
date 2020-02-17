@@ -1,5 +1,6 @@
 package pl.krzysztofskul.organization.hospital.department;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,12 @@ public class DepartmentService {
 
     public Department loadById(Long id) {
         return departmentRepo.findById(id).get();
+    }
+
+    public Department loadByIdWithHospitalAndItsDepartmentList(Long id) {
+        Department department = departmentRepo.findById(id).get();
+        Hibernate.initialize(department.getHospital().getDepartmentList());
+        return department;
     }
 
     public void delete(Department department) {

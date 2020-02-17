@@ -32,7 +32,12 @@
                         </div>
                         <c:forEach items="${hospital.departmentList}" var="department">
                             <div class="row bg-light">
-                                <div class="col-12 ml-2">ID: ${department.id} | ${department.departmentCategory.name}</div>
+                                <div class="col-8 ml-2">
+                                    ID: ${department.id} | ${department.departmentCategory.name}
+                                </div>
+                                <div class="col-2">
+                                    <a href="/rooms/new?departmentId=${department.id}">ADD ROOM</a>
+                                </div>
                             </div>
                             <c:forEach items="${department.roomList}" var="room">
                                 <div class="row">
