@@ -42,9 +42,12 @@
             - from room
             - form product site
         . new manufacturer form
-            - new products form
+            . create new product form
+            - option for manufacturer user (see where product is planned to buy)
 
 /** DONE **/
+# 0.1.15
+    + create new product form
 # 0.1.14
     + new manufacturer form added
 # 0.1.13

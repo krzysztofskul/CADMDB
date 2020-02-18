@@ -24,8 +24,11 @@
             <div class="card-body">
                 <c:forEach items="${manufacturers}" var="manufacturer">
                     <div class="row bg-light font-weight-bold mt-2 border-top">
-                        <div class="col-12">
+                        <div class="col-8">
                             ID: ${manufacturer.id} | ${manufacturer.name}
+                        </div>
+                        <div class="col-4 d-inline-block">
+                            <a href="/products/new?manufacturerId=${manufacturer.id}">CREATE NEW PRODUCT</a>
                         </div>
                     </div>
                     <c:forEach items="${manufacturer.productList}" var="product">
