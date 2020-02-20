@@ -38,14 +38,16 @@
             . new dep. for admin
             . new dep. for hospital with id
         . new room form
-        - assign products to rooms
-            - from room
-            - form product site
+        - assign products to rooms forms
+            . add product to selected room ... todo: *1: not working properly: initially mark elements of the list, sending list; budget converter! product converter?
+            - add product to room from manufacturer view
         . new manufacturer form
             . create new product form
-            - option for manufacturer user (see where product is planned to buy)
+            - option for manufacturer user (see where product is planned to buy) ?
 
 /** DONE **/
+# 0.1.16
+    + add product to selected room form todo: *1
 # 0.1.15
     + create new product form
 # 0.1.14

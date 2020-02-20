@@ -41,7 +41,12 @@
                             </div>
                             <c:forEach items="${department.roomList}" var="room">
                                 <div class="row">
-                                    <div class="col-12 ml-4">ID: ${room.id} | ${room.roomCategory.name}</div>
+                                    <div class="col-8 ml-4">
+                                        ID: ${room.id} | ${room.roomCategory.name}
+                                    </div>
+                                    <div class="col-3">
+                                        <a href="/rooms/addProduct?roomId=${room.id}">ADD PRODUCT</a>
+                                    </div>
                                 </div>
                                 <c:forEach items="${room.productList}" var="product">
                                     <div class="col-12 ml-lg-5">ID: ${product.id} | ${product.productCategory.name} ${product.manufacturer.name} ${product.modelName} ${product.price}</div>
