@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -20,6 +21,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import pl.krzysztofskul.bigDecimal.BigDecimalConverter;
+import pl.krzysztofskul.product.ProductConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -91,7 +94,23 @@ public class AppConfig implements WebMvcConfigurer {
         return dataSource;
     }
 
-    //@Override
+    @Bean
+    public BigDecimalConverter getBigDecimalConverter() {
+        return new BigDecimalConverter();
+    }
+
+    @Bean
+    public ProductConverter getProductConverter() {
+        return new ProductConverter();
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry formatterRegistry) {
+        formatterRegistry.addConverter(getBigDecimalConverter());
+        formatterRegistry.addConverter(getProductConverter());
+    }
+
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry handlerRegistry) {
         handlerRegistry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }

@@ -36,8 +36,9 @@
 
                     <form:hidden path="department.id"/>
 
-                    <%--todo *1--%>
-<%--                    <form:hidden path="budget"/>--%>
+                    <form:hidden path="budget"/>
+
+                <%--todo *1--%>
                     <%--<div class="form-group">
                         <label for="productList">PRODUCTS:</label>
                         <c:forEach items="${allProducts}" var="product">
@@ -46,7 +47,7 @@
                                 <c:if test="${product.id eq productInRoom.id}">
                                     <form:checkbox
                                             path="productList"
-                                            value="product.id"
+                                            value="id"
                                             label="${product.manufacturer.name} ${product.modelName}"
                                             id="productList"
                                             checked="checked"
@@ -55,7 +56,7 @@
                                 <c:if test="${product.id ne productInRoom.id}">
                                     <form:checkbox
                                             path="productList"
-                                            value="product.id"
+                                            value="id"
                                             label="${product.manufacturer.name} ${product.modelName}"
                                             id="productList"
                                     />
@@ -73,14 +74,18 @@
                                 itemLabel="modelName"
                                 itemValue="id"
                         />
-                    </div>--%>
-                    <%--<form:select path="productList">
+                    </div>
+                    <form:select path="productList">
                         <form:options
                                 items="${allProducts}"
-                                itemValue="product.id"
+                                itemValue="id"
                                 itemLabel="modelName"
                         />
-                    </form:select>--%>
+                    </form:select>
+                    --%>
+                    <form:checkboxes path="productList" items="${allProducts}"
+                        itemLabel="modelName" itemValue="id"
+                    />
 
                 </div>
 

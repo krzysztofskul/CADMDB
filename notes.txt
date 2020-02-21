@@ -39,15 +39,20 @@
             . new dep. for hospital with id
         . new room form
         - assign products to rooms forms
-            . add product to selected room ... todo: *1: not working properly: initially mark elements of the list, sending list; budget converter! product converter?
+            . add product to selected room ... todo: *1: not working properly: initially mark elements of the list
             - add product to room from manufacturer view
         . new manufacturer form
             . create new product form
             - option for manufacturer user (see where product is planned to buy) ?
 
 /** DONE **/
+# 0.1.17
+    + added converter
+        + BigDecimal/budget converter
+        + Product converter
+    + updated form for add product to selected room todo: *1
 # 0.1.16
-    + add product to selected room form todo: *1
+    + add product to selected room form
 # 0.1.15
     + create new product form
 # 0.1.14
