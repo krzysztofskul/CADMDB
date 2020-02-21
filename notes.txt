@@ -46,6 +46,8 @@
             - option for manufacturer user (see where product is planned to buy) ?
 
 /** DONE **/
+#
+    + readme.md update
 # 0.1.17
     + added converter
         + BigDecimal/budget converter
