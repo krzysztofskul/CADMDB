@@ -32,12 +32,12 @@
     - option for manufacturer user (see where product is planned to buy)
     - edit/delete products/rooms/depratments/hospitals
 
-# 0.2
-    - front-end update
-    - pom update
-    - readme update
 
 /** DONE **/
+# 0.2.0
+    + front-end update
+    + pom update
+    + readme update
 # 0.1.19
     + add product to selected room form
     + recalculation budgets when adding new product to room

@@ -12,8 +12,8 @@
 </head>
 <body>
 
-    <div class="container border-top text-right mt-5">
-        <h2>CADM FOOTER</h2>
+    <div class="container border-top text-right mt-5 font-italic">
+        <h6>Krzysztof Kuliński 2020</h6>
     </div>
 
 </body>

@@ -11,14 +11,12 @@
 </head>
 <body>
 
-    <nav class="nav">
+    <nav class="nav border-top">
         <a class="nav-link active" href="/">HOME</a>
         <a class="nav-link active" href="/initTestDB">INIT. TEST DB</a>
         <a class="nav-link active" href="/hospitals/all">ALL HOSPITALS</a>
         <a class="nav-link active" href="/hospitals/new">NEW HOSPITAL</a>
         <a class="nav-link active" href="/manufacturers/all">ALL MANUFACTURERS</a>
-        <a class="nav-link disabled" href="#">LOREM</a>
-        <a class="nav-link disabled" href="#">IPSUM</a>
     </nav>
 
 </body>

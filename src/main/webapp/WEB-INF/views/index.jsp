@@ -15,8 +15,11 @@
 
     <jsp:include page="./header.jsp"/>
 
-    <div class="container h-75">
-        <h1>CADM</h1>
+    <div class="container homePage">
+        <h1>
+            CADmedica<br>
+            Database and hospital plannig application
+        </h1>
     </div>
 
     <jsp:include page="./footer.jsp"/>

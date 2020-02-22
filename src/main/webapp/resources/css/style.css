@@ -1,0 +1,16 @@
+.homePage {
+    background-image: url("/resources/img/bg_001.png");
+    background-repeat: no-repeat;
+    height: 500px;
+}
+
+.homePage h1 {
+    background: white;
+    opacity: 90%;
+    margin-top: 100px;
+    padding: 20px;
+    position: absolute;
+    color: gray;
+    font-style: italic;
+    text-align: center;
+}
