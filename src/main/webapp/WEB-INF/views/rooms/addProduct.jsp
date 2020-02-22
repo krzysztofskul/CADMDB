@@ -38,54 +38,13 @@
 
                     <form:hidden path="budget"/>
 
-                <%--todo *1--%>
-                    <%--<div class="form-group">
-                        <label for="productList">PRODUCTS:</label>
-                        <c:forEach items="${allProducts}" var="product">
-                            <c:forEach items="${room.productList}" var="productInRoom">
-                                <br>
-                                <c:if test="${product.id eq productInRoom.id}">
-                                    <form:checkbox
-                                            path="productList"
-                                            value="id"
-                                            label="${product.manufacturer.name} ${product.modelName}"
-                                            id="productList"
-                                            checked="checked"
-                                    />
-                                </c:if>
-                                <c:if test="${product.id ne productInRoom.id}">
-                                    <form:checkbox
-                                            path="productList"
-                                            value="id"
-                                            label="${product.manufacturer.name} ${product.modelName}"
-                                            id="productList"
-                                    />
-                                </c:if>
-                            </c:forEach>
-                        </c:forEach>
-                    </div>--%>
-                    <%--<div class="form-group">
-                        <label for="productList">PRODUCTS:</label>
+                    <c:forEach items="${allProducts}" var="productToAdd">
+                        <input type="checkbox"
+                               name="productToAdd"
+                               value="${productToAdd.id}"
+                        />${productToAdd.productCategory.name} ${productToAdd.manufacturer.name} ${productToAdd.modelName} ${productToAdd.price} zł
                         <br>
-                        <form:checkboxes
-                                items="${allProducts}"
-                                path="productList"
-                                id="productList"
-                                itemLabel="modelName"
-                                itemValue="id"
-                        />
-                    </div>
-                    <form:select path="productList">
-                        <form:options
-                                items="${allProducts}"
-                                itemValue="id"
-                                itemLabel="modelName"
-                        />
-                    </form:select>
-                    --%>
-                    <form:checkboxes path="productList" items="${allProducts}"
-                        itemLabel="modelName" itemValue="id"
-                    />
+                    </c:forEach>
 
                 </div>
 

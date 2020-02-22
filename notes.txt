@@ -26,28 +26,21 @@
     - ask form after new hospital, department, room
     - delete hospital -> ask for sure -> delete departments, rooms -> disconnect products
     - manufacturers all - categorize products
+    - initially mark existed elements of the list when adding new product to room
+    - product quantity option when adding to room
+    - functionality which show where products are already added
+    - option for manufacturer user (see where product is planned to buy)
+    - edit/delete products/rooms/depratments/hospitals
 
 # 0.2
     - front-end update
     - pom update
     - readme update
-#
-    . new hospital form
-        . new department for hospital
-            . new dep. for admin
-            . new dep. for hospital with id
-        . new room form
-        - assign products to rooms forms
-            . add product to selected room ... todo: *1: not working properly: initially mark elements of the list
-                - recalculation budgets
-            + add product to room from manufacturer view
-                - recalculation budgets
-                - functionality which show where products are already added
-        . new manufacturer form
-            . create new product form
-            - option for manufacturer user (see where product is planned to buy) ?
 
 /** DONE **/
+# 0.1.19
+    + add product to selected room form
+    + recalculation budgets when adding new product to room
 # 0.1.18
     + add product to room from manufacturer view
     + Room converter
@@ -57,7 +50,7 @@
     + added converter
         + BigDecimal/budget converter
         + Product converter
-    + updated form for add product to selected room todo: *1
+    + updated form for add product to selected room
 # 0.1.16
     + add product to selected room form
 # 0.1.15

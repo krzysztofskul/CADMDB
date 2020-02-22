@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
+import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.ProductService;
 
 import java.util.List;
@@ -73,9 +74,12 @@ public class RoomController {
 
     @PostMapping("addProduct")
     public String roomAddProduct(
-            @ModelAttribute("room") Room room
+            @ModelAttribute("room") Room room,
+            @RequestParam("productToAdd") List<Product> productsToAdd
     ) {
-        roomService.save(room);
+        for (Product productToAdd : productsToAdd) {
+            productService.addProductToRoom(productToAdd.getId(), room.getId());
+        }
         return "redirect:/hospitals/all";
     }
 

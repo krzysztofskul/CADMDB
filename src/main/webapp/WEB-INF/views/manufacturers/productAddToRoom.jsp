@@ -21,6 +21,7 @@
 
                 <div class="card-header text-center font-weight-bold">
                     PRODUCT ADD TO ROOM FORM
+                    ${productToAdd.productCategory} ${productToAdd.manufacturer} ${productToAdd.modelName} ${productToAdd.price} zł
                 </div>
 
                 <div class="card-body">
@@ -36,7 +37,7 @@
                                name="rooms"
                                value="${room.id}"
                                class="d-inline-block"
-                        />${room.fullPath}<br>
+                        />${room.fullPath} ${room.budget} zł<br>
                     </c:forEach>
 
                     <form:hidden path="price"/>

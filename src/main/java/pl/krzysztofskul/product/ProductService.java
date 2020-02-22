@@ -70,9 +70,9 @@ public class ProductService {
         Hospital hospital = hospitalService.loadById(department.getHospital().getId());
 
         room.addProduct(product);
-        room.setBudget(room.getBudget().add(product.getPrice()));
-        department.setBudget(department.getBudget().add(product.getPrice()));
-        hospital.setBudget(hospital.getBudget().add(product.getPrice()));
+        room.setBudget(room.getBudget().subtract(product.getPrice()));
+        department.setBudget(department.getBudget().subtract(product.getPrice()));
+        hospital.setBudget(hospital.getBudget().subtract(product.getPrice()));
 
         this.save(product);
         roomService.save(room);
@@ -88,9 +88,9 @@ public class ProductService {
         Hospital hospital = hospitalService.loadById(department.getHospital().getId());
 
         room.removeProduct(product);
-        room.setBudget(room.getBudget().subtract(product.getPrice()));
-        department.setBudget(department.getBudget().subtract(product.getPrice()));
-        hospital.setBudget(hospital.getBudget().subtract(product.getPrice()));
+        room.setBudget(room.getBudget().add(product.getPrice()));
+        department.setBudget(department.getBudget().add(product.getPrice()));
+        hospital.setBudget(hospital.getBudget().add(product.getPrice()));
 
         this.save(product);
         roomService.save(room);

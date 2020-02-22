@@ -24,7 +24,7 @@
                     <c:forEach items="${hospitals}" var="hospital">
                         <div class="row bg-light font-weight-bold mt-2 border-top border-bottom">
                             <div class="col-8">
-                                ID: ${hospital.id} | ${hospital.name} | ${hospital.budget}
+                                ID: ${hospital.id} | ${hospital.name} | ${hospital.budget} zł
                             </div>
                             <div class="col-4">
                                 <a href="/departments/new?hospitalId=${hospital.id}">ADD DEPARTMENT</a>
@@ -33,7 +33,7 @@
                         <c:forEach items="${hospital.departmentList}" var="department">
                             <div class="row bg-light">
                                 <div class="col-8 ml-2">
-                                    ID: ${department.id} | ${department.departmentCategory.name}
+                                    ID: ${department.id} | ${department.departmentCategory.name} | ${department.budget} zł
                                 </div>
                                 <div class="col-2">
                                     <a href="/rooms/new?departmentId=${department.id}">ADD ROOM</a>
@@ -42,7 +42,7 @@
                             <c:forEach items="${department.roomList}" var="room">
                                 <div class="row">
                                     <div class="col-8 ml-4">
-                                        ID: ${room.id} | ${room.roomCategory.name}
+                                        ID: ${room.id} | ${room.roomCategory.name} | ${room.budget} zł
                                     </div>
                                     <div class="col-3">
                                         <a href="/rooms/addProduct?roomId=${room.id}">ADD PRODUCT</a>
