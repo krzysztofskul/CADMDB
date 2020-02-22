@@ -33,8 +33,11 @@
                     </div>
                     <c:forEach items="${manufacturer.productList}" var="product">
                         <div class="row bg-light">
-                            <div class="col-12 ml-2">
+                            <div class="col-8 ml-2">
                                 ID: ${product.id} | ${product.productCategory.name} ${product.manufacturer.name} ${product.modelName} ${product.price}
+                            </div>
+                            <div class="col-3">
+                                <a href="/manufacturers/productAddToRoom?productId=${product.id}">ADD TO ROOM</a>
                             </div>
                         </div>
                     </c:forEach>

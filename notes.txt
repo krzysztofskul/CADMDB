@@ -22,7 +22,6 @@
     - room constructor with fields
 
 #
-    - BigDecimal converter
     - readme update
     - ask form after new hospital, department, room
     - delete hospital -> ask for sure -> delete departments, rooms -> disconnect products
@@ -40,12 +39,18 @@
         . new room form
         - assign products to rooms forms
             . add product to selected room ... todo: *1: not working properly: initially mark elements of the list
-            - add product to room from manufacturer view
+                - recalculation budgets
+            + add product to room from manufacturer view
+                - recalculation budgets
+                - functionality which show where products are already added
         . new manufacturer form
             . create new product form
             - option for manufacturer user (see where product is planned to buy) ?
 
 /** DONE **/
+# 0.1.18
+    + add product to room from manufacturer view
+    + Room converter
 #
     + readme.md update
 # 0.1.17

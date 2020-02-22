@@ -1,5 +1,6 @@
 package pl.krzysztofskul.product;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +45,12 @@ public class ProductService {
 
     public Product loadById(Long id) {
         return productRepo.findById(id).get();
+    }
+
+    public Product loadByIdWithRoomList(Long id) {
+        Product product = productRepo.findById(id).get();
+        Hibernate.initialize(product.getRoomList());
+        return product;
     }
 
     public void delete(Product product) {

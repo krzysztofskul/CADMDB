@@ -14,6 +14,8 @@ public class Room extends Organization {
 
     private String number;
 
+    private String fullPath;
+
     @ManyToOne
     private Department department;
 
@@ -37,6 +39,17 @@ public class Room extends Organization {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public String getFullPath() {
+        return fullPath;
+    }
+
+    public void setFullPath() {
+        this.fullPath = this.getDepartment().getHospital().getName()+" "+
+                this.getDepartment().getDepartmentCategory().getName()+" "+
+                this.getNumber()+" "+this.getRoomCategory().getName()
+        ;
     }
 
     public Department getDepartment() {
@@ -69,6 +82,11 @@ public class Room extends Organization {
 
     public void removeProduct(Product product) {
         this.productList.remove(product);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        setFullPath();
     }
 
 }

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.krzysztofskul.bigDecimal.BigDecimalConverter;
+import pl.krzysztofskul.organization.hospital.department.room.RoomConverter;
 import pl.krzysztofskul.product.ProductConverter;
 
 import javax.persistence.EntityManagerFactory;
@@ -104,10 +105,16 @@ public class AppConfig implements WebMvcConfigurer {
         return new ProductConverter();
     }
 
+    @Bean
+    public RoomConverter getRoomConverter() {
+        return new RoomConverter();
+    }
+
     @Override
     public void addFormatters(FormatterRegistry formatterRegistry) {
         formatterRegistry.addConverter(getBigDecimalConverter());
         formatterRegistry.addConverter(getProductConverter());
+        formatterRegistry.addConverter(getRoomConverter());
     }
 
     @Override
