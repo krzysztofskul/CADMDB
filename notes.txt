@@ -32,8 +32,20 @@
     - option for manufacturer user (see where product is planned to buy)
     - edit/delete products/rooms/depratments/hospitals
 
+#
+    - tooltip class
+    - menu dropdown
+    - all manufacturers page update
+    - readme update
+        - all manufacturers page
+        - forms for adding new hospital/department/room
 
 /** DONE **/
+# 0.2.1
+    + front-end update fot hospitals/all.jsp
+        + currency formatter added
+    + code verification/updates for new room form (new field fullPath)
+    + readme updates
 # 0.2.0
     + front-end update
     + pom update

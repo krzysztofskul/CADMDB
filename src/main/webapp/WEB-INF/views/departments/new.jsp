@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
@@ -45,6 +46,18 @@
                                 <form:option value="${departmentCategory.id}" label="${departmentCategory.code} ${departmentCategory.name}"/>
                             </c:forEach>
                         </form:select>
+                    </div>
+                    <div class="form-group">
+                        <c:set var="freeBudgetForNewDepartment" value="${newDepartment.hospital.budget}"/>
+                        <label for="budget">BUDGET:</label>
+                        <form:input
+                                path="budget"
+                                type="number"
+                                step="0.01"
+                                cssClass="form-control"
+                                id="budget"
+                                placeholder="max ${freeBudgetForNewDepartment} zł"
+                        />
                     </div>
                 </div>
                 <div class="card-footer">

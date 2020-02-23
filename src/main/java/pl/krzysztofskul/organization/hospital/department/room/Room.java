@@ -45,11 +45,8 @@ public class Room extends Organization {
         return fullPath;
     }
 
-    public void setFullPath() {
-        this.fullPath = this.getDepartment().getHospital().getName()+" "+
-                this.getDepartment().getDepartmentCategory().getName()+" "+
-                this.getNumber()+" "+this.getRoomCategory().getName()
-        ;
+    public void setFullPath(String fullPath) {
+        this.fullPath = fullPath;
     }
 
     public Department getDepartment() {
@@ -85,8 +82,12 @@ public class Room extends Organization {
     }
 
     @PrePersist
-    public void prePersist() {
-        setFullPath();
+    public void postPersist() {
+        this.setFullPath(
+                this.getDepartment().getHospital().getName() + " " +
+                        this.getDepartment().getDepartmentCategory().getName() + " " +
+                        this.getNumber() + " " + this.getRoomCategory().getName()
+        );
     }
 
 }

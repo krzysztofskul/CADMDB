@@ -25,6 +25,8 @@
 
                     <form:hidden path="id"/>
 
+                    <form:hidden path="fullPath"/>
+
                     <div class="form-group">
                         <label for="department">DEPARTMENT:</label>
                         <c:set var="disabled" value="false"/>

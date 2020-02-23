@@ -4,6 +4,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 
 import java.util.List;
 
@@ -12,13 +13,19 @@ import java.util.List;
 public class RoomService {
 
     private RoomRepo roomRepo;
+    private DepartmentService departmentService;
 
     @Autowired
-    public RoomService(RoomRepo roomRepo) {
+    public RoomService(
+            RoomRepo roomRepo,
+            DepartmentService departmentService
+    ) {
         this.roomRepo = roomRepo;
+        this.departmentService = departmentService;
     }
 
     public void save(Room room) {
+            room.setDepartment(departmentService.loadByIdWithHospitalAndItsDepartmentList(room.getDepartment().getId()));
         roomRepo.save(room);
     }
 

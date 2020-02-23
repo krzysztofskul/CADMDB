@@ -56,6 +56,7 @@ public class RoomController {
     public String newRoom(
             @ModelAttribute("newRoom") Room room
     ) {
+//        room.setDepartment(departmentService.loadByIdWithHospitalAndItsDepartmentList(room.getDepartment().getId()));
         roomService.save(room);
         return "redirect:/hospitals/all";
     }
