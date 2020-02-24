@@ -1,6 +1,6 @@
 # CADMDB (in progress..)
 
-![](src/main/webapp/resources/img/forReadme/screenshoot_001.png)
+![](src/main/webapp/resources/img/forReadme/screenshot_001.png)
 
 ## IDEA
 The main idea of the application is to help going through the planning process of hospitals departments' and rooms' structure as well as calculating costs of medical devices.
@@ -9,7 +9,7 @@ The core of the application is to standardize names of typical departments', roo
 ## PAGES AND FUNCTIONALITY
 
 ### ALL HOSPITALS PAGE:
-![](src/main/webapp/resources/img/forReadme/screenshoot_allHospitalsPage_001.png)
+
 The list with all hospitals existing in database. 
 Functionality depends on which user category is logged in:
 * **Administrator** can see organizational structure of each hospital and information about budget connected with its departments and rooms. This page allows administrator to add new hospital, to see details and to delete every department, room or product.
@@ -18,6 +18,21 @@ Functionality depends on which user category is logged in:
 * **Hospital's designer** (in progress...)
 * **Hospital's building contractor** (in progress...)
 * **Manufacturer** of medical devices (access denied)
+
+![](src/main/webapp/resources/img/forReadme/screenshot_allHospitalsPage_001.png)
+
+### ALL PRODUCTS PAGE:
+
+The list of all products sorted by product category and possible to add to hospital rooms. 
+Functionality depends on which user category is logged in:
+* **Administrator** (in progress...)
+* **Investor** (in progress...)
+* **Hospital's manager/employee** (in progress...)
+* **Hospital's designer** (in progress...)
+* **Hospital's building contractor** (in progress...)
+* **Manufacturer** of medical devices (access denied)
+
+![](src/main/webapp/resources/img/forReadme/screenshot_allProductsPage_001.png)
 
 ## USED TECHNOLOGIES
 * Java

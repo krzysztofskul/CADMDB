@@ -212,18 +212,63 @@ public class InitTestDBService {
         ProductCategory productCategory;
 
         productCategory = new ProductCategory();
-        productCategory.setCode("OR-T");
-        productCategory.setName("Operating Table");
+        productCategory.setCode("AA0000");
+        productCategory.setName("HOSPITAL BEDS");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
-        productCategory.setCode("OR-L");
-        productCategory.setName("Operating Lamp");
+        productCategory.setCode("AB1000");
+        productCategory.setName("OPERATING TABLES");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
-        productCategory.setCode("OR-A");
-        productCategory.setName("Anaesthetic Workstation");
+        productCategory.setCode("AC1000");
+        productCategory.setName("OPERATING LIGHTS");
+        productCategoryService.save(productCategory);
+
+        productCategory = new ProductCategory();
+        productCategory.setCode("AE1000");
+        productCategory.setName("MRI SYSTEMS");
+        productCategoryService.save(productCategory);
+
+        productCategory = new ProductCategory();
+        productCategory.setCode("AE2010");
+        productCategory.setName("SPECT SYSTEMS");
+        productCategoryService.save(productCategory);
+
+        productCategory = new ProductCategory();
+        productCategory.setCode("AE2020");
+        productCategory.setName("PET SYSTEMS");
+        productCategoryService.save(productCategory);
+
+        productCategory = new ProductCategory();
+        productCategory.setCode("AE3001");
+        productCategory.setName("CT SYSTEMS");
+        productCategoryService.save(productCategory);
+
+        productCategory = new ProductCategory();
+        productCategory.setCode("AE3000");
+        productCategory.setName("X-RAY SYSTEMS");
+        productCategoryService.save(productCategory);
+
+        productCategory = new ProductCategory();
+        productCategory.setCode("AE3001");
+        productCategory.setName("CT SYSTEMS");
+        productCategoryService.save(productCategory);
+
+        productCategory = new ProductCategory();
+        productCategory.setCode("AE7000");
+        productCategory.setName("ULTRASOUND SYSTEMS");
+        productCategoryService.save(productCategory);
+
+        productCategory = new ProductCategory();
+        productCategory.setCode("AH1000");
+        productCategory.setName("ANAESTHETIC WORKSTATIONS");
+        productCategoryService.save(productCategory);
+
+        productCategory = new ProductCategory();
+        productCategory.setCode("AZ000");
+        productCategory.setName("MEDICAL SUPPLY SESTEMS");
         productCategoryService.save(productCategory);
 
     }
@@ -234,42 +279,42 @@ public class InitTestDBService {
         /** 1ST TEST MANUFACTURER PRODUCTS */
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-T"));
+        product.setProductCategory(productCategoryService.loadByCode("AB1000"));
         product.setModelName("Alpha");
         product.setPrice(BigDecimal.valueOf(50000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-T"));
+        product.setProductCategory(productCategoryService.loadByCode("AB1000"));
         product.setModelName("Beta");
         product.setPrice(BigDecimal.valueOf(75000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-L"));
+        product.setProductCategory(productCategoryService.loadByCode("AC1000"));
         product.setModelName("HALOGEN");
         product.setPrice(BigDecimal.valueOf(40000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-L"));
+        product.setProductCategory(productCategoryService.loadByCode("AC1000"));
         product.setModelName("LED");
         product.setPrice(BigDecimal.valueOf(90000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-A"));
+        product.setProductCategory(productCategoryService.loadByCode("AH1000"));
         product.setModelName("Fixed");
         product.setPrice(BigDecimal.valueOf(120000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-A"));
+        product.setProductCategory(productCategoryService.loadByCode("AH1000"));
         product.setModelName("Mobile");
         product.setPrice(BigDecimal.valueOf(130000.00));
         productService.save(product);
@@ -277,42 +322,42 @@ public class InitTestDBService {
         /** 2ND TEST MANUFACTURER PRODUCTS */
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-T"));
+        product.setProductCategory(productCategoryService.loadByCode("AB1000"));
         product.setModelName("Uno");
         product.setPrice(BigDecimal.valueOf(50000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-T"));
+        product.setProductCategory(productCategoryService.loadByCode("AB1000"));
         product.setModelName("Duo");
         product.setPrice(BigDecimal.valueOf(75000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-L"));
+        product.setProductCategory(productCategoryService.loadByCode("AC1000"));
         product.setModelName("2xHALOGEN");
         product.setPrice(BigDecimal.valueOf(80000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-L"));
+        product.setProductCategory(productCategoryService.loadByCode("AC1000"));
         product.setModelName("2xLED");
         product.setPrice(BigDecimal.valueOf(160000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-A"));
+        product.setProductCategory(productCategoryService.loadByCode("AH1000"));
         product.setModelName("Fixed");
         product.setPrice(BigDecimal.valueOf(120000.00));
         productService.save(product);
 
         product = new Product();
         product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("OR-A"));
+        product.setProductCategory(productCategoryService.loadByCode("AH1000"));
         product.setModelName("Mobile");
         product.setPrice(BigDecimal.valueOf(130000.00));
         productService.save(product);

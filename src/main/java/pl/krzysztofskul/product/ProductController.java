@@ -35,7 +35,12 @@ public class ProductController {
 
     @ModelAttribute("allProductCategories")
     public List<ProductCategory> getAllProductCategories() {
-        return productCategoryService.loadAll();
+        return productCategoryService.loadAllWithProducts();
+    }
+
+    @GetMapping("/all")
+    public String all() {
+        return "products/all";
     }
 
     @GetMapping("/new")

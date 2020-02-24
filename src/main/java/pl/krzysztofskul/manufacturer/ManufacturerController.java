@@ -71,7 +71,7 @@ public class ManufacturerController {
             productService.addProductToRoom(product.getId(),room.getId());
         }
         productService.save(product);
-        return "redirect:/manufacturers/all";
+        return "redirect:/hospitals/all";
     }
 
 }
