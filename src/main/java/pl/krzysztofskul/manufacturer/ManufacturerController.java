@@ -1,5 +1,6 @@
 package pl.krzysztofskul.manufacturer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.RoomService;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.ProductService;
+import pl.krzysztofskul.product.productCategory.ProductCategoryService;
 
 import java.util.List;
 
@@ -15,15 +17,19 @@ import java.util.List;
 public class ManufacturerController {
 
     private ManufacturerService manufacturerService;
+    private ProductCategoryService productCategoryService;
     private ProductService productService;
     private RoomService roomService;
 
+    @Autowired
     public ManufacturerController(
             ManufacturerService manufacturerService,
+            ProductCategoryService productCategoryService,
             ProductService productService,
             RoomService roomService
     ) {
         this.manufacturerService = manufacturerService;
+        this.productCategoryService = productCategoryService;
         this.productService = productService;
         this.roomService = roomService;
     }
@@ -33,6 +39,7 @@ public class ManufacturerController {
             Model model
     ) {
         model.addAttribute("manufacturers", manufacturerService.loadAllWithProducts());
+        model.addAttribute("productCategories", productCategoryService.loadAllWithProducts());
         return "manufacturers/all";
     }
 

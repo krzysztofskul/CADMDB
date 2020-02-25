@@ -35,14 +35,13 @@
 #
     - tooltip class
     - menu dropdown
-    . all products page, sorted by productCategory
-    - all manufacturers page update
     . readme update
-        - all manufacturers page
-        + all products page
         - forms for adding new hospital/department/room
 
 /** DONE **/
+# 0.2.3
+    + all manufacturers page update with products, sorted by productCategory
+    + readme.md updates
 # 0.2.2
     + all products page, sorted by productCategory
     + readme.md updates

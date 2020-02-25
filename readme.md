@@ -34,6 +34,19 @@ Functionality depends on which user category is logged in:
 
 ![](src/main/webapp/resources/img/forReadme/screenshot_allProductsPage_001.png)
 
+### ALL MANUFACTURERS PAGE:
+
+The list of all manufacturers with its products, sorted by product category. 
+Functionality depends on which user category is logged in:
+* **Administrator** (in progress...)
+* **Investor** (in progress...)
+* **Hospital's manager/employee** (in progress...)
+* **Hospital's designer** (in progress...)
+* **Hospital's building contractor** (in progress...)
+* **Manufacturer** (in progress...)
+
+![](src/main/webapp/resources/img/forReadme/screenshot_allManufacturersPage_001.png)
+
 ## USED TECHNOLOGIES
 * Java
     * Spring MVC
