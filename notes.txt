@@ -38,12 +38,25 @@
     . readme update
         - forms for adding new hospital/department/room
 
+#
+    - room edit functionality
+        - add new product ...
+        - delete product ...
+        - change product
+            . by the same category
+            - by all categories
+        - edit general info
+
+
 /** DONE **/
 
+# 0.3-2
+    + change product by the same category functionality added to room details page
+
 # 0.3-1
-    + updates for creating new room ...
+    + updates for creating new room
         + updates for room class and new room form jsp
-    + create room details page ...
+    + room details page
         + products costs calculation
         + add currency formatter
     + room info page

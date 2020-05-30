@@ -9,7 +9,10 @@ import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomC
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.ProductService;
+import pl.krzysztofskul.product.productCategory.ProductCategoryService;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -26,7 +29,8 @@ public class RoomController {
             DepartmentService departmentService,
             RoomService roomService,
             RoomCategoryService roomCategoryService,
-            ProductService productService
+            ProductService productService,
+            ProductCategoryService productCategoryService
     ) {
         this.departmentService = departmentService;
         this.roomService = roomService;
@@ -77,6 +81,12 @@ public class RoomController {
             model.addAttribute("content", "info");
         }
         Room room = roomService.loadByIdWithProducts(id);
+        Collections.sort(room.getProductList(), new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return o1.getProductCategory().getCode().compareTo(o2.getProductCategory().getCode());
+            }
+        });
         model.addAttribute(room);
         return "rooms/details";
     }
@@ -102,6 +112,33 @@ public class RoomController {
             productService.addProductToRoom(productToAdd.getId(), room.getId());
         }
         return "redirect:/hospitals/all";
+    }
+
+    @GetMapping("/changeProduct")
+    public String changeProduct(
+            @RequestParam(name = "roomId") Long roomId,
+            @RequestParam(name = "productId") Long productId,
+            @RequestParam(name = "category") String productCategoryCode,
+            Model model
+    ) {
+        Room room = roomService.loadByIdWithProducts(roomId);
+        List<Product> productList = productService.loadAllByCategoryCode(productCategoryCode);
+        model.addAttribute("productToDelId", productId);
+        model.addAttribute("room", room);
+        model.addAttribute("productList", productList);
+        model.addAttribute("category", productCategoryCode);
+        return "rooms/addProductByCategoryToRoom";
+    }
+
+    @PostMapping("/changeProduct")
+    public String changeProduct(
+            @RequestParam(name = "productNewId") Long productNewId,
+            @RequestParam(name = "productToDelId") Long productToDelId,
+            @ModelAttribute(name = "room") Room room
+    ) {
+        productService.removeProductFromRoom(productToDelId, room.getId());
+        productService.addProductToRoom(productNewId, room.getId());
+        return "redirect:/rooms/details/"+room.getId();
     }
 
 }

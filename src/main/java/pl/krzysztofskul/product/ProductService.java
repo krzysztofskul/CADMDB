@@ -43,6 +43,10 @@ public class ProductService {
         return productRepo.findAll();
     }
 
+    public List<Product> loadAllByCategoryCode(String code) {
+        return productRepo.findAllByProductCategoryCode(code);
+    };
+
     public Product loadById(Long id) {
         return productRepo.findById(id).get();
     }
