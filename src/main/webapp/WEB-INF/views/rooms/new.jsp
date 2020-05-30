@@ -19,8 +19,14 @@
         <form:form method="post" modelAttribute="newRoom">
             <div class="card">
                 <div class="card-header font-weight-bold text-center">
-                    NEW ROOM FORM
+                    <div>
+                        NEW ROOM FORM
+                    </div>
+                    <div>
+                        <form:button type="submit" class="btn btn-success float-right">SAVE</form:button>
+                    </div>
                 </div>
+
                 <div class="card-body">
 
                     <form:hidden path="id"/>
@@ -53,6 +59,16 @@
                     <div class="form-group">
                         <label for="number">ROOM NUMBER:</label>
                         <form:input id="number" cssClass="form-control" path="number"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget">AREA [m<sup>2</sup>]: </label>
+                        <form:input id="area" cssClass="form-control" type="number" step="0.05" min="0" path="area"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget">HEIGHT [m]: </label>
+                        <form:input id="height" cssClass="form-control" type="number" step="0.05" min="0" path="height"/>
                     </div>
 
                     <div class="form-group">

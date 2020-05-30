@@ -61,6 +61,26 @@ public class RoomController {
         return "redirect:/hospitals/all";
     }
 
+    @GetMapping("/details/{id}")
+    public String getRoomDetails(
+            @PathVariable(name = "id") Long id,
+            @RequestParam(name = "content", required = false) String content,
+            Model model
+    ) {
+        if ("analysis".equals(content)) {
+            model.addAttribute("content", "analysis");
+        }
+        if ("productList".equals(content)) {
+            model.addAttribute("content", "productList");
+        }
+        if ("info".equals(content)) {
+            model.addAttribute("content", "info");
+        }
+        Room room = roomService.loadByIdWithProducts(id);
+        model.addAttribute(room);
+        return "rooms/details";
+    }
+
     @GetMapping("/addProduct")
     public String roomAddProduct(
             Model model,

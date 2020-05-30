@@ -16,6 +16,10 @@ public class Room extends Organization {
 
     private String fullPath;
 
+    private float area;
+
+    private float height;
+
     @ManyToOne
     private Department department;
 
@@ -47,6 +51,22 @@ public class Room extends Organization {
 
     public void setFullPath(String fullPath) {
         this.fullPath = fullPath;
+    }
+
+    public float getArea() {
+        return area;
+    }
+
+    public void setArea(float area) {
+        this.area = area;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
     }
 
     public Department getDepartment() {

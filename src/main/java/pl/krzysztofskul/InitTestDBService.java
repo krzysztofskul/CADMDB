@@ -542,7 +542,10 @@ public class InitTestDBService {
         room = roomService.loadById(Long.valueOf("5"));
         productService.addProductToRoom(productService.loadById(Long.valueOf("1")).getId(), room.getId());
         productService.addProductToRoom(productService.loadById(Long.valueOf("2")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("2")).getId(), room.getId());
         productService.addProductToRoom(productService.loadById(Long.valueOf("3")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("3")).getId(), room.getId());
+
         roomService.save(room);
     }
 }

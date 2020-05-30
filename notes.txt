@@ -39,6 +39,17 @@
         - forms for adding new hospital/department/room
 
 /** DONE **/
+
+# 0.3-1
+    + updates for creating new room ...
+        + updates for room class and new room form jsp
+    + create room details page ...
+        + products costs calculation
+        + add currency formatter
+    + room info page
+    + room analysis page
+        + percent ratio bars for budget usage
+
 # 0.2.3
     + all manufacturers page update with products, sorted by productCategory
     + readme.md updates
