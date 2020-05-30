@@ -106,10 +106,14 @@ public class RoomController {
     @PostMapping("addProduct")
     public String roomAddProduct(
             @ModelAttribute("room") Room room,
-            @RequestParam("productToAdd") List<Product> productsToAdd
+            @RequestParam("productToAdd") List<Product> productsToAdd,
+            @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
         for (Product productToAdd : productsToAdd) {
             productService.addProductToRoom(productToAdd.getId(), room.getId());
+        }
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
         }
         return "redirect:/hospitals/all";
     }
@@ -139,6 +143,16 @@ public class RoomController {
         productService.removeProductFromRoom(productToDelId, room.getId());
         productService.addProductToRoom(productNewId, room.getId());
         return "redirect:/rooms/details/"+room.getId();
+    }
+
+    @GetMapping("/delete/{roomId}/{productId}")
+    public String deleteProductFromRoom(
+        @PathVariable(name = "roomId") Long roomId,
+        @PathVariable(name = "productId") Long productId,
+        @RequestParam(name = "backToPage") String backToPage
+    ) {
+        productService.removeProductFromRoom(productId, roomId);
+        return "redirect:/"+backToPage;
     }
 
 }

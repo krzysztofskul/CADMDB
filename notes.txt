@@ -40,8 +40,8 @@
 
 #
     - room edit functionality
-        - add new product ...
-        - delete product ...
+        . add new product
+        . delete product
         - change product
             . by the same category
             - by all categories
@@ -49,6 +49,9 @@
 
 
 /** DONE **/
+
+# 0.3-3
+    + add and delete product to/from room functionality at the room details page
 
 # 0.3-2
     + change product by the same category functionality added to room details page
