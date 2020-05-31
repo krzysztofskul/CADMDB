@@ -45,6 +45,7 @@
     - department header
     - room header
     - product header
+    - checkbox
 
 #
     - room edit functionality
@@ -66,6 +67,9 @@
 # hospital details page
 
 /** DONE **/
+
+# 0.3-4-1
+    + room details analysis page calculation bug fixed
 
 # 0.3-4
     + room details analysis page calculation bug fixed
