@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.krzysztofskul.manufacturer.ManufacturerService;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
@@ -23,6 +24,8 @@ public class RoomController {
     private RoomService roomService;
     private RoomCategoryService roomCategoryService;
     private ProductService productService;
+    private ProductCategoryService productCategoryService;
+    private ManufacturerService manufacturerService;
 
     @Autowired
     public RoomController(
@@ -30,12 +33,15 @@ public class RoomController {
             RoomService roomService,
             RoomCategoryService roomCategoryService,
             ProductService productService,
-            ProductCategoryService productCategoryService
+            ProductCategoryService productCategoryService,
+            ManufacturerService manufacturerService
     ) {
         this.departmentService = departmentService;
         this.roomService = roomService;
         this.roomCategoryService = roomCategoryService;
         this.productService = productService;
+        this.productCategoryService = productCategoryService;
+        this.manufacturerService = manufacturerService;
     }
 
     @ModelAttribute("allRoomCategories")
@@ -98,8 +104,8 @@ public class RoomController {
     ) {
         Room room = roomService.loadByIdWithProducts(roomId);
         model.addAttribute("room", room);
-        model.addAttribute("allProducts", productService.loadAll());
-
+        model.addAttribute("allProducts", productService.loadAllSorted());
+        model.addAttribute("productCategoryList", productCategoryService.loadAll());
         return "rooms/addProduct";
     }
 

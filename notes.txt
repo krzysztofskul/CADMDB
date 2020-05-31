@@ -38,17 +38,38 @@
     . readme update
         - forms for adding new hospital/department/room
 
+# installation types for products
+
+# css
+    - hospital header
+    - department header
+    - room header
+    - product header
+
 #
     - room edit functionality
         . add new product
+            - add product to room page front-end modifications:
+                - sorting by:
+                    . product category
+                    - manufacturer
+                    - price
         . delete product
-        - change product
+        . change product
             . by the same category
-            - by all categories
         - edit general info
+    . room details analysis page calculation bug fix
 
+# department details page
+    - with grid for rooms blocks (width x length)
+
+# hospital details page
 
 /** DONE **/
+
+# 0.3-4
+    + room details analysis page calculation bug fixed
+    + added sorting products by category on "add product to room" page
 
 # 0.3-3
     + add and delete product to/from room functionality at the room details page

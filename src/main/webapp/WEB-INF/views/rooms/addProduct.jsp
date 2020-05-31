@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
@@ -20,7 +21,7 @@
 
             <div class="card">
 
-                <div class="card-header">
+                <div class="card-header text-center">
                     ADDING PRODUCTS TO ROOM FORM
                 </div>
 
@@ -38,12 +39,46 @@
 
                     <form:hidden path="budget"/>
 
-                    <c:forEach items="${allProducts}" var="productToAdd">
-                        <input type="checkbox"
-                               name="productToAdd"
-                               value="${productToAdd.id}"
-                        />${productToAdd.productCategory.name} ${productToAdd.manufacturer.name} ${productToAdd.modelName} ${productToAdd.price} zł
-                        <br>
+                    <c:forEach items="${productCategoryList}" var="productCategory">
+                        <div class="row mb-1 border bg-light h6 p-1 m-1">
+                            <div class="col-sm-2">
+                                ${productCategory.code}
+                            </div>
+                            <div class="col-sm-10">
+                                ${productCategory.name}
+                            </div>
+                        </div>
+                        <c:forEach items="${allProducts}" var="productToAdd">
+                            <c:if test="${productCategory.code eq productToAdd.productCategory.code}">
+
+                                <div class="row
+                                    input-group-text  m-1 p-1 border-0 bg-light"
+                                >
+                                    <div class="col-sm-1">
+                                        <input type="checkbox"
+                                               name="productToAdd"
+                                               value="${productToAdd.id}"
+<%--                                               aria-label="Checkbox for following text input"--%>
+                                        >
+                                    </div>
+                                    <div class="col-sm-9 m-0 p-0 bg-light text-left">
+                                        ${productToAdd.manufacturer.name} ${productToAdd.modelName}
+                                    </div>
+                                    <div class="col-sm-2 text-right">
+                                        <fmt:formatNumber
+                                            type="currency"
+                                            minIntegerDigits="1"
+                                            maxIntegerDigits="12"
+                                            minFractionDigits="2"
+                                            maxFractionDigits="2"
+                                            currencySymbol="zł"
+                                            value="${productToAdd.price}"
+                                        />
+                                    </div>
+                                </div>
+
+                            </c:if>
+                        </c:forEach>
                     </c:forEach>
 
                 </div>

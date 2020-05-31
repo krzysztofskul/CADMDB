@@ -91,6 +91,21 @@
             <div class="card-header">
                 <div>
                     <div class="col-sm-12 text-right mt-auto mb-auto">
+                        <c:set var="costOfProducts" value="${0}"/>
+                        <c:forEach items="${room.productList}" var="product">
+                            <c:set var="costOfProducts" value="${costOfProducts + product.price}"/>
+                        </c:forEach>
+                        <span>ROOM INITIAL BUDGET:</span>
+                        <fmt:formatNumber
+                                type="currency"
+                                maxIntegerDigits="12"
+                                minIntegerDigits="1"
+                                maxFractionDigits="2"
+                                minFractionDigits="2"
+                                currencySymbol="zł"
+                                value="${room.budget+costOfProducts}"
+                        />
+                        <br>
                         <span>ROOM ACTUAL BUDGET:</span>
                         <fmt:formatNumber
                                 type="currency"
@@ -107,10 +122,6 @@
             </div>
             <%-- MAIN CONTENT --%>
             <div id="mainContent" class="container">
-                <c:set var="costOfProducts" value="${0}"/>
-                <c:forEach items="${room.productList}" var="product">
-                    <c:set var="costOfProducts" value="${costOfProducts + product.price}"/>
-                </c:forEach>
                 <!-- SUB-PAGES -->
                 <c:choose>
                     <c:when test="${content eq 'analysis'}">
@@ -118,13 +129,13 @@
 <%--                            <c:set var="costOfProducts" value="${costOfProducts + product.price}"/>--%>
 <%--                        </c:forEach>--%>
 
-                        <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfProducts / room.department.hospital.budget * 100}"/>
+                        <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfProducts / (room.department.hospital.budget+costOfProducts) * 100}"/>
                         <c:choose>
                             <c:when test="${ratioCostOfProductsToHospitalBudget > 100}">
-                                <c:set var="progressBarHospital" value="bg-danger border border-dark"/>
-                            </c:when>
-                            <c:when test="${ratioCostOfProductsToHospitalBudget >= 100}">
                                 <c:set var="progressBarHospital" value="bg-danger"/>
+                            </c:when>
+                            <c:when test="${ratioCostOfProductsToHospitalBudget.toString() eq '100.00'}">
+                                <c:set var="progressBarHospital" value="bg-warning border border-danger"/>
                             </c:when>
                             <c:when test="${ratioCostOfProductsToHospitalBudget < 100 && ratioCostOfProductsToHospitalBudget > 75}">
                                 <c:set var="progressBarHospital" value="bg-warning"/>
@@ -132,15 +143,18 @@
                             <c:when test="${ratioCostOfProductsToHospitalBudget < 75}">
                                 <c:set var="progressBarHospital" value="bg-success"/>
                             </c:when>
+                            <c:otherwise>
+                                <c:set var="progressBarHospital" value="bg-info"/>
+                            </c:otherwise>
                         </c:choose>
 
-                        <c:set var="ratioCostOfProductsToDepartmentBudget" value="${costOfProducts / room.department.budget * 100}"/>
+                        <c:set var="ratioCostOfProductsToDepartmentBudget" value="${costOfProducts / (room.department.budget+costOfProducts) * 100}"/>
                         <c:choose>
                             <c:when test="${ratioCostOfProductsToDepartmentBudget > 100}">
-                                <c:set var="progressBarDepartment" value="bg-danger border border-dark"/>
-                            </c:when>
-                            <c:when test="${ratioCostOfProductsToDepartmentBudget == 100}">
                                 <c:set var="progressBarDepartment" value="bg-danger"/>
+                            </c:when>
+                            <c:when test="${ratioCostOfProductsToDepartmentBudget.toString() eq '100.00'}">
+                                <c:set var="progressBarDepartment" value="bg-warning border border-danger"/>
                             </c:when>
                             <c:when test="${ratioCostOfProductsToDepartmentBudget < 100 && ratioCostOfProductsToDepartmentBudget > 75}">
                                 <c:set var="progressBarDepartment" value="bg-warning"/>
@@ -148,15 +162,18 @@
                             <c:when test="${ratioCostOfProductsToDepartmentBudget < 75}">
                                 <c:set var="progressBarDepartment" value="bg-success"/>
                             </c:when>
+                            <c:otherwise>
+                                <c:set var="progressBarDepartment" value="bg-info"/>
+                            </c:otherwise>
                         </c:choose>
 
-                        <c:set var="ratioCostOfProductsToRoomBudget" value="${costOfProducts / room.budget * 100}"/>
+                        <c:set var="ratioCostOfProductsToRoomBudget" value="${costOfProducts / (room.budget+costOfProducts) * 100}"/>
                         <c:choose>
                             <c:when test="${ratioCostOfProductsToRoomBudget > 100}">
-                                <c:set var="progressBarRoom" value="bg-danger border border-dark"/>
-                            </c:when>
-                            <c:when test="${ratioCostOfProductsToRoomBudget == 100}">
                                 <c:set var="progressBarRoom" value="bg-danger"/>
+                            </c:when>
+                            <c:when test="${ratioCostOfProductsToRoomBudget.toString() eq '100.00'}">
+                                <c:set var="progressBarRoom" value="bg-warning border border-danger"/>
                             </c:when>
                             <c:when test="${ratioCostOfProductsToRoomBudget < 100 && ratioCostOfProductsToRoomBudget > 75}">
                                 <c:set var="progressBarRoom" value="bg-warning"/>
@@ -164,29 +181,32 @@
                             <c:when test="${ratioCostOfProductsToRoomBudget < 75}">
                                 <c:set var="progressBarRoom" value="bg-success"/>
                             </c:when>
+                            <c:otherwise>
+                                <c:set var="progressBarRoom" value="bg-info"/>
+                            </c:otherwise>
                         </c:choose>
 
 
 
                         <div class="m-5">
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE ROOM / HOSPITAL BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE HOSPITAL / HOSPITAL INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
                                 <div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfProducts / room.department.hospital.budget * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
                                 </div>
                             </div>
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE ROOM / DEPARTMENT BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE DEARTMENT / DEPARTMENT INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
                                 <div class="progress-bar ${progressBarDepartment}" role="progressbar" style="width: ${costOfProducts / room.department.budget * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                    <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-3">
+                                    <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-2">
                                             ${ratioCostOfProductsToDepartmentBudget} %
                                     </p>
                                 </div>
                             </div>
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE ROOM / ROOM BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE ROOM / ROOM INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
-                                <div class="progress-bar ${progressBarRoom}" role="progressbar" style="width: ${costOfProducts / room.budget * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                    <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-5">
+                                <div class="progress-bar ${progressBarRoom}" role="progressbar" style="width: ${costOfProducts / (room.budget+costOfProducts) * 100}%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-3">
                                             ${ratioCostOfProductsToRoomBudget} %
                                     </p>
                                 </div>
@@ -308,13 +328,6 @@
                                             <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                         </svg>
                                     </a>
-                                    <div class="col-sm-1"><%--CHANGE PRODUCT FROM ALL CATEGORIES --%>
-                                        <svg class="bi bi-arrow-repeat" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"/>
-                                            <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"/>
-                                        </svg>
-                                    </div>
-
                                     <a href="/rooms/delete/${room.id}/${product.id}?backToPage=rooms/details/${room.id}" class="col-sm-1"><%--DEL PRODUCT --%>
                                         <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
