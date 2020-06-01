@@ -5,6 +5,7 @@ import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategory;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -14,10 +15,10 @@ import java.util.List;
 @Entity
 public class Department extends Organization {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Hospital hospital;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private DepartmentCategory departmentCategory;
 
     @OneToMany(mappedBy = "department")

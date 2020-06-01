@@ -11,6 +11,8 @@ import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomC
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.ProductService;
 import pl.krzysztofskul.product.productCategory.ProductCategoryService;
+import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserService;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,6 +22,7 @@ import java.util.List;
 @RequestMapping("/rooms")
 public class RoomController {
 
+    private UserService userService;
     private DepartmentService departmentService;
     private RoomService roomService;
     private RoomCategoryService roomCategoryService;
@@ -29,6 +32,7 @@ public class RoomController {
 
     @Autowired
     public RoomController(
+            UserService userService,
             DepartmentService departmentService,
             RoomService roomService,
             RoomCategoryService roomCategoryService,
@@ -36,6 +40,7 @@ public class RoomController {
             ProductCategoryService productCategoryService,
             ManufacturerService manufacturerService
     ) {
+        this.userService = userService;
         this.departmentService = departmentService;
         this.roomService = roomService;
         this.roomCategoryService = roomCategoryService;
@@ -49,6 +54,11 @@ public class RoomController {
         return roomCategoryService.loadAll();
     }
 
+    @ModelAttribute("userHospitalManagerList")
+    public List<User> getUserHospitalManagerList() {
+        return userService.loadUserHospitalManagerList();
+    }
+
     @GetMapping("/new")
     public String newRoom(
             Model model,
@@ -58,16 +68,19 @@ public class RoomController {
         if (id != null) {
             room.setDepartment(departmentService.loadByIdWithHospitalAndItsDepartmentList(id));
         }
-        model.addAttribute("newRoom", room);
+        model.addAttribute("room", room);
         return "rooms/new";
     }
 
     @PostMapping("new")
     public String newRoom(
-            @ModelAttribute("newRoom") Room room
+            @ModelAttribute("room") Room room,
+            @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
-//        room.setDepartment(departmentService.loadByIdWithHospitalAndItsDepartmentList(room.getDepartment().getId()));
         roomService.save(room);
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
         return "redirect:/hospitals/all";
     }
 

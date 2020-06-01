@@ -19,3 +19,18 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.generalInfo {
+    padding: 10px;
+}
+
+.generalInfo div.row {
+    border-top: 1px solid lightgrey;
+    min-height: 60px;;
+}
+
+.generalInfo div.row div div.myTitleSmall {
+    background-color: lightgrey;
+    display: inline-block;
+    padding-right: 5px;
+}

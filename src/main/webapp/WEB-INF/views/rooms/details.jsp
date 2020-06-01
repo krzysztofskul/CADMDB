@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
@@ -15,6 +16,7 @@
 
     <jsp:include page="../header.jsp"/>
 
+    <form:form modelAttribute="room" method="post" action="/rooms/new">
     <div class="container">
         <div class="card">
             <nav aria-label="breadcrumb">
@@ -31,16 +33,28 @@
                     <div class="col-sm-2 border-right text-center mt-auto mb-auto h4">
                         ${room.number}
                     </div>
-                    <div class="col-sm-8 mt-auto mb-auto">
+                    <div class="col-sm-6 mt-auto mb-auto">
                         ${room.roomCategory.name} ${room.name}
                     </div>
                     <%-- MENU --%>
-                    <div class="col-sm-2 dropdown">
+                    <div class="col-sm-2">
+                        <c:if test="${param.containsKey('content') && param.containsValue('info')}">
+                        <a href="/rooms/details/${room.id}?content=info&edit=true" class="btn float-right">
+                            <span>EDIT</span><br>
+                            <svg class="bi bi-pencil" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                                <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                            </svg>
+                        </a>
+                        </c:if>
+                    </div>
+                    <div class="col-sm-2 dropdown p-0 m-0 float-right">
                         <button class="btn <%--dropdown-toggle--%>" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <svg class="bi bi-list" width="4em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <span>MENU</span><br>
+                            <svg class="bi bi-list" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                             </svg>
-                            <span>MENU</span>
+
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <a href="/rooms/addProduct?roomId=${room.id}&backToPage=/rooms/details/${room.id}" class="dropdown-item" type="button">
@@ -214,65 +228,193 @@
                         </div>
                     </c:when>
                     <c:when test="${content eq 'info'}">
-                        <div class="row border-bottom">
-                            <div class="col-sm-12 p-0">
-                                <div class="small m-0 pl-1">MANAGER:</div>
-                                <div class="m-0 pl-5 h5">
-                                    Lorem Ipsum
+                        <c:if test="${param.containsKey('edit')}">
+                            <form:hidden path="id"/>
+                            <form:hidden path="name"/>
+                            <form:hidden path="budget"/>
+                            <form:hidden path="number"/>
+                            <form:hidden path="fullPath"/>
+                            <form:hidden path="department.id"/>
+                            <form:hidden path="roomCategory.id"/>
+                            <%--<form:hidden path="productList"/>--%>
+                            <c:forEach items="${room.productList}" var="product">
+                                <form:hidden path="productList" value="${product.id}" checked="checked"/>
+                            </c:forEach>
+                            <input type="hidden" name="backToPage" value="/rooms/details/${room.id}?content=info">
+                            <div class="row mt-2">
+                                <div class="col-sm-12">
+                                    <a href="/rooms/details/${room.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
+                                        CANCEL
+                                    </a>
+                                    <form:button class="btn btn-outline-success float-right d-inline-block">
+                                        SAVE
+                                    </form:button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 p-0">
-                                <div class="small m-0 pl-1">AREA:</div>
-                                <div class="m-0 pl-5 h5">
-                                        ${room.area} <span>m<sup>2</sup></span>
+                        </c:if>
+                        <div class="generalInfo">
+                            <div class="row border-bottom pb-2">
+                                <div class="col-sm-12 p-0">
+                                    <div class="myTitleSmall small m-0 pl-1">MANAGER:</div>
+                                    <div class="mt-2 mb-2 h5">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:select path="userManager.id" cssClass="w-100">
+                                                    <c:forEach items="${userHospitalManagerList}" var="user">
+                                                        <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
+                                                    </c:forEach>
+                                                </form:select>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.userManager.nameFirst} ${room.userManager.nameLast}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-2 p-0">
-                                <div class="small m-0 pl-1">HEIGHT:</div>
-                                <div class="m-0 pl-5 h5">
-                                        ${room.height} <span>m</span>
+                            <div class="row">
+                                <div class="col-sm-2 p-0">
+                                    <div class="myTitleSmall small m-0 pl-1">AREA:</div>
+                                    <div class="mt-2 mb-2 h5 text-center">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:input path="area" cssClass="w-75"/> <span>m<sup>2</sup></span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.area} <span>m<sup>2</sup></span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 p-0 border-left border-right">
+                                    <div class="myTitleSmall small m-0 pl-1">HEIGHT:</div>
+                                    <div class="mt-2 mb-2 h5 text-center">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:input path="height" cssClass="w-75"/> <span>m</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.height} <span>m</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 p-0 border-left border-right">
+                                    <div class="myTitleSmall small m-0 pl-1">TEMPERATURE:</div>
+                                    <div class="mt-2 mb-2 h5 text-center">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:input path="temperature" cssClass="w-75"/> <span>&#176;</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.temperature} <span>&#176;</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 p-0 border-left border-right">
+                                    <div class="myTitleSmall small m-0 pl-1">ILLUMINATION:</div>
+                                    <div class="mt-2 mb-2 h5 text-center">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:input path="illumination" cssClass="w-75"/> <span>LUX</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.illumination} <span>LUX</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 p-0 border-left border-right">
+                                    <div class="myTitleSmall small m-0 pl-1">AIR CHANGES:</div>
+                                    <div class="mt-2 mb-2 h5 text-center">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:input path="airChanges" cssClass="w-75"/> <span>per Hour</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.airChanges} <span>per Hour</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 p-0 border-left">
+                                    <div class="myTitleSmall small m-0 pl-1">AIR CONDITIONING:</div>
+                                    <div class="mt-2 mb-2 h5 text-center">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:checkbox path="airConditioning" cssClass="w-75"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:if test="${room.airConditioning eq true}">
+                                                    YES
+                                                </c:if>
+                                                <c:if test="${room.airConditioning ne true}">
+                                                    NO
+                                                </c:if>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 p-0">
-                                <div class="small m-0 pl-1">TEMPERATURE:</div>
-                                <div class="m-0 pl-5 h5">
-                                        0 <span>&#176;</span>
+                            <div class="row">
+                                <div class="col-sm-12 p-0">
+                                    <div class="myTitleSmall small m-0 pl-1">FLOOR:</div>
+                                    <div class="mt-2 mb-2 h5 text-justify">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:textarea path="floor" cssClass="w-100"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.floor}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 p-0">
-                                <div class="small m-0 pl-1">LIGHTNING:</div>
-                                <div class="m-0 pl-5 h5">
-                                    ...
+                            <div class="row">
+                                <div class="col-sm-12 p-0">
+                                    <div class="myTitleSmall small m-0 pl-1">CEILING:</div>
+                                    <div class="mt-2 mb-2 h5 text-justify">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:textarea path="ceiling" cssClass="w-100"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.ceiling}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 p-0">
-                                <div class="small m-0 pl-1">FLOOR:</div>
-                                <div class="m-0 pl-5 h5">
-                                    ...
+                            <div class="row">
+                                <div class="col-sm-12 p-0">
+                                    <div class="myTitleSmall small m-0 pl-1">WALLS:</div>
+                                    <div class="mt-2 mb-2 h5 text-justify">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:textarea path="walls" cssClass="w-100"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.walls}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 p-0">
-                                <div class="small m-0 pl-1">CEILING:</div>
-                                <div class="m-0 pl-5 h5">
-                                    ...
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2 p-0">
-                                <div class="small m-0 pl-1">WALLS:</div>
-                                <div class="m-0 pl-5 h5">
-                                    ...
+                            <div class="row">
+                                <div class="col-sm-12 p-0">
+                                    <div class="myTitleSmall small m-0 pl-1">REMARKS:</div>
+                                    <div class="mt-2 mb-2 h5 text-justify">
+                                        <c:choose>
+                                            <c:when test="${param.containsKey('edit')}">
+                                                <form:textarea path="remarks" cssClass="w-100"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${room.remarks}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -360,6 +502,7 @@
             </div>
         </div>
     </div>
+    </form:form>
 
     <jsp:include page="../footer.jsp"/>
 
