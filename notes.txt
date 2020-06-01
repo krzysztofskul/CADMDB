@@ -37,6 +37,8 @@
             . product category
             - manufacturer
             - price
+    - room general info edit page:
+        - add functionality to set manager: by Department and by Hospital
 
 # department details page
     - with grid for rooms blocks (width x length) (?)
@@ -44,6 +46,10 @@
 # hospital details page
 
 /** DONE **/
+
+# 0.3-FINAL
+    + update readme
+    + update pom
 
 # 0.3-5
     + edit room general info functionality

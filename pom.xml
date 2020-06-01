@@ -6,7 +6,7 @@
 
     <groupId>pl.krzysztofskul</groupId>
     <artifactId>CADMDB</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.3-FINAL</version>
 
     <packaging>war</packaging>
 
