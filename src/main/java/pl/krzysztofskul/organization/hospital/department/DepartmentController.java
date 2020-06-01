@@ -61,4 +61,14 @@ public class DepartmentController {
         return "redirect:/hospitals/all";
     }
 
+    @GetMapping("/details/{id}")
+    public String departmentDetails(
+            @PathVariable Long id,
+            Model model
+    ) {
+        model.addAttribute("department", departmentService.loadByIdWithRoomsAndItsProducts(id));
+        return "departments/details";
+//        return "redirect:/home";
+    }
+
 }

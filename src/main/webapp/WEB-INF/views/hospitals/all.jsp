@@ -75,7 +75,7 @@
                                     />
                                 </div>
                                 <div class="col-2">
-                                    <a href="#">DETAILS</a>
+                                    <a href="/departments/details/${department.id}">DETAILS</a>
                                     <a href="#" class="text-danger">DEL</a>
                                 </div>
                             </div>

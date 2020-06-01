@@ -28,18 +28,18 @@ The page is divided for 3 sub-pages:
 - products added - the list of medical devices planned to be delivered,
 - financial analysis - 3 progress bars showing percentage of the room/department/hospital budget.
 
-<div class="text-center">
-    <img src="src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_001-1.png" width="100">
-    <img src="src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_001-2.png" width="100">
-    <img src="src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_002.png" width="100">
-    <img src="src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_003.png" width="100">
-</div>
+<img src="src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_001-1.png" width="200">
+<img src="src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_001-2.png" width="200">
+<img src="src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_002.png" width="200">
+<img src="src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_003.png" width="200">
+
 <!-- (
 ![](src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_001-1.png)
 ![](src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_001-2.png)
 ![](src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_002.png)
 ![](src/main/webapp/resources/img/forReadme/screenshot_roomDetailsPage_003.png)
 )-->
+
 ### ALL PRODUCTS PAGE:
 
 The list of all products sorted by product category and possible to add to hospital rooms. 

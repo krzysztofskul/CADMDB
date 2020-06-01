@@ -21,9 +21,9 @@
         <div class="card">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">${room.department.hospital.name}</a></li>
-                    <li class="breadcrumb-item"><a href="#">${room.department.departmentCategory.name}</a></li>
+                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#/hospitals/details/${room.department.hospital.id}" >${room.department.hospital.name}</a></li>
+                    <li class="breadcrumb-item"><a href="/departments/details/${room.department.id}">${room.department.departmentCategory.name}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">${room.number} ${room.roomCategory.name} ${room.name}</li>
                 </ol>
             </nav>
@@ -139,9 +139,6 @@
                 <!-- SUB-PAGES -->
                 <c:choose>
                     <c:when test="${content eq 'analysis'}">
-<%--                        <c:forEach items="${room.productList}" var="product">--%>
-<%--                            <c:set var="costOfProducts" value="${costOfProducts + product.price}"/>--%>
-<%--                        </c:forEach>--%>
 
                         <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfProducts / (room.department.hospital.budget+costOfProducts) * 100}"/>
                         <c:choose>
@@ -209,7 +206,7 @@
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
                                 </div>
                             </div>
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE DEARTMENT / DEPARTMENT INITIAL BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE DEPARTMENT / DEPARTMENT INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
                                 <div class="progress-bar ${progressBarDepartment}" role="progressbar" style="width: ${costOfProducts / (room.department.budget+costOfProducts) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-2">
@@ -480,7 +477,7 @@
                                 </div>
                             </div>
                         </c:forEach>
-                    </c:otherwise>
+                    </c:otherwise> <%--content eq productsList--%>
                 </c:choose>
             </div>
             <%-- FOOTER --%>

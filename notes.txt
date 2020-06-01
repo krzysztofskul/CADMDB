@@ -14,7 +14,7 @@
     - functionality which show where products are already added
     - option for manufacturer user (see where product is planned to buy)
     - edit/delete products/rooms/departments/hospitals
-
+    - grid for rooms blocks (width x length) on department details page
 #
     - tooltip class
     - menu dropdown
@@ -40,12 +40,18 @@
     - room general info edit page:
         - add functionality to set manager: by Department and by Hospital
 
-# department details page
-    - with grid for rooms blocks (width x length) (?)
-
 # hospital details page
 
+# department details page
+    - general info with editing
+    - analysis page
+    - rooms list
+
 /** DONE **/
+
+# 0.4.0-1
+    + department details page
+    + room details page fix bugs
 
 # 0.3-FINAL
     + update readme
