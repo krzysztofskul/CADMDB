@@ -2,27 +2,10 @@
 
 #
     - power/water consumption for equipments
-    - test, test
-
-# 0.1.X
-    - change: Category to @MappedSuperClass: -> UserCategory / DepartmentCategory/ RoomCategory / EquipmentCategory
-    - methods for Organization classes
-        - add/subtract costs/equipments/rooms/departments
-    - methods for Category classes
-        - add/subtract Organization/Equipment
-
-#
     - InstallationType class
     - weight and dimensions for product class
     - Investor class
     - Designer class
-    - controllers for main classes
-    - DepartmentCategory-RoomCategory Relations
-    - department constructor with fields
-    - room constructor with fields
-
-#
-    - readme update
     - ask form after new hospital, department, room
     - delete hospital -> ask for sure -> delete departments, rooms -> disconnect products
     - manufacturers all - categorize products
@@ -30,7 +13,7 @@
     - product quantity option when adding to room
     - functionality which show where products are already added
     - option for manufacturer user (see where product is planned to buy)
-    - edit/delete products/rooms/depratments/hospitals
+    - edit/delete products/rooms/departments/hospitals
 
 #
     - tooltip class
@@ -38,7 +21,62 @@
     . readme update
         - forms for adding new hospital/department/room
 
+# installation types for products
+
+# css
+    - hospital header
+    - department header
+    - room header
+    - product header
+    - checkbox
+    . generalInfo Div
+
+#
+    - when adding new product to the room make a front-end modifications:
+        - sorting by:
+            . product category
+            - manufacturer
+            - price
+    - room general info edit page:
+        - add functionality to set manager: by Department and by Hospital
+
+# department details page
+    - with grid for rooms blocks (width x length) (?)
+
+# hospital details page
+
 /** DONE **/
+
+# 0.3-FINAL
+    + update readme
+    + update pom
+
+# 0.3-5
+    + edit room general info functionality
+
+# 0.3-4-1
+    + room details analysis page calculation bug fixed
+
+# 0.3-4
+    + room details analysis page calculation bug fixed
+    + added sorting products by category on "add product to room" page
+
+# 0.3-3
+    + add and delete product to/from room functionality at the room details page
+
+# 0.3-2
+    + change product by the same category functionality added to room details page
+
+# 0.3-1
+    + updates for creating new room
+        + updates for room class and new room form jsp
+    + room details page
+        + products costs calculation
+        + add currency formatter
+    + room info page
+    + room analysis page
+        + percent ratio bars for budget usage
+
 # 0.2.3
     + all manufacturers page update with products, sorted by productCategory
     + readme.md updates

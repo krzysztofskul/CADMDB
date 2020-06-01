@@ -44,6 +44,8 @@ public class RoomService {
     public Room loadByIdWithProducts(Long roomId) {
         Room room = roomRepo.findById(roomId).get();
         Hibernate.initialize(room.getProductList());
+        Hibernate.initialize(room.getDepartment());
+        Hibernate.initialize(room.getRoomCategory());
         return room;
     }
 }

@@ -11,6 +11,8 @@ import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.RoomService;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -42,6 +44,21 @@ public class ProductService {
     public List<Product> loadAll() {
         return productRepo.findAll();
     }
+
+    public List<Product> loadAllSorted() {
+        List<Product> products = productRepo.findAll();
+        Collections.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return o1.getProductCategory().getCode().compareTo(o2.getProductCategory().getCode());
+            }
+        });
+        return products;
+    }
+
+    public List<Product> loadAllByCategoryCode(String code) {
+        return productRepo.findAllByProductCategoryCode(code);
+    };
 
     public Product loadById(Long id) {
         return productRepo.findById(id).get();

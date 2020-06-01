@@ -18,6 +18,8 @@ public class InitTestDBController {
     public String initTestDB() {
 
             initTestDBService.createUsersCategory();
+            initTestDBService.createTestUsers();
+
             initTestDBService.createDepartmentCategories();
             initTestDBService.createRoomCategories();
             initTestDBService.createProductCategories();
@@ -29,8 +31,6 @@ public class InitTestDBController {
             initTestDBService.createTestDepartments();
             initTestDBService.createTestRooms();
             initTestDBService.addTestProductsToTestRooms();
-
-            initTestDBService.createTestUsers();
 
         return "index";
     }

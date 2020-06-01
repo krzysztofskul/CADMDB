@@ -88,13 +88,13 @@ public class InitTestDBService {
         userCategoryService.save(userCategory);
 
         userCategory = new UserCategory();
-        userCategory.setCode("MANAGER");
+        userCategory.setCode("HOSPITAL-MANAGER");
         userCategory.setName("Manager");
         userCategory.setDescription("Person/User who represents the hospital manager.");
         userCategoryService.save(userCategory);
 
         userCategory = new UserCategory();
-        userCategory.setCode("EMPLOYEE");
+        userCategory.setCode("HOSPITAL-EMPLOYEE");
         userCategory.setName("Employee");
         userCategory.setDescription("Person/User who represents the hospital employee.");
         userCategoryService.save(userCategory);
@@ -130,7 +130,7 @@ public class InitTestDBService {
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
         user.setUserCategory(userCategoryService.loadByCode("INVESTOR"));
-        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
+//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
         user = new User();
@@ -139,7 +139,7 @@ public class InitTestDBService {
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
         user.setUserCategory(userCategoryService.loadByCode("INVESTOR"));
-        user.setHospital(hospitalService.loadById(Long.parseLong("2")));
+//        user.setHospital(hospitalService.loadById(Long.parseLong("2")));
         userService.save(user);
 
         user = new User();
@@ -155,8 +155,26 @@ public class InitTestDBService {
         user.setNameLast("Some-Manager");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("MANAGER"));
-        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
+        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
+//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
+        userService.save(user);
+
+        user = new User();
+        user.setNameFirst("Guest");
+        user.setNameLast("Some-Manager-2");
+        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
+        user.setPassword("test");
+        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
+//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
+        userService.save(user);
+
+        user = new User();
+        user.setNameFirst("Guest");
+        user.setNameLast("Some-Manager-3");
+        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
+        user.setPassword("test");
+        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
+//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
         user = new User();
@@ -164,8 +182,8 @@ public class InitTestDBService {
         user.setNameLast("Employee-First");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("EMPLOYEE"));
-        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
+        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-EMPLOYEE"));
+//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
         user = new User();
@@ -173,8 +191,8 @@ public class InitTestDBService {
         user.setNameLast("Employee-Second");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("EMPLOYEE"));
-        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
+        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-EMPLOYEE"));
+//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
         user = new User();
@@ -191,7 +209,7 @@ public class InitTestDBService {
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
         user.setUserCategory(userCategoryService.loadByCode("MANUFACTURER"));
-        user.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
+//        user.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
         userService.save(user);
 
     }
@@ -485,6 +503,17 @@ public class InitTestDBService {
         room.setDepartment(departmentService.loadById(Long.valueOf("1")));
         room.setRoomCategory(roomCategoryService.loadByCode("OR-S"));
         room.setBudget(BigDecimal.valueOf(500000.00));
+        room.setUserManager(userService.loadById(Long.parseLong("5")));
+        room.setArea(20.00f);
+        room.setHeight(3.50f);
+        room.setTemperature(22.0f);
+        room.setIllumination(200);
+        room.setAirChanges(20);
+        room.setAirConditioning(true);
+        room.setFloor("Lorem ipsum dolor sit amet magna. Praesent dolor. Maecenas mi vitae ornare dolor leo facilisis eget, lacinia quam molestie tincidunt. Pellentesque laoreet molestie tristique senectus.");
+        room.setCeiling("Phasellus sagittis libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus nec ante. Maecenas interdum dui convallis at, imperdiet purus.");
+        room.setWalls("Ut sodales, dictum libero, facilisis sem ullamcorper feugiat, pulvinar ligula.");
+        room.setRemarks("Curabitur magna dictum sapien libero, id eleifend viverra. Cras enim sed eros. Etiam ac dolor. Morbi urna luctus aliquam, wisi vel leo. Cras lorem sapien, non dui. In mollis, metus. Nam vestibulum.");
         roomService.save(room);
 
         room = new Room();
@@ -537,12 +566,23 @@ public class InitTestDBService {
         room = roomService.loadById(Long.valueOf("1"));
         productService.addProductToRoom(productService.loadById(Long.valueOf("1")).getId(), room.getId());
         productService.removeProductFromRoom(productService.loadById(Long.valueOf("1")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("1")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("1")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("2")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("2")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("2")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("3")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("5")).getId(), room.getId());
+
         roomService.save(room);
 
         room = roomService.loadById(Long.valueOf("5"));
         productService.addProductToRoom(productService.loadById(Long.valueOf("1")).getId(), room.getId());
         productService.addProductToRoom(productService.loadById(Long.valueOf("2")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("2")).getId(), room.getId());
         productService.addProductToRoom(productService.loadById(Long.valueOf("3")).getId(), room.getId());
+        productService.addProductToRoom(productService.loadById(Long.valueOf("3")).getId(), room.getId());
+
         roomService.save(room);
     }
 }

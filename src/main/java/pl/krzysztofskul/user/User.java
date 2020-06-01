@@ -3,9 +3,11 @@ package pl.krzysztofskul.user;
 import org.mindrot.jbcrypt.BCrypt;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.organization.hospital.Hospital;
+import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.user.userCategory.UserCategory;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -24,6 +26,9 @@ public class User {
 
     @ManyToOne
     private Hospital hospital;
+
+    @OneToMany(mappedBy = "userManager")
+    private List<Room> roomManager;
 
     @ManyToOne
     private Manufacturer manufacturer;
@@ -86,6 +91,14 @@ public class User {
 
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
+    }
+
+    public List<Room> getRoomManager() {
+        return roomManager;
+    }
+
+    public void setRoomManager(List<Room> roomManager) {
+        this.roomManager = roomManager;
     }
 
     public Manufacturer getManufacturer() {
