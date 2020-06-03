@@ -43,11 +43,19 @@
 # hospital details page
 
 # department details page
-    - general info with editing
-    - analysis page
-    - rooms list
+    . general info with editing
+    . analysis page
+    . rooms list
+        - add new room
+        - delete room
 
 /** DONE **/
+
+# 0.4.0-2
+    + department details page updates
+        + general info page with editing functionality
+        + page with all rooms list in the department
+        + analysis page
 
 # 0.4.0-1
     + department details page

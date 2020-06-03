@@ -4,6 +4,7 @@ import pl.krzysztofskul.organization.Organization;
 import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategory;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
+import pl.krzysztofskul.user.User;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,14 +16,21 @@ import java.util.List;
 @Entity
 public class Department extends Organization {
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Hospital hospital;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    private float area;
+
+    @ManyToOne
+    private User userManager;
+
+    @ManyToOne
     private DepartmentCategory departmentCategory;
 
     @OneToMany(mappedBy = "department")
     private List<Room> roomList = new ArrayList<>();
+
+    private String remarks;
 
     public Department() {
     }
@@ -35,6 +43,22 @@ public class Department extends Organization {
         this.hospital = hospital;
     }
 
+    public float getArea() {
+        return area;
+    }
+
+    public void setArea(float area) {
+        this.area = area;
+    }
+
+    public User getUserManager() {
+        return userManager;
+    }
+
+    public void setUserManager(User userManager) {
+        this.userManager = userManager;
+    }
+
     public DepartmentCategory getDepartmentCategory() {
         return departmentCategory;
     }
@@ -45,6 +69,14 @@ public class Department extends Organization {
 
     public List<Room> getRoomList() {
         return roomList;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
     public void setRoomList(List<Room> roomList) {

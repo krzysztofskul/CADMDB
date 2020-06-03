@@ -200,13 +200,13 @@
 
 
                         <div class="m-5">
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE HOSPITAL / HOSPITAL INITIAL BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS ROOM / HOSPITAL INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
                                 <div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfProducts / (room.department.hospital.budget+costOfProducts) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
                                 </div>
                             </div>
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE DEPARTMENT / DEPARTMENT INITIAL BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS ROOM / DEPARTMENT INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
                                 <div class="progress-bar ${progressBarDepartment}" role="progressbar" style="width: ${costOfProducts / (room.department.budget+costOfProducts) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-2">
@@ -214,7 +214,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE ROOM / ROOM INITIAL BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS ROOM / ROOM INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
                                 <div class="progress-bar ${progressBarRoom}" role="progressbar" style="width: ${costOfProducts / (room.budget+costOfProducts) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-3">

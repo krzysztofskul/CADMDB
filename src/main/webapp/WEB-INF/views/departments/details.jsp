@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
@@ -15,6 +16,7 @@
 
     <jsp:include page="../header.jsp"/>
 
+<form:form modelAttribute="department" method="post" action="/departments/new">
     <div class="container">
 
         <div class="card">
@@ -40,7 +42,7 @@
                     <%-- MENU --%>
                     <div class="col-sm-2">
                         <c:if test="${param.containsKey('content') && param.containsValue('info')}">
-                            <a href="/department/details/${department.id}?content=info&edit=true" class="disabled btn float-right">
+                            <a href="/departments/details/${department.id}?content=info&edit=true" class="btn float-right">
                                 <span>EDIT</span><br>
                                 <svg class="bi bi-pencil" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
@@ -113,7 +115,7 @@
                                     <c:set var="costOfRooms" value="${costOfRooms + product.price}"/>
                                 </c:forEach>
                             </c:forEach>
-                            <span>ROOM INITIAL BUDGET:</span>
+                            <span>DEPARTMENT INITIAL BUDGET:</span>
                             <fmt:formatNumber
                                     type="currency"
                                     maxIntegerDigits="12"
@@ -124,7 +126,7 @@
                                     value="${department.budget+costOfRooms}"
                             />
                             <br>
-                            <span>ROOM ACTUAL BUDGET:</span>
+                            <span>DEPARTMENT ACTUAL BUDGET:</span>
                             <fmt:formatNumber
                                     type="currency"
                                     maxIntegerDigits="12"
@@ -147,43 +149,43 @@
 
                             <h1>TEST ANALYSIS PAGE</h1>
 
-<%--                            <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfRooms / (room.department.hospital.budget+costOfRooms) * 100}"/>--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${ratioCostOfProductsToHospitalBudget > 100}">--%>
-<%--                                    <c:set var="progressBarHospital" value="bg-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToHospitalBudget.toString() eq '100.00'}">--%>
-<%--                                    <c:set var="progressBarHospital" value="bg-warning border border-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToHospitalBudget < 100 && ratioCostOfProductsToHospitalBudget > 75}">--%>
-<%--                                    <c:set var="progressBarHospital" value="bg-warning"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToHospitalBudget < 75}">--%>
-<%--                                    <c:set var="progressBarHospital" value="bg-success"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:otherwise>--%>
-<%--                                    <c:set var="progressBarHospital" value="bg-info"/>--%>
-<%--                                </c:otherwise>--%>
-<%--                            </c:choose>--%>
+                            <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfRooms / (department.hospital.budget+costOfRooms) * 100}"/>
+                            <c:choose>
+                                <c:when test="${ratioCostOfProductsToHospitalBudget > 100}">
+                                    <c:set var="progressBarHospital" value="bg-danger"/>
+                                </c:when>
+                                <c:when test="${ratioCostOfProductsToHospitalBudget.toString() eq '100.00'}">
+                                    <c:set var="progressBarHospital" value="bg-warning border border-danger"/>
+                                </c:when>
+                                <c:when test="${ratioCostOfProductsToHospitalBudget < 100 && ratioCostOfProductsToHospitalBudget > 75}">
+                                    <c:set var="progressBarHospital" value="bg-warning"/>
+                                </c:when>
+                                <c:when test="${ratioCostOfProductsToHospitalBudget < 75}">
+                                    <c:set var="progressBarHospital" value="bg-success"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="progressBarHospital" value="bg-info"/>
+                                </c:otherwise>
+                            </c:choose>
 
-<%--                            <c:set var="ratioCostOfProductsToDepartmentBudget" value="${costOfRooms / (room.department.budget+costOfRooms) * 100}"/>--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${ratioCostOfProductsToDepartmentBudget > 100}">--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToDepartmentBudget.toString() eq '100.00'}">--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-warning border border-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToDepartmentBudget < 100 && ratioCostOfProductsToDepartmentBudget > 75}">--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-warning"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToDepartmentBudget < 75}">--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-success"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:otherwise>--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-info"/>--%>
-<%--                                </c:otherwise>--%>
-<%--                            </c:choose>--%>
+                            <c:set var="ratioCostOfProductsToDepartmentBudget" value="${costOfRooms / (department.budget+costOfRooms) * 100}"/>
+                            <c:choose>
+                                <c:when test="${ratioCostOfProductsToDepartmentBudget > 100}">
+                                    <c:set var="progressBarDepartment" value="bg-danger"/>
+                                </c:when>
+                                <c:when test="${ratioCostOfProductsToDepartmentBudget.toString() eq '100.00'}">
+                                    <c:set var="progressBarDepartment" value="bg-warning border border-danger"/>
+                                </c:when>
+                                <c:when test="${ratioCostOfProductsToDepartmentBudget < 100 && ratioCostOfProductsToDepartmentBudget > 75}">
+                                    <c:set var="progressBarDepartment" value="bg-warning"/>
+                                </c:when>
+                                <c:when test="${ratioCostOfProductsToDepartmentBudget < 75}">
+                                    <c:set var="progressBarDepartment" value="bg-success"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="progressBarDepartment" value="bg-info"/>
+                                </c:otherwise>
+                            </c:choose>
 
 <%--                            <c:set var="ratioCostOfProductsToRoomBudget" value="${costOfRooms / (room.budget+costOfRooms) * 100}"/>--%>
 <%--                            <c:choose>--%>
@@ -204,21 +206,21 @@
 <%--                                </c:otherwise>--%>
 <%--                            </c:choose>--%>
 
-<%--                            <div class="m-5">--%>
-<%--                                <div class="ml-5 mt-5">COST OF PRODUCTS IN THE HOSPITAL / HOSPITAL INITIAL BUDGET [%]</div>--%>
-<%--                                <div class="progress ml-5 mr-5" style="height: 50px">--%>
-<%--                                    <div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfRooms / (room.department.hospital.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">--%>
-<%--                                        <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="ml-5 mt-5">COST OF PRODUCTS IN THE DEPARTMENT / DEPARTMENT INITIAL BUDGET [%]</div>--%>
-<%--                                <div class="progress ml-5 mr-5" style="height: 50px">--%>
-<%--                                    <div class="progress-bar ${progressBarDepartment}" role="progressbar" style="width: ${costOfRooms / (room.department.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">--%>
-<%--                                        <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-2">--%>
-<%--                                                ${ratioCostOfProductsToDepartmentBudget} %--%>
-<%--                                        </p>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
+                            <div class="m-5">
+                                <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS DEPARTMENT / HOSPITAL INITIAL BUDGET [%]</div>
+                                <div class="progress ml-5 mr-5" style="height: 50px">
+                                    <div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfRooms / (department.hospital.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
+                                    </div>
+                                </div>
+                                <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS DEPARTMENT / DEPARTMENT INITIAL BUDGET [%]</div>
+                                <div class="progress ml-5 mr-5" style="height: 50px">
+                                    <div class="progress-bar ${progressBarDepartment}" role="progressbar" style="width: ${costOfRooms / (department.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-2">
+                                                ${ratioCostOfProductsToDepartmentBudget} %
+                                        </p>
+                                    </div>
+                                </div>
 <%--                                <div class="ml-5 mt-5">COST OF PRODUCTS IN THE ROOM / ROOM INITIAL BUDGET [%]</div>--%>
 <%--                                <div class="progress ml-5 mr-5" style="height: 50px">--%>
 <%--                                    <div class="progress-bar ${progressBarRoom}" role="progressbar" style="width: ${costOfRooms / (room.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">--%>
@@ -227,221 +229,103 @@
 <%--                                        </p>--%>
 <%--                                    </div>--%>
 <%--                                </div>--%>
-<%--                            </div>--%>
+                            </div>
                         </c:when>
 <%--                        <c:when test="${content eq 'info'}">--%>
                         <c:when test="${param.containsKey('content') && param.get('content').toString() eq 'info'}">
 
-                            <h1> INFO TEST PAGE </h1>
-
-<%--                            <c:if test="${param.containsKey('edit')}">--%>
-<%--                                <form:hidden path="id"/>--%>
-<%--                                <form:hidden path="name"/>--%>
-<%--                                <form:hidden path="budget"/>--%>
-<%--                                <form:hidden path="number"/>--%>
-<%--                                <form:hidden path="fullPath"/>--%>
-<%--                                <form:hidden path="department.id"/>--%>
-<%--                                <form:hidden path="roomCategory.id"/>--%>
-<%--                                &lt;%&ndash;<form:hidden path="productList"/>&ndash;%&gt;--%>
-<%--                                <c:forEach items="${department.productList}" var="product">--%>
-<%--                                    <form:hidden path="productList" value="${product.id}" checked="checked"/>--%>
-<%--                                </c:forEach>--%>
-<%--                                <input type="hidden" name="backToPage" value="/rooms/details/${department.id}?content=info">--%>
-<%--                                <div class="row mt-2">--%>
-<%--                                    <div class="col-sm-12">--%>
-<%--                                        <a href="/rooms/details/${department.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">--%>
-<%--                                            CANCEL--%>
-<%--                                        </a>--%>
-<%--                                        <form:button class="btn btn-outline-success float-right d-inline-block">--%>
-<%--                                            SAVE--%>
-<%--                                        </form:button>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </c:if>--%>
-<%--                            <div class="generalInfo">--%>
-<%--                                <div class="row border-bottom pb-2">--%>
-<%--                                    <div class="col-sm-12 p-0">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">MANAGER:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:select path="userManager.id" cssClass="w-100">--%>
-<%--                                                        <c:forEach items="${userHospitalManagerList}" var="user">--%>
-<%--                                                            <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>--%>
-<%--                                                        </c:forEach>--%>
-<%--                                                    </form:select>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.userManager.nameFirst} ${department.userManager.nameLast}--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-sm-2 p-0">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">AREA:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-center">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:input path="area" cssClass="w-75"/> <span>m<sup>2</sup></span>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.area} <span>m<sup>2</sup></span>--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="col-sm-2 p-0 border-left border-right">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">HEIGHT:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-center">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:input path="height" cssClass="w-75"/> <span>m</span>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.height} <span>m</span>--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="col-sm-2 p-0 border-left border-right">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">TEMPERATURE:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-center">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:input path="temperature" cssClass="w-75"/> <span>&#176;</span>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.temperature} <span>&#176;</span>--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="col-sm-2 p-0 border-left border-right">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">ILLUMINATION:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-center">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:input path="illumination" cssClass="w-75"/> <span>LUX</span>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.illumination} <span>LUX</span>--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="col-sm-2 p-0 border-left border-right">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">AIR CHANGES:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-center">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:input path="airChanges" cssClass="w-75"/> <span>per Hour</span>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.airChanges} <span>per Hour</span>--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="col-sm-2 p-0 border-left">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">AIR CONDITIONING:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-center">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:checkbox path="airConditioning" cssClass="w-75"/>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    <c:if test="${department.airConditioning eq true}">--%>
-<%--                                                        YES--%>
-<%--                                                    </c:if>--%>
-<%--                                                    <c:if test="${department.airConditioning ne true}">--%>
-<%--                                                        NO--%>
-<%--                                                    </c:if>--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-sm-12 p-0">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">FLOOR:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-justify">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:textarea path="floor" cssClass="w-100"/>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.floor}--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-sm-12 p-0">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">CEILING:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-justify">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:textarea path="ceiling" cssClass="w-100"/>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.ceiling}--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-sm-12 p-0">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">WALLS:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-justify">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:textarea path="walls" cssClass="w-100"/>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.walls}--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-sm-12 p-0">--%>
-<%--                                        <div class="myTitleSmall small m-0 pl-1">REMARKS:</div>--%>
-<%--                                        <div class="mt-2 mb-2 h5 text-justify">--%>
-<%--                                            <c:choose>--%>
-<%--                                                <c:when test="${param.containsKey('edit')}">--%>
-<%--                                                    <form:textarea path="remarks" cssClass="w-100"/>--%>
-<%--                                                </c:when>--%>
-<%--                                                <c:otherwise>--%>
-<%--                                                    ${department.remarks}--%>
-<%--                                                </c:otherwise>--%>
-<%--                                            </c:choose>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+                            <c:if test="${param.containsKey('edit')}">
+                                <form:hidden path="id"/>
+                                <form:hidden path="name"/>
+                                <form:hidden path="budget"/>
+                                <form:hidden path="hospital.id"/>
+                                <form:hidden path="departmentCategory.id"/>
+                                <%--<form:hidden path="productList"/>--%>
+                                <c:forEach items="${department.roomList}" var="room">
+                                    <form:hidden path="roomList" value="${room.id}" checked="checked"/>
+                                </c:forEach>
+                                <input type="hidden" name="backToPage" value="/departments/details/${department.id}?content=info">
+                                <div class="row mt-2">
+                                    <div class="col-sm-12">
+                                        <a href="/departments/details/${department.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
+                                            CANCEL
+                                        </a>
+                                        <form:button class="btn btn-outline-success float-right d-inline-block">
+                                            SAVE
+                                        </form:button>
+                                    </div>
+                                </div>
+                            </c:if>
+                            <div class="generalInfo">
+                                <div class="row border-bottom pb-2">
+                                    <div class="col-sm-12 p-0">
+                                        <div class="myTitleSmall small m-0 pl-1">MANAGER:</div>
+                                        <div class="mt-2 mb-2 h5">
+                                            <c:choose>
+                                                <c:when test="${param.containsKey('edit')}">
+                                                    <form:select path="userManager.id" cssClass="w-100">
+                                                        <c:forEach items="${userHospitalManagerList}" var="user">
+                                                            <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
+                                                        </c:forEach>
+                                                    </form:select>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${department.userManager.nameFirst} ${department.userManager.nameLast}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2 p-0">
+                                        <div class="myTitleSmall small m-0 pl-1">AREA:</div>
+                                        <div class="mt-2 mb-2 h5 text-center">
+                                            <c:choose>
+                                                <c:when test="${param.containsKey('edit')}">
+                                                    <form:input path="area" cssClass="w-75"/> <span>m<sup>2</sup></span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${department.area} <span>m<sup>2</sup></span>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 p-0">
+                                        <div class="myTitleSmall small m-0 pl-1">REMARKS:</div>
+                                        <div class="mt-2 mb-2 h5 text-justify">
+                                            <c:choose>
+                                                <c:when test="${param.containsKey('edit')}">
+                                                    <form:textarea path="remarks" cssClass="w-100"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${department.remarks}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </c:when>
-                        <c:otherwise> <%-- content eq roomsList --%>
+<%--                             content eq roomsList --%>
+                        <c:otherwise>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col text-center">
-                                        ROOMS
+                                        LIST OF ROOMS INSIDE THE DEPARTMENT
                                     </div>
                                 </div>
                             </div>
                             <c:forEach items="${department.roomList}" var="room">
                                 <div class="card-body">
-                                    <div class="row border-top pt-3">
-                                        <div class="col-sm-2">
+                                        <div class="row border-top pt-3">
+                                        <a href="/rooms/details/${room.id}" class="col-sm-2">
                                                 ${room.number}
-                                        </div>
-                                        <div class="col-sm-4">
+                                        </a>
+                                        <a href="/rooms/details/${room.id}" class="col-sm-4">
                                                 ${room.roomCategory.name}
-                                        </div>
+                                        </a>
                                         <div class="col-sm-4">
                                                 ${room.name}
                                         </div>
@@ -470,20 +354,20 @@
                                                 <circle cx="8" cy="4.5" r="1"/>
                                             </svg>
                                         </div>
-                                        <a href="#/rooms/changeProduct?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE ROOM FROM THE SAME CATEGORY --%>
+                                        <div href="#/rooms/changeProduct?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE ROOM FROM THE SAME CATEGORY --%>
                                             <svg class="bi bi-arrow-left-right" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
                                                 <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
                                                 <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                             </svg>
-                                        </a>
-                                        <a href="#/rooms/delete/${department.id}/${product.id}?backToPage=rooms/details/${department.id}" class="col-sm-1"><%--DEL ROOM --%>
+                                        </div>
+                                        <div href="#/rooms/delete/${department.id}/${product.id}?backToPage=rooms/details/${department.id}" class="col-sm-1"><%--DEL ROOM --%>
                                             <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                                 <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
                                                 <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
                                             </svg>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -511,6 +395,8 @@
         </div>
 
     </div>
+
+</form:form>
 
     <jsp:include page="../footer.jsp"/>
 

@@ -8,6 +8,8 @@ import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.organization.hospital.HospitalService;
 import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategory;
 import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategoryService;
+import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.UserService;
 
 import java.util.List;
 
@@ -18,16 +20,19 @@ public class DepartmentController {
     private DepartmentCategoryService departmentCategoryService;
     private DepartmentService departmentService;
     private HospitalService hospitalService;
+    private UserService userService;
 
     @Autowired
     public DepartmentController(
             DepartmentCategoryService departmentCategoryService,
             DepartmentService departmentService,
-            HospitalService hospitalService
+            HospitalService hospitalService,
+            UserService userService
     ) {
         this.departmentCategoryService = departmentCategoryService;
         this.departmentService = departmentService;
         this.hospitalService = hospitalService;
+        this.userService = userService;
     }
 
     @ModelAttribute("departmentCategoryList")
@@ -40,6 +45,11 @@ public class DepartmentController {
         return hospitalService.loadAll();
     }
 
+    @ModelAttribute("userHospitalManagerList")
+    public List<User>  getUserHospitalManagerList() {
+        return userService.loadUserHospitalManagerList();
+    }
+
     @GetMapping("/new")
     public String newDepartment(
             Model model,
@@ -49,26 +59,31 @@ public class DepartmentController {
         if (id != null) {
             department.setHospital(hospitalService.loadById(id));
         }
-        model.addAttribute("newDepartment", department);
+        model.addAttribute("department", department);
         return "departments/new";
     }
 
     @PostMapping("/new")
     public String newDepartment(
-            @ModelAttribute("newDepartment") Department newDepartment
+            @ModelAttribute("department") Department department,
+            @RequestParam(required = false) String backToPage
     ) {
-        departmentService.save(newDepartment);
+        departmentService.save(department);
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
         return "redirect:/hospitals/all";
     }
 
     @GetMapping("/details/{id}")
     public String departmentDetails(
             @PathVariable Long id,
+//            @RequestParam(required = false) String content,
+//            @RequestParam(required = false) String edit,
             Model model
     ) {
         model.addAttribute("department", departmentService.loadByIdWithRoomsAndItsProducts(id));
         return "departments/details";
-//        return "redirect:/home";
     }
 
 }

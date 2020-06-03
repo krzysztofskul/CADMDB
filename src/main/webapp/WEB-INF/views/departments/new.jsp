@@ -17,7 +17,7 @@
     <jsp:include page="../header.jsp"/>
 
     <div class="container">
-        <form:form modelAttribute="newDepartment" method="post">
+        <form:form modelAttribute="department" method="post">
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
                     NEW DEPARTMENT FORM
@@ -26,10 +26,10 @@
                     <form:hidden path="id"/>
                     <div class="form-group">
                         <label for="hospital">HOSPITAL:</label>
-                        <c:if test="${newDepartment.hospital.id eq null}">
+                        <c:if test="${department.hospital.id eq null}">
                             <c:set var="disabled" value="false"/>
                         </c:if>
-                        <c:if test="${newDepartment.hospital.id ne null}">
+                        <c:if test="${department.hospital.id ne null}">
                             <c:set var="disabled" value="true"/>
                             <form:hidden path="hospital.id"/>
                         </c:if>
@@ -48,7 +48,7 @@
                         </form:select>
                     </div>
                     <div class="form-group">
-                        <c:set var="freeBudgetForNewDepartment" value="${newDepartment.hospital.budget}"/>
+                        <c:set var="freeBudgetForNewDepartment" value="${department.hospital.budget}"/>
                         <label for="budget">BUDGET:</label>
                         <form:input
                                 path="budget"

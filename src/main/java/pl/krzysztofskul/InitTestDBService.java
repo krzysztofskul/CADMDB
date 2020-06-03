@@ -473,12 +473,16 @@ public class InitTestDBService {
         department.setHospital(hospitalService.loadById(Long.valueOf("1")));
         department.setDepartmentCategory(departmentCategoryService.loadByCode("OT"));
         department.setBudget(BigDecimal.valueOf(5000000.00));
+        department.setUserManager(userService.loadById(Long.parseLong("5")));
+        department.setArea(250.0f);
+        department.setRemarks("Vivamus vitae lorem nec tincidunt lorem, at risus sit amet neque vitae felis.");
         departmentService.save(department);
 
         department = new Department();
         department.setHospital(hospitalService.loadById(Long.valueOf("1")));
         department.setDepartmentCategory(departmentCategoryService.loadByCode("ICU"));
         department.setBudget(BigDecimal.valueOf(4000000.00));
+        department.setUserManager(userService.loadById(Long.parseLong("5")));
         departmentService.save(department);
 
         department = new Department();
