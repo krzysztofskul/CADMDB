@@ -27,7 +27,7 @@ public class Department extends Organization {
     @ManyToOne
     private DepartmentCategory departmentCategory;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE)
     private List<Room> roomList = new ArrayList<>();
 
     private String remarks;

@@ -86,4 +86,13 @@ public class DepartmentController {
         return "departments/details";
     }
 
+    @GetMapping("/delete/{id}")
+    public String delete(
+            @PathVariable(name = "id") Long departmentId,
+            @RequestParam(name = "backToPage") String backToPage
+    ) {
+        departmentService.delete(departmentService.loadById(departmentId));
+        return "redirect:"+backToPage;
+    }
+
 }

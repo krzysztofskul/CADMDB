@@ -60,7 +60,7 @@
 
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <a href="/departments/addRoom?departmentId=${department.id}&backToPage=/departments/details/${department.id}" class="disabled dropdown-item" type="button">
+                            <a href="/rooms/new?departmentId=${department.id}&backToPage=/departments/details/${department.id}" class="dropdown-item" type="button">
                                 <svg class="text-success bi bi-plus-square-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
                                 </svg>
@@ -93,13 +93,13 @@
                                 <span class="small ml-2">ANALYSIS</span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <button class="disabled dropdown-item" type="button">
+                            <a href="/departments/delete/${department.id}?backToPage=/hospitals/all" class="dropdown-item" type="button">
                                 <svg class="text-danger bi bi-trash" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                                 </svg>
                                 <span class="small ml-2">DELETE DEPARTMENT</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -146,8 +146,6 @@
                     <c:choose>
 <%--                        <c:when test="${content eq 'analysis'}">--%>
                         <c:when test="${param.get('content') ne null && param.get('content').toString() eq 'analysis'}">
-
-                            <h1>TEST ANALYSIS PAGE</h1>
 
                             <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfRooms / (department.hospital.budget+costOfRooms) * 100}"/>
                             <c:choose>
@@ -361,13 +359,13 @@
                                                 <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                             </svg>
                                         </div>
-                                        <div href="#/rooms/delete/${department.id}/${product.id}?backToPage=rooms/details/${department.id}" class="col-sm-1"><%--DEL ROOM --%>
+                                        <a href="/rooms/delete/${room.id}?backToPage=/departments/details/${department.id}" class="col-sm-1"><%--DEL ROOM --%>
                                             <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                                 <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
                                                 <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
                                             </svg>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </c:forEach>

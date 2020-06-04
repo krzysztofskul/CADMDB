@@ -46,10 +46,17 @@
     . general info with editing
     . analysis page
     . rooms list
-        - add new room
-        - delete room
+        . add new room
+        . delete room
+# room details page
+    . delete room
 
 /** DONE **/
+
+# 0.4.0-3
+    + add new room functionality from the department details page
+    + delete room functionality from the department details page
+    + delete room functionality from the room details page
 
 # 0.4.0-2
     + department details page updates
