@@ -8,6 +8,7 @@ import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.user.userCategory.UserCategory;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,11 +29,14 @@ public class User {
     @ManyToOne
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "userManager")
-    private List<Department> departmentManager;
+    @OneToMany(mappedBy = "manager")
+    private List<Hospital> hospitalManagerList = new ArrayList<>();
 
     @OneToMany(mappedBy = "userManager")
-    private List<Room> roomManager;
+    private List<Department> departmentManager = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userManager")
+    private List<Room> roomManager = new ArrayList<>();
 
     @ManyToOne
     private Manufacturer manufacturer;
@@ -95,6 +99,14 @@ public class User {
 
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
+    }
+
+    public List<Hospital> getHospitalManagerList() {
+        return hospitalManagerList;
+    }
+
+    public void setHospitalManagerList(List<Hospital> hospitalManagerList) {
+        this.hospitalManagerList = hospitalManagerList;
     }
 
     public List<Department> getDepartmentManager() {

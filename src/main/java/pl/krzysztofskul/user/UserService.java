@@ -1,5 +1,6 @@
 package pl.krzysztofskul.user;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,4 +45,14 @@ public class UserService {
         return userRepo.findAllByUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
     }
 
+    public List<User> loadAllUnemployed() {
+//        return userRepo.loadAllUnemployed();
+//        return userRepo.loadAllUnemployedByNativeQuery();
+        List<User> userList = userRepo.findAll();
+        for (User user : userList) {
+            Hibernate.initialize(user.getHospital());
+        }
+        userList.removeIf(user -> user.getHospital() != null);
+        return userList;
+    }
 }

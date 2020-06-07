@@ -53,13 +53,17 @@ public class DepartmentController {
     @GetMapping("/new")
     public String newDepartment(
             Model model,
-            @RequestParam(value = "hospitalId", required = false) Long id
+            @RequestParam(value = "hospitalId", required = false) Long id,
+            @RequestParam(value = "backToPage", required =  false) String backToPage
     ) {
         Department department = new Department();
         if (id != null) {
             department.setHospital(hospitalService.loadById(id));
         }
         model.addAttribute("department", department);
+        if (backToPage != null) {
+            model.addAttribute("backToPage", backToPage);
+        }
         return "departments/new";
     }
 

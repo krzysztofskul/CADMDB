@@ -41,17 +41,28 @@
         - add functionality to set manager: by Department and by Hospital
 
 # hospital details page
+    + general info
+        + edit func.
+            - detach users func. ... ...
+    + new department func.
+    + all department page
+    + delete hospital
+    + DepartmentConverter
+    + HospitalConverter
 
-# department details page
-    . general info with editing
-    . analysis page
-    . rooms list
-        . add new room
-        . delete room
-# room details page
-    . delete room
+# error page and controller ...
 
 /** DONE **/
+
+# 0.4.0-4
+    + hospital details page added
+        + general info page
+            + edit hospital information functionality
+        + new department functionality
+        + all departments page
+        + delete hospital functionality
+    + DepartmentConverter added
+    + HospitalConverter added
 
 # 0.4.0-3
     + add new room functionality from the department details page

@@ -18,6 +18,7 @@
 
     <div class="container">
         <form:form modelAttribute="department" method="post">
+            <input type="hidden" value="${backToPage}">
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
                     NEW DEPARTMENT FORM

@@ -15,7 +15,7 @@
     <jsp:include page="../header.jsp"/>
 
     <div class="container">
-        <form:form method="post" modelAttribute="hospitalNew">
+        <form:form method="post" modelAttribute="hospital">
         <div class="card">
             <div class="card-header font-weight-bold text-center">
                 NEW HOSPITAL FORM
