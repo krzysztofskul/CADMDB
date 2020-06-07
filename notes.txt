@@ -75,6 +75,9 @@
         + page with all rooms list in the department
         + analysis page
 
+# New Branch: JUnit
+    + notes-JUnit.txt
+
 # 0.4.0-1
     + department details page
     + room details page fix bugs
