@@ -3,8 +3,8 @@ package pl.krzysztofskul.manufacturer;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -37,6 +37,12 @@ public class ManufacturerService {
 
     public Manufacturer loadById(Long id) {
         return manufacturerRepo.findById(id).get();
+    }
+
+    public Manufacturer loadByIdWithDistributors(Long id) {
+        Manufacturer manufacturer = manufacturerRepo.findById(id).get();
+        Hibernate.initialize(manufacturer.getDistributorList());
+        return manufacturer;
     }
 
     public void delete(Manufacturer manufacturer) {

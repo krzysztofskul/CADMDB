@@ -20,7 +20,7 @@ public class Hospital extends Organization {
     @ManyToOne
     private User manager;
 
-    @OneToMany(mappedBy = "hospital", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "hospital")
     private List<User> userList = new ArrayList<>();
 
     private String remarks;
@@ -66,6 +66,20 @@ public class Hospital extends Organization {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public void addUser(User user) {
+        this.userList.add(user);
+        for (User u : this.userList) {
+            u.setHospital(this);
+        }
+    }
+
+    public void removeUser(User user) {
+        this.userList.remove(user);
+        for (User u : this.userList) {
+            u.setHospital(null);
+        }
     }
 
 }

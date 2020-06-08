@@ -33,7 +33,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-sm-2 border-right text-center mt-auto mb-auto h4">
-                        <%--${department.number}--%>
+                        <%--${hospital.number}--%>
                     </div>
                     <div class="col-sm-6 mt-auto mb-auto">
                         ${hospital.name}
@@ -166,44 +166,6 @@
                                 </c:otherwise>
                             </c:choose>
 
-<%--                            <c:set var="ratioCostOfProductsToDepartmentBudget" value="${costOfRooms / (department.budget+costOfRooms) * 100}"/>--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${ratioCostOfProductsToDepartmentBudget > 100}">--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToDepartmentBudget.toString() eq '100.00'}">--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-warning border border-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToDepartmentBudget < 100 && ratioCostOfProductsToDepartmentBudget > 75}">--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-warning"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToDepartmentBudget < 75}">--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-success"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:otherwise>--%>
-<%--                                    <c:set var="progressBarDepartment" value="bg-info"/>--%>
-<%--                                </c:otherwise>--%>
-<%--                            </c:choose>--%>
-
-<%--                            <c:set var="ratioCostOfProductsToRoomBudget" value="${costOfRooms / (room.budget+costOfRooms) * 100}"/>--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${ratioCostOfProductsToRoomBudget > 100}">--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToRoomBudget.toString() eq '100.00'}">--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-warning border border-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToRoomBudget < 100 && ratioCostOfProductsToRoomBudget > 75}">--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-warning"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToRoomBudget < 75}">--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-success"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:otherwise>--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-info"/>--%>
-<%--                                </c:otherwise>--%>
-<%--                            </c:choose>--%>
-
                             <div class="m-5">
                                 <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS HOSPITAL / HOSPITAL INITIAL BUDGET [%]</div>
                                 <div class="progress ml-5 mr-5" style="height: 50px">
@@ -211,22 +173,6 @@
                                         <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
                                     </div>
                                 </div>
-<%--                                <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS DEPARTMENT / DEPARTMENT INITIAL BUDGET [%]</div>--%>
-<%--                                <div class="progress ml-5 mr-5" style="height: 50px">--%>
-<%--                                    <div class="progress-bar ${progressBarDepartment}" role="progressbar" style="width: ${costOfRooms / (department.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">--%>
-<%--                                        <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-2">--%>
-<%--                                                ${ratioCostOfProductsToDepartmentBudget} %--%>
-<%--                                        </p>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="ml-5 mt-5">COST OF PRODUCTS IN THE ROOM / ROOM INITIAL BUDGET [%]</div>--%>
-<%--                                <div class="progress ml-5 mr-5" style="height: 50px">--%>
-<%--                                    <div class="progress-bar ${progressBarRoom}" role="progressbar" style="width: ${costOfRooms / (room.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">--%>
-<%--                                        <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-3">--%>
-<%--                                                ${ratioCostOfProductsToRoomBudget} %--%>
-<%--                                        </p>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
                             </div>
                         </c:when>
 <%--                        <c:when test="${content eq 'info'}">--%>
@@ -236,9 +182,6 @@
                                 <form:hidden path="id"/>
                                 <form:hidden path="name"/>
                                 <form:hidden path="budget"/>
-<%--                                <form:hidden path="hospital.id"/>--%>
-<%--                                <form:hidden path="departmentCategory.id"/>--%>
-                                <%--<form:hidden path="productList"/>--%>
                                 <c:forEach items="${hospital.departmentList}" var="department">
                                     <form:hidden path="departmentList" value="${department.id}" checked="checked"/>
                                 </c:forEach>
@@ -281,33 +224,38 @@
                                         <div class="mt-2 mb-2 h5">
                                             <c:choose>
                                                 <c:when test="${param.containsKey('edit')}">
-                                                        <c:forEach items="${allUserList}" var="user">
-                                                            <c:set var="marked" value="false"/>
-                                                            <c:forEach items="${hospital.userList}" var="userInHospital">
-                                                                <c:if test="${user.id.toString() eq userInHospital.id.toString()}">
-                                                                    <p>
-                                                                        <form:checkbox path="userList" value="${user.id}" checked="true"/> ${user.nameFirst} ${user.nameLast}
-                                                                    </p>
-                                                                    <c:set var="marked" value="true"/>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                            <c:forEach items="${hospital.userList}" var="userInHospital">
-                                                                <c:if test="${user.id.toString() ne userInHospital.id.toString() && marked eq false}">
-                                                                    <p>
-                                                                         <form:checkbox path="userList" value="${user.id}"/> ${user.nameFirst} ${user.nameLast}
-                                                                    </p>
-                                                                    <c:set var="marked" value="true"/>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                        </c:forEach>
-                                                    <c:if test="${hospital.userList.size() eq 0}">
-                                                        <c:forEach items="${allUserList}" var="user">
-                                                                <p>
-                                                                    <form:checkbox path="userList" value="${user.id}"/> ${user.nameFirst} ${user.nameLast}
-                                                                </p>
-
-                                                        </c:forEach>
-                                                    </c:if>
+<%--                                                        <c:forEach items="${allUserList}" var="user">--%>
+<%--                                                            <c:set var="marked" value="false"/>--%>
+<%--                                                            <c:forEach items="${hospital.userList}" var="userInHospital">--%>
+<%--                                                                <c:if test="${user.id.toString() eq userInHospital.id.toString()}">--%>
+<%--                                                                    <p>--%>
+<%--                                                                        <form:checkbox path="userList" value="${user.id}" checked="true"/> ${user.nameFirst} ${user.nameLast}--%>
+<%--                                                                    </p>--%>
+<%--                                                                    <c:set var="marked" value="true"/>--%>
+<%--                                                                </c:if>--%>
+<%--                                                            </c:forEach>--%>
+<%--                                                            <c:forEach items="${hospital.userList}" var="userInHospital">--%>
+<%--                                                                <c:if test="${user.id.toString() ne userInHospital.id.toString() && marked eq false}">--%>
+<%--                                                                    <p>--%>
+<%--                                                                         <form:checkbox path="userList" value="${user.id}"/> ${user.nameFirst} ${user.nameLast}--%>
+<%--                                                                    </p>--%>
+<%--                                                                    <c:set var="marked" value="true"/>--%>
+<%--                                                                </c:if>--%>
+<%--                                                            </c:forEach>--%>
+<%--                                                        </c:forEach>--%>
+<%--                                                    <c:if test="${hospital.userList.size() eq 0}">--%>
+<%--                                                        <c:forEach items="${allUserList}" var="user">--%>
+<%--                                                                <p>--%>
+<%--                                                                    <form:checkbox path="userList" value="${user.id}"/> ${user.nameFirst} ${user.nameLast}--%>
+<%--                                                                </p>--%>
+<%--                                                        </c:forEach>--%>
+<%--                                                    </c:if>--%>
+                                                    <c:forEach items="${hospital.userList}" var="userInHospital">
+                                                        <p><form:checkbox path="userList" value="${userInHospital.id}" checked="true"/> ${userInHospital.nameFirst} ${userInHospital.nameLast}</p>
+                                                    </c:forEach>
+                                                    <c:forEach items="${allUserList}" var="userUnemployed">
+                                                        <p><form:checkbox path="userList" value="${userUnemployed.id}"/>${userUnemployed.nameFirst} ${userUnemployed.nameLast}</p>
+                                                    </c:forEach>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <c:forEach items="${hospital.userList}" var="user">
@@ -351,7 +299,7 @@
                                 </div>
                             </div>
                         </c:when>
-<%--                             content eq roomsList --%>
+<%--                             content eq departmentsList --%>
                         <c:otherwise>
                             <div class="card-body">
                                 <div class="row">

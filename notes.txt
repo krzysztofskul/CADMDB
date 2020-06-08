@@ -40,19 +40,24 @@
     - room general info edit page:
         - add functionality to set manager: by Department and by Hospital
 
-# hospital details page
-    + general info
-        + edit func.
-            - detach users func. ... ...
-    + new department func.
-    + all department page
-    + delete hospital
-    + DepartmentConverter
-    + HospitalConverter
+# error page and controller
 
-# error page and controller ...
+# 0.4.0-Final ...
+
+# ...
+    - manufacturer testing
+        . connections with distributors
+            - @OneToMany relations
+                . save to db
+                - with mappedBy / without mappedBy ...
+            - cascade actions
 
 /** DONE **/
+
+# 0.4.0-5
+    + detach user from hospital functionality added
+    + merged JUnit branch into 0.4.0 branch
+    + manufacturer/distributors save to db tests
 
 # 0.4.0-4
     + hospital details page added

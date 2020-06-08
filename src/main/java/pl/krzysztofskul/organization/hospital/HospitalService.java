@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.user.User;
-import pl.krzysztofskul.user.UserRepo;
+import pl.krzysztofskul.user.UserService;
 
 import java.util.List;
 
@@ -16,19 +16,18 @@ import java.util.List;
 public class HospitalService {
 
     private HospitalRepo hospitalRepo;
-    private UserRepo userRepo;
+    private UserService userService;
 
     @Autowired
-    public HospitalService(HospitalRepo hospitalRepo, UserRepo userRepo) {
+    public HospitalService(
+            HospitalRepo hospitalRepo,
+            UserService userService
+    ) {
         this.hospitalRepo = hospitalRepo;
-        this.userRepo = userRepo;
+        this.userService = userService;
     }
 
     public void save(Hospital hospital) {
-//        for (User user : hospital.getUserList()) {
-//            user.setHospital(hospital);
-//            userRepo.save(user);
-//        }
         hospitalRepo.save(hospital);
     }
 
@@ -70,6 +69,13 @@ public class HospitalService {
     }
 
     public void delete(Hospital hospital) {
+        Hibernate.initialize(hospital.getUserList());
+        if (hospital.getUserList() != null) {
+            for (User user : hospital.getUserList()) {
+                user.setHospital(null);
+                userService.save(user);
+            }
+        }
         hospitalRepo.delete(hospital);
     }
 

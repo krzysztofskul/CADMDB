@@ -27,6 +27,13 @@ public class HospitalController {
         this.userService = userService;
     }
 
+    @ModelAttribute("allUserList")
+    public List<User> getAllUnemployedUserList() {
+        List<User> userList = userService.loadAll();
+        userList.removeIf(user -> user.getHospital() != null);
+        return userList;
+    }
+
     @GetMapping("/new")
     public String newHospital(
             Model model
@@ -42,10 +49,32 @@ public class HospitalController {
             @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
 
-        if (hospital.getUserList() != null) {
+        for (User user : userService.loadAll()) {
+            if (user.getHospital() != null && user.getHospital().getId().equals(hospital.getId())) {
+                for (User userInHospital : hospital.getUserList()) {
+                    if (user.getId().equals(userInHospital.getId())) {
+                        break;
+                    }
+                    user.setHospital(null);
+                    userService.save(user);
+                }
+            }
+        }
+        if (hospital.getUserList() != null && hospital.getUserList().size() > 0) {
             for (User user : hospital.getUserList()) {
                 user.setHospital(hospital);
                 userService.save(user);
+            }
+        }
+
+        if (hospital.getUserList() == null || 0 == hospital.getUserList().size()){
+            for (User user : userService.loadAll()) {
+                if (user.getHospital() != null) {
+                    if (user.getHospital().getId().equals(hospital.getId())) {
+                        user.setHospital(null);
+                        userService.save(user);
+                    }
+                }
             }
         }
 
@@ -73,8 +102,6 @@ public class HospitalController {
         Hospital hospital = hospitalService.loadByIdWithUsersWithDepartmentsItsRoomsAndItsProducts(id);
         if (hospital != null) {
             model.addAttribute("hospital", hospital);
-//            model.addAttribute("userList", userService.loadAll());
-            model.addAttribute("allUserList", userService.loadAll());
             return "hospitals/details";
         } else {
             return "redirect:/errorPage?comment=no-hospital-found";
@@ -91,7 +118,6 @@ public class HospitalController {
             user.setHospital(null);
         }
         hospitalService.delete(hospital);
-//        hospitalService.delete(hospitalService.loadById(id));
         return "redirect:/hospitals/all";
     }
 

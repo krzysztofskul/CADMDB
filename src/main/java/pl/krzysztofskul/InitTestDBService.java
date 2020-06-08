@@ -457,8 +457,8 @@ public class InitTestDBService {
         hospital.setName("Hospital Test No. 1");
         hospital.setBudget(BigDecimal.valueOf(10000000.00));
         hospital.setManager(userService.loadById(Long.parseLong("1")));
-//        hospital.addUser(userService.loadById(Long.parseLong("2")));
-//        hospital.addUser(userService.loadById(Long.parseLong("3")));
+        hospital.addUser(userService.loadById(Long.parseLong("2")));
+        hospital.addUser(userService.loadById(Long.parseLong("3")));
         hospital.setArea(500f);
         hospital.setRemarks("Etiam commodo, est a leo. Mauris nec tristique senectus et.");
         hospitalService.save(hospital);
@@ -474,8 +474,8 @@ public class InitTestDBService {
         hospital.setName("Hospital Test No. 2");
         hospital.setBudget(BigDecimal.valueOf(20000000.00));
         hospital.setManager(userService.loadById(Long.parseLong("11")));
-//        hospital.addUser(userService.loadById(Long.parseLong("10")));
-//        hospital.addUser(userService.loadById(Long.parseLong("9")));
+        hospital.addUser(userService.loadById(Long.parseLong("10")));
+        hospital.addUser(userService.loadById(Long.parseLong("9")));
         hospitalService.save(hospital);
 
         user = userService.loadById(Long.parseLong("10"));
