@@ -21,9 +21,9 @@
         <div class="card">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">${room.department.hospital.name}</a></li>
-                    <li class="breadcrumb-item"><a href="#">${room.department.departmentCategory.name}</a></li>
+                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#/hospitals/details/${room.department.hospital.id}" >${room.department.hospital.name}</a></li>
+                    <li class="breadcrumb-item"><a href="/departments/details/${room.department.id}">${room.department.departmentCategory.name}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">${room.number} ${room.roomCategory.name} ${room.name}</li>
                 </ol>
             </nav>
@@ -90,13 +90,13 @@
                                 <span class="small ml-2">ANALYSIS</span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <button class="dropdown-item" type="button">
+                            <a href="/rooms/delete/${room.id}?backToPage=/departments/details/${room.department.id}" class="dropdown-item" type="button">
                                 <svg class="text-danger bi bi-trash" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                                 </svg>
                                 <span class="small ml-2">DELETE ROOM</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -139,9 +139,6 @@
                 <!-- SUB-PAGES -->
                 <c:choose>
                     <c:when test="${content eq 'analysis'}">
-<%--                        <c:forEach items="${room.productList}" var="product">--%>
-<%--                            <c:set var="costOfProducts" value="${costOfProducts + product.price}"/>--%>
-<%--                        </c:forEach>--%>
 
                         <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfProducts / (room.department.hospital.budget+costOfProducts) * 100}"/>
                         <c:choose>
@@ -203,13 +200,13 @@
 
 
                         <div class="m-5">
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE HOSPITAL / HOSPITAL INITIAL BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS ROOM / HOSPITAL INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
                                 <div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfProducts / (room.department.hospital.budget+costOfProducts) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
                                 </div>
                             </div>
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE DEARTMENT / DEPARTMENT INITIAL BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS ROOM / DEPARTMENT INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
                                 <div class="progress-bar ${progressBarDepartment}" role="progressbar" style="width: ${costOfProducts / (room.department.budget+costOfProducts) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-2">
@@ -217,7 +214,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THE ROOM / ROOM INITIAL BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS ROOM / ROOM INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
                                 <div class="progress-bar ${progressBarRoom}" role="progressbar" style="width: ${costOfProducts / (room.budget+costOfProducts) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-3">
@@ -480,7 +477,7 @@
                                 </div>
                             </div>
                         </c:forEach>
-                    </c:otherwise>
+                    </c:otherwise> <%--content eq productsList--%>
                 </c:choose>
             </div>
             <%-- FOOTER --%>

@@ -81,7 +81,12 @@ public class Product {
     }
 
     public void addRoom(Room room) {
-        this.roomList.add(room);
+//        this.roomList.add(room);
+        if (room != null) {
+            this.roomList.add(room);
+        } else {
+            throw new NullPointerException();
+        }
     }
 
     public void removeRoom(Room room) {

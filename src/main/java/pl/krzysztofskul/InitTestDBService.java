@@ -25,6 +25,8 @@ import pl.krzysztofskul.user.userCategory.UserCategory;
 import pl.krzysztofskul.user.userCategory.UserCategoryService;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -449,20 +451,39 @@ public class InitTestDBService {
 
     public void createTestHospitals() {
         Hospital hospital;
+        User user;
 
         hospital = new Hospital();
         hospital.setName("Hospital Test No. 1");
         hospital.setBudget(BigDecimal.valueOf(10000000.00));
-        hospital.addUser(userService.loadByEmail("GuestInvestor-First@test.test"));
-        hospital.addUser(userService.loadByEmail("GuestEmployee-First@test.test"));
+        hospital.setManager(userService.loadById(Long.parseLong("1")));
+        hospital.addUser(userService.loadById(Long.parseLong("2")));
+        hospital.addUser(userService.loadById(Long.parseLong("3")));
+        hospital.setArea(500f);
+        hospital.setRemarks("Etiam commodo, est a leo. Mauris nec tristique senectus et.");
         hospitalService.save(hospital);
+
+        user = userService.loadById(Long.parseLong("2"));
+        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
+        userService.save(user);
+        user = userService.loadById(Long.parseLong("3"));
+        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
+        userService.save(user);
 
         hospital = new Hospital();
         hospital.setName("Hospital Test No. 2");
         hospital.setBudget(BigDecimal.valueOf(20000000.00));
-        hospital.addUser(userService.loadByEmail("GuestInvestor-Second@test.test"));
-        hospital.addUser(userService.loadByEmail("GuestEmployee-Second@test.test"));
+        hospital.setManager(userService.loadById(Long.parseLong("11")));
+        hospital.addUser(userService.loadById(Long.parseLong("10")));
+        hospital.addUser(userService.loadById(Long.parseLong("9")));
         hospitalService.save(hospital);
+
+        user = userService.loadById(Long.parseLong("10"));
+        user.setHospital(hospitalService.loadById(Long.parseLong("2")));
+        userService.save(user);
+        user = userService.loadById(Long.parseLong("9"));
+        user.setHospital(hospitalService.loadById(Long.parseLong("2")));
+        userService.save(user);
 
     }
 
@@ -473,12 +494,16 @@ public class InitTestDBService {
         department.setHospital(hospitalService.loadById(Long.valueOf("1")));
         department.setDepartmentCategory(departmentCategoryService.loadByCode("OT"));
         department.setBudget(BigDecimal.valueOf(5000000.00));
+        department.setUserManager(userService.loadById(Long.parseLong("5")));
+        department.setArea(250.0f);
+        department.setRemarks("Vivamus vitae lorem nec tincidunt lorem, at risus sit amet neque vitae felis.");
         departmentService.save(department);
 
         department = new Department();
         department.setHospital(hospitalService.loadById(Long.valueOf("1")));
         department.setDepartmentCategory(departmentCategoryService.loadByCode("ICU"));
         department.setBudget(BigDecimal.valueOf(4000000.00));
+        department.setUserManager(userService.loadById(Long.parseLong("5")));
         departmentService.save(department);
 
         department = new Department();

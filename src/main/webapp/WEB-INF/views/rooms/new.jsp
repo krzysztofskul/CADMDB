@@ -16,7 +16,7 @@
     <jsp:include page="../header.jsp"/>
 
     <div class="container">
-        <form:form method="post" modelAttribute="newRoom">
+        <form:form method="post" modelAttribute="room">
             <div class="card">
                 <div class="card-header font-weight-bold text-center">
                     <div>
@@ -36,12 +36,12 @@
                     <div class="form-group">
                         <label for="department">DEPARTMENT:</label>
                         <c:set var="disabled" value="false"/>
-                        <c:if test="${newRoom.department ne null}">
+                        <c:if test="${room.department ne null}">
                             <form:hidden path="department.id"/>
                             <c:set var="disabled" value="true"/>
                         </c:if>
                         <form:select id="department" cssClass="form-control" path="department.id" disabled="${disabled}">
-                            <c:forEach items="${newRoom.department.hospital.departmentList}" var="department">
+                            <c:forEach items="${room.department.hospital.departmentList}" var="department">
                                 <form:option value="${department.id}" label="${department.departmentCategory.code} ${department.departmentCategory.name}"/>
                             </c:forEach>
                         </form:select>

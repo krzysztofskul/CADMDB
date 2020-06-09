@@ -40,7 +40,7 @@ public class Room extends Organization {
 
     private String remarks;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Department department;
 
     @ManyToOne

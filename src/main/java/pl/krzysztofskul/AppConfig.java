@@ -22,8 +22,12 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.krzysztofskul.bigDecimal.BigDecimalConverter;
+import pl.krzysztofskul.organization.hospital.Hospital;
+import pl.krzysztofskul.organization.hospital.HospitalConverter;
+import pl.krzysztofskul.organization.hospital.department.DepartmentConverter;
 import pl.krzysztofskul.organization.hospital.department.room.RoomConverter;
 import pl.krzysztofskul.product.ProductConverter;
+import pl.krzysztofskul.user.UserConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -110,11 +114,30 @@ public class AppConfig implements WebMvcConfigurer {
         return new RoomConverter();
     }
 
+    @Bean
+    public DepartmentConverter getDepartmentConverter() {
+        return new DepartmentConverter();
+    }
+
+    @Bean
+    public HospitalConverter getHospitalConverter() {
+        return new HospitalConverter();
+    }
+
+    @Bean
+    public UserConverter getUserConverter() {
+        return new UserConverter();
+    }
+
+
     @Override
     public void addFormatters(FormatterRegistry formatterRegistry) {
         formatterRegistry.addConverter(getBigDecimalConverter());
         formatterRegistry.addConverter(getProductConverter());
         formatterRegistry.addConverter(getRoomConverter());
+        formatterRegistry.addConverter(getDepartmentConverter());
+        formatterRegistry.addConverter(getHospitalConverter());
+        formatterRegistry.addConverter(getUserConverter());
     }
 
     @Override

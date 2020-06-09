@@ -62,13 +62,15 @@ public class RoomController {
     @GetMapping("/new")
     public String newRoom(
             Model model,
-            @RequestParam(name = "departmentId", required = false) Long id
+            @RequestParam(name = "departmentId", required = false) Long id,
+            @RequestParam(name = "backToPage") String backToPage
     ) {
         Room room = new Room();
         if (id != null) {
             room.setDepartment(departmentService.loadByIdWithHospitalAndItsDepartmentList(id));
         }
         model.addAttribute("room", room);
+        model.addAttribute("backToPage", backToPage);
         return "rooms/new";
     }
 
@@ -162,6 +164,15 @@ public class RoomController {
         productService.removeProductFromRoom(productToDelId, room.getId());
         productService.addProductToRoom(productNewId, room.getId());
         return "redirect:/rooms/details/"+room.getId();
+    }
+
+    @GetMapping("/delete/{roomId}")
+    public String deleteRoom(
+            @PathVariable Long roomId,
+            @RequestParam String backToPage
+    ) {
+        roomService.delete(roomService.loadById(roomId));
+        return "redirect:"+backToPage;
     }
 
     @GetMapping("/delete/{roomId}/{productId}")

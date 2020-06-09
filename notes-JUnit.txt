@@ -1,0 +1,11 @@
+ManufacturerControllerTest.class ...
+
+ProductServiceTest.class ...
+    - @Autowired
+    - ServiceRepo
+    - Mock.class
+
+ProductTest.class
+    + void addRoom tests:
+        + when add new Room() -> should pass
+        + when add null -> should throw NullPointerException

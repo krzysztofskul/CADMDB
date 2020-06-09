@@ -1,5 +1,6 @@
 package pl.krzysztofskul.manufacturer;
 
+import pl.krzysztofskul.manufacturer.distributor.Distributor;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.user.User;
 
@@ -23,6 +24,9 @@ public class Manufacturer {
 
     @OneToMany(mappedBy = "manufacturer")
     private List<User> userList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "manufacturer", cascade = CascadeType.PERSIST)
+    private List<Distributor> distributorList = new ArrayList<>();;
 
     public Manufacturer() {
     }
@@ -66,4 +70,27 @@ public class Manufacturer {
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
+
+    public List<Distributor> getDistributorList() {
+        return distributorList;
+    }
+
+    public void setDistributorList(List<Distributor> distributorList) {
+        this.distributorList = distributorList;
+    }
+
+    public void addDistributor(Distributor distributor) {
+        this.distributorList.add(distributor);
+        for (Distributor d : this.distributorList) {
+            d.setManufacturer(this);
+        }
+    }
+
+    public void removeDistributor(Distributor distributor) {
+        this.distributorList.remove(distributor);
+        for (Distributor d : this.distributorList) {
+            d.setManufacturer(null);
+        }
+    }
+
 }

@@ -14,7 +14,7 @@
     - functionality which show where products are already added
     - option for manufacturer user (see where product is planned to buy)
     - edit/delete products/rooms/departments/hospitals
-
+    - grid for rooms blocks (width x length) on department details page
 #
     - tooltip class
     - menu dropdown
@@ -40,12 +40,52 @@
     - room general info edit page:
         - add functionality to set manager: by Department and by Hospital
 
-# department details page
-    - with grid for rooms blocks (width x length) (?)
+# error page and controller
 
-# hospital details page
+# ...
+    - manufacturer testing
+        . connections with distributors
+            - @OneToMany relations
+                . save to db
+                - with mappedBy / without mappedBy ...
+            - cascade actions
 
 /** DONE **/
+
+# 0.4.0-FINAL
+
+# 0.4.0-5
+    + detach user from hospital functionality added
+    + merged JUnit branch into 0.4.0 branch
+    + manufacturer/distributors save to db tests
+
+# 0.4.0-4
+    + hospital details page added
+        + general info page
+            + edit hospital information functionality
+        + new department functionality
+        + all departments page
+        + delete hospital functionality
+    + DepartmentConverter added
+    + HospitalConverter added
+
+# 0.4.0-3
+    + add new room functionality from the department details page
+    + delete room functionality from the department details page
+    + delete room functionality from the room details page
+
+# 0.4.0-2
+    + department details page updates
+        + general info page with editing functionality
+        + page with all rooms list in the department
+        + analysis page
+
+# New Branch: JUnit
+    + notes-JUnit.txt
+
+# 0.4.0-1
+    + department details page
+    + room details page fix bugs
 
 # 0.3-FINAL
     + update readme
