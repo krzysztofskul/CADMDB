@@ -32,25 +32,59 @@
     . generalInfo Div
 
 #
-    - when adding new product to the room make a front-end modifications:
-        - sorting by:
-            . product category
-            - manufacturer
-            - price
+    - JUnit tests:
+        - when adding new product to the room make a front-end modifications:
+            - sorting by:
+                . product category
+                - manufacturer
+                - price
+        . when add/remove product to room and set new product list
+            . recalculate load in the room
     - room general info edit page:
         - add functionality to set manager: by Department and by Hospital
 
 # error page and controller
 
-# ...
+# 0.5.0-next
     - manufacturer testing
-        . connections with distributors
+        . connections with distributor
+            . with factory ....
             - @OneToMany relations
                 . save to db
-                - with mappedBy / without mappedBy ...
+                - with mappedBy / without mappedBy (-)
+                - wit joinTable bidirectional ...
             - cascade actions
+    - Product.class -> Department -> Hospital
+        - powerConnection ...
+        - connector power / LAN / water / medical gas
+        - dimensions
+        . added weight field and room loadActual recalculation after add/remove product to room
+        . Product test constructor
+            . create test product method
+    . Manufacturer new constructor and methods for creating test manufacturers
+    . Manufacturer.class updates
+        . void addProduct
+        . void removeProduct
+        - setProductList mod. // todo
+    . LoremIpsum dependency added
+    . InstallationTypes classes added
+
 
 /** DONE **/
+
+# 0.5.0-1
+    + JUnit tests:
+        + Manufacturer with factory tests added
+        + Product tests added
+        + add/remove product to room and set new product list tests
+            + recalculate load in the room tests
+    + added weight field and room loadActual recalculation after add/remove product to room
+    + Manufacturer.class updates
+        + void addProduct
+        + void removeProduct
+    + Manufacturer new constructor and methods for creating test manufacturers
+    + LoremIpsum dependency added
+    + InstallationTypes classes added
 
 # 0.4.0-FINAL
 

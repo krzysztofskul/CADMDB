@@ -22,7 +22,7 @@ public class DistributorService {
         distributorRepo.save(distributor);
     }
 
-    private Distributor loadById(Long id) {
+    public Distributor loadById(Long id) {
         return distributorRepo.findById(id).get();
     }
 

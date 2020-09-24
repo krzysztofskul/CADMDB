@@ -35,6 +35,16 @@ public class ProductTest {
     }
 
     @Test
+    public void whenConstructProductTest_shouldReturnProductWithInitFields() {
+        Product product = new Product(true);
+        assertTrue(product.getModelName().length() != 0 && product.getModelName() != null);
+        assertTrue(!product.getPrice().equals(BigDecimal.valueOf(0)));
+        assertTrue(product.getPowerConnectionNeeded() != 0f);
+        assertTrue(product.getWeight() != 0f);
+        assertTrue(product.getInstallationType() != null);
+    }
+
+    @Test
     public void addRoom() {
         //given - beginning conditions
         Room room = new Room();

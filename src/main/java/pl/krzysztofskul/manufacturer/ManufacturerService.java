@@ -39,9 +39,21 @@ public class ManufacturerService {
         return manufacturerRepo.findById(id).get();
     }
 
+    public Manufacturer loadByIdWithProductList(Long id) {
+        Manufacturer manufacturer = manufacturerRepo.findById(id).get();
+        Hibernate.initialize(manufacturer.getProductList());
+        return manufacturer;
+    }
+
     public Manufacturer loadByIdWithDistributors(Long id) {
         Manufacturer manufacturer = manufacturerRepo.findById(id).get();
         Hibernate.initialize(manufacturer.getDistributorList());
+        return manufacturer;
+    }
+
+    public Manufacturer loadByIdWithFactoryList(Long id) {
+        Manufacturer manufacturer = manufacturerRepo.findById(id).get();
+        Hibernate.initialize(manufacturer.getFactoryList());
         return manufacturer;
     }
 

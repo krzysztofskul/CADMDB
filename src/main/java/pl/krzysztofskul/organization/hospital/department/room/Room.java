@@ -24,6 +24,10 @@ public class Room extends Organization {
 
     private float height;
 
+    private float loadActual;
+
+    private float loadCapacity;
+
     private float temperature;
 
     private int illumination;
@@ -89,6 +93,22 @@ public class Room extends Organization {
         this.height = height;
     }
 
+    public float getLoadActual() {
+        return loadActual;
+    }
+
+    public void setLoadActual(float loadActual) {
+        this.loadActual = loadActual;
+    }
+
+    public float getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(float loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
+
     public Department getDepartment() {
         return department;
     }
@@ -102,7 +122,11 @@ public class Room extends Organization {
     }
 
     public void setProductList(List<Product> productList) {
+        setLoadActual(0f);
         this.productList = productList;
+        for (Product product : this.productList) {
+            this.loadActual += product.getWeight();
+        }
     }
 
     public RoomCategory getRoomCategory() {
@@ -187,10 +211,22 @@ public class Room extends Organization {
 
     public void addProduct(Product product) {
         this.productList.add(product);
+        if (this.productList != null) {
+            this.loadActual += product.getWeight();
+        } else {
+            this.loadActual = 0f;
+        }
     }
 
     public void removeProduct(Product product) {
-        this.productList.remove(product);
+        if (product != null) {
+            this.productList.remove(product);
+            if (this.productList != null) {
+                this.loadActual -= product.getWeight();
+            } else {
+                this.loadActual = 0f;
+            }
+        }
     }
 
     @PrePersist
