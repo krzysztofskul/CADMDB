@@ -7,27 +7,19 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
 import pl.krzysztofskul.AppConfig;
-import pl.krzysztofskul.InitTestDBService;
+import pl.krzysztofskul.initTestDB.InitTestDBService;
 import pl.krzysztofskul.organization.hospital.department.room.RoomService;
 import pl.krzysztofskul.product.ProductService;
 import pl.krzysztofskul.product.productCategory.ProductCategoryService;
 
 import javax.servlet.ServletContext;
 
-import java.awt.*;
-import java.util.ArrayList;
-
-import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.ResultMatcher.matchAll;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

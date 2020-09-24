@@ -43,6 +43,15 @@ public class ManufacturerController {
         return "manufacturers/all";
     }
 
+    @GetMapping("/{id}")
+    public String getManufacturerById(
+            @PathVariable(name = "id") Long manufacturerId,
+            Model model
+    ) {
+        model.addAttribute("manufacturer", manufacturerService.loadById(manufacturerId));
+        return "manufacturers/details";
+    }
+
     @GetMapping("/new")
     public String newManufacturer(
             Model model

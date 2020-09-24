@@ -1,4 +1,4 @@
-package pl.krzysztofskul;
+package pl.krzysztofskul.initTestDB;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

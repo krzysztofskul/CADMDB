@@ -3,7 +3,6 @@ package pl.krzysztofskul.product;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.annotation.Order;
-import pl.krzysztofskul.InitTestDBService;
 import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.room.Room;

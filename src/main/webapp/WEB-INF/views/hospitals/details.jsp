@@ -24,7 +24,7 @@
             <%-- HOSPITAL STRUCTURE --%>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/hospitals/all">Hospitals</a></li>
                     <li class="breadcrumb-item"><a href="#">${hospital.name}</a></li>
                 </ol>
             </nav>

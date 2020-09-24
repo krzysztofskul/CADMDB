@@ -25,8 +25,12 @@
             <div class="card-body">
                 <c:forEach items="${manufacturers}" var="manufacturer">
                     <div class="row bg-light font-weight-bold border-top border-bottom mt-3 mb-1">
-                        <div class="col-12">
-                            ${manufacturer.name}
+                        <div class="col-4">
+                            ${manufacturer.name} ${manufacturer.companyType}
+                        </div>
+                        <div class="col-5"></div>
+                        <div class="col-3 font-weight-bold text-black-50">
+                            <a href="/manufacturers/${manufacturer.id}">DETAILS</a>
                         </div>
                     </div>
 

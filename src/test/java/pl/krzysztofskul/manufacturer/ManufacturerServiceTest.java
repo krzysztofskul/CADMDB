@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -113,7 +112,7 @@ public class ManufacturerServiceTest {
         manufacturerService.save(manufacturer);
         // should
         assertTrue(manufacturerService.loadByIdWithFactoryList(Long.parseLong("1")).getFactoryList().size() == 3);
-        assertTrue(manufacturerService.loadById(Long.parseLong("1")).getDetails() != null);
+        assertTrue(manufacturerService.loadById(Long.parseLong("1")).getDescription() != null);
     }
 
     @Test

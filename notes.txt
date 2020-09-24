@@ -45,7 +45,7 @@
 
 # error page and controller
 
-# 0.5.0-next
+#
     - manufacturer testing
         . connections with distributor
             . with factory ....
@@ -69,8 +69,34 @@
     . LoremIpsum dependency added
     . InstallationTypes classes added
 
+# 0.5.0-next
+    - front-end updates:
+        . hospital, department, room details page modifications in navigation bar
+        . manufacturers all page update
+        . manufacturer details test page 
+        - new manufacturer page updates
+    - initTestDB created
+        - create/update singleton class to create init test objects
+            . initTest manufacturers
+            - initTest products todo ...
+        . create OrganizationTypes singleton class
+    . Manufacturer class updates
+    . ManufacturerController class updates
+
 
 /** DONE **/
+
+# 0.5.0-2
+    + front-end updates:
+        + hospital, department, room details page modifications in navigation bar
+        + manufacturers all page update
+        + manufacturer details test page created
+    + initTestDB created
+        + created singleton class to create init test objects
+            + initTest manufacturers
+        + create OrganizationTypes singleton class
+    + Manufacturer class updates
+    + ManufacturerController class updates
 
 # 0.5.0-1
     + JUnit tests:

@@ -10,6 +10,6 @@ public class ManufacturerTest {
     public void createTestManufacturer() {
     Manufacturer manufacturer = new Manufacturer(true);
     assertTrue(manufacturer.getName() != null);
-    assertTrue(manufacturer.getDetails() != null);
+    assertTrue(manufacturer.getDescription() != null);
     }
 }

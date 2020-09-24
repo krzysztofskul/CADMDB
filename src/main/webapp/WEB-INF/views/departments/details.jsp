@@ -24,8 +24,8 @@
             <%-- DEPARTMENT IN HOSPITAL STRUCTURE --%>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">${department.hospital.name}</a></li>
+                    <li class="breadcrumb-item"><a href="/hospitals/all">Hospitals</a></li>
+                    <li class="breadcrumb-item"><a href="/hospitals/details/${department.hospital.id}">${department.hospital.name}</a></li>
                     <li class="breadcrumb-item"><a href="#">${department.departmentCategory.name}</a></li>
                 </ol>
             </nav>

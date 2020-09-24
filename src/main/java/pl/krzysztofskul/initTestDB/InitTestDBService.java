@@ -1,4 +1,4 @@
-package pl.krzysztofskul;
+package pl.krzysztofskul.initTestDB;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,6 @@ import pl.krzysztofskul.user.userCategory.UserCategory;
 import pl.krzysztofskul.user.userCategory.UserCategoryService;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -222,10 +221,14 @@ public class InitTestDBService {
         for (int i = 1; i <= 2; i++) {
             manufacturer = new Manufacturer();
             manufacturer.setName("Manufacturer no. "+i);
-            manufacturer.setDetails("Some details about manufacturer no. "+i+". Country, city, address, contact, etc.");
+            manufacturer.setDescription("Some details about manufacturer no. "+i+". Country, city, address, contact, etc.");
             manufacturerService.save(manufacturer);
         }
 
+        List<Manufacturer> manufacturerInitList = InitTestDB.getInitTestDBInstance().getInitTestManufacturers(10);
+        for (Manufacturer manufacturerInit : manufacturerInitList) {
+            manufacturerService.save(manufacturerInit);
+        }
     }
 
     public void createProductCategories() {

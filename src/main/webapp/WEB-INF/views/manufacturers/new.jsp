@@ -33,7 +33,7 @@
 
                     <div class="form-group">
                         <label for="details">DETAILS:</label>
-                        <form:textarea id="details" cssClass="form-control" path="details"/>
+                        <form:textarea id="details" cssClass="form-control" path="description"/>
                     </div>
 
                 </div>
