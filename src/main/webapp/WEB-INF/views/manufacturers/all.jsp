@@ -34,6 +34,7 @@
                         </div>
                     </div>
 
+                    <%--
                     <c:forEach items="${productCategories}" var="productCategory">
 
                         <div class="row bg-light mt-1 mb-1">
@@ -73,13 +74,15 @@
                         </c:forEach>
 
                     </c:forEach>
+                    --%>
 
-
+                    <%--
                     <div class="row mt-2">
                         <div class="col-12">
                             <a href="/products/new?manufacturerId=${manufacturer.id}" class="btn btn-success float-right">NEW PRODUCT</a>
                         </div>
                     </div>
+                    --%>
                 </c:forEach>
             </div>
 

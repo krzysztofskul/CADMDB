@@ -391,11 +391,27 @@ public class InitTestDBService {
 
         for(int i = 0; i < 4; i++) {
             Manufacturer manufacturer = manufacturerService.loadById(Long.parseLong(String.valueOf(i+1)));
+
             List<Product> productListAA0000 = InitTestDB.getInitTestDBInstance().getInitTestProducts(productCategoryService.loadByCode("AA0000"));
+            List<Product> productListAB1000 = InitTestDB.getInitTestDBInstance().getInitTestProducts(productCategoryService.loadByCode("AB1000"));
+            List<Product> productListAC1000 = InitTestDB.getInitTestDBInstance().getInitTestProducts(productCategoryService.loadByCode("AC1000"));
+            List<Product> productListAH1000 = InitTestDB.getInitTestDBInstance().getInitTestProducts(productCategoryService.loadByCode("AH1000"));
+
             for (Product product : productListAA0000) {
                 manufacturer.addProduct(product);
-                manufacturerService.save(manufacturer);
             };
+            for (Product product : productListAB1000) {
+                manufacturer.addProduct(product);
+            };
+            for (Product product : productListAC1000) {
+                manufacturer.addProduct(product);
+            };
+            for (Product product : productListAH1000) {
+                manufacturer.addProduct(product);
+            };
+
+            manufacturerService.save(manufacturer);
+
         }
 
     }

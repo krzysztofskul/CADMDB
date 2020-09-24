@@ -25,7 +25,7 @@ public class InitTestDBController {
             initTestDBService.createProductCategories();
 
             initTestDBService.createTestManufacturers();
-            initTestDBService.createTestProducts();
+            //initTestDBService.createTestProducts();
             initTestDBService.createInitTestProductsForTestManufacturers();
 
             initTestDBService.createTestHospitals();

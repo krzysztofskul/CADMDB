@@ -43,6 +43,15 @@ public class ProductController {
         return "products/all";
     }
 
+    @GetMapping("/{id}")
+    public String getProductDetailsById(
+            @PathVariable(name = "id") Long id,
+            Model model
+    ) {
+        model.addAttribute("product", productService.loadByIdWithRoomList(id));
+        return "products/details";
+    }
+
     @GetMapping("/new")
     public String newProduct(
             Model model,

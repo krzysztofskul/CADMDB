@@ -47,6 +47,7 @@ public class InitTestDB {
 
     public List<Product> getInitTestProducts(ProductCategory productCategory) {
         List<Product> productInitTestList = new ArrayList<>();
+
         if (productCategory.getCode().equals("AA0000")) {
             for (int i = 0; i < 4; i++) {
                 Product product = new Product();
@@ -78,6 +79,103 @@ public class InitTestDB {
                 productInitTestList.add(product);
             }
         }
+
+        if (productCategory.getCode().equals("AB1000")) {
+            for (int i = 0; i < 4; i++) {
+                Product product = new Product();
+                product.setProductCategory(productCategory);
+                product.setModelName(LoremIpsum.getInstance().getTitle(1));
+                product.setPrice(
+                        BigDecimal.valueOf(Long.parseLong("125000"))
+                                .add(BigDecimal.valueOf(new Random().nextDouble()*10000))
+                );
+                product.setPowerConnectionNeeded(
+                        1000.00f - new Random().nextFloat()*100)
+                ;
+                product.setWeight(150.00f - new Random().nextFloat()*10);
+                switch (i) {
+                    case 0: {
+                        product.setInstallationType(InstallationType.FIXED_FLOOR);
+                        break;
+                    }
+                    case 1: {
+                        product.setInstallationType(InstallationType.STANDALONE_FLOOR);
+                        break;
+                    }
+                    case 2:
+                    case 3: {
+                        product.setInstallationType(InstallationType.MOBILE);
+                        break;
+                    }
+                }
+                productInitTestList.add(product);
+            }
+        }
+
+        if (productCategory.getCode().equals("AC1000")) {
+
+            for (int i = 0; i < 3; i++) {
+                Product product = new Product();
+                product.setProductCategory(productCategory);
+                product.setModelName(LoremIpsum.getInstance().getTitle(1));
+                product.setPrice(
+                        BigDecimal.valueOf(Long.parseLong("150000"))
+                                .add(BigDecimal.valueOf(new Random().nextDouble()*10000))
+                );
+                product.setPowerConnectionNeeded(
+                        1000.00f - new Random().nextFloat()*100)
+                ;
+                product.setWeight(150.00f - new Random().nextFloat()*10);
+                switch (i) {
+                    case 0: {
+                        product.setInstallationType(InstallationType.FIXED_CEILING);
+                        break;
+                    }
+                    case 1: {
+                        product.setInstallationType(InstallationType.FIXED_WALL);
+                        break;
+                    }
+                    case 2: {
+                        product.setInstallationType(InstallationType.MOBILE);
+                        break;
+                    }
+                }
+                productInitTestList.add(product);
+            }
+        }
+
+        if (productCategory.getCode().equals("AH1000")) {
+
+            for (int i = 0; i < 3; i++) {
+                Product product = new Product();
+                product.setProductCategory(productCategory);
+                product.setModelName(LoremIpsum.getInstance().getTitle(1));
+                product.setPrice(
+                        BigDecimal.valueOf(Long.parseLong("150000"))
+                                .add(BigDecimal.valueOf(new Random().nextDouble()*10000))
+                );
+                product.setPowerConnectionNeeded(
+                        1000.00f - new Random().nextFloat()*100)
+                ;
+                product.setWeight(150.00f - new Random().nextFloat()*10);
+                switch (i) {
+                    case 0: {
+                        product.setInstallationType(InstallationType.FIXED_FLOOR);
+                        break;
+                    }
+                    case 1: {
+                        product.setInstallationType(InstallationType.MOBILE);
+                        break;
+                    }
+                    case 2: {
+                        product.setInstallationType(InstallationType.BIULT_IN);
+                        break;
+                    }
+                }
+                productInitTestList.add(product);
+            }
+        }
+
         return productInitTestList;
     }
 

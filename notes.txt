@@ -1,38 +1,29 @@
 /** TODO **/
 
-#
+# back-end
     - power/water consumption for equipments
-    - InstallationType class
-    - weight and dimensions for product class
+    - dimensions for product class
     - Investor class
     - Designer class
     - ask form after new hospital, department, room
     - delete hospital -> ask for sure -> delete departments, rooms -> disconnect products
-    - manufacturers all - categorize products
-    - initially mark existed elements of the list when adding new product to room
     - product quantity option when adding to room
-    - functionality which show where products are already added
     - option for manufacturer user (see where product is planned to buy)
-    - edit/delete products/rooms/departments/hospitals
     - grid for rooms blocks (width x length) on department details page
-#
+
+# front-end
     - tooltip class
     - menu dropdown
-    . readme update
-        - forms for adding new hospital/department/room
+    - css
+        - hospital header
+        - department header
+        - room header
+        - product header
+        - checkbox
+        . generalInfo Div
 
-# installation types for products
-
-# css
-    - hospital header
-    - department header
-    - room header
-    - product header
-    - checkbox
-    . generalInfo Div
-
-#
-    - JUnit tests:
+# JUnit
+    - tests:
         - when adding new product to the room make a front-end modifications:
             - sorting by:
                 . product category
@@ -45,49 +36,17 @@
 
 # error page and controller
 
-#
-    - manufacturer testing
-        . connections with distributor
-            . with factory ....
-            - @OneToMany relations
-                . save to db
-                - with mappedBy / without mappedBy (-)
-                - wit joinTable bidirectional ...
-            - cascade actions
-    - Product.class -> Department -> Hospital
-        - powerConnection ...
-        - connector power / LAN / water / medical gas
-        - dimensions
-        . added weight field and room loadActual recalculation after add/remove product to room
-        . Product test constructor
-            . create test product method
-    . Manufacturer new constructor and methods for creating test manufacturers
-    . Manufacturer.class updates
-        . void addProduct
-        . void removeProduct
-        - setProductList mod. // todo
-    . LoremIpsum dependency added
-    . InstallationTypes classes added
+# 0.6-next
+    - users, user groups/roles to create
 
-# 0.5.0-next
-    - front-end updates:
-        . hospital, department, room details page modifications in navigation bar
-        . manufacturers all page update
-        . manufacturer details test page updates
-        - new manufacturer page updates
-    - initTestDB created
-        - create/update singleton class to create init test objects
-            . initTest manufacturers
-            . initTest products for hospital beds
-                - round price and power consumption todo ...
-            - initTest for other product categories todo ...
-        . create OrganizationTypes singleton class
-    . Manufacturer class updates
-    . ManufacturerController class updates
-    . logoIpsum images to resources added
+/** TODO / DONE **/
 
-
-/** DONE **/
+# 0.5.0-FINAL
+    + manufacturers all page updated
+    + manufacturer details page updated:
+        + show products in category groups
+    + initTestDB class updated
+    + product details page created
 
 # 0.5.0-3
     + manufacturer details test page updates

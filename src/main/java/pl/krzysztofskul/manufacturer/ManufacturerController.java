@@ -48,8 +48,8 @@ public class ManufacturerController {
             @PathVariable(name = "id") Long manufacturerId,
             Model model
     ) {
-        model.addAttribute("manufacturer", manufacturerService.loadById(manufacturerId));
-        model.addAttribute("productCategoryList", productCategoryService.loadAll());
+        model.addAttribute("manufacturer", manufacturerService.loadByIdWithProductList(manufacturerId));
+        model.addAttribute("productCategoryList", productCategoryService.loadAllWithProducts());
         return "manufacturers/details";
     }
 

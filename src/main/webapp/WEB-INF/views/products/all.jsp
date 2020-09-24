@@ -52,7 +52,7 @@
                                 />
                             </div>
                             <div class="col-3">
-                                <a href="#">DETAILS</a>
+                                <a href="/products/${product.id}">DETAILS</a>
                                 <a href="/manufacturers/productAddToRoom?productId=${product.id}" class="text-success">ADD TO ROOM</a>
                                 <a href="#" class="text-danger">DEL</a>
                             </div>
