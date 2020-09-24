@@ -49,6 +49,7 @@ public class ManufacturerController {
             Model model
     ) {
         model.addAttribute("manufacturer", manufacturerService.loadById(manufacturerId));
+        model.addAttribute("productCategoryList", productCategoryService.loadAll());
         return "manufacturers/details";
     }
 

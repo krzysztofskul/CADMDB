@@ -39,7 +39,7 @@
                     <c:forEach items="${productCategory.productList}" var="product">
                         <div class="row">
                             <div class="col-6">
-                                    ${product.manufacturer.name}
+                                    <span class="font-weight-bold">${product.manufacturer.name}</span>
                                     ${product.modelName}
                             </div>
                             <div class="col-2">

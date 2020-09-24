@@ -3,7 +3,11 @@ package pl.krzysztofskul.initTestDB;
 import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.organization.OrganizationType;
+import pl.krzysztofskul.product.InstallationType;
+import pl.krzysztofskul.product.Product;
+import pl.krzysztofskul.product.productCategory.ProductCategory;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,6 +43,42 @@ public class InitTestDB {
             manufacturerList.add(manufacturer);
         }
         return manufacturerList;
+    }
+
+    public List<Product> getInitTestProducts(ProductCategory productCategory) {
+        List<Product> productInitTestList = new ArrayList<>();
+        if (productCategory.getCode().equals("AA0000")) {
+            for (int i = 0; i < 4; i++) {
+                Product product = new Product();
+                product.setProductCategory(productCategory);
+                product.setModelName(LoremIpsum.getInstance().getTitle(1));
+                product.setPrice(
+                        BigDecimal.valueOf(Long.parseLong("75000"))
+                                .add(BigDecimal.valueOf(new Random().nextDouble()*10000))
+                );
+                product.setPowerConnectionNeeded(
+                        1000.00f - new Random().nextFloat()*100)
+                ;
+                product.setWeight(150.00f - new Random().nextFloat()*10);
+                switch (i) {
+                    case 0: {
+                        product.setInstallationType(InstallationType.FIXED_FLOOR);
+                        break;
+                    }
+                    case 1: {
+                        product.setInstallationType(InstallationType.STANDALONE_FLOOR);
+                        break;
+                    }
+                    case 2:
+                    case 3: {
+                        product.setInstallationType(InstallationType.MOBILE);
+                        break;
+                    }
+                }
+                productInitTestList.add(product);
+            }
+        }
+        return productInitTestList;
     }
 
 }

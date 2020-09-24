@@ -73,18 +73,27 @@
     - front-end updates:
         . hospital, department, room details page modifications in navigation bar
         . manufacturers all page update
-        . manufacturer details test page 
+        . manufacturer details test page updates
         - new manufacturer page updates
     - initTestDB created
         - create/update singleton class to create init test objects
             . initTest manufacturers
-            - initTest products todo ...
+            . initTest products for hospital beds
+                - round price and power consumption todo ...
+            - initTest for other product categories todo ...
         . create OrganizationTypes singleton class
     . Manufacturer class updates
     . ManufacturerController class updates
+    . logoIpsum images to resources added
 
 
 /** DONE **/
+
+# 0.5.0-3
+    + manufacturer details test page updates
+    + initTestDB class updates
+        + init test products for hospital beds category
+    + logoIpsum images to resources added
 
 # 0.5.0-2
     + front-end updates:

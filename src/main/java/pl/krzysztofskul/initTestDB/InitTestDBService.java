@@ -216,14 +216,14 @@ public class InitTestDBService {
     }
 
     public void createTestManufacturers() {
-        Manufacturer manufacturer;
+        /*Manufacturer manufacturer;
 
         for (int i = 1; i <= 2; i++) {
             manufacturer = new Manufacturer();
             manufacturer.setName("Manufacturer no. "+i);
             manufacturer.setDescription("Some details about manufacturer no. "+i+". Country, city, address, contact, etc.");
             manufacturerService.save(manufacturer);
-        }
+        }*/
 
         List<Manufacturer> manufacturerInitList = InitTestDB.getInitTestDBInstance().getInitTestManufacturers(10);
         for (Manufacturer manufacturerInit : manufacturerInitList) {
@@ -384,6 +384,19 @@ public class InitTestDBService {
         product.setModelName("Mobile");
         product.setPrice(BigDecimal.valueOf(130000.00));
         productService.save(product);
+
+    }
+
+    public void createInitTestProductsForTestManufacturers() {
+
+        for(int i = 0; i < 4; i++) {
+            Manufacturer manufacturer = manufacturerService.loadById(Long.parseLong(String.valueOf(i+1)));
+            List<Product> productListAA0000 = InitTestDB.getInitTestDBInstance().getInitTestProducts(productCategoryService.loadByCode("AA0000"));
+            for (Product product : productListAA0000) {
+                manufacturer.addProduct(product);
+                manufacturerService.save(manufacturer);
+            };
+        }
 
     }
 
