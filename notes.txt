@@ -39,12 +39,23 @@
 # 0.6.0-next
     - users/users as a guest functionality updates
         . users categories test initDB
-            . users test initDB todo done
+            . users test initDB
         . user category enums created
-        - log in, registration functionality
+        - log in, registration page/functionality
         - users page
+            . all users page
+            . user details page
+            - user profile page
+         . user controller
+
 
 /** TODO / DONE **/
+
+# 0.6.0-2
+    + created users pages:
+        + all users page
+        + user details page
+     + created user controller
 
 # 0.6.0-1
     + users/users as a guest functionality updates

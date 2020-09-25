@@ -17,9 +17,9 @@ public class InitTestDBController {
     @GetMapping("/initTestDB")
     public String initTestDB() {
 
-            initTestDBService.createUsersCategory();
+//            initTestDBService.createUsersCategory();
             initTestDBService.createInitTestUsersCategory();
-            initTestDBService.createTestUsers();
+//            initTestDBService.createTestUsers();
             initTestDBService.createInitTestUsers();
 
             initTestDBService.createDepartmentCategories();

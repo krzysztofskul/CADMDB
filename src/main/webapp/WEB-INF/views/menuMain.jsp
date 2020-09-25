@@ -17,6 +17,7 @@
         <a class="nav-link active" href="/hospitals/all">HOSPITALS</a>
         <a class="nav-link active" href="/manufacturers/all">MANUFACTURERS</a>
         <a class="nav-link active" href="/products/all">PRODUCTS</a>
+        <a class="nav-link active" href="/users/all">USERS</a>
     </nav>
 
 </body>
