@@ -41,15 +41,26 @@
         . users categories test initDB
             . users test initDB
         . user category enums created
-        - log in, registration page/functionality
+        - log in as guest, registration page/functionality
+            . menu log in / register / user profile
+            . login class / controller
+                . log in / log out functionality for Hospital manager guest user todo done
         - users page
             . all users page
             . user details page
             - user profile page
          . user controller
+     . initTestDB.class updates to create only one guest for all user category
 
 
 /** TODO / DONE **/
+
+# 0.6.0-3
+    + initTestDB.class updates to create only one guest for all user category
+    + log in as guest functionality
+        + menu log in / register / user profile
+        + login class / controller
+            + log in / log out functionality for Hospital manager guest user
 
 # 0.6.0-2
     + created users pages:

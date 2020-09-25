@@ -242,8 +242,14 @@ public class InitTestDB {
     public List<User> getInitTestUsers(List<UserCategory> userCategoryList) {
         List<User> userList = new ArrayList<>();
 
+        int j;
         for (UserCategory userCategory : userCategoryList) {
-            for (int i = 0; i < 2 ; i++) {
+            if (userCategory.getCode().contains("GUEST")) {
+              j = 1;
+            } else {
+                j = 2;
+            }
+            for (int i = 0; i < j ; i++) {
                 User user = new User();
 
                 user.setNameFirst(LoremIpsum.getInstance().getFirstName());

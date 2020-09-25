@@ -12,6 +12,8 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     List<User> findAllByUserCategory(UserCategory userCategory);
 
+    User findByUserCategory(UserCategory userCategory);
+
 //    @Query("select u from User  where u.hospital is null ")
 //    List<User> loadAllUnemployed();
 //

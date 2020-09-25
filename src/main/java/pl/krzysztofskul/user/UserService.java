@@ -4,6 +4,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
 import pl.krzysztofskul.user.userCategory.UserCategoryService;
 
 import java.util.List;
@@ -54,5 +55,16 @@ public class UserService {
         }
         userList.removeIf(user -> user.getHospital() != null);
         return userList;
+    }
+
+    public User loadByUserCategoryEnum(UserCategoryEnum userCategoryEnum) {
+        switch (userCategoryEnum) {
+            case HOSPITAL_MANAGER_GUEST: {
+                return userRepo.findByUserCategory(userCategoryService.loadByCode("HOSPITAL MANAGER (GUEST)"));
+            }
+            default: {
+                return userRepo.findByUserCategory(userCategoryService.loadByCode("ADMIN"));
+            }
+        }
     }
 }
