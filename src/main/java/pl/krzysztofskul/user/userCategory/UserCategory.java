@@ -17,6 +17,8 @@ public class UserCategory {
 
     private String name;
 
+    private UserCategoryEnum userCategoryEnum;
+
     private String description;
 
     @OneToMany(mappedBy = "userCategory")
@@ -47,6 +49,14 @@ public class UserCategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public UserCategoryEnum getUserCategoryEnum() {
+        return userCategoryEnum;
+    }
+
+    public void setUserCategoryEnum(UserCategoryEnum userCategoryEnum) {
+        this.userCategoryEnum = userCategoryEnum;
     }
 
     public String getDescription() {

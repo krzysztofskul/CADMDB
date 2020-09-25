@@ -36,10 +36,21 @@
 
 # error page and controller
 
-# 0.6-next
-    - users, user groups/roles to create
+# 0.6.0-next
+    - users/users as a guest functionality updates
+        . users categories test initDB
+            . users test initDB todo done
+        . user category enums created
+        - log in, registration functionality
+        - users page
 
 /** TODO / DONE **/
+
+# 0.6.0-1
+    + users/users as a guest functionality updates
+        + created users categories for test initDB
+            + created users for test initDB
+        + created user category enum
 
 # 0.5.0-FINAL
     + manufacturers all page updated

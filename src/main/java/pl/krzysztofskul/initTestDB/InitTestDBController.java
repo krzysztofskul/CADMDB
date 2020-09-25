@@ -18,7 +18,9 @@ public class InitTestDBController {
     public String initTestDB() {
 
             initTestDBService.createUsersCategory();
+            initTestDBService.createInitTestUsersCategory();
             initTestDBService.createTestUsers();
+            initTestDBService.createInitTestUsers();
 
             initTestDBService.createDepartmentCategories();
             initTestDBService.createRoomCategories();

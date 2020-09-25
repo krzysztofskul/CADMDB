@@ -6,6 +6,9 @@ import pl.krzysztofskul.organization.OrganizationType;
 import pl.krzysztofskul.product.InstallationType;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.productCategory.ProductCategory;
+import pl.krzysztofskul.user.User;
+import pl.krzysztofskul.user.userCategory.UserCategory;
+import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -177,6 +180,92 @@ public class InitTestDB {
         }
 
         return productInitTestList;
+    }
+
+    public List<UserCategory> getInitTestUserCategories() {
+        List<UserCategory> userCategoryList = new ArrayList<>();
+
+        UserCategory userCategory;
+
+        userCategory = new UserCategory();
+        userCategory.setUserCategoryEnum(UserCategoryEnum.ADMINISTRATOR);
+        userCategory.setCode("ADMIN");
+        userCategory.setName("Admin");
+        userCategory.setDescription("Administrator of the website");
+        userCategoryList.add(userCategory);
+
+        userCategory = new UserCategory();
+        userCategory.setUserCategoryEnum(UserCategoryEnum.HOSPITAL_MANAGER);
+        userCategory.setCode("HOSPITAL MANAGER");
+        userCategory.setName("Hospital manager");
+        userCategory.setDescription("Hospital manager");
+        userCategoryList.add(userCategory);
+
+        userCategory = new UserCategory();
+        userCategory.setUserCategoryEnum(UserCategoryEnum.HOSPITAL_MANAGER_GUEST);
+        userCategory.setCode("HOSPITAL MANAGER (GUEST)");
+        userCategory.setName("Hospital manager (guest)");
+        userCategory.setDescription("Hospital manager (guest)");
+        userCategoryList.add(userCategory);
+
+        userCategory = new UserCategory();
+        userCategory.setUserCategoryEnum(UserCategoryEnum.HOSPITAL_EMPLOYEE);
+        userCategory.setCode("HOSPITAL EMPLOYEE");
+        userCategory.setName("Hospital employee");
+        userCategory.setDescription("Hospital employee");
+        userCategoryList.add(userCategory);
+
+        userCategory = new UserCategory();
+        userCategory.setUserCategoryEnum(UserCategoryEnum.HOSPITAL_EMPLOYEE_GUEST);
+        userCategory.setCode("HOSPITAL EMPLOYEE (GUEST)");
+        userCategory.setName("Hospital employee (guest)");
+        userCategory.setDescription("Hospital employee (guest)");
+        userCategoryList.add(userCategory);
+        
+        userCategory = new UserCategory();
+        userCategory.setUserCategoryEnum(UserCategoryEnum.MANUFACTURER_EMPLOYEE);
+        userCategory.setCode("MANUFACTURER EMPLOYEE");
+        userCategory.setName("Manufacturer employee");
+        userCategory.setDescription("Manufacturer employee");
+        userCategoryList.add(userCategory);
+
+        userCategory = new UserCategory();
+        userCategory.setUserCategoryEnum(UserCategoryEnum.MANUFACTURER_EMPLOYEE_GUEST);
+        userCategory.setCode("MANUFACTURER EMPLOYEE (GUEST)");
+        userCategory.setName("Manufacturer employee (guest)");
+        userCategory.setDescription("Manufacturer employee (guest)");
+        userCategoryList.add(userCategory);
+
+        return userCategoryList;
+    }
+
+    public List<User> getInitTestUsers(List<UserCategory> userCategoryList) {
+        List<User> userList = new ArrayList<>();
+
+        for (UserCategory userCategory : userCategoryList) {
+            for (int i = 0; i < 2 ; i++) {
+                User user = new User();
+
+                user.setNameFirst(LoremIpsum.getInstance().getFirstName());
+                user.setNameLast(LoremIpsum.getInstance().getLastName());
+                user.setEmail(
+                        user.getNameFirst().toLowerCase()+"."+user.getNameLast().toLowerCase()+"@example.com"
+                );
+
+                if (userCategory.getCode().contains("GUEST")) {
+                    user.setPassword("guest");
+                } else {
+                    user.setPassword(LoremIpsum.getInstance().getWords(1));
+                }
+
+                user.setUserCategory(userCategory);
+
+                userList.add(user);
+
+            }
+        }
+
+        return userList;
     }
 
 }

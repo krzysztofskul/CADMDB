@@ -70,11 +70,11 @@ public class InitTestDBService {
     public void createUsersCategory() {
         UserCategory userCategory;
 
-        userCategory = new UserCategory();
-        userCategory.setCode("ADMIN");
-        userCategory.setName("Administrator");
-        userCategory.setDescription("Person/User who is the administrator of the web application.");
-        userCategoryService.save(userCategory);
+//        userCategory = new UserCategory();
+//        userCategory.setCode("ADMIN");
+//        userCategory.setName("Administrator");
+//        userCategory.setDescription("Person/User who is the administrator of the web application.");
+//        userCategoryService.save(userCategory);
 
         userCategory = new UserCategory();
         userCategory.setCode("INVESTOR");
@@ -112,6 +112,12 @@ public class InitTestDBService {
         userCategory.setDescription("Person/User who represents the manufacturer of the hospital devices and equipment.");
         userCategoryService.save(userCategory);
 
+    }
+
+    public void createInitTestUsersCategory() {
+        for (UserCategory userCategory : InitTestDB.getInitTestDBInstance().getInitTestUserCategories()) {
+            userCategoryService.save(userCategory);
+        }
     }
 
     public void createTestUsers() {
@@ -213,6 +219,12 @@ public class InitTestDBService {
 //        user.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
         userService.save(user);
 
+    }
+
+    public void createInitTestUsers() {
+        for (User user : InitTestDB.getInitTestDBInstance().getInitTestUsers(userCategoryService.loadAll())) {
+            userService.save(user);
+        }
     }
 
     public void createTestManufacturers() {
