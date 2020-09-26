@@ -17,6 +17,8 @@ import java.util.Random;
 
 public class InitTestDB {
 
+    private static boolean initDB = false;
+
     private static InitTestDB initTestDBInstance;
 
     private InitTestDB(){};
@@ -26,6 +28,14 @@ public class InitTestDB {
             initTestDBInstance = new InitTestDB();
         }
         return initTestDBInstance;
+    }
+
+    public static boolean isInitDB() {
+        return initDB;
+    }
+
+    public static void setInitDB(boolean initDB) {
+        InitTestDB.initDB = initDB;
     }
 
     public List<Manufacturer> getInitTestManufacturers(int amount) {

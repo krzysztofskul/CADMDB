@@ -4,6 +4,8 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.krzysztofskul.organization.hospital.Hospital;
+import pl.krzysztofskul.organization.hospital.HospitalRepo;
 import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
 import pl.krzysztofskul.user.userCategory.UserCategoryService;
 
@@ -17,14 +19,21 @@ public class UserService {
     private UserCategoryService userCategoryService;
 
     @Autowired
-    public UserService(UserRepo userRepo, UserCategoryService userCategoryService) {
+    public UserService(
+            UserRepo userRepo,
+            UserCategoryService userCategoryService
+    ) {
         this.userRepo = userRepo;
         this.userCategoryService = userCategoryService;
     }
 
+    /** CRUD create */
+
     public void save(User user) {
         userRepo.save(user);
     }
+
+    /** CRUD read */
 
     public List<User> loadAll() {
         return userRepo.findAll();
@@ -34,12 +43,16 @@ public class UserService {
         return userRepo.findById(id).get();
     }
 
-    public User loadByEmail(String email) {
-        return userRepo.findByEmail(email);
+    public User loadByIdWithHospitalsManagingList(Long userId) {
+        User user = loadById(userId);
+        Hibernate.initialize(user.getHospitalManagingList());
+        Hibernate.initialize(user.getDepartmentManagingList());
+        Hibernate.initialize(user.getRoomManagingList());
+        return user;
     }
 
-    public void delete(User user) {
-        userRepo.delete(user);
+    public User loadByEmail(String email) {
+        return userRepo.findByEmail(email);
     }
 
     public List<User> loadUserHospitalManagerList() {
@@ -67,4 +80,13 @@ public class UserService {
             }
         }
     }
+
+    /** CRUD update */
+
+    /** CRUD delete */
+
+    public void delete(User user) {
+        userRepo.delete(user);
+    }
+
 }

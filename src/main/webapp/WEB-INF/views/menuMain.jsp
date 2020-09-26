@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
@@ -17,7 +18,15 @@
 
         <nav class="nav border-top">
             <a class="nav-link active" href="/">HOME</a>
-            <a class="nav-link active" href="/initTestDB">INIT. TEST DB</a>
+            <c:choose>
+                <c:when test="${sessionScope.initDB eq null}">
+                    <c:set var="status" value="active"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="status" value="disabled"/>
+                </c:otherwise>
+            </c:choose>
+            <a class="nav-link ${status}" href="/initTestDB">INIT. TEST DB</a>
             <a class="nav-link active" href="/hospitals/all">HOSPITALS</a>
             <a class="nav-link active" href="/manufacturers/all">MANUFACTURERS</a>
             <a class="nav-link active" href="/products/all">PRODUCTS</a>

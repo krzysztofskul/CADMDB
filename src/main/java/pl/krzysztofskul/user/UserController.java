@@ -31,7 +31,7 @@ public class UserController {
             @PathVariable(name = "id") Long userId,
             Model model
     ) {
-        model.addAttribute("user", userService.loadById(userId));
+        model.addAttribute("user", userService.loadByIdWithHospitalsManagingList(userId));
         return "users/details";
     }
 }

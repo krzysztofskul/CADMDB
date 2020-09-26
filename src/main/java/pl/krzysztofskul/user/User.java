@@ -29,20 +29,24 @@ public class User {
     @ManyToOne
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "manager")
-    private List<Hospital> hospitalManagerList = new ArrayList<>();
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.PERSIST)
+    private List<Hospital> hospitalManagingList = new ArrayList<>();
 
     @OneToMany(mappedBy = "userManager")
-    private List<Department> departmentManager = new ArrayList<>();
+    private List<Department> departmentManagingList = new ArrayList<>();
 
     @OneToMany(mappedBy = "userManager")
-    private List<Room> roomManager = new ArrayList<>();
+    private List<Room> roomManagingList = new ArrayList<>();
 
     @ManyToOne
     private Manufacturer manufacturer;
 
+    /** CONSTRUCTORS */
+
     public User() {
     }
+
+    /** GETTERS AND SETTERS */
 
     public Long getId() {
         return id;
@@ -101,28 +105,28 @@ public class User {
         this.hospital = hospital;
     }
 
-    public List<Hospital> getHospitalManagerList() {
-        return hospitalManagerList;
+    public List<Hospital> getHospitalManagingList() {
+        return hospitalManagingList;
     }
 
-    public void setHospitalManagerList(List<Hospital> hospitalManagerList) {
-        this.hospitalManagerList = hospitalManagerList;
+    public void setHospitalManagingList(List<Hospital> hospitalManagerList) {
+        this.hospitalManagingList = hospitalManagerList;
     }
 
-    public List<Department> getDepartmentManager() {
-        return departmentManager;
+    public List<Department> getDepartmentManagingList() {
+        return departmentManagingList;
     }
 
-    public void setDepartmentManager(List<Department> departmentManager) {
-        this.departmentManager = departmentManager;
+    public void setDepartmentManagingList(List<Department> departmentManager) {
+        this.departmentManagingList = departmentManager;
     }
 
-    public List<Room> getRoomManager() {
-        return roomManager;
+    public List<Room> getRoomManagingList() {
+        return roomManagingList;
     }
 
-    public void setRoomManager(List<Room> roomManager) {
-        this.roomManager = roomManager;
+    public void setRoomManagingList(List<Room> roomManager) {
+        this.roomManagingList = roomManager;
     }
 
     public Manufacturer getManufacturer() {
@@ -132,4 +136,12 @@ public class User {
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
+
+    /** METHODS */
+
+    public void addHospitalToUserManagingList(Hospital hospital) {
+        hospitalManagingList.add(hospital);
+        hospital.setManager(this);
+    }
+
 }

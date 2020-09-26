@@ -27,9 +27,13 @@ public class HospitalService {
         this.userService = userService;
     }
 
+    /** CRUD create */
+
     public void save(Hospital hospital) {
         hospitalRepo.save(hospital);
     }
+
+    /** CRUD read */
 
     public List<Hospital> loadAll() {
         return hospitalRepo.findAll();
@@ -68,6 +72,19 @@ public class HospitalService {
         return null;
     }
 
+    /** CRUD update */
+
+    public void addHospitalToUserManagingList(Long hospitalId, Long userId) {
+        Hospital hospital = this.loadById(hospitalId);
+        User user = userService.loadById(userId);
+
+        user.addHospitalToUserManagingList(hospital);
+
+        userService.save(user);
+    }
+
+    /** CRUD delete */
+
     public void delete(Hospital hospital) {
         Hibernate.initialize(hospital.getUserList());
         if (hospital.getUserList() != null) {
@@ -78,5 +95,4 @@ public class HospitalService {
         }
         hospitalRepo.delete(hospital);
     }
-
 }

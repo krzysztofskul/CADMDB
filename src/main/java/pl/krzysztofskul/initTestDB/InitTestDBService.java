@@ -22,8 +22,10 @@ import pl.krzysztofskul.product.productCategory.ProductCategoryService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 import pl.krzysztofskul.user.userCategory.UserCategory;
+import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
 import pl.krzysztofskul.user.userCategory.UserCategoryService;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -500,7 +502,8 @@ public class InitTestDBService {
         hospital = new Hospital();
         hospital.setName("Hospital Test No. 1");
         hospital.setBudget(BigDecimal.valueOf(10000000.00));
-        hospital.setManager(userService.loadById(Long.parseLong("1")));
+//        hospital.setManager(userService.loadById(Long.parseLong("1")));
+        hospital.setManager(userService.loadByUserCategoryEnum(UserCategoryEnum.HOSPITAL_MANAGER_GUEST));
         hospital.addUser(userService.loadById(Long.parseLong("2")));
         hospital.addUser(userService.loadById(Long.parseLong("3")));
         hospital.setArea(500f);
@@ -517,7 +520,7 @@ public class InitTestDBService {
         hospital = new Hospital();
         hospital.setName("Hospital Test No. 2");
         hospital.setBudget(BigDecimal.valueOf(20000000.00));
-        hospital.setManager(userService.loadById(Long.parseLong("11")));
+        hospital.setManager(userService.loadByUserCategoryEnum(UserCategoryEnum.HOSPITAL_MANAGER_GUEST));
         hospital.addUser(userService.loadById(Long.parseLong("10")));
         hospital.addUser(userService.loadById(Long.parseLong("9")));
         hospitalService.save(hospital);
@@ -538,7 +541,8 @@ public class InitTestDBService {
         department.setHospital(hospitalService.loadById(Long.valueOf("1")));
         department.setDepartmentCategory(departmentCategoryService.loadByCode("OT"));
         department.setBudget(BigDecimal.valueOf(5000000.00));
-        department.setUserManager(userService.loadById(Long.parseLong("5")));
+        //department.setUserManager(userService.loadById(Long.parseLong("5")));
+        department.setUserManager(userService.loadByUserCategoryEnum(UserCategoryEnum.HOSPITAL_MANAGER_GUEST));
         department.setArea(250.0f);
         department.setRemarks("Vivamus vitae lorem nec tincidunt lorem, at risus sit amet neque vitae felis.");
         departmentService.save(department);
@@ -653,5 +657,12 @@ public class InitTestDBService {
         productService.addProductToRoom(productService.loadById(Long.valueOf("3")).getId(), room.getId());
 
         roomService.save(room);
+    }
+
+    public void setInitDBTrue(
+            HttpSession httpSession
+    ) {
+            InitTestDB.setInitDB(true);
+            httpSession.setAttribute("initDB", true);
     }
 }

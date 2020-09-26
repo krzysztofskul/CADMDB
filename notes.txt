@@ -38,22 +38,41 @@
 
 # 0.6.0-next
     - users/users as a guest functionality updates
-        . users categories test initDB
-            . users test initDB
-        . user category enums created
-        - log in as guest, registration page/functionality
-            . menu log in / register / user profile
-            . login class / controller
-                . log in / log out functionality for Hospital manager guest user todo done
-        - users page
-            . all users page
-            . user details page
-            - user profile page
-         . user controller
-     . initTestDB.class updates to create only one guest for all user category
+        - log in as guests:
+            + hospital-manager-guest
+            - hospital-employee-guest
+            - others
+    - registration page/functionality
+    . user profile/details page updates
+        - management section
+            . my hospitals
+            . my departments
+            - my rooms
+    . createTestHospitals() method updates
+    . menuLogin.jsp updates
+    . initTestDB second initialization protection added at front-end and at back-end
+    . JUnit test for addHospitalToUserManagingList() method
+    - User.class updates
+        . add hospital to user's managing list method
+            - add department
+            - add room
+    - add users role/category when set manager to hospital/department/room
+    - change usersCategory - user to relation ManyToMany
 
 
 /** TODO / DONE **/
+
+# 0.6.0-4
+    + user profile/details page updates
+        + management section
+            + my hospitals
+            + my departments
+    + createTestHospitals() method updates
+    + menuLogin.jsp updates
+    + initTestDB second initialization protection added at front-end and at back-end
+    + JUnit test for addHospitalToUserManagingList() method created
+    + User.class updates
+        + add hospital to user's managing list method created
 
 # 0.6.0-3
     + initTestDB.class updates to create only one guest for all user category

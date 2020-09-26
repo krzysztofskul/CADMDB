@@ -1,13 +1,17 @@
 package pl.krzysztofskul.initTestDB;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class InitTestDBController {
 
     private InitTestDBService initTestDBService;
 
+    @Autowired
     public InitTestDBController(
             InitTestDBService initTestDBService
     ) {
@@ -15,11 +19,12 @@ public class InitTestDBController {
     }
 
     @GetMapping("/initTestDB")
-    public String initTestDB() {
+    public String initTestDB(HttpSession httpSession) {
 
-//            initTestDBService.createUsersCategory();
+        if (!InitTestDB.isInitDB()) {
+            //initTestDBService.createUsersCategory();
             initTestDBService.createInitTestUsersCategory();
-//            initTestDBService.createTestUsers();
+            //initTestDBService.createTestUsers();
             initTestDBService.createInitTestUsers();
 
             initTestDBService.createDepartmentCategories();
@@ -34,6 +39,9 @@ public class InitTestDBController {
             initTestDBService.createTestDepartments();
             initTestDBService.createTestRooms();
             initTestDBService.addTestProductsToTestRooms();
+
+            initTestDBService.setInitDBTrue(httpSession);
+        }
 
         return "index";
     }
