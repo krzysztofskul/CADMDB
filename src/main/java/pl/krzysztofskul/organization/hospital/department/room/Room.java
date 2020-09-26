@@ -42,6 +42,7 @@ public class Room extends Organization {
 
     private String walls;
 
+    @Column(length = 255*8)
     private String remarks;
 
     @ManyToOne

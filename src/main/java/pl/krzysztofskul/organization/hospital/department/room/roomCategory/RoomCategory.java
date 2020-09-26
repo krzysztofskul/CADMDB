@@ -23,6 +23,11 @@ public class RoomCategory {
     public RoomCategory() {
     }
 
+    public RoomCategory(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

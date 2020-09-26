@@ -23,6 +23,11 @@ public class DepartmentCategory {
     public DepartmentCategory() {
     }
 
+    public DepartmentCategory(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

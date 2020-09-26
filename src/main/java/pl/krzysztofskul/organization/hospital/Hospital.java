@@ -23,6 +23,7 @@ public class Hospital extends Organization {
     @OneToMany(mappedBy = "hospital")
     private List<User> userList = new ArrayList<>();
 
+    @Column(length = 2040)
     private String remarks;
 
     public Hospital() {

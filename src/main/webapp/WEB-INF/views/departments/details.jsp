@@ -16,7 +16,7 @@
 
     <jsp:include page="../header.jsp"/>
 
-<form:form modelAttribute="department" method="post" action="/departments/new">
+    <form:form modelAttribute="department" method="post" action="/departments/new">
     <div class="container">
 
         <div class="card">
@@ -185,25 +185,6 @@
                                 </c:otherwise>
                             </c:choose>
 
-<%--                            <c:set var="ratioCostOfProductsToRoomBudget" value="${costOfRooms / (room.budget+costOfRooms) * 100}"/>--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${ratioCostOfProductsToRoomBudget > 100}">--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToRoomBudget.toString() eq '100.00'}">--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-warning border border-danger"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToRoomBudget < 100 && ratioCostOfProductsToRoomBudget > 75}">--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-warning"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:when test="${ratioCostOfProductsToRoomBudget < 75}">--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-success"/>--%>
-<%--                                </c:when>--%>
-<%--                                <c:otherwise>--%>
-<%--                                    <c:set var="progressBarRoom" value="bg-info"/>--%>
-<%--                                </c:otherwise>--%>
-<%--                            </c:choose>--%>
-
                             <div class="m-5">
                                 <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS DEPARTMENT / HOSPITAL INITIAL BUDGET [%]</div>
                                 <div class="progress ml-5 mr-5" style="height: 50px">
@@ -219,17 +200,9 @@
                                         </p>
                                     </div>
                                 </div>
-<%--                                <div class="ml-5 mt-5">COST OF PRODUCTS IN THE ROOM / ROOM INITIAL BUDGET [%]</div>--%>
-<%--                                <div class="progress ml-5 mr-5" style="height: 50px">--%>
-<%--                                    <div class="progress-bar ${progressBarRoom}" role="progressbar" style="width: ${costOfRooms / (room.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">--%>
-<%--                                        <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-3">--%>
-<%--                                                ${ratioCostOfProductsToRoomBudget} %--%>
-<%--                                        </p>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
                             </div>
                         </c:when>
-<%--                        <c:when test="${content eq 'info'}">--%>
+
                         <c:when test="${param.containsKey('content') && param.get('content').toString() eq 'info'}">
 
                             <c:if test="${param.containsKey('edit')}">
@@ -306,7 +279,6 @@
                                 </div>
                             </div>
                         </c:when>
-<%--                             content eq roomsList --%>
                         <c:otherwise>
                             <div class="card-body">
                                 <div class="row">
@@ -394,7 +366,7 @@
 
     </div>
 
-</form:form>
+    </form:form>
 
     <jsp:include page="../footer.jsp"/>
 

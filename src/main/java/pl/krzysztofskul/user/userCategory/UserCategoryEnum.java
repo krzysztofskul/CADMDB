@@ -2,10 +2,24 @@ package pl.krzysztofskul.user.userCategory;
 
 public enum UserCategoryEnum {
 
-    ADMINISTRATOR {
+    ADMIN {
         @Override
         public String toString() {
-            return "ADMINISTRATOR";
+            return "Admin";
+        }
+    },
+
+    INVESTOR {
+        @Override
+        public String toString() {
+            return "Investor";
+        }
+    },
+
+    INVESTOR_GUEST {
+        @Override
+        public String toString() {
+            return "Investor (guest)";
         }
     },
 
@@ -47,21 +61,21 @@ public enum UserCategoryEnum {
     HOSPITAL_MANAGER_GUEST {
         @Override
         public String toString() {
-            return "Hospital manager guest";
+            return "Hospital manager (guest)";
         }
     },
 
     HOSPITAL_DEPARTMENT_MANAGER_GUEST {
         @Override
         public String toString() {
-            return "Department manager guest";
+            return "Department manager (guest)";
         }
     },
 
     HOSPITAL_DEPARTMENT_ROOM_MANAGER_GUEST {
         @Override
         public String toString() {
-            return "Room manager guest";
+            return "Room manager (guest)";
         }
     },
 
@@ -79,6 +93,20 @@ public enum UserCategoryEnum {
         }
     },
 
+    MANUFACTURER {
+        @Override
+        public String toString() {
+            return "Manufacturer";
+        }
+    },
+
+    MANUFACTURER_GUEST {
+        @Override
+        public String toString() {
+            return "Manufacturer (guest)";
+        }
+    },
+
     MANUFACTURER_EMPLOYEE {
         @Override
         public String toString() {
@@ -93,6 +121,20 @@ public enum UserCategoryEnum {
         }
     },
 
+    DESIGNER {
+        @Override
+        public String toString() {
+            return "Designer";
+        }
+    },
+
+    DESIGNER_GUEST {
+        @Override
+        public String toString() {
+            return "Designer (guest)";
+        }
+    },
+
     DESIGNER_EMPLOYEE {
         @Override
         public String toString() {
@@ -104,6 +146,20 @@ public enum UserCategoryEnum {
         @Override
         public String toString() {
             return "Designer employee (guest)";
+        }
+    },
+
+    BUILDING_CONTRACTOR {
+        @Override
+        public String toString() {
+            return "Building contractor";
+        }
+    },
+
+    BUILDING_CONTRACTOR_GUEST {
+        @Override
+        public String toString() {
+            return "Building contractor (guest)";
         }
     },
 

@@ -57,10 +57,15 @@
             - add department
             - add room
     - add users role/category when set manager to hospital/department/room
-    . changed User - UsersCategory to relation @ManyToMany
 
 
 /** TODO / DONE **/
+
+# 0.6.0-6
+    + functionality updates
+    + code cleaning
+    + fixing errors
+    + added documentation comments to InitTestDB.class
 
 # 0.6.0-5
     + changed User - UsersCategory to relation @ManyToMany

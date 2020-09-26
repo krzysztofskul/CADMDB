@@ -69,177 +69,20 @@ public class InitTestDBService {
         this.roomService = roomService;
     }
 
-    public void createUsersCategory() {
-        UserCategory userCategory;
-
-//        userCategory = new UserCategory();
-//        userCategory.setCode("ADMIN");
-//        userCategory.setName("Administrator");
-//        userCategory.setDescription("Person/User who is the administrator of the web application.");
-//        userCategoryService.save(userCategory);
-
-        userCategory = new UserCategory();
-        userCategory.setCode("INVESTOR");
-        userCategory.setName("Investor");
-        userCategory.setDescription("Person/User who represents the investor of the new hospital investment.");
-        userCategoryService.save(userCategory);
-
-        userCategory = new UserCategory();
-        userCategory.setCode("CONTRACTOR");
-        userCategory.setName("Contractor");
-        userCategory.setDescription("Person/User who represents the general contractor of the new hospital building process.");
-        userCategoryService.save(userCategory);
-
-        userCategory = new UserCategory();
-        userCategory.setCode("HOSPITAL-MANAGER");
-        userCategory.setName("Manager");
-        userCategory.setDescription("Person/User who represents the hospital manager.");
-        userCategoryService.save(userCategory);
-
-        userCategory = new UserCategory();
-        userCategory.setCode("HOSPITAL-EMPLOYEE");
-        userCategory.setName("Employee");
-        userCategory.setDescription("Person/User who represents the hospital employee.");
-        userCategoryService.save(userCategory);
-
-        userCategory = new UserCategory();
-        userCategory.setCode("DESIGNER");
-        userCategory.setName("Designer");
-        userCategory.setDescription("Person/User who represents the designing office, which creates a project of the new hospital building.");
-        userCategoryService.save(userCategory);
-
-        userCategory = new UserCategory();
-        userCategory.setCode("MANUFACTURER");
-        userCategory.setName("Manufacturer");
-        userCategory.setDescription("Person/User who represents the manufacturer of the hospital devices and equipment.");
-        userCategoryService.save(userCategory);
-
-    }
-
-    public void createInitTestUsersCategory() {
-        for (UserCategory userCategory : InitTestDB.getInitTestDBInstance().getInitTestUserCategories()) {
+    public void saveInitTestUsersCategory() {
+        for (UserCategory userCategory : InitTestDB.getInitTestDBInstance().createAndGetInitTestUserCategories()) {
             userCategoryService.save(userCategory);
         }
     }
 
-    public void createTestUsers() {
-        User user;
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Some-Admin");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("ADMIN"));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Investor-First");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("INVESTOR"));
-//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Investor-Second");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("INVESTOR"));
-//        user.setHospital(hospitalService.loadById(Long.parseLong("2")));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Some-Contractor");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("CONTRACTOR"));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Some-Manager");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
-//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Some-Manager-2");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
-//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Some-Manager-3");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
-//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Employee-First");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-EMPLOYEE"));
-//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Employee-Second");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-EMPLOYEE"));
-//        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Some-Designer");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("DESIGNER"));
-        userService.save(user);
-
-        user = new User();
-        user.setNameFirst("Guest");
-        user.setNameLast("Some-Manufacturer 1");
-        user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
-        user.setPassword("test");
-        user.addUserCategory(userCategoryService.loadByCode("MANUFACTURER"));
-//        user.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        userService.save(user);
-
-    }
-
-    public void createInitTestUsers() {
-        for (User user : InitTestDB.getInitTestDBInstance().getInitTestUsers(userCategoryService.loadAll())) {
+    public void saveInitTestUsers() {
+        for (User user : InitTestDB.getInitTestDBInstance().createAndGetInitTestUsers(userCategoryService.loadAll())) {
             userService.save(user);
         }
     }
 
-    public void createTestManufacturers() {
-        /*Manufacturer manufacturer;
-
-        for (int i = 1; i <= 2; i++) {
-            manufacturer = new Manufacturer();
-            manufacturer.setName("Manufacturer no. "+i);
-            manufacturer.setDescription("Some details about manufacturer no. "+i+". Country, city, address, contact, etc.");
-            manufacturerService.save(manufacturer);
-        }*/
-
-        List<Manufacturer> manufacturerInitList = InitTestDB.getInitTestDBInstance().getInitTestManufacturers(10);
+    public void saveInitTestManufacturers() {
+        List<Manufacturer> manufacturerInitList = InitTestDB.getInitTestDBInstance().createAndGetInitTestManufacturers(10);
         for (Manufacturer manufacturerInit : manufacturerInitList) {
             manufacturerService.save(manufacturerInit);
         }
@@ -310,106 +153,15 @@ public class InitTestDBService {
 
     }
 
-    public void createTestProducts() {
-        Product product;
-
-        /** 1ST TEST MANUFACTURER PRODUCTS */
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("AB1000"));
-        product.setModelName("Alpha");
-        product.setPrice(BigDecimal.valueOf(50000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("AB1000"));
-        product.setModelName("Beta");
-        product.setPrice(BigDecimal.valueOf(75000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("AC1000"));
-        product.setModelName("HALOGEN");
-        product.setPrice(BigDecimal.valueOf(40000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("AC1000"));
-        product.setModelName("LED");
-        product.setPrice(BigDecimal.valueOf(90000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("AH1000"));
-        product.setModelName("Fixed");
-        product.setPrice(BigDecimal.valueOf(120000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
-        product.setProductCategory(productCategoryService.loadByCode("AH1000"));
-        product.setModelName("Mobile");
-        product.setPrice(BigDecimal.valueOf(130000.00));
-        productService.save(product);
-
-        /** 2ND TEST MANUFACTURER PRODUCTS */
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("AB1000"));
-        product.setModelName("Uno");
-        product.setPrice(BigDecimal.valueOf(50000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("AB1000"));
-        product.setModelName("Duo");
-        product.setPrice(BigDecimal.valueOf(75000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("AC1000"));
-        product.setModelName("2xHALOGEN");
-        product.setPrice(BigDecimal.valueOf(80000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("AC1000"));
-        product.setModelName("2xLED");
-        product.setPrice(BigDecimal.valueOf(160000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("AH1000"));
-        product.setModelName("Fixed");
-        product.setPrice(BigDecimal.valueOf(120000.00));
-        productService.save(product);
-
-        product = new Product();
-        product.setManufacturer(manufacturerService.loadById(Long.parseLong("2")));
-        product.setProductCategory(productCategoryService.loadByCode("AH1000"));
-        product.setModelName("Mobile");
-        product.setPrice(BigDecimal.valueOf(130000.00));
-        productService.save(product);
-
-    }
-
-    public void createInitTestProductsForTestManufacturers() {
+    public void saveInitTestProductsForTestManufacturers() {
 
         for(int i = 0; i < 4; i++) {
             Manufacturer manufacturer = manufacturerService.loadById(Long.parseLong(String.valueOf(i+1)));
 
-            List<Product> productListAA0000 = InitTestDB.getInitTestDBInstance().getInitTestProducts(productCategoryService.loadByCode("AA0000"));
-            List<Product> productListAB1000 = InitTestDB.getInitTestDBInstance().getInitTestProducts(productCategoryService.loadByCode("AB1000"));
-            List<Product> productListAC1000 = InitTestDB.getInitTestDBInstance().getInitTestProducts(productCategoryService.loadByCode("AC1000"));
-            List<Product> productListAH1000 = InitTestDB.getInitTestDBInstance().getInitTestProducts(productCategoryService.loadByCode("AH1000"));
+            List<Product> productListAA0000 = InitTestDB.getInitTestDBInstance().createAndGetInitTestProducts(productCategoryService.loadByCode("AA0000"));
+            List<Product> productListAB1000 = InitTestDB.getInitTestDBInstance().createAndGetInitTestProducts(productCategoryService.loadByCode("AB1000"));
+            List<Product> productListAC1000 = InitTestDB.getInitTestDBInstance().createAndGetInitTestProducts(productCategoryService.loadByCode("AC1000"));
+            List<Product> productListAH1000 = InitTestDB.getInitTestDBInstance().createAndGetInitTestProducts(productCategoryService.loadByCode("AH1000"));
 
             for (Product product : productListAA0000) {
                 manufacturer.addProduct(product);

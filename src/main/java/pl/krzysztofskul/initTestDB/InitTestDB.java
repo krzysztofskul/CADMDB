@@ -3,6 +3,11 @@ package pl.krzysztofskul.initTestDB;
 import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.organization.OrganizationType;
+import pl.krzysztofskul.organization.hospital.Hospital;
+import pl.krzysztofskul.organization.hospital.department.Department;
+import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategory;
+import pl.krzysztofskul.organization.hospital.department.room.Room;
+import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.product.InstallationType;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.productCategory.ProductCategory;
@@ -15,20 +20,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Singleton class to initialize demo/test database.
+ * */
+
 public class InitTestDB {
 
+    /**
+     * Field which stores information if demo/test database has been initialized.
+     * */
     private static boolean initDB = false;
 
+    /**
+     * Field which stores the singleton InitTestDB instance.
+     * */
     private static InitTestDB initTestDBInstance;
 
+    /**
+     * Constructor.
+     * */
     private InitTestDB(){};
 
+    /**
+     * InitTestDB creator.
+     * */
     public static InitTestDB getInitTestDBInstance() {
         if (initTestDBInstance == null) {
             initTestDBInstance = new InitTestDB();
         }
         return initTestDBInstance;
     }
+
+    /**
+     * Getters and setters for static initDB field
+     * */
 
     public static boolean isInitDB() {
         return initDB;
@@ -38,7 +63,11 @@ public class InitTestDB {
         InitTestDB.initDB = initDB;
     }
 
-    public List<Manufacturer> getInitTestManufacturers(int amount) {
+    /**
+     * Methods which initialize demo/test objects to set up into the database.
+     * */
+
+    public List<Manufacturer> createAndGetInitTestManufacturers(int amount) {
         List<Manufacturer> manufacturerList = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             Manufacturer manufacturer = new Manufacturer();
@@ -58,7 +87,7 @@ public class InitTestDB {
         return manufacturerList;
     }
 
-    public List<Product> getInitTestProducts(ProductCategory productCategory) {
+    public List<Product> createAndGetInitTestProducts(ProductCategory productCategory) {
         List<Product> productInitTestList = new ArrayList<>();
 
         if (productCategory.getCode().equals("AA0000")) {
@@ -192,16 +221,30 @@ public class InitTestDB {
         return productInitTestList;
     }
 
-    public List<UserCategory> getInitTestUserCategories() {
+    public List<UserCategory> createAndGetInitTestUserCategories() {
         List<UserCategory> userCategoryList = new ArrayList<>();
 
         UserCategory userCategory;
 
         userCategory = new UserCategory();
-        userCategory.setUserCategoryEnum(UserCategoryEnum.ADMINISTRATOR);
+        userCategory.setUserCategoryEnum(UserCategoryEnum.ADMIN);
         userCategory.setCode("ADMIN");
         userCategory.setName("Admin");
         userCategory.setDescription("Administrator of the website");
+        userCategoryList.add(userCategory);
+
+        userCategory = new UserCategory();
+        userCategory.setUserCategoryEnum(UserCategoryEnum.INVESTOR);
+        userCategory.setCode("INVESTOR");
+        userCategory.setName("Investor");
+        userCategory.setDescription("Investor");
+        userCategoryList.add(userCategory);
+
+        userCategory = new UserCategory();
+        userCategory.setUserCategoryEnum(UserCategoryEnum.INVESTOR_GUEST);
+        userCategory.setCode("INVESTOR (GUEST)");
+        userCategory.setName("Investor (guest)");
+        userCategory.setDescription("Investor (guest)");
         userCategoryList.add(userCategory);
 
         userCategory = new UserCategory();
@@ -233,31 +276,31 @@ public class InitTestDB {
         userCategoryList.add(userCategory);
         
         userCategory = new UserCategory();
-        userCategory.setUserCategoryEnum(UserCategoryEnum.MANUFACTURER_EMPLOYEE);
-        userCategory.setCode("MANUFACTURER EMPLOYEE");
-        userCategory.setName("Manufacturer employee");
-        userCategory.setDescription("Manufacturer employee");
+        userCategory.setUserCategoryEnum(UserCategoryEnum.MANUFACTURER);
+        userCategory.setCode("MANUFACTURER");
+        userCategory.setName("Manufacturer");
+        userCategory.setDescription("Manufacturer");
         userCategoryList.add(userCategory);
 
         userCategory = new UserCategory();
-        userCategory.setUserCategoryEnum(UserCategoryEnum.MANUFACTURER_EMPLOYEE_GUEST);
-        userCategory.setCode("MANUFACTURER EMPLOYEE (GUEST)");
-        userCategory.setName("Manufacturer employee (guest)");
-        userCategory.setDescription("Manufacturer employee (guest)");
+        userCategory.setUserCategoryEnum(UserCategoryEnum.MANUFACTURER_GUEST);
+        userCategory.setCode("MANUFACTURER (GUEST)");
+        userCategory.setName("Manufacturer (guest)");
+        userCategory.setDescription("Manufacturer (guest)");
         userCategoryList.add(userCategory);
 
         return userCategoryList;
     }
 
-    public List<User> getInitTestUsers(List<UserCategory> userCategoryList) {
+    public List<User> createAndGetInitTestUsers(List<UserCategory> userCategoryList) {
         List<User> userList = new ArrayList<>();
 
         int j;
         for (UserCategory userCategory : userCategoryList) {
-            if (userCategory.getCode().contains("GUEST")) {
+            if (userCategory.getCode().contains("GUEST") || userCategory.getCode().contains("ADMIN")) {
               j = 1;
             } else {
-                j = 2;
+                j = 3;
             }
             for (int i = 0; i < j ; i++) {
                 User user = new User();
@@ -283,6 +326,90 @@ public class InitTestDB {
         }
 
         return userList;
+    }
+
+    public List<Hospital> createAndGetInitTestHospitals() {
+        List<Hospital> hospitalList = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            Hospital hospital = new Hospital();
+            hospital.setName(LoremIpsum.getInstance().getTitle(1, 2) + " Hospital");
+            hospital.setRemarks(LoremIpsum.getInstance().getParagraphs(1, 1));
+            hospital.setArea(new Random().nextInt(1000)+1000);
+            hospital.setBudget(BigDecimal.valueOf(new Random().nextFloat()*100000000).add(BigDecimal.valueOf(+100000000f)));
+        }
+
+        return hospitalList;
+    }
+
+    public List<DepartmentCategory> createAndGetInitTestDepartmentCategoryList() {
+        List<DepartmentCategory> departmentCategoryList = new ArrayList<>();
+
+        departmentCategoryList.add(new DepartmentCategory("A", "Administration"));
+        departmentCategoryList.add(new DepartmentCategory("CSSD", "Central sterile services department"));
+        departmentCategoryList.add(new DepartmentCategory("OT", "Operating theater"));
+        departmentCategoryList.add(new DepartmentCategory("ICU", "Intensive care unit"));
+        departmentCategoryList.add(new DepartmentCategory("E", "Emergency department"));
+        return departmentCategoryList;
+    }
+
+    public List<Department> createAndGetInitTestDepartmentList(List<DepartmentCategory> departmentCategoryList) {
+        List<Department> departmentList = new ArrayList<>();
+
+        for (DepartmentCategory departmentCategory : departmentCategoryList) {
+            Department department = new Department();
+            department.setDepartmentCategory(departmentCategory);
+            department.setName(departmentCategory.getName());
+            department.setRemarks(LoremIpsum.getInstance().getParagraphs(1, 1));
+            department.setArea(new Random().nextInt(100)+100);
+            department.setBudget(BigDecimal.valueOf(new Random().nextFloat()*10000000).add(BigDecimal.valueOf(10000000f)));
+            departmentList.add(department);
+        }
+
+        return departmentList;
+    }
+    
+    public List<RoomCategory> createAndGetInitTestRoomCategoryList() {
+        List<RoomCategory> roomCategoryList = new ArrayList<>();
+        
+        roomCategoryList.add(new RoomCategory("OR", "Operating room"));
+        roomCategoryList.add(new RoomCategory("OR-PRE-P", "Preparation room (patients)"));
+        roomCategoryList.add(new RoomCategory("OR-PRE-D", "Preparation room (doctors)"));
+        roomCategoryList.add(new RoomCategory("OR-POST", "Post-operating room"));
+        roomCategoryList.add(new RoomCategory("PR", "Patient room"));
+        roomCategoryList.add(new RoomCategory("PR-ICU", "Intensive care room"));
+
+        return roomCategoryList;        
+    }
+
+    public List<Room> createAndGetInitTestRoomList(List<RoomCategory> roomCategoryList) {
+        List<Room> roomList = new ArrayList<>();
+
+        Random random = new Random();
+        
+        for (RoomCategory roomCategory : roomCategoryList) {
+            Room room = new Room();
+
+            room.setRoomCategory(roomCategory);
+            room.setName(roomCategory.getName());
+            room.setRemarks(LoremIpsum.getInstance().getParagraphs(1, 1));
+            room.setArea(random.nextInt(10)+15);
+            room.setHeight(3.5f);
+            room.setBudget(BigDecimal.valueOf(random.nextFloat()*1000000).add(BigDecimal.valueOf(1000000f)));
+            room.setTemperature(20.0f + random.nextFloat()*0.5f);
+            room.setAirConditioning(random.nextBoolean());
+            room.setAirChanges(random.nextFloat()*10);
+            room.setIllumination(1000 + random.nextInt(1000));
+            room.setWalls(LoremIpsum.getInstance().getWords(2, 5));
+            room.setCeiling(LoremIpsum.getInstance().getWords(2, 5));
+            room.setFloor(LoremIpsum.getInstance().getWords(1, 5));
+            room.setNumber(String.valueOf(random.nextInt(999)+1));
+
+            roomList.add(room);
+        }
+
+        return roomList;
+
     }
 
 }

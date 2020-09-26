@@ -22,18 +22,15 @@ public class InitTestDBController {
     public String initTestDB(HttpSession httpSession) {
 
         if (!InitTestDB.isInitDB()) {
-            //initTestDBService.createUsersCategory();
-            initTestDBService.createInitTestUsersCategory();
-            //initTestDBService.createTestUsers();
-            initTestDBService.createInitTestUsers();
+            initTestDBService.saveInitTestUsersCategory();
+            initTestDBService.saveInitTestUsers();
 
             initTestDBService.createDepartmentCategories();
             initTestDBService.createRoomCategories();
             initTestDBService.createProductCategories();
 
-            initTestDBService.createTestManufacturers();
-            //initTestDBService.createTestProducts();
-            initTestDBService.createInitTestProductsForTestManufacturers();
+            initTestDBService.saveInitTestManufacturers();
+            initTestDBService.saveInitTestProductsForTestManufacturers();
 
             initTestDBService.createTestHospitals();
             initTestDBService.createTestDepartments();

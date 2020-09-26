@@ -9,6 +9,7 @@ import pl.krzysztofskul.organization.hospital.HospitalRepo;
 import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
 import pl.krzysztofskul.user.userCategory.UserCategoryService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -71,7 +72,9 @@ public class UserService {
 
     public List<User> loadUserHospitalManagerList() {
         //return userRepo.findAllByUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
-        return userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
+        List<User> hospitalManagerList = userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("HOSPITAL MANAGER"));
+        hospitalManagerList.add(loadByUserCategoryEnum(UserCategoryEnum.HOSPITAL_MANAGER_GUEST));
+        return hospitalManagerList;
     }
 
     public List<User> loadAllUnemployed() {
