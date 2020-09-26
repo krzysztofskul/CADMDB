@@ -23,8 +23,15 @@ public class User {
     private String email;
     private String password;
 
-    @ManyToOne
-    private UserCategory userCategory;
+    //@ManyToOne
+    //private UserCategory userCategory;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "users_usersCategories",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "userCategory_id")
+    )
+    private List<UserCategory> userCategoryList = new ArrayList<>();
 
     @ManyToOne
     private Hospital hospital;
@@ -89,12 +96,13 @@ public class User {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    public UserCategory getUserCategory() {
-        return userCategory;
+
+    public List<UserCategory> getUserCategoryList() {
+        return userCategoryList;
     }
 
-    public void setUserCategory(UserCategory userCategory) {
-        this.userCategory = userCategory;
+    public void setUserCategoryList(List<UserCategory> userCategoryList) {
+        this.userCategoryList = userCategoryList;
     }
 
     public Hospital getHospital() {
@@ -142,6 +150,10 @@ public class User {
     public void addHospitalToUserManagingList(Hospital hospital) {
         hospitalManagingList.add(hospital);
         hospital.setManager(this);
+    }
+
+    public void addUserCategory(UserCategory userCategory) {
+        userCategoryList.add(userCategory);
     }
 
 }

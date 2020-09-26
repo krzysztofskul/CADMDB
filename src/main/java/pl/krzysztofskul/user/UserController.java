@@ -22,7 +22,7 @@ public class UserController {
     public String getUserListAll(
             Model model
     ) {
-        model.addAttribute("userList", userService.loadAll());
+        model.addAttribute("userList", userService.loadAllWithUserCategoryList());
         return "users/all";
     }
 
@@ -31,7 +31,7 @@ public class UserController {
             @PathVariable(name = "id") Long userId,
             Model model
     ) {
-        model.addAttribute("user", userService.loadByIdWithHospitalsManagingList(userId));
+        model.addAttribute("user", userService.loadByIdWithHospitalsManagingListAndUserCategoryList(userId));
         return "users/details";
     }
 }

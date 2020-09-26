@@ -26,7 +26,9 @@
                         </div>
                         <div class="col-sm-9 p-1">
                             <p class="card-title">${user.nameFirst} ${user.nameLast}</p>
-                            <small class="card-text">${user.userCategory.name}</small>
+                            <c:forEach items="${user.userCategoryList}" var="userCategory">
+                                <small class="card-text">${userCategory.name}</small>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="row no-gutters border-top">

@@ -57,10 +57,13 @@
             - add department
             - add room
     - add users role/category when set manager to hospital/department/room
-    - change usersCategory - user to relation ManyToMany
+    . changed User - UsersCategory to relation @ManyToMany
 
 
 /** TODO / DONE **/
+
+# 0.6.0-5
+    + changed User - UsersCategory to relation @ManyToMany
 
 # 0.6.0-4
     + user profile/details page updates

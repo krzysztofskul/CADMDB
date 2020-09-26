@@ -130,7 +130,7 @@ public class InitTestDBService {
         user.setNameLast("Some-Admin");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("ADMIN"));
+        user.addUserCategory(userCategoryService.loadByCode("ADMIN"));
         userService.save(user);
 
         user = new User();
@@ -138,7 +138,7 @@ public class InitTestDBService {
         user.setNameLast("Investor-First");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("INVESTOR"));
+        user.addUserCategory(userCategoryService.loadByCode("INVESTOR"));
 //        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
@@ -147,7 +147,7 @@ public class InitTestDBService {
         user.setNameLast("Investor-Second");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("INVESTOR"));
+        user.addUserCategory(userCategoryService.loadByCode("INVESTOR"));
 //        user.setHospital(hospitalService.loadById(Long.parseLong("2")));
         userService.save(user);
 
@@ -156,7 +156,7 @@ public class InitTestDBService {
         user.setNameLast("Some-Contractor");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("CONTRACTOR"));
+        user.addUserCategory(userCategoryService.loadByCode("CONTRACTOR"));
         userService.save(user);
 
         user = new User();
@@ -164,7 +164,7 @@ public class InitTestDBService {
         user.setNameLast("Some-Manager");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
+        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
 //        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
@@ -173,7 +173,7 @@ public class InitTestDBService {
         user.setNameLast("Some-Manager-2");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
+        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
 //        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
@@ -182,7 +182,7 @@ public class InitTestDBService {
         user.setNameLast("Some-Manager-3");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
+        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
 //        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
@@ -191,7 +191,7 @@ public class InitTestDBService {
         user.setNameLast("Employee-First");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-EMPLOYEE"));
+        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-EMPLOYEE"));
 //        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
@@ -200,7 +200,7 @@ public class InitTestDBService {
         user.setNameLast("Employee-Second");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("HOSPITAL-EMPLOYEE"));
+        user.addUserCategory(userCategoryService.loadByCode("HOSPITAL-EMPLOYEE"));
 //        user.setHospital(hospitalService.loadById(Long.parseLong("1")));
         userService.save(user);
 
@@ -209,7 +209,7 @@ public class InitTestDBService {
         user.setNameLast("Some-Designer");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("DESIGNER"));
+        user.addUserCategory(userCategoryService.loadByCode("DESIGNER"));
         userService.save(user);
 
         user = new User();
@@ -217,7 +217,7 @@ public class InitTestDBService {
         user.setNameLast("Some-Manufacturer 1");
         user.setEmail(user.getNameFirst()+user.getNameLast()+"@test.test");
         user.setPassword("test");
-        user.setUserCategory(userCategoryService.loadByCode("MANUFACTURER"));
+        user.addUserCategory(userCategoryService.loadByCode("MANUFACTURER"));
 //        user.setManufacturer(manufacturerService.loadById(Long.parseLong("1")));
         userService.save(user);
 

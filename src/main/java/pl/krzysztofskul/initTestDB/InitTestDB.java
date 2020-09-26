@@ -274,7 +274,8 @@ public class InitTestDB {
                     user.setPassword(LoremIpsum.getInstance().getWords(1));
                 }
 
-                user.setUserCategory(userCategory);
+                //user.setUserCategory(userCategory);
+                user.addUserCategory(userCategory);
 
                 userList.add(user);
 

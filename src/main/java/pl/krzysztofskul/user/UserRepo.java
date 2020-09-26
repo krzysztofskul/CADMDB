@@ -10,9 +10,16 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     User findByEmail(String email);
 
-    List<User> findAllByUserCategory(UserCategory userCategory);
+    //List<User> findAllByUserCategory(UserCategory userCategory);
+    List<User> findAllByUserCategoryListContains(UserCategory userCategory);
 
-    User findByUserCategory(UserCategory userCategory);
+    //User findByUserCategory(UserCategory userCategory);
+
+    //User findByUserCategoryListExists(UserCategory userCategory);
+
+    //User findByUserCategoryListIsContaining(UserCategory userCategory);
+
+    User findByUserCategoryListContains(UserCategory userCategory);
 
 //    @Query("select u from User  where u.hospital is null ")
 //    List<User> loadAllUnemployed();

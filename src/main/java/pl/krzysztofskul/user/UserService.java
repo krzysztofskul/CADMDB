@@ -39,6 +39,14 @@ public class UserService {
         return userRepo.findAll();
     }
 
+    public List<User> loadAllWithUserCategoryList() {
+        List<User> userList = this.loadAll();
+        for (User user : userList) {
+            Hibernate.initialize(user.getUserCategoryList());
+        }
+        return userList;
+    }
+
     public User loadById(Long id) {
         return userRepo.findById(id).get();
     }
@@ -51,12 +59,19 @@ public class UserService {
         return user;
     }
 
+    public User loadByIdWithHospitalsManagingListAndUserCategoryList(Long userId) {
+        User user = loadByIdWithHospitalsManagingList(userId);
+        Hibernate.initialize(user.getUserCategoryList());
+        return user;
+    }
+
     public User loadByEmail(String email) {
         return userRepo.findByEmail(email);
     }
 
     public List<User> loadUserHospitalManagerList() {
-        return userRepo.findAllByUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
+        //return userRepo.findAllByUserCategory(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
+        return userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("HOSPITAL-MANAGER"));
     }
 
     public List<User> loadAllUnemployed() {
@@ -73,10 +88,18 @@ public class UserService {
     public User loadByUserCategoryEnum(UserCategoryEnum userCategoryEnum) {
         switch (userCategoryEnum) {
             case HOSPITAL_MANAGER_GUEST: {
-                return userRepo.findByUserCategory(userCategoryService.loadByCode("HOSPITAL MANAGER (GUEST)"));
+                //return userRepo.findByUserCategory(userCategoryService.loadByCode("HOSPITAL MANAGER (GUEST)"));
+                //return userRepo.findByUserCategoryListExists(userCategoryService.loadByCode("HOSPITAL MANAGER (GUEST)"));
+                User user = userRepo.findByUserCategoryListContains(userCategoryService.loadByCode("HOSPITAL MANAGER (GUEST)"));
+                Hibernate.initialize(user.getUserCategoryList());
+                return user;
             }
             default: {
-                return userRepo.findByUserCategory(userCategoryService.loadByCode("ADMIN"));
+                //return userRepo.findByUserCategory(userCategoryService.loadByCode("ADMIN"));
+                //return userRepo.findByUserCategoryListExists(userCategoryService.loadByCode("ADMIN"));
+                User user = userRepo.findByUserCategoryListContains(userCategoryService.loadByCode("ADMIN"));
+                Hibernate.initialize(user.getUserCategoryList());
+                return user;
             }
         }
     }

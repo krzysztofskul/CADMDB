@@ -21,7 +21,8 @@ public class UserCategory {
 
     private String description;
 
-    @OneToMany(mappedBy = "userCategory")
+    //@OneToMany(mappedBy = "userCategory")
+    @ManyToMany(mappedBy = "userCategoryList")
     private List<User> userList = new ArrayList<>();
 
     public UserCategory() {

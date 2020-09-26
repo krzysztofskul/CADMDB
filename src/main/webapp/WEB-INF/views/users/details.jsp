@@ -27,7 +27,9 @@
                 </div>
                 <div class="col-9">
                     <h5>${user.nameFirst} ${user.nameLast}</h5>
-                    <h6>${user.userCategory.name}</h6>
+                    <c:forEach items="${user.userCategoryList}" var="userCategory">
+                        <h6>${userCategory.name}</h6>
+                    </c:forEach>
                     <hr/>
                     <p>${user.email}</p>
                 </div>
@@ -35,7 +37,10 @@
 
             <hr>
 
-            <c:if test="${sessionScope.userLoggedIn.userCategory.code eq 'HOSPITAL MANAGER (GUEST)' && sessionScope.userLoggedIn.userCategory.code eq user.userCategory.code}">
+            <c:forEach items="${sessionScope.userLoggedIn.userCategoryList}" var="userLoggedInCategory">
+            <c:forEach items="${user.userCategoryList}" var="userCategory">
+
+            <c:if test="${userLoggedInCategory.code eq 'HOSPITAL MANAGER (GUEST)' && userLoggedInCategory.code eq userCategory.code}"> <%-- todo --%>
                 <%-- USER'S CONNECTED HOSPITALS --%>
                 <div class="row">
                     <div class="col-12">
@@ -99,7 +104,8 @@
                 </c:forEach>
 
             </c:if>
-
+            </c:forEach>
+            </c:forEach>
 
         </section>
 
