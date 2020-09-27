@@ -20,7 +20,7 @@ public class Hospital extends Organization {
     @ManyToOne
     private User manager;
 
-    @OneToMany(mappedBy = "hospital")
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.PERSIST)
     private List<User> userList = new ArrayList<>();
 
     @Column(length = 2040)
@@ -62,6 +62,9 @@ public class Hospital extends Organization {
 
     public void setUserList(List<User> userList) {
         this.userList = userList;
+        for (User user : userList) {
+            user.setHospital(this);
+        }
     }
 
     public String getRemarks() {

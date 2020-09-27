@@ -77,6 +77,22 @@ public class UserService {
         return hospitalManagerList;
     }
 
+    public List<User> loadAllByUserCategoryEnum(UserCategoryEnum userCategoryEnum) {
+        switch (userCategoryEnum) {
+            case HOSPITAL_MANAGER: {
+                return userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("HOSPITAL MANAGER"));
+            }
+            case HOSPITAL_EMPLOYEE: {
+                return userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("HOSPITAL EMPLOYEE"));
+            }
+            case HOSPITAL_EMPLOYEE_GUEST: {
+                return userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("HOSPITAL EMPLOYEE (GUEST)"));
+            }
+            default: return null;
+        }
+
+    }
+
     public List<User> loadAllUnemployed() {
 //        return userRepo.loadAllUnemployed();
 //        return userRepo.loadAllUnemployedByNativeQuery();

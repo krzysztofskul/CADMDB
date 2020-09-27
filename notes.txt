@@ -57,10 +57,14 @@
             - add department
             - add room
     - add users role/category when set manager to hospital/department/room
-    + updated initial test hospital save to DB with departments and rooms
+    . updated initial test hospital save to DB with departments and rooms
+    . updated initial test method to add users (employees) to hospitals
 
 
 /** TODO / DONE **/
+
+# 0.6.0-8
+    + updated initial test method to add users (employees) to hospitals
 
 # 0.6.0-7
     + updated initial test hospital save to DB with departments and rooms
