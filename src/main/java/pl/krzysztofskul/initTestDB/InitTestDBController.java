@@ -33,7 +33,8 @@ public class InitTestDBController {
             initTestDBService.saveInitTestProductsForTestManufacturers();
 
             initTestDBService.saveInitTestHospitalsWithDepartmentsAndRooms();
-            initTestDBService.addTestProductsToTestRooms();
+            //initTestDBService.addTestProductsToTestRooms();
+            initTestDBService.addAndSaveInitTestProductsToRooms();
 
             initTestDBService.addAndSaveUsersToHospitals();
 

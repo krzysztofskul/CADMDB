@@ -29,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -280,6 +281,31 @@ public class InitTestDBService {
         productService.addProductToRoom(productService.loadById(Long.valueOf("3")).getId(), room.getId());
 
         roomService.save(room);
+    }
+
+    public void addAndSaveInitTestProductsToRooms() {
+        List<Room> roomList = roomService.loadAll();
+
+        for (Room room : roomList) {
+            if (room.getRoomCategory().getCode().equals("OR")) {
+                List<Product> operatingTablesToAdd = productCategoryService.loadByCode("AB1000").getProductList();
+                List<Product> operatingLampsToAdd = productCategoryService.loadByCode("AC1000").getProductList();
+                List<Product> anaestheticWorkstationsToAdd = productCategoryService.loadByCode("AH1000").getProductList();
+                if (!room.getProductList().containsAll(operatingTablesToAdd)) {
+                    if (operatingTablesToAdd.size() != 0) {
+                        room.addProduct(operatingTablesToAdd.get(new Random().nextInt(operatingTablesToAdd.size())));
+                    }
+                    if (operatingLampsToAdd.size() != 0) {
+                        room.addProduct(operatingLampsToAdd.get(new Random().nextInt(operatingLampsToAdd.size())));
+                    }
+                    if (anaestheticWorkstationsToAdd.size() != 0) {
+                        room.addProduct(anaestheticWorkstationsToAdd.get(new Random().nextInt(anaestheticWorkstationsToAdd.size())));
+                    }
+                }
+            }
+            roomService.save(room);
+        }
+
     }
 
     public void setInitDBTrue(
