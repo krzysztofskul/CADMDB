@@ -6,10 +6,7 @@ import pl.krzysztofskul.organization.hospital.department.departmentCategory.Depa
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.user.User;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +24,10 @@ public class Department extends Organization {
     @ManyToOne
     private DepartmentCategory departmentCategory;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "department", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Room> roomList = new ArrayList<>();
 
+    @Column(length = 255*8)
     private String remarks;
 
     public Department() {
@@ -71,6 +69,13 @@ public class Department extends Organization {
         return roomList;
     }
 
+    public void setRoomList(List<Room> roomList) {
+        this.roomList = roomList;
+        for (Room room : roomList) {
+            room.setDepartment(this);
+        }
+    }
+
     public String getRemarks() {
         return remarks;
     }
@@ -79,9 +84,7 @@ public class Department extends Organization {
         this.remarks = remarks;
     }
 
-    public void setRoomList(List<Room> roomList) {
-        this.roomList = roomList;
-    }
+
 
     public void addRoom(Room room) {
         this.roomList.add(room);

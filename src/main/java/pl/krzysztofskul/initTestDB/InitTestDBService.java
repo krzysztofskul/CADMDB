@@ -27,6 +27,7 @@ import pl.krzysztofskul.user.userCategory.UserCategoryService;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -247,6 +248,12 @@ public class InitTestDBService {
 
     }
 
+    public void saveInitTestDepartmentCategoryList() {
+        for (DepartmentCategory departmentCategory : InitTestDB.getInitTestDBInstance().createAndGetInitTestDepartmentCategoryList()) {
+            departmentCategoryService.save(departmentCategory);
+        }
+    }
+
     public void createTestHospitals() {
         Hospital hospital;
         User user;
@@ -284,6 +291,43 @@ public class InitTestDBService {
         user.setHospital(hospitalService.loadById(Long.parseLong("2")));
         userService.save(user);
 
+    }
+
+    public void saveInitTestHospitalsWithDepartmentsAndRooms() {
+        for (Hospital hospital : InitTestDB.getInitTestDBInstance().createAndGetInitTestHospitals()) {
+            addAndSaveInitTestDepartmentsToHospital(
+                InitTestDB.getInitTestDBInstance().createAndGetInitTestDepartmentList(
+                        departmentCategoryService.loadAll()
+                ),
+                hospital
+            );
+            for (Department department : hospital.getDepartmentList()) {
+                addAndSaveInitTestRoomsToDepartment(
+                    InitTestDB.getInitTestDBInstance().createAndGetInitTestRoomList(
+                            roomCategoryService.loadAll()
+                    ),
+                    department
+                );
+            }
+            hospitalService.save(hospital);
+        }
+    }
+
+    public void addAndSaveInitTestDepartmentsToHospital(List<Department> departmentList, Hospital hospital) {
+        hospital.setDepartmentList(departmentList);
+    }
+
+    public void saveInitTestRoomCategoryList() {
+        List<RoomCategory> roomCategoryList = InitTestDB.getInitTestDBInstance().createAndGetInitTestRoomCategoryList();
+
+        for (RoomCategory roomCategory : roomCategoryList) {
+            roomCategoryService.save(roomCategory);
+        }
+
+    }
+
+    public void addAndSaveInitTestRoomsToDepartment(List<Room> roomList, Department department) {
+        department.setRoomList(roomList);
     }
 
     public void createTestDepartments() {

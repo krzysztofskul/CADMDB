@@ -25,16 +25,19 @@ public class InitTestDBController {
             initTestDBService.saveInitTestUsersCategory();
             initTestDBService.saveInitTestUsers();
 
-            initTestDBService.createDepartmentCategories();
-            initTestDBService.createRoomCategories();
+            //initTestDBService.createDepartmentCategories();
+            initTestDBService.saveInitTestDepartmentCategoryList();
+            //initTestDBService.createRoomCategories();
+            initTestDBService.saveInitTestRoomCategoryList();
             initTestDBService.createProductCategories();
 
             initTestDBService.saveInitTestManufacturers();
             initTestDBService.saveInitTestProductsForTestManufacturers();
 
-            initTestDBService.createTestHospitals();
-            initTestDBService.createTestDepartments();
-            initTestDBService.createTestRooms();
+//            initTestDBService.createTestHospitals();
+            initTestDBService.saveInitTestHospitalsWithDepartmentsAndRooms();
+//            initTestDBService.createTestDepartments();
+//            initTestDBService.createTestRooms();
             initTestDBService.addTestProductsToTestRooms();
 
             initTestDBService.setInitDBTrue(httpSession);

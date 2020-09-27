@@ -337,6 +337,7 @@ public class InitTestDB {
             hospital.setRemarks(LoremIpsum.getInstance().getParagraphs(1, 1));
             hospital.setArea(new Random().nextInt(1000)+1000);
             hospital.setBudget(BigDecimal.valueOf(new Random().nextFloat()*100000000).add(BigDecimal.valueOf(+100000000f)));
+            hospitalList.add(hospital);
         }
 
         return hospitalList;
@@ -373,11 +374,19 @@ public class InitTestDB {
         List<RoomCategory> roomCategoryList = new ArrayList<>();
         
         roomCategoryList.add(new RoomCategory("OR", "Operating room"));
-        roomCategoryList.add(new RoomCategory("OR-PRE-P", "Preparation room (patients)"));
-        roomCategoryList.add(new RoomCategory("OR-PRE-D", "Preparation room (doctors)"));
+        roomCategoryList.add(new RoomCategory("OR-S", "Operating room (surgical)"));
+        roomCategoryList.add(new RoomCategory("OR-NS", "Operating room (neuro-surgical)"));
+        roomCategoryList.add(new RoomCategory("OR-PP", "Preparation room (patients)"));
+        roomCategoryList.add(new RoomCategory("OR-SP", "Preparation room (doctors)"));
         roomCategoryList.add(new RoomCategory("OR-POST", "Post-operating room"));
         roomCategoryList.add(new RoomCategory("PR", "Patient room"));
-        roomCategoryList.add(new RoomCategory("PR-ICU", "Intensive care room"));
+        roomCategoryList.add(new RoomCategory("PR1", "Patient room (1 bed)"));
+        roomCategoryList.add(new RoomCategory("PR2", "Patient room (2 beds)"));
+        roomCategoryList.add(new RoomCategory("ICR", "Intensive care room"));
+        roomCategoryList.add(new RoomCategory("ICR1", "Intensive care room (1 bed)"));
+        roomCategoryList.add(new RoomCategory("ICR2", "Intensive care room (2 beds)"));
+        roomCategoryList.add(new RoomCategory("CSSD-C", "Cleaning room"));
+        roomCategoryList.add(new RoomCategory("CSSD-S", "Sterilization room"));
 
         return roomCategoryList;        
     }

@@ -14,7 +14,7 @@ public class Hospital extends Organization {
 
     private float area;
 
-    @OneToMany(mappedBy = "hospital", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "hospital", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Department> departmentList = new ArrayList<>();
 
     @ManyToOne
@@ -43,6 +43,9 @@ public class Hospital extends Organization {
 
     public void setDepartmentList(List<Department> departmentList) {
         this.departmentList = departmentList;
+        for (Department department : departmentList) {
+            department.setHospital(this);
+        }
     }
 
     public User getManager() {
