@@ -3,165 +3,114 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
-  Date: 15.02.2020
-  Time: 20:39
+  Date: 01.10.2020
+  Time: 12:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <title>CADMDB</title>
 </head>
 <body>
 
-    <jsp:include page="../header.jsp"/>
+    <%-- JQUERY --%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 
-        <div class="container">
+    <%-- JS scripts --%>
+    <script type="text/javascript" src="<c:url value="/resources/js/hospitals/all.js"/>"></script>
 
-            <div class="card">
-                <div class="card-header text-center font-weight-bold">
-                    ALL HOSPITALS LIST
-                </div>
-                <div class="card-body">
-                    <div class="row font-weight-bold mb-3">
-                        <div class="col-1">
-                            ID
-                        </div>
-                        <div class="col-6">
-                            HOSPITAL/DEPARTMENT/ROOM NAME
-                        </div>
-                        <div class="col-3">
-                            BUDGET / PRODUCT PRICE
-                        </div>
-                        <div class="col-2">
-                            OPTIONSi
+</body>
+
+    <div class="container-sm">
+
+        <jsp:include page="../header.jsp"/>
+
+        <div class="content-main">
+
+            <c:set var="productsCostInHospital" value="0"/>
+            <c:forEach items="${hospitals}" var="hospital">
+                <%-- CARD HOSPITAL --%>
+                <div class="card card-hospital mb-3 border-dark" id="hospital-${hospital.id}">
+                    <%-- HOSPITAL HEADER --%>
+                    <div class="card-header card border-bottom border-dark">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <img src="/resources/img/icons/hospital-001.png" width="50px" height="50px" alt="ICON"/>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-title"><h5>${hospital.name}</h5></div>
+                                <div class="card-subtitle">Manager: ${hospital.manager.nameFirst} ${hospital.manager.nameLast}</div>
+                            </div>
+                            <div class="col-sm-2">
+                                <span>
+                                    <button class="btn btn-outline-dark btn-hospital">
+                                        <small id="${hospital.id}">EXPAND</small>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                    <c:forEach items="${hospitals}" var="hospital">
-                        <div class="mb-5">
-                        <div class="row bg-light border-dark font-weight-bold mt-1 mb-1 border-top border-bottom">
-                            <div class="col-1">
-                                    ${hospital.id}
+
+                    <%-- HOSPITAL CARD BODY --%>
+                    <%-- CARD DEPARTMENT --%>
+                    <div class="card-body card-department">
+                        <c:forEach items="${hospital.departmentList}" var="depratment">
+                            <div class="card card-department">
+                                <div class="card-header">
+                                    <div class="card-title">Department name: ${depratment.departmentCategory.name} (ID: ${depratment.id})</div>
+                                </div>
+                                <div class="card-body"></div>
+                                <div class="card-footer"></div>
                             </div>
-                            <div class="col-6">
-                                    ${hospital.name}
-                            </div>
-                            <div class="col-3">
-                                <fmt:formatNumber type="currency"
-                                                  minFractionDigits="2"
-                                                  maxFractionDigits="2"
-                                                  currencySymbol="zł"
-                                                  value="${empty hospital.budget ? 0 : hospital.budget}"
-                                />
-                            </div>
-                            <div class="col-2">
-                                <a href="/hospitals/details/${hospital.id}">DETAILS</a>
-                                <a href="#" class="text-danger">DEL</a>
+                            <c:forEach items="${depratment.roomList}" var="room">
+                                <c:forEach items="${room.productList}" var="product">
+                                    <c:set var="productsCostInHospital" value="${productsCostInHospital + product.price}"/>
+                                </c:forEach>
+                            </c:forEach>
+                        </c:forEach>
+                    </div>
+
+                    <%-- HOSPITAL FOOTER --%>
+                    <div class="card-footer">
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-sm-10 text-right"> Initial budget:</div>
+                                <div class="col-sm-2 text-right">
+                                        <fmt:formatNumber
+                                                type="currency"
+                                                value="${hospital.budget}"
+                                                minFractionDigits="2"
+                                                maxFractionDigits="2"
+                                                currencySymbol="zł"
+                                        />
+                                </div>
                             </div>
                         </div>
-                        <c:forEach items="${hospital.departmentList}" var="department">
-                            <div class="row bg-light border-bottom border-top border-dark">
-                                <div class="col-1">
-                                    ${department.id}
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-sm-10 text-right">
+                                    Actual budget:
                                 </div>
-                                <div class="col-6">
-                                    ${department.departmentCategory.name}
-                                </div>
-                                <div class="col-3">
-                                    <fmt:formatNumber type="currency"
-                                                      minFractionDigits="2"
-                                                      maxFractionDigits="2"
-                                                      currencySymbol="zł"
-                                                      value="${empty department.budget ? 0 : department.budget}"
+                                <div class="col-sm-2 text-right">
+                                    <fmt:formatNumber
+                                            type="currency"
+                                            value="${hospital.budget - productsCostInHospital}"
+                                            minFractionDigits="2"
+                                            maxFractionDigits="2"
+                                            currencySymbol="zł"
                                     />
                                 </div>
-                                <div class="col-2">
-                                    <a href="/departments/details/${department.id}">DETAILS</a>
-                                    <a href="#" class="text-danger">DEL</a>
-                                </div>
-                            </div>
-                            <c:forEach items="${department.roomList}" var="room">
-                                <div class="row">
-                                    <div class="col-1">
-                                        ${room.id}
-                                    </div>
-                                    <div class="col-6">
-                                        ${room.roomCategory.name}
-                                    </div>
-                                    <div class="col-3">
-                                        <fmt:formatNumber type="currency"
-                                                          minFractionDigits="2"
-                                                          maxFractionDigits="2"
-                                                          currencySymbol="zł"
-                                                          value="${empty room.budget ? 0 : room.budget}"
-                                        />
-                                    </div>
-                                    <div class="col-2">
-                                        <a href="/rooms/details/${room.id}">DETAILS</a>
-                                        <a href="#" class="text-danger">DEL</a>
-                                    </div>
-                                </div>
-                                <c:forEach items="${room.productList}" var="product">
-                                    <div class="row font-italic text-black-50">
-                                        <div class="col-1">
-                                            ${product.id}
-                                        </div>
-                                        <div class="col-6">
-                                            ${product.productCategory.name} ${product.manufacturer.name} ${product.modelName}
-                                        </div>
-                                        <div class="col-3">
-                                            <fmt:formatNumber type="currency"
-                                                              minFractionDigits="2"
-                                                              maxFractionDigits="2"
-                                                              currencySymbol="zł"
-                                                              value="${empty product.price ? 0 : product.price}"
-                                            />
-                                        </div>
-                                        <div class="col-2">
-                                            <a href="#">DETAILS</a>
-                                            <a href="#" class="text-danger">DEL</a>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                                <div class="row">
-                                    <div class="col-1">
-                                    </div>
-                                    <div class="col-3">
-                                        <a href="/rooms/addProduct?roomId=${room.id}" class="text-success">
-                                            ADD PRODUCT
-                                        </a>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                            <div class="row">
-                                <div class="col-1">
-                                </div>
-                                <div class="col-3">
-                                    <a href="/rooms/new?departmentId=${department.id}" class="text-success">
-                                        ADD ROOM
-                                    </a>
-                                </div>
-                            </div>
-                        </c:forEach>
-                        <div class="row bg-light font-weight-bold">
-                            <div class="col-1">
-                            </div>
-                            <div class="col-3">
-                                <a href="/departments/new?hospitalId=${hospital.id}" class="text-success">
-                                    ADD DEPARTMENT
-                                </a>
                             </div>
                         </div>
-                        </div>
-                    </c:forEach>
+                    </div>
                 </div>
-                <div class="card-header">
-                    <a href="/hospitals/new" class="btn btn-success float-right">NEW HOSPITAL</a>
-                </div>
-            </div>
+            </c:forEach>
 
         </div>
 
-    <jsp:include page="../footer.jsp"/>
+        <jsp:include page="../footer.jsp"/>
 
-</body>
+    </div>
+
 </html>

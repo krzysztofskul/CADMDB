@@ -36,7 +36,7 @@
 
 # error page and controller
 
-# 0.6.0-next
+#
     - users/users as a guest functionality updates
         - log in as guests:
             + hospital-manager-guest
@@ -61,8 +61,14 @@
     . updated initial test method to add users (employees) to hospitals
     . update initial test method to add products to rooms
 
+# 0.6.0-next final
+    - front-end updates
+        - hospitals all page: add js/jquery expand functionality for hospital row todo ... rebuild the page!
 
 /** TODO / DONE **/
+
+# 0.6.0-10
+    + front-end updates: rebuilt all hospitals page with details collapse/expand functionality using js/jquery
 
 # 0.6.0-9
     + update initial test method to add products to rooms

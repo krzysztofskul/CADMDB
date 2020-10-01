@@ -14,6 +14,7 @@
 
     <div class="container border-top text-right mt-5 font-italic">
         <h6>Krzysztof Kuliński 2020</h6>
+        Icons made by <a href="" title="phatplus">phatplus</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
     </div>
 
 </body>
