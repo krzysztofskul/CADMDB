@@ -26,8 +26,6 @@ import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
 import pl.krzysztofskul.user.userCategory.UserCategoryService;
 
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -197,62 +195,74 @@ public class InitTestDBService {
 
         productCategory = new ProductCategory();
         productCategory.setCode("AA0000");
-        productCategory.setName("HOSPITAL BEDS");
+        productCategory.setNamePlural("HOSPITAL BEDS");
+        productCategory.setNameSingular("HOSPITAL BED");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AB1000");
-        productCategory.setName("OPERATING TABLES");
+        productCategory.setNamePlural("OPERATING TABLES");
+        productCategory.setNameSingular("OPERATING TABLE");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AC1000");
-        productCategory.setName("OPERATING LIGHTS");
+        productCategory.setNamePlural("OPERATING LIGHTS");
+        productCategory.setNameSingular("OPERATING LIGHT");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AE1000");
-        productCategory.setName("MRI SYSTEMS");
+        productCategory.setNamePlural("MRI SYSTEMS");
+        productCategory.setNameSingular("MRI SYSTEM");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AE2010");
-        productCategory.setName("SPECT SYSTEMS");
+        productCategory.setNamePlural("SPECT SYSTEMS");
+        productCategory.setNameSingular("SPECT SYSTEM");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AE2020");
-        productCategory.setName("PET SYSTEMS");
+        productCategory.setNamePlural("PET SYSTEMS");
+        productCategory.setNameSingular("PET SYSTEM");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AE3001");
-        productCategory.setName("CT SYSTEMS");
+        productCategory.setNamePlural("CT SYSTEMS");
+        productCategory.setNameSingular("CT SYSTEM");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AE3000");
-        productCategory.setName("X-RAY SYSTEMS");
+        productCategory.setNamePlural("X-RAY SYSTEMS");
+        productCategory.setNameSingular("X-RAY SYSTEM");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AE3001");
-        productCategory.setName("CT SYSTEMS");
+        productCategory.setNamePlural("CT SYSTEMS");
+        productCategory.setNameSingular("CT SYSTEM");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AE7000");
-        productCategory.setName("ULTRASOUND SYSTEMS");
+        productCategory.setNamePlural("ULTRASOUND SYSTEMS");
+        productCategory.setNameSingular("ULTRASOUND SYSTEM");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AH1000");
-        productCategory.setName("ANAESTHETIC WORKSTATIONS");
+        productCategory.setNamePlural("ANAESTHETIC WORKSTATIONS");
+        productCategory.setNameSingular("ANAESTHETIC WORKSTATION");
         productCategoryService.save(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setCode("AZ000");
-        productCategory.setName("MEDICAL SUPPLY SESTEMS");
+        productCategory.setNamePlural("MEDICAL SUPPLY SYSTEMS");
+        productCategory.setNameSingular("MEDICAL SUPPLY SYSTEM");
         productCategoryService.save(productCategory);
 
     }

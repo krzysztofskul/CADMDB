@@ -15,7 +15,9 @@ public class ProductCategory {
 
     private String code;
 
-    private String name;
+    private String nameSingular;
+
+    private String namePlural;
 
     @OneToMany(mappedBy = "productCategory")
     private List<Product> productList = new ArrayList<>();
@@ -39,12 +41,20 @@ public class ProductCategory {
         this.code = code;
     }
 
-    public String getName() {
-        return name;
+    public String getNameSingular() {
+        return nameSingular;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameSingular(String nameSingular) {
+        this.nameSingular = nameSingular;
+    }
+
+    public String getNamePlural() {
+        return namePlural;
+    }
+
+    public void setNamePlural(String name) {
+        this.namePlural = name;
     }
 
     public List<Product> getProductList() {

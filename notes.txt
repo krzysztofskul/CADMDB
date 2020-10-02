@@ -39,7 +39,7 @@
 #
     - users/users as a guest functionality updates
         - log in as guests:
-            + hospital-manager-guest
+            . hospital-manager-guest
             - hospital-employee-guest
             - others
     - registration page/functionality
@@ -48,24 +48,18 @@
             . my hospitals
             . my departments
             - my rooms
-    . createTestHospitals() method updates
-    . menuLogin.jsp updates
-    . initTestDB second initialization protection added at front-end and at back-end
-    . JUnit test for addHospitalToUserManagingList() method
     - User.class updates
         . add hospital to user's managing list method
             - add department
             - add room
     - add users role/category when set manager to hospital/department/room
-    . updated initial test hospital save to DB with departments and rooms
-    . updated initial test method to add users (employees) to hospitals
-    . update initial test method to add products to rooms
 
-# 0.6.0-next final
-    - front-end updates
-        - hospitals all page: add js/jquery expand functionality for hospital row todo ... rebuild the page!
 
 /** TODO / DONE **/
+
+# 0.6.0-FINAL
+    + product category class update
+    + front-end updates: rebuilt all hospitals page with details collapse/expand functionality using js/jquery
 
 # 0.6.0-10
     + front-end updates: rebuilt all hospitals page with details collapse/expand functionality using js/jquery

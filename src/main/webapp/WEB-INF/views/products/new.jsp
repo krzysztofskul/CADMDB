@@ -47,7 +47,7 @@
                         <label for="productCategory">PRODUCT CATEGORY:</label>
                         <form:select path="productCategory.id" id="productCategory" cssClass="form-control">
                             <c:forEach items="${allProductCategories}" var="productCategory">
-                                <form:option value="${productCategory.id}" label="${productCategory.code} | ${productCategory.name}"/>
+                                <form:option value="${productCategory.id}" label="${productCategory.code} | ${productCategory.namePlural}"/>
                             </c:forEach>
                         </form:select>
                     </div>

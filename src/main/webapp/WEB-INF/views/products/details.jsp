@@ -28,7 +28,7 @@
                 </div>--%>
                 <div class="row">
                     <div class="col-4">
-                        <h4>${product.productCategory.name} (${product.productCategory.code})</h4>
+                        <h4>${product.productCategory.namePlural} (${product.productCategory.code})</h4>
                     </div>
                 </div>
                 <div class="row">

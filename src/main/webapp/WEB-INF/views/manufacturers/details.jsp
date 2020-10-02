@@ -51,7 +51,7 @@
                                 <h5>${productCategory.code}</h5>
                             </div>
                             <div class="col-8">
-                                <h5>${productCategory.name}</h5>
+                                <h5>${productCategory.namePlural}</h5>
                             </div>
                             <div class="col-2">
                             </div>

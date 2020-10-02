@@ -431,7 +431,7 @@
                                         ${product.productCategory.code}
                                     </div>
                                     <div class="col-sm-4">
-                                        ${product.productCategory.name}
+                                        ${product.productCategory.namePlural}
                                     </div>
                                     <div class="col-sm-2">
                                         ${product.manufacturer.name}

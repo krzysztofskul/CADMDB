@@ -32,7 +32,7 @@
                                 ${productCategory.code}
                             </div>
                             <div class="col-10">
-                                ${productCategory.name}
+                                ${productCategory.namePlural}
                             </div>
                         </div>
                     </div>

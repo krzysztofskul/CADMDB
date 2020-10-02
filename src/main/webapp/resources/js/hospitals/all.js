@@ -18,45 +18,49 @@ $(document).ready(function() {
     var hospitalsAll = $(".card-hospital");
     var departmentsAll = hospitalsAll.children("div:nth-child(2)");
 
-    var buttonHospital = $(".btn-hospital");
+    var buttons = $("button");
 
-    hideAllDepartments();
+    var buttonsHospital = $(".btn-hospital");
+    var buttonsDepartment = $(".btn-department");
+    var buttonsRoom = $(".btn-room");
+
+    hideAllCards();
     // showAllDepartments(); // test ok
 
 
     /** function definitions */
 
-    buttonHospital.each(function () {
+    //buttonsHospital.each(function () {
+    buttons.each(function () {
         $(this).on("click", function () {
 
-            var departments = $(this).parent().parent().parent().parent().parent().children("div:nth-child(2)");
+            var parentCard = $(this).parent().parent().parent().parent().parent().children("div:nth-child(2)");
 
             if ($(this).children().text() === "COLLAPSE") {
                 // alert("test click to collapse"); // ok
                 $(this).children().text("EXPAND");
-                hideShowDepartments("hide", departments);
+                hideShowCard("hide", parentCard);
             } else if ($(this).children().text() === "EXPAND") {
                 // alert("test click to expand"); // ok
                 $(this).children().text("COLLAPSE");
-                hideShowDepartments("show", departments);
+                hideShowCard("show", parentCard);
             }
 
         });
     });
 
-    function hideShowDepartments(action, departments) {
-        departments.each(function () {
-            // $(this).addClass("bg-danger");
+    function hideShowCard(action, card) {
+        card.each(function () {
 
             if (action === "hide") {
-                departments.each(function () {
+                card.each(function () {
                     // $(this).fadeOut(5000);
                     $(this).hide();
                 });
             }
 
             if (action === "show") {
-                departments.each(function () {
+                card.each(function () {
                     $(this).show();
                 });
             }
@@ -64,12 +68,16 @@ $(document).ready(function() {
         });
     }
 
-    function hideAllDepartments() {
-        hideShowDepartments("hide", departmentsAll);
+    function hideAllCards() {
+        buttons.each(function () {
+            var parentCard = $(this).parent().parent().parent().parent().parent().children("div:nth-child(2)");
+            hideShowCard("hide", parentCard);
+        });
     }
 
-    function showAllDepartments() {
-        hideShowDepartments("show", departmentsAll);
+    function showAllCards() {
+        var parentCard = $(this).parent().parent().parent().parent().parent().children("div:nth-child(2)");
+        hideShowCard("show", parentCard);
     }
 
 });

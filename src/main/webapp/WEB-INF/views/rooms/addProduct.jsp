@@ -45,7 +45,7 @@
                                 ${productCategory.code}
                             </div>
                             <div class="col-sm-10">
-                                ${productCategory.name}
+                                ${productCategory.namePlural}
                             </div>
                         </div>
                         <c:forEach items="${allProducts}" var="productToAdd">
