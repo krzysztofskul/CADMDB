@@ -57,6 +57,10 @@
 
 /** TODO / DONE **/
 
+#0.6.2
+    + Heroku Connection Data added
+    + App. deployed at https://cadmdb.herokuapp.com/
+
 #0.6.1
     + front-end updates for all hospitals page
 
