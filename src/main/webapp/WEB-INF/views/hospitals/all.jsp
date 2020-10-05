@@ -39,9 +39,16 @@
                                 <img src="/resources/img/icons/hospital-001.png" width="50px" height="50px" alt="ICON"/>
                             </div>
                             <div class="col-sm-8">
-                                <div class="card-title"><h5>${hospital.name}</h5></div>
+                                <div class="card-title"><h5>
+                                        <a href="/hospitals/details/${hospital.id}">${hospital.name}</a>
+                                </h5></div>
                                 <div class="card-title"><small class="font-italic">${hospital.remarks}</small></div>
-                                <div class="card-subtitle">Hospital manager: ${hospital.manager.nameFirst} ${hospital.manager.nameLast}</div>
+                                <div class="card-subtitle">
+                                    <span>Hospital manager:</span>
+                                    <a href="/users/details/${hospital.manager.id}">
+                                        ${hospital.manager.nameFirst} ${hospital.manager.nameLast}
+                                    </a>
+                                </div>
                             </div>
                             <div class="col-sm-2">
                                 <span>
@@ -55,7 +62,7 @@
 
                     <%-- CARD DEPARTMENT --%>
                     <div class="card-body card-department">
-                        <c:forEach items="${hospital.departmentList}" var="depratment">
+                        <c:forEach items="${hospital.departmentList}" var="department">
                             <div class="card card-department mb-3">
                                 <%-- DEPARTMENT HEADER --%>
                                 <div class="card-header">
@@ -65,15 +72,24 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="card-title">
-                                                <h5>${depratment.departmentCategory.name}</h5>
+                                                <h5>
+                                                    <a href="/departments/details/${department.id}">
+                                                        ${department.departmentCategory.name}
+                                                    </a>
+                                                </h5>
                                             </div>
                                             <div class="card-text">
                                                 <c:choose>
-                                                    <c:when test="${depratment.userManager eq null}">
-                                                        <p>Department manager: NONE</p>
+                                                    <c:when test="${department.userManager eq null}">
+                                                        <span>Department manager: NONE</span>
+                                                        <a href="#" class="border-dark border-left pl-1 disabled">SET NEW MANAGER</a>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <p>Department manager: ${depratment.userManager.nameFirst} ${depratment.userManager.nameLast}</p>
+                                                        <span>Department manager:</span>
+                                                        <a href="/users/details/${department.userManager.id}">
+                                                            ${department.userManager.nameFirst} ${department.userManager.nameLast}
+                                                        </a>
+
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
@@ -90,7 +106,7 @@
                                 <%-- DEPARTMENT CARD BODY --%>
                                 <div class="card-body">
                                     <c:set var="productsCostInDepartment" value="0"/>
-                                    <c:forEach items="${depratment.roomList}" var="room">
+                                    <c:forEach items="${department.roomList}" var="room">
                                         <%-- CARD ROOM --%>
                                         <div class="card card-room mb-3">
                                             <%-- ROOM HEADER --%>
@@ -100,11 +116,20 @@
                                                         <img src="/resources/img/icons/room-001.png" width="30px" height="30px" alt="ICON"/>
                                                     </div>
                                                     <div class="col-sm-8">
-                                                        <div class="card-title"><h5>${room.roomCategory.name}</h5></div>
+                                                        <div class="card-title">
+                                                            <h5>
+                                                                <a href="/rooms/details/${room.id}">
+                                                                    ${room.roomCategory.name}
+                                                                </a>
+                                                            </h5>
+                                                        </div>
                                                         <div class="card-text">
                                                             <c:choose>
                                                                 <c:when test="${room.userManager eq null}">
-                                                                    <p>Room manager: NONE</p>
+                                                                    <span>Room manager: NONE</span>
+                                                                    <a href="#" class="disabled border-dark border-left p-1">
+                                                                        SET NEW MANAGER
+                                                                    </a>
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <p>Room manager: ${room.userManager.nameFirst} ${room.userManager.nameLast}</p>
@@ -193,7 +218,7 @@
                                             <div class="col-sm-3 text-right">
                                                 <fmt:formatNumber
                                                         type="currency"
-                                                        value="${depratment.budget}"
+                                                        value="${department.budget}"
                                                         minFractionDigits="2"
                                                         maxFractionDigits="2"
                                                         currencySymbol="zł"
@@ -205,14 +230,14 @@
                                         <div class="row">
                                             <div class="col-sm-9 text-right">Department actual budget:</div>
                                             <div class="col-sm-3 text-right">
-                                                <c:forEach items="${depratment.roomList}" var="room">
+                                                <c:forEach items="${department.roomList}" var="room">
                                                     <c:forEach items="${room.productList}" var="product">
                                                         <c:set var="productsCostInDepartment" value="${productsCostInDepartment + product.price}"/>
                                                     </c:forEach>
                                                 </c:forEach>
                                                 <fmt:formatNumber
                                                         type="currency"
-                                                        value="${depratment.budget - productsCostInDepartment}"
+                                                        value="${department.budget - productsCostInDepartment}"
                                                         minFractionDigits="2"
                                                         maxFractionDigits="2"
                                                         currencySymbol="zł"
@@ -222,7 +247,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <c:forEach items="${depratment.roomList}" var="room">
+                            <c:forEach items="${department.roomList}" var="room">
                                 <c:forEach items="${room.productList}" var="product">
                                     <c:set var="productsCostInHospital" value="${productsCostInHospital + product.price}"/>
                                 </c:forEach>

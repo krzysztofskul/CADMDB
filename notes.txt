@@ -57,6 +57,9 @@
 
 /** TODO / DONE **/
 
+#0.6.1
+    + front-end updates for all hospitals page
+
 # 0.6.0-FINAL
     + product category class update
     + front-end updates: rebuilt all hospitals page with details collapse/expand functionality using js/jquery
