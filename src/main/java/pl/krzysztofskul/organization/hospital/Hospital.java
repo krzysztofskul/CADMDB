@@ -5,17 +5,35 @@ import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Hospital extends Organization {
 
+    private String country;
+
+    private String city;
+
+    private String postalCode;
+
+    private String street;
+
+    private int streetNo;
+
+    private String www;
+
+    private String email;
+
+    private String phone;
+
     private float area;
 
     @OneToMany(mappedBy = "hospital", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Department> departmentList = new ArrayList<>();
+
+    @ManyToOne
+    private User investor;
 
     @ManyToOne
     private User manager;
@@ -27,6 +45,70 @@ public class Hospital extends Organization {
     private String remarks;
 
     public Hospital() {
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public int getStreetNo() {
+        return streetNo;
+    }
+
+    public void setStreetNo(int streetNo) {
+        this.streetNo = streetNo;
+    }
+
+    public String getWww() {
+        return www;
+    }
+
+    public void setWww(String url) {
+        this.www = url;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public float getArea() {
@@ -46,6 +128,14 @@ public class Hospital extends Organization {
         for (Department department : departmentList) {
             department.setHospital(this);
         }
+    }
+
+    public User getInvestor() {
+        return investor;
+    }
+
+    public void setInvestor(User investor) {
+        this.investor = investor;
     }
 
     public User getManager() {

@@ -330,11 +330,19 @@ public class InitTestDB {
 
     public List<Hospital> createAndGetInitTestHospitals() {
         List<Hospital> hospitalList = new ArrayList<>();
+        
+        LoremIpsum loremIpsum = LoremIpsum.getInstance();
+        Random random = new Random();
 
         for (int i = 0; i < 5; i++) {
             Hospital hospital = new Hospital();
-            hospital.setName(LoremIpsum.getInstance().getTitle(1, 2) + " Hospital");
-            hospital.setRemarks(LoremIpsum.getInstance().getParagraphs(1, 1));
+            hospital.setCountry(loremIpsum.getCountry());
+            hospital.setPostalCode(loremIpsum.getZipCode());
+            hospital.setCity(loremIpsum.getCity());
+            hospital.setStreet(loremIpsum.getName());
+            hospital.setStreetNo(random.nextInt(200)+1);
+            hospital.setName(loremIpsum.getTitle(1, 2) + " Hospital");
+            hospital.setRemarks(loremIpsum.getParagraphs(1, 1));
             hospital.setArea(new Random().nextInt(1000)+1000);
             hospital.setBudget(BigDecimal.valueOf(new Random().nextFloat()*100000000).add(BigDecimal.valueOf(+100000000f)));
             hospitalList.add(hospital);

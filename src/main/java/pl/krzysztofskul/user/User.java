@@ -36,6 +36,9 @@ public class User {
     @ManyToOne
     private Hospital hospital;
 
+    @OneToMany(mappedBy = "investor", cascade = CascadeType.PERSIST)
+    private List<Hospital> hospitalListAsInvestor = new ArrayList<>();
+
     @OneToMany(mappedBy = "manager", cascade = CascadeType.PERSIST)
     private List<Hospital> hospitalManagingList = new ArrayList<>();
 
@@ -113,6 +116,14 @@ public class User {
         this.hospital = hospital;
     }
 
+    public List<Hospital> getHospitalListAsInvestor() {
+        return hospitalListAsInvestor;
+    }
+
+    public void setHospitalListAsInvestor(List<Hospital> hospitalListAsInvestor) {
+        this.hospitalListAsInvestor = hospitalListAsInvestor;
+    }
+
     public List<Hospital> getHospitalManagingList() {
         return hospitalManagingList;
     }
@@ -155,5 +166,12 @@ public class User {
     public void addUserCategory(UserCategory userCategory) {
         userCategoryList.add(userCategory);
     }
+
+    public void addHospitalToHospitalsAsInvestor(Hospital hospital) {
+        hospitalListAsInvestor.add(hospital);
+        hospital.setInvestor(this);
+    }
+
+
 
 }

@@ -36,9 +36,12 @@ public class InitTestDBController {
             //initTestDBService.addTestProductsToTestRooms();
             initTestDBService.addAndSaveInitTestProductsToRooms();
 
+            initTestDBService.addAndSaveHospitalsToInvestors();
             initTestDBService.addAndSaveUsersToHospitals();
 
-            initTestDBService.setInitDBTrue(httpSession);
+            if (httpSession != null) {
+                initTestDBService.setInitDBTrue(httpSession);
+            }
         }
 
         return "index";

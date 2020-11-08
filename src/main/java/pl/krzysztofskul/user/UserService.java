@@ -79,6 +79,20 @@ public class UserService {
 
     public List<User> loadAllByUserCategoryEnum(UserCategoryEnum userCategoryEnum) {
         switch (userCategoryEnum) {
+            case INVESTOR: {
+                List<User> userList = userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("INVESTOR"));
+                for (User user : userList) {
+                    Hibernate.initialize(user.getHospitalListAsInvestor());
+                }
+                return userList;
+            }
+            case INVESTOR_GUEST: {
+                List<User> userList = userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("INVESTOR (GUEST)"));
+                for (User user : userList) {
+                    Hibernate.initialize(user.getHospitalListAsInvestor());
+                }
+                return userList;
+            }
             case HOSPITAL_MANAGER: {
                 return userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("HOSPITAL MANAGER"));
             }
@@ -106,9 +120,17 @@ public class UserService {
 
     public User loadByUserCategoryEnum(UserCategoryEnum userCategoryEnum) {
         switch (userCategoryEnum) {
+            case INVESTOR: {
+                User user = userRepo.findByUserCategoryListContains(userCategoryService.loadByCode("INVESTOR"));
+                Hibernate.initialize(user.getUserCategoryList());
+                return user;
+            }
+            case INVESTOR_GUEST: {
+                User user = userRepo.findByUserCategoryListContains(userCategoryService.loadByCode("INVESTOR (GUEST)"));
+                Hibernate.initialize(user.getUserCategoryList());
+                return user;
+            }
             case HOSPITAL_MANAGER_GUEST: {
-                //return userRepo.findByUserCategory(userCategoryService.loadByCode("HOSPITAL MANAGER (GUEST)"));
-                //return userRepo.findByUserCategoryListExists(userCategoryService.loadByCode("HOSPITAL MANAGER (GUEST)"));
                 User user = userRepo.findByUserCategoryListContains(userCategoryService.loadByCode("HOSPITAL MANAGER (GUEST)"));
                 Hibernate.initialize(user.getUserCategoryList());
                 return user;

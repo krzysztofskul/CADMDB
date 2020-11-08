@@ -160,6 +160,24 @@ public class InitTestDBService {
         department.setRoomList(roomList);
     }
 
+    public void addAndSaveHospitalsToInvestors() {
+        List<User> investorList = userService.loadAllByUserCategoryEnum(UserCategoryEnum.INVESTOR);
+        investorList.add(userService.loadByUserCategoryEnum(UserCategoryEnum.INVESTOR_GUEST));
+
+        List<Hospital> hospitalList = hospitalService.loadAll();
+
+        for (User investor : investorList) {
+            for (int i = 0; i < 2; i++) {
+                if (hospitalList.size() > 0  && null != hospitalList.get(0)) {
+                    investor.addHospitalToHospitalsAsInvestor(hospitalList.get(0));
+                    hospitalList.remove(0);
+                }
+            }
+            userService.save(investor);
+        }
+
+    }
+
     public void addAndSaveUsersToHospitals() {
         User hospitalManagerGuestToAdd = userService.loadByUserCategoryEnum(UserCategoryEnum.HOSPITAL_MANAGER_GUEST);
         Hospital hospitalForManagerGuest = hospitalService.loadById(Long.parseLong("1"));

@@ -51,7 +51,9 @@
                 <c:forEach items="${user.hospitalManagingList}" var="hospital">
                         <div class="card ml-1 mr-1 border" style="max-width: 275px">
                             <div class="card-header">
-                                <p class="card-title">${hospital.name}</p>
+                                <p class="card-title font-weight-bold">${hospital.name}</p>
+                                <p class="card-text font-italic">${hospital.country}, ${hospital.postalCode} ${hospital.city}</p>
+                                <p class="card-text font-italic">${hospital.street} street, No. ${hospital.streetNo}</p>
                             </div>
                             <div class="card-body">
                                 <p class="card-text">
@@ -70,6 +72,13 @@
                             </div>
                         </div>
                 </c:forEach>
+
+                <div class="card ml-1 mr-1 border" style="max-width: 275px">
+                    <div class="card-body text-center pt-5">
+                        <a href="/hospitals/new"><img src="/resources/img/icons/plus-001.png" width="128" alt="ADD NEW HOSPITAL"/></a>
+                    </div>
+                </div>
+
                 </div>
 
                 <hr>

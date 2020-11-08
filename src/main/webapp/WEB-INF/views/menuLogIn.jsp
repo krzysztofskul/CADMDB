@@ -14,7 +14,7 @@
                     <a class="dropdown-item" href="/loginAsGuest/hospital-manager-guest">LOG IN AS A GUEST: HOSPITAL MANAGER</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item disabled" href="/loginAsGuest/hospital-employee-guest">LOG IN AS A GUEST: HOSPITAL EMPLOYEE</a>
-                    <a class="dropdown-item disabled" href="/#">LOG IN AS A GUEST: INVESTOR</a>
+                    <a class="dropdown-item" href="/loginAsGuest/investor-guest">LOG IN AS A GUEST: INVESTOR</a>
                     <a class="dropdown-item disabled" href="/#">LOG IN AS A GUEST: DESIGNER</a>
                     <a class="dropdown-item disabled" href="/#">LOG IN AS A GUEST: BUILDING CONTRACTOR</a>
                     <a class="dropdown-item disabled" href="/#">LOG IN AS A GUEST: MANUFACTURER</a>
