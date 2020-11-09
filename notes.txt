@@ -54,10 +54,12 @@
             - add room
     - add users role/category when set manager to hospital/department/room
 
+#0.6.4
+    - create demo mode
+
 #0.6.3
     . investor guest login page
         - 'add new hospital' page updates
-            + save new hospital with investor from investor's details page
             . hospital class updates
                 . address fields/params
                 - validation annotations
@@ -66,6 +68,11 @@
 
 
 /** TODO / DONE **/
+
+#0.6.3-3
+    + hospital details page updates
+        + set manager functionality added
+    + workflow bugs fixed
 
 #0.6.3-2
     + user's details page updated

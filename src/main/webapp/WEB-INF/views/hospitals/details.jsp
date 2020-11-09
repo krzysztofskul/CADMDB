@@ -36,9 +36,14 @@
                         <%--${hospital.number}--%>
                     </div>
                     <div class="col-sm-6 mt-auto mb-auto">
-                        ${hospital.name}
+                        <h4>${hospital.name}</h4>
+                        <h6>${hospital.country}, ${hospital.postalCode} ${hospital.city}</h6>
+                        <h6>${hospital.street} street, No. ${hospital.streetNo}</h6>
+                        <h6>${hospital.phone}</h6>
+                        <h6>${hospital.email}</h6>
+                        <h6>${hospital.www}</h6>
                     </div>
-                    <%-- MENU --%>
+                <%-- MENU --%>
                     <div class="col-sm-2">
                         <c:if test="${param.containsKey('content') && param.containsValue('info')}">
                             <a href="/hospitals/details/${hospital.id}?content=info&edit=true" class="btn float-right">
@@ -182,6 +187,14 @@
                                 <form:hidden path="id"/>
                                 <form:hidden path="name"/>
                                 <form:hidden path="budget"/>
+                                <form:hidden path="country"/>
+                                <form:hidden path="postalCode"/>
+                                <form:hidden path="city"/>
+                                <form:hidden path="street"/>
+                                <form:hidden path="streetNo"/>
+                                <form:hidden path="phone"/>
+                                <form:hidden path="www"/>
+                                <form:hidden path="email"/>
                                 <c:forEach items="${hospital.departmentList}" var="department">
                                     <form:hidden path="departmentList" value="${department.id}" checked="checked"/>
                                 </c:forEach>
@@ -205,6 +218,9 @@
                                             <c:choose>
                                                 <c:when test="${param.containsKey('edit')}">
                                                     <form:select path="manager.id" cssClass="w-100">
+
+                                                        <form:option value="" label="SET NEW MANAGER OF THE HOSPITAL" disabled="true"/>
+                                                        <form:option value="${hospital.investor.id}" label="SET INVESTOR AS MANAGER: ${hospital.investor.nameFirst} ${hospital.investor.nameLast}"/>
                                                         <c:forEach items="${allUserList}" var="user">
                                                             <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
                                                         </c:forEach>

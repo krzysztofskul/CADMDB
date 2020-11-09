@@ -3,6 +3,7 @@ package pl.krzysztofskul.login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import pl.krzysztofskul.initTestDB.InitTestDB;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
@@ -27,6 +28,11 @@ public class LogInController {
     public String loginAsHospiptalManagerGuest(
             HttpSession httpSession
     ) {
+
+        if (!InitTestDB.isInitDB()) {
+            return "redirect:/";
+        }
+
         httpSession.setAttribute("userLoggedIn", userService.loadByUserCategoryEnum(UserCategoryEnum.HOSPITAL_MANAGER_GUEST));
         User userLoggedIn = (User) httpSession.getAttribute("userLoggedIn");
         return "redirect:/users/details/"+userLoggedIn.getId();
@@ -36,6 +42,11 @@ public class LogInController {
     public String loginAsInvestorGuest(
             HttpSession httpSession
     ) {
+
+        if (!InitTestDB.isInitDB()) {
+            return "redirect:/";
+        }
+
         httpSession.setAttribute("userLoggedIn", userService.loadByUserCategoryEnum(UserCategoryEnum.INVESTOR_GUEST));
         User userLoggedIn = (User) httpSession.getAttribute("userLoggedIn");
         return "redirect:/users/details/"+userLoggedIn.getId();
