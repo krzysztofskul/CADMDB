@@ -1,22 +1,30 @@
 package pl.krzysztofskul.organization.hospital;
 
+import org.hibernate.validator.constraints.NotBlank;
 import pl.krzysztofskul.organization.Organization;
 import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+
 public class Hospital extends Organization {
 
     /**
      * PARAMS.
      */
 
+    @NotBlank(message = "Country cannot be empty!")
     private String country;
 
+    @NotBlank(message = "City cannot be empty!")
     private String city;
 
     private String postalCode;
@@ -31,6 +39,7 @@ public class Hospital extends Organization {
 
     private String phone;
 
+    @DecimalMin(value = "100.00", message = "The area of the hospital cannot be less than 100 m2!")
     private float area;
 
     @OneToMany(mappedBy = "hospital", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -45,7 +54,7 @@ public class Hospital extends Organization {
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.PERSIST)
     private List<User> userList = new ArrayList<>();
 
-    @Column(length = 2040)
+    @Column(length = 2048)
     private String remarks;
 
 

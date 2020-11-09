@@ -1,4 +1,4 @@
-package pl.krzysztofskul.bigDecimal;
+package pl.krzysztofskul.numberConverters;
 
 import org.springframework.core.convert.converter.Converter;
 

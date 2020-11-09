@@ -31,6 +31,7 @@
                 <div class="form-group">
                     <label for="name">COUNTRY:</label>
                     <form:input type="text" cssClass="form-control" id="country" path="country"/>
+                    <p class="text-danger font-italic"><form:errors path="country"/></p>
                 </div>
                 <div class="form-group">
                     <label for="name">POSTAL CODE:</label>
@@ -39,6 +40,7 @@
                 <div class="form-group">
                     <label for="name">CITY:</label>
                     <form:input type="text" cssClass="form-control" id="city" path="city"/>
+                    <p class="text-danger font-italic"><form:errors path="city"/></p>
                 </div>
                 <div class="form-group">
                     <label for="name">STREET:</label>
@@ -63,6 +65,7 @@
                 <div class="form-group">
                     <label for="name">AREA [m<span class="text-uppercase">2</span>]:</label>
                     <form:input type="number" step="1" cssClass="form-control" id="area" path="area"/>
+                    <p class="text-danger font-italic"><form:errors path="area"/></p>
                 </div>
 
                 <div class="form-group">
@@ -73,6 +76,7 @@
                 <div class="form-group">
                     <label for="name">REMARKS (DESCRIPTION):</label>
                     <form:textarea type="text" rows="3"  cssClass="form-control" id="remarks" path="remarks"/>
+                    <p class="text-danger font-italic"><form:errors path="remarks"/></p>
                 </div>
 
             </div>

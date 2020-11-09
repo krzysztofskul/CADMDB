@@ -3,11 +3,13 @@ package pl.krzysztofskul.organization.hospital;
 import com.thedeanda.lorem.LoremIpsum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -80,10 +82,14 @@ public class HospitalController {
 
     @PostMapping("/new")
     public String newHospital(
-            @ModelAttribute("hospital") Hospital hospital,
+            @ModelAttribute("hospital") @Valid Hospital hospital, BindingResult bindingResult,
             @RequestParam(name = "content", required = false) String content,
             @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
+
+        if (bindingResult.hasErrors()) {
+            return "hospitals/new";
+        }
 
         if (hospital.getInvestor() != null) {
             User investor = userService.loadByIdWithHospitalsManagingList(hospital.getInvestor().getId());
