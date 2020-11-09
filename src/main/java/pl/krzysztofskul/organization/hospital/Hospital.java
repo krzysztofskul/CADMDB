@@ -11,6 +11,10 @@ import java.util.List;
 @Entity
 public class Hospital extends Organization {
 
+    /**
+     * PARAMS.
+     */
+
     private String country;
 
     private String city;
@@ -44,8 +48,17 @@ public class Hospital extends Organization {
     @Column(length = 2040)
     private String remarks;
 
+
+    /**
+     * CONSTRUCTORS
+     */
+
     public Hospital() {
     }
+
+    /**
+     * GETTERS AND SETTERS
+     */
 
     public String getCountry() {
         return country;
@@ -163,6 +176,20 @@ public class Hospital extends Organization {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    /**
+     * ADDITIONAL METHODS
+     */
+
+    public void addDepratment(Department department) {
+        this.departmentList.add(department);
+        department.setHospital(this);
+    }
+
+    public void removeDepartment(Department department) {
+        this.departmentList.remove(department);
+        department.setHospital(null);
     }
 
     public void addUser(User user) {

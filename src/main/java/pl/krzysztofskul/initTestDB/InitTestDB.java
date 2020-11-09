@@ -334,7 +334,7 @@ public class InitTestDB {
         LoremIpsum loremIpsum = LoremIpsum.getInstance();
         Random random = new Random();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Hospital hospital = new Hospital();
             hospital.setCountry(loremIpsum.getCountry());
             hospital.setPostalCode(loremIpsum.getZipCode());

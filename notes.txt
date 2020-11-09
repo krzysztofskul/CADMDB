@@ -56,16 +56,21 @@
 
 #0.6.3
     . investor guest login page
-        . add hospital to the investor back-end functionality
-            . jUnit tests
-        - 'add new hospital' page updates ...
+        - 'add new hospital' page updates
+            + save new hospital with investor from investor's details page
             . hospital class updates
                 . address fields/params
                 - validation annotations
             - jsp page with form and validation functionality
         - create investor organisation
 
+
 /** TODO / DONE **/
+
+#0.6.3-2
+    + user's details page updated
+    + HospitalBuilder class created
+    + added a new functionality which allows to create a new hospital from the investor's details page
 
 #0.6.3-1
     + investor-guest login functionality

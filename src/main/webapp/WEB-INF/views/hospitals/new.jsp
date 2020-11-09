@@ -22,6 +22,8 @@
             </div>
             <div class="card-body">
                 <form:hidden path="id"/>
+                <form:hidden path="investor.id"/>
+
                 <div class="form-group">
                     <label for="name">NAME:</label>
                     <form:input type="text" cssClass="form-control" id="name" path="name"/>

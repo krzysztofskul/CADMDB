@@ -54,6 +54,7 @@ public class UserService {
 
     public User loadByIdWithHospitalsManagingList(Long userId) {
         User user = loadById(userId);
+        Hibernate.initialize(user.getHospitalListAsInvestor());
         Hibernate.initialize(user.getHospitalManagingList());
         Hibernate.initialize(user.getDepartmentManagingList());
         Hibernate.initialize(user.getRoomManagingList());
@@ -63,6 +64,7 @@ public class UserService {
     public User loadByIdWithHospitalsManagingListAndUserCategoryList(Long userId) {
         User user = loadByIdWithHospitalsManagingList(userId);
         Hibernate.initialize(user.getUserCategoryList());
+        Hibernate.initialize(user.getHospitalListAsInvestor());
         return user;
     }
 
