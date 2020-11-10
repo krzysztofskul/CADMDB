@@ -54,13 +54,20 @@
             - add room
     - add users role/category when set manager to hospital/department/room
 
-#0.6.4
+#0.6.4-SNAPSHOT
     - create demo mode
     - hospital status class/enum
-    - create Investor.class
 
 
 /** TODO / DONE **/
+
+#0.6.4-SNAPSHOT
+    + creates Investor.class/Repo/Service
+        + jUnit test for InvestorDemoGenerator/InvestorService
+        + created companyType.class/Enums/Repo/Service
+            + jUnit tests for init method createCompanyTypesAndSaveToDB()
+        + created companyAddress.class/Repo/DemoGenerator
+    + new hospital validation functionality updates
 
 #0.6.3-FINAL
     + pom.xml updated of validator dependency

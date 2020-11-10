@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-3">
                                         <fmt:formatNumber
-                                                type="currency"
+                                                companyType="currency"
                                                 currencySymbol="zł"
                                                 value="${product.price}"
                                                 minFractionDigits="2"

@@ -27,6 +27,7 @@
                 <div class="form-group">
                     <label for="name">NAME:</label>
                     <form:input type="text" cssClass="form-control" id="name" path="name"/>
+                    <p class="text-danger font-italic"><form:errors path="name"/></p>
                 </div>
                 <div class="form-group">
                     <label for="name">COUNTRY:</label>

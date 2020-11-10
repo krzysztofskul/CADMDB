@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.manufacturer.ManufacturerService;
+import pl.krzysztofskul.organization.companyType.CompanyTypeService;
 import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.organization.hospital.HospitalService;
 import pl.krzysztofskul.organization.hospital.department.Department;
@@ -33,6 +34,7 @@ import java.util.Random;
 @Transactional
 public class InitTestDBService {
 
+    private CompanyTypeService companyTypeService;
     private UserCategoryService userCategoryService;
     private UserService userService;
     private ManufacturerService manufacturerService;
@@ -46,6 +48,7 @@ public class InitTestDBService {
 
     @Autowired
     public InitTestDBService(
+            CompanyTypeService companyTypeService,
             UserCategoryService userCategoryService,
             UserService userService,
             ManufacturerService manufacturerService,
@@ -57,6 +60,7 @@ public class InitTestDBService {
             DepartmentService departmentService,
             RoomService roomService
     ) {
+        this.companyTypeService = companyTypeService;
         this.userCategoryService = userCategoryService;
         this.userService = userService;
         this.manufacturerService = manufacturerService;
@@ -67,6 +71,10 @@ public class InitTestDBService {
         this.hospitalService = hospitalService;
         this.departmentService = departmentService;
         this.roomService = roomService;
+    }
+
+    public void saveCompanyTypes() {
+        companyTypeService.createCompanyTypesAndSaveToDB();
     }
 
     public void saveInitTestUsersCategory() {

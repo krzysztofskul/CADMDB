@@ -47,34 +47,36 @@
                         <h5>MY INVESTMENTS:</h5>
                     </div>
                 </div>
-                <div class="card-group">
-                    <c:forEach items="${user.hospitalListAsInvestor}" var="hospital">
-                        <div class="card ml-1 mr-1 border" style="max-width: 275px">
-                            <div class="card-header">
-                                <p class="card-title font-weight-bold">${hospital.name}</p>
-                                <p class="card-text font-italic">${hospital.country}, ${hospital.postalCode} ${hospital.city}</p>
-                                <p class="card-text font-italic">${hospital.street} street, No. ${hospital.streetNo}</p>
+                <div class="row">
+                    <div class="col-12">
+                        <c:forEach items="${user.hospitalListAsInvestor}" var="hospital">
+                            <div class="card ml-1 mr-1 border d-inline-block" style="width: 275px">
+                                <div class="card-header" style="height: 175px">
+                                    <p class="card-title font-weight-bold">${hospital.name}</p>
+                                    <p class="card-text font-italic">${hospital.country}, ${hospital.postalCode} ${hospital.city}</p>
+                                    <p class="card-text font-italic">${hospital.street} street, No. ${hospital.streetNo}</p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Budget:
+                                        <fmt:formatNumber
+                                                type="currency"
+                                                currencySymbol="zł"
+                                                minFractionDigits="2"
+                                                maxFractionDigits="2"
+                                                value="${hospital.budget}"
+                                        />
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="/hospitals/details/${hospital.id}">DETAILS</a>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Budget:
-                                    <fmt:formatNumber
-                                            type="currency"
-                                            currencySymbol="zł"
-                                            minFractionDigits="2"
-                                            maxFractionDigits="2"
-                                            value="${hospital.budget}"
-                                    />
-                                </p>
+                        </c:forEach>
+                        <div class="card ml-1 mr-1 mt-2 border float-right" style="width: 275px; height: 250px">
+                            <div class="card-body text-center pt-5">
+                                <a href="/hospitals/new?investorId=${user.id}&demo=true&backToPage=/users/details/5"><img src="/resources/img/icons/plus-001.png" width="128" alt="ADD NEW HOSPITAL"/></a>
                             </div>
-                            <div class="card-footer">
-                                <a href="/hospitals/details/${hospital.id}">DETAILS</a>
-                            </div>
-                        </div>
-                    </c:forEach>
-                    <div class="card ml-1 mr-1 border" style="max-width: 275px">
-                        <div class="card-body text-center pt-5">
-                            <a href="/hospitals/new?investorId=${user.id}&demo=true&backToPage=/users/details/5"><img src="/resources/img/icons/plus-001.png" width="128" alt="ADD NEW HOSPITAL"/></a>
                         </div>
                     </div>
                 </div>

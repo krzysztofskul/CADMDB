@@ -36,7 +36,7 @@ public class User {
     @ManyToOne
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "investor", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "investor")
     private List<Hospital> hospitalListAsInvestor = new ArrayList<>();
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.PERSIST)
