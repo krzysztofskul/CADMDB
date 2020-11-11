@@ -57,9 +57,14 @@
 #0.6.4-SNAPSHOT
     - create demo mode
     - hospital status class/enum
+    . hospital edit page to rebuild
+        - fix validation process for hospital edit page; back to page when has errors problem ...
 
 
 /** TODO / DONE **/
+
+#0.6.4-SNAPSHOT
+    + hospital edit page rebuilt
 
 #0.6.4-SNAPSHOT
     + creates Investor.class/Repo/Service

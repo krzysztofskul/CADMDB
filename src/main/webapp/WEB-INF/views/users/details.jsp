@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         </c:forEach>
-                        <div class="card ml-1 mr-1 mt-2 border float-right" style="width: 275px; height: 250px">
+                        <div class="card ml-1 mr-1 mt-5 border" style="width: 275px; height: 250px">
                             <div class="card-body text-center pt-5">
                                 <a href="/hospitals/new?investorId=${user.id}&demo=true&backToPage=/users/details/5"><img src="/resources/img/icons/plus-001.png" width="128" alt="ADD NEW HOSPITAL"/></a>
                             </div>

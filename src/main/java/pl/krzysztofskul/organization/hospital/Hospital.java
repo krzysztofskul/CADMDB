@@ -51,7 +51,7 @@ public class Hospital extends Organization {
     @ManyToOne
     private User investor;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private User manager;
 
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.PERSIST)

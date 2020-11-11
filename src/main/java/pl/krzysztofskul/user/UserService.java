@@ -40,6 +40,14 @@ public class UserService {
         return userRepo.findAll();
     }
 
+    public List<User> loadAllWithHospitalManagingList() {
+        List<User> userList = userRepo.findAll();
+        for (User user : userList) {
+            Hibernate.initialize(user.getHospitalManagingList());
+        }
+        return userList;
+    }
+
     public List<User> loadAllWithUserCategoryList() {
         List<User> userList = this.loadAll();
         for (User user : userList) {

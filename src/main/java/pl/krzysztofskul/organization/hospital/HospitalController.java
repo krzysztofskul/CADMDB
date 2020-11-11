@@ -1,5 +1,6 @@
 package pl.krzysztofskul.organization.hospital;
 
+import com.sun.org.glassfish.gmbal.ParameterNames;
 import com.thedeanda.lorem.LoremIpsum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Controller
@@ -36,8 +38,9 @@ public class HospitalController {
 
     @ModelAttribute("allUserList")
     public List<User> getAllUnemployedUserList() {
-        List<User> userList = userService.loadAll();
+        List<User> userList = userService.loadAllWithHospitalManagingList();
         userList.removeIf(user -> user.getHospital() != null);
+        userList.removeIf(user -> user.getHospitalManagingList().size() > 0);
         return userList;
     }
 
@@ -84,11 +87,22 @@ public class HospitalController {
     public String newHospital(
             @ModelAttribute("hospital") @Valid Hospital hospital, BindingResult bindingResult,
             @RequestParam(name = "content", required = false) String content,
-            @RequestParam(name = "backToPage", required = false) String backToPage
+            @RequestParam(name = "backToPage", required = false) String backToPage,
+            @RequestParam Map<String, String> allParams
     ) {
 
+        Map<String, String> allParamsCheck = allParams;
+
         if (bindingResult.hasErrors()) {
-            return "hospitals/new";
+            if (backToPage.contains("/hospitals/details")) {
+                return "hospitals/details/"+hospital.getId()+"?content=info&edit=true&editUsers=true";
+            }
+            if (content.contains("info")) {
+                return "hospitals/details/"+hospital.getId()+"?content=info&edit=true";
+            }
+
+            return "hospitals/details/"+hospital.getId();
+            //return "hospitals/new";
         }
 
         if (hospital.getInvestor() != null) {
