@@ -16,7 +16,7 @@
 
     <jsp:include page="../header.jsp"/>
 
-    <form:form modelAttribute="hospital" method="post" action="/hospitals/new">
+    <form:form modelAttribute="hospital" method="post" action="/hospitals/details/">
         <div class="container">
 
             <%-- CHECK THE USER'S CATEGORY --%>
@@ -54,10 +54,21 @@
                                 <c:when test="${param.containsKey('edit')}">
                                     <form:hidden path="id"/>
                                     <h4><form:input path="name"/></h4>
+                                    <c:forEach items="${validationErrors}" var="validationError">
+                                        <c:if test="${validationError.field eq 'name'}">
+                                            <p class="text-danger font-italic">${validationError.defaultMessage}</p>
+                                        </c:if>
+                                    </c:forEach>
                                     <p class="text-danger font-italic"><form:errors path="name"/></p>
                                     <h6><form:input path="country" cssClass="w-25"/>, <form:input path="postalCode" cssClass="w-25"/> <form:input path="city" cssClass="w-25"/></h6>
-                                    <p class="text-danger font-italic"><form:errors path="country"/></p>
-                                    <p class="text-danger font-italic"><form:errors path="city"/></p>
+                                    <c:forEach items="${validationErrors}" var="validationError">
+                                        <c:if test="${validationError.field eq 'country'}">
+                                            <p class="text-danger font-italic">${validationError.defaultMessage}</p>
+                                        </c:if>
+                                        <c:if test="${validationError.field eq 'city'}">
+                                            <p class="text-danger font-italic">${validationError.defaultMessage}</p>
+                                        </c:if>
+                                    </c:forEach>
                                     <h6><form:input path="street"/> street, No. <form:input path="streetNo" cssClass="w-25"/></h6>
                                     <h6><span class="d-inline-block" style="width: 50px">&#9742;: </span><form:input path="phone"/></h6>
                                     <h6><span class="d-inline-block" style="width: 50px">@: </span><form:input path="email"/></h6>
@@ -148,6 +159,11 @@
                                     <c:when test="${param.containsKey('edit')}">
                                         <form:input path="area" cssClass="w-75"/> <span>m<sup>2</sup></span>
                                         <p class="text-danger font-italic"><form:errors path="area"/></p>
+                                        <c:forEach items="${validationErrors}" var="validationError">
+                                            <c:if test="${validationError.field eq 'area'}">
+                                                <p class="text-danger font-italic">${validationError.defaultMessage}</p>
+                                            </c:if>
+                                        </c:forEach>
                                     </c:when>
                                     <c:otherwise>
                                         ${hospital.area} <span>m<sup>2</sup></span>

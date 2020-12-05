@@ -22,6 +22,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import pl.krzysztofskul.numberConverters.BigDecimalConverter;
+import pl.krzysztofskul.numberConverters.FloatConverter;
 import pl.krzysztofskul.organization.hospital.HospitalConverter;
 import pl.krzysztofskul.organization.hospital.department.DepartmentConverter;
 import pl.krzysztofskul.organization.hospital.department.room.RoomConverter;
@@ -135,6 +136,10 @@ public class AppConfig implements WebMvcConfigurer {
         return new UserConverter();
     }
 
+    @Bean
+    public FloatConverter getFloatConverter() {
+        return new FloatConverter();
+    }
 
     @Override
     public void addFormatters(FormatterRegistry formatterRegistry) {
@@ -144,6 +149,7 @@ public class AppConfig implements WebMvcConfigurer {
         formatterRegistry.addConverter(getDepartmentConverter());
         formatterRegistry.addConverter(getHospitalConverter());
         formatterRegistry.addConverter(getUserConverter());
+        formatterRegistry.addConverter(getFloatConverter());
     }
 
     @Override

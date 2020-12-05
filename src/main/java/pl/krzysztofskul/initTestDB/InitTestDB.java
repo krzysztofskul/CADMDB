@@ -343,7 +343,8 @@ public class InitTestDB {
             hospital.setStreetNo(random.nextInt(200)+1);
             hospital.setName(loremIpsum.getTitle(1, 2) + " Hospital");
             hospital.setRemarks(loremIpsum.getParagraphs(1, 1));
-            hospital.setArea(new Random().nextInt(1000)+1000);
+//            hospital.setArea(new Random().nextInt(1000)+1000);
+            hospital.setArea(Float.parseFloat(String.valueOf(new Random().nextInt(1000)+1000)));
             hospital.setBudget(BigDecimal.valueOf(new Random().nextFloat()*100000000).add(BigDecimal.valueOf(+100000000f)));
             hospitalList.add(hospital);
         }

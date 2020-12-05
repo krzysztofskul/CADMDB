@@ -23,17 +23,17 @@ public class Hospital extends Organization {
     @NotBlank(message = "The hospital name cannot be blank!")
     private String name;
 
-    @NotBlank(message = "Country cannot be empty!")
+    @NotBlank(message = "Country cannot be blank!")
     private String country;
 
-    @NotBlank(message = "City cannot be empty!")
+    @NotBlank(message = "City cannot be blank!")
     private String city;
 
     private String postalCode;
 
     private String street;
 
-    private int streetNo;
+    private Integer streetNo;
 
     private String www;
 
@@ -41,9 +41,9 @@ public class Hospital extends Organization {
 
     private String phone;
 
-    //@NotBlank(message = "The area of the hospital cannot be empty! You can change it later, but it is needed to declare the value!")
+    @NotNull(message = "The area of the hospital cannot be null! You can change it later, but it is needed to declare the value!")
     @DecimalMin(value = "100.00", message = "The area of the hospital cannot be less than 100 m2!")
-    private float area;
+    private Float area;
 
     @OneToMany(mappedBy = "hospital", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Department> departmentList = new ArrayList<>();
@@ -114,11 +114,11 @@ public class Hospital extends Organization {
         this.street = street;
     }
 
-    public int getStreetNo() {
+    public Integer getStreetNo() {
         return streetNo;
     }
 
-    public void setStreetNo(int streetNo) {
+    public void setStreetNo(Integer streetNo) {
         this.streetNo = streetNo;
     }
 
@@ -146,11 +146,11 @@ public class Hospital extends Organization {
         this.phone = phone;
     }
 
-    public float getArea() {
+    public Float getArea() {
         return area;
     }
 
-    public void setArea(float area) {
+    public void setArea(Float area) {
         this.area = area;
     }
 

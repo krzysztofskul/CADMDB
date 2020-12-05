@@ -54,14 +54,21 @@
             - add room
     - add users role/category when set manager to hospital/department/room
 
-#0.6.4-SNAPSHOT
+#0.6.X-SNAPSHOT
     - create demo mode
     - hospital status class/enum
-    . hospital edit page to rebuild
-        - fix validation process for hospital edit page; back to page when has errors problem ...
-
+    . hospital edit page to rebuild ...
+        . reset errors when edited second time
+        . error info at front-end when area is null
+        - set manager func. ...
+        - add users employees func. ...
 
 /** TODO / DONE **/
+
+#0.6.4-SNAPSHOT
+    + hospital edit page to rebuilt
+        + reset errors when edited second time
+        + error info at front-end when area is null
 
 #0.6.4-SNAPSHOT
     + hospital edit page rebuilt

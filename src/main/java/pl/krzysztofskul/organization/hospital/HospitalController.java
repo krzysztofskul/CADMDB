@@ -1,16 +1,22 @@
 package pl.krzysztofskul.organization.hospital;
 
+import com.mysql.fabric.Response;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 import com.thedeanda.lorem.LoremIpsum;
+import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.xml.ws.ResponseWrapper;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -88,6 +94,7 @@ public class HospitalController {
             @ModelAttribute("hospital") @Valid Hospital hospital, BindingResult bindingResult,
             @RequestParam(name = "content", required = false) String content,
             @RequestParam(name = "backToPage", required = false) String backToPage,
+            Model model,
             @RequestParam Map<String, String> allParams
     ) {
 
@@ -95,14 +102,15 @@ public class HospitalController {
 
         if (bindingResult.hasErrors()) {
             if (backToPage.contains("/hospitals/details")) {
+                model.addAttribute("hospital", hospital);
+                //return "hospitals/details";
                 return "hospitals/details/"+hospital.getId()+"?content=info&edit=true&editUsers=true";
-            }
-            if (content.contains("info")) {
-                return "hospitals/details/"+hospital.getId()+"?content=info&edit=true";
+            } else if (null != content && content.contains("info")) {
+                return "hospitals/details";
+            } else {
+                return "hospitals/new";
             }
 
-            return "hospitals/details/"+hospital.getId();
-            //return "hospitals/new";
         }
 
         if (hospital.getInvestor() != null) {
@@ -160,7 +168,10 @@ public class HospitalController {
     @GetMapping("/details/{id}")
     public String details(
             @PathVariable Long id,
-            Model model
+            Model model,
+            @RequestParam(name = "content", required = false) String content,
+            @RequestParam(name = "edit", required = false) boolean edit,
+            @RequestParam(name = "editUsers", required = false) boolean editUsers
     ) {
         Hospital hospital = hospitalService.loadByIdWithUsersWithDepartmentsItsRoomsAndItsProducts(id);
         if (hospital != null) {
@@ -169,6 +180,33 @@ public class HospitalController {
         } else {
             return "redirect:/errorPage?comment=no-hospital-found";
         }
+    }
+
+    @PostMapping("/details")
+    public String newHospital(
+            @ModelAttribute("hospital") @Valid Hospital hospital, BindingResult bindingResult,
+            @RequestParam(name = "content", required = false) String content,
+            @RequestParam(name = "backToPage", required = false) String backToPage,
+            Model model,
+            HttpSession httpSession
+    ) {
+
+        if (bindingResult.hasErrors()) {
+            if (backToPage.contains("/hospitals/details")) {
+                model.addAttribute("hospital", hospital);
+                //http://localhost:8080
+                List<ObjectError> validationErrors = bindingResult.getAllErrors();
+                httpSession.setAttribute("validationErrors", validationErrors);
+                return "redirect:/hospitals/details/"+hospital.getId()+"?content=info&edit=true&editUsers=true";
+            }
+
+        }
+        httpSession.setAttribute("validationErrors", null);
+        hospitalService.save(hospital);
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
+        return "redirect:/users/details/"+hospital.getId();
     }
 
     @GetMapping("/delete/{id}")
