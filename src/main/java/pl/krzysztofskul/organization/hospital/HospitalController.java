@@ -1,9 +1,6 @@
 package pl.krzysztofskul.organization.hospital;
 
-import com.mysql.fabric.Response;
-import com.sun.org.glassfish.gmbal.ParameterNames;
 import com.thedeanda.lorem.LoremIpsum;
-import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,11 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
-
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.xml.ws.ResponseWrapper;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -221,5 +215,36 @@ public class HospitalController {
         hospitalService.delete(hospital);
         return "redirect:/hospitals/all";
     }
+
+    @GetMapping("/{hospitalId}/setManager")
+    public String setManager(
+            @PathVariable("hospitalId") Long hospitalId,
+            @RequestParam(name = "userId", required = false) Long userId,
+            Model model
+    ) {
+
+        if (null == userId) {
+            model.addAttribute("hospital", hospitalService.loadById(hospitalId));
+            model.addAttribute("users", userService.loadAll());
+            return "hospitals/set-manager";
+        } else {
+            Hospital hospital = hospitalService.loadById(hospitalId);
+            hospital.setManager(userService.loadById(userId));
+            hospitalService.save(hospital);
+            return "redirect:/hospitals/details/" + hospitalId;
+        }
+    }
+
+    @GetMapping("/{hospitalId}/dismissManager")
+    public String dismissManager(
+          @PathVariable("hospitalId") Long hospitalId
+    ) {
+            Hospital hospital = hospitalService.loadById(hospitalId);
+            hospital.setManager(null);
+            hospitalService.save(hospital);
+
+            return "redirect:/hospitals/details/"+hospitalId;
+    }
+
 
 }

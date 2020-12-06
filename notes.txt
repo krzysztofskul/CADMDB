@@ -54,16 +54,21 @@
             - add room
     - add users role/category when set manager to hospital/department/room
 
-#0.6.X-SNAPSHOT
+#0.6.X
     - create demo mode
     - hospital status class/enum
-    . hospital edit page to rebuild ...
-        . reset errors when edited second time
-        . error info at front-end when area is null
-        - set manager func. ...
-        - add users employees func. ...
+    . hospital edit page to rebuild
+        - add users employees functionality ...
+        - add users designers functionality
 
 /** TODO / DONE **/
+
+#0.6.4-FINAL
+    . hospital edit page rebuilt:
+        + error fixed: investor id lost when save edited hospital
+        + set manager functionality
+        + change manager functionality
+        + dismiss manager functionality
 
 #0.6.4-SNAPSHOT
     + hospital edit page to rebuilt

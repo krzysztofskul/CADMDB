@@ -53,6 +53,7 @@
                             <c:choose>
                                 <c:when test="${param.containsKey('edit')}">
                                     <form:hidden path="id"/>
+                                    <form:hidden path="investor.id"/>
                                     <h4><form:input path="name"/></h4>
                                     <c:forEach items="${validationErrors}" var="validationError">
                                         <c:if test="${validationError.field eq 'name'}">
@@ -252,191 +253,192 @@
                     </div>
                 </div>
                 </c:if>
-                    <%-- MAIN CONTENT --%>
-                    <div id="mainContent" class="container">
-                        <!-- SUB-PAGES -->
-                        <%--<c:choose>--%>
 
-                            <%-- INFO / EDIT PAGE--%>
-                            <c:if test="${param.containsKey('content') && param.get('content').toString() eq 'info' || !param.containsKey('content')}">
-                                <%-- EDIT PAGE --%>
-                                <c:if test="${param.containsKey('edit')}">
-    <%--                                <form:hidden path="id"/>--%>
-    <%--                                <form:hidden path="name"/>--%>
-    <%--                                <form:hidden path="budget"/>--%>
-    <%--                                <form:hidden path="country"/>--%>
-    <%--                                <form:hidden path="postalCode"/>--%>
-    <%--                                <form:hidden path="city"/>--%>
-    <%--                                <form:hidden path="street"/>--%>
-    <%--                                <form:hidden path="streetNo"/>--%>
-    <%--                                <form:hidden path="phone"/>--%>
-    <%--                                <form:hidden path="www"/>--%>
-    <%--                                <form:hidden path="email"/>--%>
-                                    <c:forEach items="${hospital.departmentList}" var="department">
-                                        <form:hidden path="departmentList" value="${department.id}" checked="checked"/>
-                                    </c:forEach>
-                                    <input type="hidden" name="backToPage" value="/hospitals/details/${hospital.id}?content=info">
-                                    <div class="row mt-2">
-                                        <div class="col-sm-12">
-                                            <a href="/hospitals/details/${hospital.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
-                                                CANCEL
-                                            </a>
-                                            <form:button class="btn btn-outline-success float-right d-inline-block">
-                                                SAVE
-                                            </form:button>
-                                        </div>
-                                    </div>
-                                </c:if>
-                            <%-- INFO PAGE --%>
-                            <div class="generalInfo">
-                                <%-- MANAGER ROW --%>
-                                <div class="row pb-2">
-                                    <div class="col-sm-12 p-0">
-                                        <div class="myTitleSmall small m-0 pl-1">MANAGER:</div>
-                                        <div class="row mt-2 mb-2 h5 border-0">
-                                            <c:if test="${hospital.manager eq null}">
-                                                <div class="col-8">NO MANAGER</div>
-                                                <div class="col-4">
-                                                    <a href="#" class="text-success">&#10010; SET MANAGER</a>
-                                                </div>
-                                            </c:if>
-                                            <c:if test="${hospital.manager ne null}">
-                                                <div class="col-8">${hospital.manager.nameFirst} ${hospital.manager.nameLast}</div>
-                                                <div class="col-2">
-                                                    <a href="#" class="text-primary">&#8646; CHANGE MANAGER</a>
-                                                </div>
-                                                <div class="col-2">
-                                                    <a href="#" class="text-danger">&#10006;; DISMISS MANAGER</a>
-                                                </div>
-                                            </c:if>
-                                        </div>
+                <%-- MAIN CONTENT --%>
+                <div id="mainContent" class="container">
+                    <!-- SUB-PAGES -->
+                    <%--<c:choose>--%>
+
+                        <%-- INFO / EDIT PAGE--%>
+                        <c:if test="${param.containsKey('content') && param.get('content').toString() eq 'info' || !param.containsKey('content')}">
+                            <%-- EDIT PAGE --%>
+                            <c:if test="${param.containsKey('edit')}">
+<%--                                <form:hidden path="id"/>--%>
+<%--                                <form:hidden path="name"/>--%>
+<%--                                <form:hidden path="budget"/>--%>
+<%--                                <form:hidden path="country"/>--%>
+<%--                                <form:hidden path="postalCode"/>--%>
+<%--                                <form:hidden path="city"/>--%>
+<%--                                <form:hidden path="street"/>--%>
+<%--                                <form:hidden path="streetNo"/>--%>
+<%--                                <form:hidden path="phone"/>--%>
+<%--                                <form:hidden path="www"/>--%>
+<%--                                <form:hidden path="email"/>--%>
+                                <c:forEach items="${hospital.departmentList}" var="department">
+                                    <form:hidden path="departmentList" value="${department.id}" checked="checked"/>
+                                </c:forEach>
+                                <input type="hidden" name="backToPage" value="/hospitals/details/${hospital.id}?content=info">
+                                <div class="row mt-2">
+                                    <div class="col-sm-12">
+                                        <a href="/hospitals/details/${hospital.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
+                                            CANCEL
+                                        </a>
+                                        <form:button class="btn btn-outline-success float-right d-inline-block">
+                                            SAVE
+                                        </form:button>
                                     </div>
                                 </div>
-                                    <%-- USERS ROW --%>
-                                <div class="row border-bottom pb-2">
-                                    <div class="col-sm-12 p-0">
-                                        <div class="myTitleSmall small m-0 pl-1">USERS / EMPLOYEES:</div>
-                                        <div class="row mt-2 mb-2 h5 border-0">
-                                            <c:if test="${hospital.userList eq null || hospital.userList.size() == 0}">
-                                                <div class="col-8">NO USERS / EMPLOYEES</div>
-                                                <div class="col-4">
-                                                    <a href="#" class="text-success">&#10010; ADD USERS / EMPLOYEES</a>
-                                                </div>
-                                            </c:if>
-                                            <c:if test="${hospital.userList ne null &&  hospital.userList.size() != 0}">
-                                                <div class="col-8">${hospital.userList.size()} users / employees</div>
-                                                <div class="col-4">
-                                                    <a href="#" class="text-primary">&#8646; EDIT USERS / EMPLOYEES</a>
-                                                </div>
-                                            </c:if>
-                                        </div>
+                            </c:if>
+                        <%-- INFO PAGE --%>
+                        <div class="generalInfo">
+                            <%-- MANAGER ROW --%>
+                            <div class="row pb-2">
+                                <div class="col-sm-12 p-0">
+                                    <div class="myTitleSmall small m-0 pl-1">MANAGER:</div>
+                                    <div class="row mt-2 mb-2 h5 border-0">
+                                        <c:if test="${hospital.manager eq null}">
+                                            <div class="col-8">NO MANAGER</div>
+                                            <div class="col-4">
+                                                <a href="/hospitals/${hospital.id}/setManager" class="text-success">&#10010; SET MANAGER</a>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${hospital.manager ne null}">
+                                            <div class="col-8">${hospital.manager.nameFirst} ${hospital.manager.nameLast}</div>
+                                            <div class="col-2">
+                                                <a href="/hospitals/${hospital.id}/setManager" class="text-primary">&#8646; CHANGE MANAGER</a>
+                                            </div>
+                                            <div class="col-2">
+                                                <a href="/hospitals/${hospital.id}/dismissManager" class="text-danger">&#10006; DISMISS MANAGER</a>
+                                            </div>
+                                        </c:if>
                                     </div>
                                 </div>
+                            </div>
+                                <%-- USERS ROW --%>
+                            <div class="row border-bottom pb-2">
+                                <div class="col-sm-12 p-0">
+                                    <div class="myTitleSmall small m-0 pl-1">USERS / EMPLOYEES:</div>
+                                    <div class="row mt-2 mb-2 h5 border-0">
+                                        <c:if test="${hospital.userList eq null || hospital.userList.size() == 0}">
+                                            <div class="col-8">NO USERS / EMPLOYEES</div>
+                                            <div class="col-4">
+                                                <a href="#" class="text-success">&#10010; ADD USERS / EMPLOYEES</a>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${hospital.userList ne null &&  hospital.userList.size() != 0}">
+                                            <div class="col-8">${hospital.userList.size()} users / employees</div>
+                                            <div class="col-4">
+                                                <a href="#" class="text-primary">&#8646; EDIT USERS / EMPLOYEES</a>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+                    </c:if>
+
+                        <%-- ANALYSIS PAGE --%>
+                        <c:if test="${param.get('content') ne null && param.get('content').toString() eq 'analysis'}">
+
+                            <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfDepartments / (hospital.budget+costOfDepartments) * 100}"/>
+                            <c:choose>
+                                <c:when test="${ratioCostOfProductsToHospitalBudget > 100}">
+                                    <c:set var="progressBarHospital" value="bg-danger"/>
+                                </c:when>
+                                <c:when test="${ratioCostOfProductsToHospitalBudget.toString() eq '100.00'}">
+                                    <c:set var="progressBarHospital" value="bg-warning border border-danger"/>
+                                </c:when>
+                                <c:when test="${ratioCostOfProductsToHospitalBudget < 100 && ratioCostOfProductsToHospitalBudget > 75}">
+                                    <c:set var="progressBarHospital" value="bg-warning"/>
+                                </c:when>
+                                <c:when test="${ratioCostOfProductsToHospitalBudget < 75}">
+                                    <c:set var="progressBarHospital" value="bg-success"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="progressBarHospital" value="bg-info"/>
+                                </c:otherwise>
+                            </c:choose>
+
+                            <div class="m-5">
+                                <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS HOSPITAL / HOSPITAL INITIAL BUDGET [%]</div>
+                                <div class="progress ml-5 mr-5" style="height: 50px">
+                                    <div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfDepartments / (hospital.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
+                                    </div>
+                                </div>
                             </div>
                         </c:if>
 
-                            <%-- ANALYSIS PAGE --%>
-                            <c:if test="${param.get('content') ne null && param.get('content').toString() eq 'analysis'}">
-
-                                <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfDepartments / (hospital.budget+costOfDepartments) * 100}"/>
-                                <c:choose>
-                                    <c:when test="${ratioCostOfProductsToHospitalBudget > 100}">
-                                        <c:set var="progressBarHospital" value="bg-danger"/>
-                                    </c:when>
-                                    <c:when test="${ratioCostOfProductsToHospitalBudget.toString() eq '100.00'}">
-                                        <c:set var="progressBarHospital" value="bg-warning border border-danger"/>
-                                    </c:when>
-                                    <c:when test="${ratioCostOfProductsToHospitalBudget < 100 && ratioCostOfProductsToHospitalBudget > 75}">
-                                        <c:set var="progressBarHospital" value="bg-warning"/>
-                                    </c:when>
-                                    <c:when test="${ratioCostOfProductsToHospitalBudget < 75}">
-                                        <c:set var="progressBarHospital" value="bg-success"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:set var="progressBarHospital" value="bg-info"/>
-                                    </c:otherwise>
-                                </c:choose>
-
-                                <div class="m-5">
-                                    <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS HOSPITAL / HOSPITAL INITIAL BUDGET [%]</div>
-                                    <div class="progress ml-5 mr-5" style="height: 50px">
-                                        <div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfDepartments / (hospital.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                            <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
-                                        </div>
+                        <%-- DEPARTMENTS PAGE --%>
+                        <c:if test="${param.containsKey('content') && param.get('content').toString() eq 'departmentList'}">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        LIST OF DEPARTMENTS INSIDE THE HOSPITAL
                                     </div>
                                 </div>
-                            </c:if>
-
-                            <%-- DEPARTMENTS PAGE --%>
-                            <c:if test="${param.containsKey('content') && param.get('content').toString() eq 'departmentList'}">
+                            </div>
+                            <c:forEach items="${hospital.departmentList}" var="department">
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col text-center">
-                                            LIST OF DEPARTMENTS INSIDE THE HOSPITAL
+                                        <div class="row border-top pt-3">
+                                        <a href="/departments/details/${department.id}" class="col-sm-2">
+                                                ${department.name}
+                                        </a>
+                                        <a href="/departments/details/${department.id}" class="col-sm-4">
+                                                ${department.departmentCategory.name}
+                                        </a>
+                                        <div class="col-sm-4">
+                                                ${department.name}
                                         </div>
+                                        <div class="col-sm-2 text-right">
+                                            <c:set var="costOfDepartment" value="${0}"/>
+                                            <c:forEach items="${department.roomList}" var="room">
+                                                <c:forEach items="${room.productList}" var="product">
+                                                    <c:set var="costOfDepartment" value="${costOfDepartment + product.price}"/>
+                                                </c:forEach>
+                                            </c:forEach>
+                                            <fmt:formatNumber
+                                                    type="currency"
+                                                    maxIntegerDigits="12"
+                                                    minIntegerDigits="1"
+                                                    maxFractionDigits="2"
+                                                    minFractionDigits="2"
+                                                    currencySymbol="zł"
+                                                    value="${costOfDepartment}"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-sm-8"></div>
+                                        <div class="col-sm-1"><%--DEPARTMENTS INFO --%>
+                                            <svg class="bi bi-info-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                                <circle cx="8" cy="4.5" r="1"/>
+                                            </svg>
+                                        </div>
+                                        <div href="#/rooms/changeProduct?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE ROOM FROM THE SAME CATEGORY --%>
+                                            <svg class="bi bi-arrow-left-right" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+                                                <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+                                                <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                            </svg>
+                                        </div>
+                                        <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospital.id}" class="col-sm-1"><%--DEL ROOM --%>
+                                            <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                                                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
-                                <c:forEach items="${hospital.departmentList}" var="department">
-                                    <div class="card-body">
-                                            <div class="row border-top pt-3">
-                                            <a href="/departments/details/${department.id}" class="col-sm-2">
-                                                    ${department.name}
-                                            </a>
-                                            <a href="/departments/details/${department.id}" class="col-sm-4">
-                                                    ${department.departmentCategory.name}
-                                            </a>
-                                            <div class="col-sm-4">
-                                                    ${department.name}
-                                            </div>
-                                            <div class="col-sm-2 text-right">
-                                                <c:set var="costOfDepartment" value="${0}"/>
-                                                <c:forEach items="${department.roomList}" var="room">
-                                                    <c:forEach items="${room.productList}" var="product">
-                                                        <c:set var="costOfDepartment" value="${costOfDepartment + product.price}"/>
-                                                    </c:forEach>
-                                                </c:forEach>
-                                                <fmt:formatNumber
-                                                        type="currency"
-                                                        maxIntegerDigits="12"
-                                                        minIntegerDigits="1"
-                                                        maxFractionDigits="2"
-                                                        minFractionDigits="2"
-                                                        currencySymbol="zł"
-                                                        value="${costOfDepartment}"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="row mt-3">
-                                            <div class="col-sm-8"></div>
-                                            <div class="col-sm-1"><%--DEPARTMENTS INFO --%>
-                                                <svg class="bi bi-info-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                                    <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
-                                                    <circle cx="8" cy="4.5" r="1"/>
-                                                </svg>
-                                            </div>
-                                            <div href="#/rooms/changeProduct?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE ROOM FROM THE SAME CATEGORY --%>
-                                                <svg class="bi bi-arrow-left-right" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-                                                    <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-                                                    <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                                                </svg>
-                                            </div>
-                                            <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospital.id}" class="col-sm-1"><%--DEL ROOM --%>
-                                                <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                                    <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
-                                                    <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </c:if>
+                            </c:forEach>
+                        </c:if>
 
-                            <%--</c:choose>--%>
-                    </div>
+                        <%--</c:choose>--%>
+                </div>
 
                 <%-- FOOTER --%>
                 <div class="card-footer">
