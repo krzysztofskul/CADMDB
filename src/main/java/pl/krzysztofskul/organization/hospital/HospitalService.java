@@ -45,7 +45,7 @@ public class HospitalService {
 
         for (Hospital hospital : hospitals) {
             Hibernate.initialize(hospital.getDepartmentList());
-            Hibernate.initialize(hospital.getUserList());
+            Hibernate.initialize(hospital.getEmployeeList());
             for (Department department : hospital.getDepartmentList()) {
                 Hibernate.initialize(department.getRoomList());
                 for (Room room : department.getRoomList()) {
@@ -61,11 +61,17 @@ public class HospitalService {
         return hospitalRepo.findById(id).get();
     }
 
+    public Hospital loadByIdWithUsers(Long hospitalId) {
+        Hospital hospital = hospitalRepo.findById(hospitalId).get();
+        Hibernate.initialize(hospital.getEmployeeList());
+        return hospital;
+    }
+
     public Hospital loadByIdWithUsersWithDepartmentsItsRoomsAndItsProducts(Long id) {
         List<Hospital> hospitalList = loadAllHospitalsWithDepartments();
         for (Hospital hospital : hospitalList) {
             if (hospital.getId().equals(id)) {
-                Hibernate.initialize(hospital.getUserList());
+                Hibernate.initialize(hospital.getEmployeeList());
                 return hospital;
             }
         }
@@ -86,9 +92,9 @@ public class HospitalService {
     /** CRUD delete */
 
     public void delete(Hospital hospital) {
-        Hibernate.initialize(hospital.getUserList());
-        if (hospital.getUserList() != null) {
-            for (User user : hospital.getUserList()) {
+        Hibernate.initialize(hospital.getEmployeeList());
+        if (hospital.getEmployeeList() != null) {
+            for (User user : hospital.getEmployeeList()) {
                 user.setHospital(null);
                 userService.save(user);
             }

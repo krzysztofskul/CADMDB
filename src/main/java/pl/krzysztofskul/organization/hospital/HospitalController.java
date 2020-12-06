@@ -116,7 +116,7 @@ public class HospitalController {
 
         for (User user : userService.loadAll()) {
             if (user.getHospital() != null && user.getHospital().getId().equals(hospital.getId())) {
-                for (User userInHospital : hospital.getUserList()) {
+                for (User userInHospital : hospital.getEmployeeList()) {
                     if (user.getId().equals(userInHospital.getId())) {
                         break;
                     }
@@ -125,14 +125,14 @@ public class HospitalController {
                 }
             }
         }
-        if (hospital.getUserList() != null && hospital.getUserList().size() > 0) {
-            for (User user : hospital.getUserList()) {
+        if (hospital.getEmployeeList() != null && hospital.getEmployeeList().size() > 0) {
+            for (User user : hospital.getEmployeeList()) {
                 user.setHospital(hospital);
                 userService.save(user);
             }
         }
 
-        if (hospital.getUserList() == null || 0 == hospital.getUserList().size()){
+        if (hospital.getEmployeeList() == null || 0 == hospital.getEmployeeList().size()){
             for (User user : userService.loadAll()) {
                 if (user.getHospital() != null) {
                     if (user.getHospital().getId().equals(hospital.getId())) {
@@ -209,7 +209,7 @@ public class HospitalController {
     ) {
         Hospital hospital = hospitalService.loadByIdWithUsersWithDepartmentsItsRoomsAndItsProducts(id);
 
-        for (User user : hospital.getUserList()) {
+        for (User user : hospital.getEmployeeList()) {
             user.setHospital(null);
         }
         hospitalService.delete(hospital);
@@ -246,5 +246,37 @@ public class HospitalController {
             return "redirect:/hospitals/details/"+hospitalId;
     }
 
+    @GetMapping("/{hospitalId}/addEmployee")
+    public String addUser(
+            @PathVariable("hospitalId") Long hospitalId,
+            @RequestParam(name = "userId", required = false) Long userId,
+            Model model
+    ) {
+        Hospital hospital = hospitalService.loadByIdWithUsers(hospitalId);
+        if (null != userId) {
+            //hospital.addUser(userService.loadById(userId));
+            //hospitalService.save(hospital);
+            User user = userService.loadById(userId);
+            user.setHospital(hospitalService.loadById(hospitalId));
+            userService.save(user);
+        } else {
+            model.addAttribute("hospital", hospital);
+            model.addAttribute("users", userService.loadAllUnemployed());
+            return "hospitals/add-employee";
+        }
+        return "redirect:/hospitals/details/"+hospitalId;
+
+    }
+
+    @GetMapping("/{hospitalId}/dismissEmployee")
+    public String dismissEmployee(
+            @PathVariable("hospitalId") Long hospitalId,
+            @RequestParam("userId") Long userId
+    ) {
+        User user = userService.loadById(userId);
+        user.setHospital(null);
+        userService.save(user);
+        return "redirect:/hospitals/details/"+hospitalId;
+    }
 
 }

@@ -55,7 +55,7 @@ public class Hospital extends Organization {
     private User manager;
 
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.PERSIST)
-    private List<User> userList = new ArrayList<>();
+    private List<User> employeeList = new ArrayList<>();
 
     @Column(length = 2048)
     private String remarks;
@@ -181,12 +181,12 @@ public class Hospital extends Organization {
         this.manager = manager;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<User> getEmployeeList() {
+        return employeeList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setEmployeeList(List<User> userList) {
+        this.employeeList = userList;
         for (User user : userList) {
             user.setHospital(this);
         }
@@ -204,7 +204,7 @@ public class Hospital extends Organization {
      * ADDITIONAL METHODS
      */
 
-    public void addDepratment(Department department) {
+    public void addDepartment(Department department) {
         this.departmentList.add(department);
         department.setHospital(this);
     }
@@ -215,17 +215,19 @@ public class Hospital extends Organization {
     }
 
     public void addUser(User user) {
-        this.userList.add(user);
-        for (User u : this.userList) {
-            u.setHospital(this);
-        }
+        this.employeeList.add(user);
+        user.setHospital(this);
+//        for (User u : this.employeeList) {
+//            u.setHospital(this);
+//        }
     }
 
     public void removeUser(User user) {
-        this.userList.remove(user);
-        for (User u : this.userList) {
-            u.setHospital(null);
-        }
+        this.employeeList.remove(user);
+        user.setHospital(null);
+//        for (User u : this.employeeList) {
+//            u.setHospital(null);
+//        }
     }
 
 }

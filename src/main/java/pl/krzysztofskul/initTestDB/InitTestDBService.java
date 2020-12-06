@@ -211,7 +211,7 @@ public class InitTestDBService {
         }
 
         Hospital hospitalToAddEmployees = hospitalService.loadById(Long.parseLong("1"));
-        hospitalToAddEmployees.setUserList(hospitalEmployeeList);
+        hospitalToAddEmployees.setEmployeeList(hospitalEmployeeList);
         hospitalService.save(hospitalToAddEmployees);
 
     }

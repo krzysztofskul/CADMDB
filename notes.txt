@@ -54,14 +54,18 @@
             - add room
     - add users role/category when set manager to hospital/department/room
 
-#0.6.X
+#0.6.5-SNAPSHOT
     - create demo mode
     - hospital status class/enum
     . hospital edit page to rebuild
-        - add users employees functionality ...
+        . add and dismiss user/employee functionality
         - add users designers functionality
 
 /** TODO / DONE **/
+
+#0.6.5-SNAPSHOT-1
+    . hospital edit page rebuilt:
+        + add and dismiss user/employee functionality
 
 #0.6.4-FINAL
     . hospital edit page rebuilt:
