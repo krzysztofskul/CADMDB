@@ -27,7 +27,7 @@
 </head>
 <body>
 
-    <div class="container border-bottom mb-5">
+    <div class="container-fluid border-bottom mb-5">
         <div class="row">
             <div class="col-12 text-center">
                 <img src="/resources/img/logo_001.png"/>

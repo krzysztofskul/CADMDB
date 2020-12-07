@@ -16,7 +16,7 @@
 
         <jsp:include page="menuLogIn.jsp"/>
 
-        <nav class="nav border-top">
+        <nav class="nav">
             <a class="nav-link active" href="/">HOME</a>
             <c:choose>
                 <c:when test="${sessionScope.initDB eq null}">
@@ -27,6 +27,7 @@
                 </c:otherwise>
             </c:choose>
             <a class="nav-link ${status}" href="/initTestDB">INIT. TEST DB</a>
+            <a class="nav-link active" href="/investors/all">INVESTORS</a>
             <a class="nav-link active" href="/hospitals/all">HOSPITALS</a>
             <a class="nav-link active" href="/manufacturers/all">MANUFACTURERS</a>
             <a class="nav-link active" href="/products/all">PRODUCTS</a>

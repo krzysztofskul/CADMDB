@@ -1,10 +1,9 @@
 package pl.krzysztofskul.organization.investor;
 
-import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.organization.companyAddress.CompanyAddress;
 import pl.krzysztofskul.organization.companyAddress.CompanyAddressDemoGenerator;
 import pl.krzysztofskul.organization.companyType.CompanyType;
-import pl.krzysztofskul.organization.companyType.CompanyTypeService;
+import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
@@ -31,8 +30,11 @@ public class Investor {
     @PrimaryKeyJoinColumn
     private CompanyAddress companyAddress = CompanyAddressDemoGenerator.getCompanyAddressDemo();
 
-    //@OneToMany
-    //private List<User> employeeList = new ArrayList<>();
+//    @OneToMany(mappedBy = "investmentCompany")
+//    private List<User> employeeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "investmentCompany")
+    private List<Hospital> hospitalList = new ArrayList<>();
 
     /**
      * constr.
@@ -77,5 +79,46 @@ public class Investor {
         this.companyAddress = companyAddress;
     }
 
+//    public List<User> getEmployeeList() {
+//        return employeeList;
+//    }
+//
+//    public void setEmployeeList(List<User> employeeList) {
+//        this.employeeList = employeeList;
+//    }
+//
 
+    public List<Hospital> getHospitalList() {
+        return hospitalList;
+    }
+
+    public void setHospitalList(List<Hospital> hospitalList) {
+        this.hospitalList = hospitalList;
+    }
+
+
+    /**
+     * additional methods
+     */
+
+//    public void addEmployee(User employee) {
+//        this.employeeList.add(employee);
+//        employee.setInvestmentCompany(this);
+//    }
+//
+//    public void removeEmployee(User employee) {
+//        this.employeeList.remove(employee);
+//        employee.setInvestmentCompany(this);
+//    }
+    
+    public void addHospital(Hospital hospital) {
+        this.hospitalList.add(hospital);
+        hospital.setInvestmentCompany(this);
+    }
+
+    public void removeHospital(Hospital hospital) {
+        this.hospitalList.remove(hospital);
+        hospital.setInvestmentCompany(this);
+    }
+    
 }

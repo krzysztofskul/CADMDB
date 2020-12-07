@@ -22,9 +22,9 @@
 
 </body>
 
-    <div class="container-sm">
+    <jsp:include page="../header.jsp"/>
 
-        <jsp:include page="../header.jsp"/>
+    <div class="container-sm">
 
         <div class="content-main">
 
@@ -43,6 +43,12 @@
                                         <a href="/hospitals/details/${hospital.id}">${hospital.name}</a>
                                 </h5></div>
                                 <div class="card-title"><small class="font-italic">${hospital.remarks}</small></div>
+                                <div class="card-subtitle">
+                                    <span>Hospital's investor (company name):</span>
+                                    <a href="#">
+                                            ${hospital.investmentCompany.name}
+                                    </a>
+                                </div>
                                 <div class="card-subtitle">
                                     <span>Hospital manager:</span>
                                     <a href="/users/details/${hospital.manager.id}">
@@ -291,8 +297,8 @@
 
         </div>
 
-        <jsp:include page="../footer.jsp"/>
-
     </div>
+
+    <jsp:include page="../footer.jsp"/>
 
 </html>

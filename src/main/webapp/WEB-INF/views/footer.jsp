@@ -12,13 +12,15 @@
 </head>
 <body>
 
-    <div class="container border-top text-right mt-5 font-italic">
-        <h6>Krzysztof Kuliński 2020</h6>
-        <div>
-            Icons made by <a href="" title="phatplus">phatplus</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-        </div>
-        <div>
-            Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+    <div class="container-fluid border-top text-right mt-5 font-italic pt-1">
+        <div class="container">
+            <h6>Krzysztof Kuliński 2020</h6>
+            <div>
+                Icons made by <a href="" title="phatplus">phatplus</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+            </div>
+            <div>
+                Icons made by <a href="https://www.flaticon.com/authors/vectors-market" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+            </div>
         </div>
     </div>
 

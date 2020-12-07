@@ -3,11 +3,16 @@ package pl.krzysztofskul.initTestDB;
 import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.organization.OrganizationType;
+import pl.krzysztofskul.organization.companyAddress.CompanyAddress;
+import pl.krzysztofskul.organization.companyAddress.CompanyAddressDemoGenerator;
+import pl.krzysztofskul.organization.companyType.CompanyType;
 import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategory;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
+import pl.krzysztofskul.organization.investor.Investor;
+import pl.krzysztofskul.organization.investor.InvestorDemoGenerator;
 import pl.krzysztofskul.product.InstallationType;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.productCategory.ProductCategory;
@@ -326,6 +331,22 @@ public class InitTestDB {
         }
 
         return userList;
+    }
+
+    public List<Investor> createAndGetInitTestInvestors() {
+
+        List<Investor> initTestInvestors = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            Investor investor = new Investor();
+            investor.setName(LoremIpsum.getInstance().getTitle(1)+" Investments");
+            CompanyAddress companyAddress = CompanyAddressDemoGenerator.getCompanyAddressDemo();
+            investor.setCompanyAddress(companyAddress);
+
+            initTestInvestors.add(investor);
+        }
+
+        return initTestInvestors;
     }
 
     public List<Hospital> createAndGetInitTestHospitals() {

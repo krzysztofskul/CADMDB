@@ -25,6 +25,8 @@ public class InitTestDBController {
             initTestDBService.saveInitTestUsersCategory();
             initTestDBService.saveInitTestUsers();
 
+            initTestDBService.saveInitTestInvestors();
+
             initTestDBService.saveInitTestDepartmentCategoryList();
             initTestDBService.saveInitTestRoomCategoryList();
             initTestDBService.createProductCategories();
@@ -32,7 +34,7 @@ public class InitTestDBController {
             initTestDBService.saveInitTestManufacturers();
             initTestDBService.saveInitTestProductsForTestManufacturers();
 
-            initTestDBService.saveInitTestHospitalsWithDepartmentsAndRooms();
+            initTestDBService.saveInitTestHospitalsWithDepartmentsAndRoomsAndInvestors();
             //initTestDBService.addTestProductsToTestRooms();
             initTestDBService.addAndSaveInitTestProductsToRooms();
 

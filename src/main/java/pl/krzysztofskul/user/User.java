@@ -5,6 +5,7 @@ import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
+import pl.krzysztofskul.organization.investor.Investor;
 import pl.krzysztofskul.user.userCategory.UserCategory;
 
 import javax.persistence.*;
@@ -38,6 +39,9 @@ public class User {
 
     @OneToMany(mappedBy = "investor")
     private List<Hospital> hospitalListAsInvestor = new ArrayList<>();
+
+//    @ManyToOne
+//    private Investor investmentCompany;
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.PERSIST)
     private List<Hospital> hospitalManagingList = new ArrayList<>();
@@ -115,6 +119,14 @@ public class User {
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
     }
+
+//    public Investor getInvestmentCompany() {
+//        return investmentCompany;
+//    }
+//
+//    public void setInvestmentCompany(Investor investmentCompany) {
+//        this.investmentCompany = investmentCompany;
+//    }
 
     public List<Hospital> getHospitalListAsInvestor() {
         return hospitalListAsInvestor;

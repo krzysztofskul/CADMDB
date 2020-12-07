@@ -2,6 +2,7 @@ package pl.krzysztofskul.organization.hospital;
 
 import pl.krzysztofskul.organization.Organization;
 import pl.krzysztofskul.organization.hospital.department.Department;
+import pl.krzysztofskul.organization.investor.Investor;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
@@ -50,6 +51,9 @@ public class Hospital extends Organization {
 
     @ManyToOne
     private User investor;
+
+    @ManyToOne
+    private Investor investmentCompany;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User manager;
@@ -171,6 +175,14 @@ public class Hospital extends Organization {
 
     public void setInvestor(User investor) {
         this.investor = investor;
+    }
+
+    public Investor getInvestmentCompany() {
+        return investmentCompany;
+    }
+
+    public void setInvestmentCompany(Investor investmentCompany) {
+        this.investmentCompany = investmentCompany;
     }
 
     public User getManager() {

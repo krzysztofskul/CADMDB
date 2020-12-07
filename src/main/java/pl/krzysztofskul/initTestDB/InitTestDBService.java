@@ -16,6 +16,8 @@ import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.RoomService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
+import pl.krzysztofskul.organization.investor.Investor;
+import pl.krzysztofskul.organization.investor.InvestorService;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.ProductService;
 import pl.krzysztofskul.product.productCategory.ProductCategory;
@@ -37,6 +39,7 @@ public class InitTestDBService {
     private CompanyTypeService companyTypeService;
     private UserCategoryService userCategoryService;
     private UserService userService;
+    private InvestorService investorService;
     private ManufacturerService manufacturerService;
     private ProductCategoryService productCategoryService;
     private ProductService productService;
@@ -51,7 +54,7 @@ public class InitTestDBService {
             CompanyTypeService companyTypeService,
             UserCategoryService userCategoryService,
             UserService userService,
-            ManufacturerService manufacturerService,
+            InvestorService investorService, ManufacturerService manufacturerService,
             ProductCategoryService productCategoryService,
             ProductService productService,
             RoomCategoryService roomCategoryService,
@@ -63,6 +66,7 @@ public class InitTestDBService {
         this.companyTypeService = companyTypeService;
         this.userCategoryService = userCategoryService;
         this.userService = userService;
+        this.investorService = investorService;
         this.manufacturerService = manufacturerService;
         this.productCategoryService = productCategoryService;
         this.productService = productService;
@@ -86,6 +90,12 @@ public class InitTestDBService {
     public void saveInitTestUsers() {
         for (User user : InitTestDB.getInitTestDBInstance().createAndGetInitTestUsers(userCategoryService.loadAll())) {
             userService.save(user);
+        }
+    }
+
+    public void saveInitTestInvestors() {
+        for (Investor investor : InitTestDB.getInitTestDBInstance().createAndGetInitTestInvestors()) {
+            investorService.save(investor);
         }
     }
 
@@ -131,7 +141,8 @@ public class InitTestDBService {
         }
     }
 
-    public void saveInitTestHospitalsWithDepartmentsAndRooms() {
+    public void saveInitTestHospitalsWithDepartmentsAndRoomsAndInvestors() {
+        int investorsAmount = investorService.loadAll().size();
         for (Hospital hospital : InitTestDB.getInitTestDBInstance().createAndGetInitTestHospitals()) {
             addAndSaveInitTestDepartmentsToHospital(
                 InitTestDB.getInitTestDBInstance().createAndGetInitTestDepartmentList(
@@ -139,6 +150,8 @@ public class InitTestDBService {
                 ),
                 hospital
             );
+            Investor investorToSet = investorService.loadById((long) new Random().nextInt(investorsAmount)+1);
+            hospital.setInvestmentCompany(investorToSet);
             for (Department department : hospital.getDepartmentList()) {
                 addAndSaveInitTestRoomsToDepartment(
                     InitTestDB.getInitTestDBInstance().createAndGetInitTestRoomList(

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<section class="container border-top border-bottom pt-1 pb-1 text-right">
+<section class="container pt-1 pb-1 text-right">
 
     <c:choose>
         <c:when test="${sessionScope.userLoggedIn eq null}">
