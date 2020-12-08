@@ -153,7 +153,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-sm-2 p-0 border-right">
-                        <div class="myTitleSmall small m-0 pl-1">AREA:</div>
+                        <div class="myTitleSmall small m-0 pl-1">AREA PLANNED:</div>
                         <div class="mt-2 mb-2 h5 text-center">
                             <c:choose>
                                 <c:when test="${param.containsKey('edit')}">
@@ -172,7 +172,25 @@
                         </div>
                     </div>
                     <div class="col-sm-3 p-0 border-right">
-                        <div class="myTitleSmall small m-0 pl-1">INITIAL BUDGET:</div>
+                        <div class="myTitleSmall small m-0 pl-1 ml-1">AREA USED BY DEPARTMENTS:</div>
+                        <div class="mt-2 mb-2 h5 text-center">
+                            <c:set var="areaOfDepartments" value="${0}"/>
+                            <c:forEach items="${hospital.departmentList}" var="department">
+                                <c:set var="areaOfDepartments" value="${areaOfDepartments+department.area}"/>
+                            </c:forEach>
+                            <c:set var="areaUsedTextColor" value="text-dark"/>
+                            <c:choose>
+                                <c:when test="${areaOfDepartments > hospital.area}">
+                                    <c:set var="areaUsedTextColor" value="text-danger"/>
+                                </c:when>
+                            </c:choose>
+                            <span class="${areaUsedTextColor}">${areaOfDepartments} <span>m<sup>2</sup></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-2 border-top">
+                    <div class="col-sm-3 p-0 border-right">
+                        <div class="myTitleSmall small m-0 pl-1">INITIAL BUDGET FOR MEDICAL EQUIPMENT:</div>
                         <div class="mt-2 mb-2 h5 text-center">
                             <c:choose>
                                 <c:when test="${param.containsKey('edit')}">
@@ -190,6 +208,36 @@
                                     />
                                 </c:otherwise>
                             </c:choose>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 p-0 border-right">
+                        <div class="myTitleSmall small m-0 pl-1">COST OF MEDICAL EQUIPMENT:</div>
+                        <div class="mt-2 mb-2 h5 text-center">
+                            <c:set var="hospitalCostOfProducts" value="${0}"/>
+                            <c:forEach items="${hospital.departmentList}" var="department">
+                                <c:forEach items="${department.roomList}" var="room">
+                                    <c:forEach items="${room.productList}" var="product">
+                                        <c:set var="hospitalCostOfProducts" value="${hospitalCostOfProducts + product.price}"/>
+                                    </c:forEach>
+                                </c:forEach>
+                            </c:forEach>
+                            <c:set var="hospitalActualBudgetColor" value="text-dark"/>
+                            <c:choose>
+                                <c:when test="${hospital.budget < hospitalCostOfProducts}">
+                                    <c:set var="hospitalActualBudgetColor" value="text-danger"/>
+                                </c:when>
+                            </c:choose>
+                            <span class="${hospitalActualBudgetColor}">
+                                <fmt:formatNumber
+                                        type="currency"
+                                        maxIntegerDigits="12"
+                                        minIntegerDigits="1"
+                                        maxFractionDigits="2"
+                                        minFractionDigits="2"
+                                        currencySymbol="zł"
+                                        value="${hospital.budget - hospitalCostOfProducts}"
+                                />
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -404,32 +452,29 @@
                     </div>
                     <c:forEach items="${hospital.departmentList}" var="department">
                         <div class="card-body">
-                                <div class="row border-top pt-3">
-                                <a href="/departments/details/${department.id}" class="col-sm-2">
-                                        ${department.name}
+                            <div class="row border-top pt-3">
+                                <a href="/departments/details/${department.id}" class="col-sm-7">
+                                    <h5>${department.departmentCategory.name}</h5>
                                 </a>
-                                <a href="/departments/details/${department.id}" class="col-sm-4">
-                                        ${department.departmentCategory.name}
-                                </a>
-                                <div class="col-sm-4">
-                                        ${department.name}
-                                </div>
-                                <div class="col-sm-2 text-right">
+                                <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>
+                                <div class="col-sm-3 text-right border border-left-0">
                                     <c:set var="costOfDepartment" value="${0}"/>
                                     <c:forEach items="${department.roomList}" var="room">
                                         <c:forEach items="${room.productList}" var="product">
                                             <c:set var="costOfDepartment" value="${costOfDepartment + product.price}"/>
                                         </c:forEach>
                                     </c:forEach>
-                                    <fmt:formatNumber
-                                            type="currency"
-                                            maxIntegerDigits="12"
-                                            minIntegerDigits="1"
-                                            maxFractionDigits="2"
-                                            minFractionDigits="2"
-                                            currencySymbol="zł"
-                                            value="${costOfDepartment}"
-                                    />
+                                    <h5>
+                                        <fmt:formatNumber
+                                                type="currency"
+                                                maxIntegerDigits="12"
+                                                minIntegerDigits="1"
+                                                maxFractionDigits="2"
+                                                minFractionDigits="2"
+                                                currencySymbol="zł"
+                                                value="${costOfDepartment}"
+                                        />
+                                    </h5>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -448,7 +493,7 @@
                                         <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                     </svg>
                                 </div>
-                                <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospital.id}" class="col-sm-1"><%--DEL ROOM --%>
+                                <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospital.id}" class="col-sm-1 text-danger"><%--DEL ROOM --%>
                                     <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                         <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>

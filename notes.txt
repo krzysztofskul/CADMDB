@@ -64,6 +64,12 @@
 
 /** TODO / DONE **/
 
+#0.6.5-SNAPSHOT-4
+    + front-end updates
+        + area planned / area used calculation and information
+        + hospital initial / actual budget calculation and information
+    + back-end updates in init database values for areas and budgets
+
 #0.6.5-SNAPSHOT-3
     + front-end updates
     + relationship between User (employee) and Investor (company) created

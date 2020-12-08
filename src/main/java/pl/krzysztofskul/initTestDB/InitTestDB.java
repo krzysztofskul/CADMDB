@@ -366,7 +366,7 @@ public class InitTestDB {
             hospital.setRemarks(loremIpsum.getParagraphs(1, 1));
 //            hospital.setArea(new Random().nextInt(1000)+1000);
             hospital.setArea(Float.parseFloat(String.valueOf(new Random().nextInt(1000)+1000)));
-            hospital.setBudget(BigDecimal.valueOf(new Random().nextFloat()*100000000).add(BigDecimal.valueOf(+100000000f)));
+            hospital.setBudget(BigDecimal.valueOf(new Random().nextFloat()*10000000).add(BigDecimal.valueOf(+10000000f)));
             hospitalList.add(hospital);
         }
 
@@ -393,7 +393,7 @@ public class InitTestDB {
             department.setName(departmentCategory.getName());
             department.setRemarks(LoremIpsum.getInstance().getParagraphs(1, 1));
             department.setArea(new Random().nextInt(100)+100);
-            department.setBudget(BigDecimal.valueOf(new Random().nextFloat()*10000000).add(BigDecimal.valueOf(10000000f)));
+            department.setBudget(BigDecimal.valueOf(new Random().nextFloat()*1000000).add(BigDecimal.valueOf(1000000f)));
             departmentList.add(department);
         }
 
@@ -434,7 +434,7 @@ public class InitTestDB {
             room.setRemarks(LoremIpsum.getInstance().getParagraphs(1, 1));
             room.setArea(random.nextInt(10)+15);
             room.setHeight(3.5f);
-            room.setBudget(BigDecimal.valueOf(random.nextFloat()*1000000).add(BigDecimal.valueOf(1000000f)));
+            room.setBudget(BigDecimal.valueOf(random.nextFloat()*500000).add(BigDecimal.valueOf(250000f)));
             room.setTemperature(20.0f + random.nextFloat()*0.5f);
             room.setAirConditioning(random.nextBoolean());
             room.setAirChanges(random.nextFloat()*10);

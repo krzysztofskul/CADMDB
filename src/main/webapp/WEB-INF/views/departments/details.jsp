@@ -37,7 +37,7 @@
                         <%--${department.number}--%>
                     </div>
                     <div class="col-sm-6 mt-auto mb-auto">
-                        ${department.departmentCategory.name} ${department.name}
+                        <h3>${department.departmentCategory.name}</h3>
                     </div>
                     <%-- MENU --%>
                     <div class="col-sm-2">
@@ -248,8 +248,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-2 p-0">
-                                        <div class="myTitleSmall small m-0 pl-1">AREA:</div>
+                                    <div class="col-sm-3 p-0">
+                                        <div class="myTitleSmall small m-0 pl-1">AREA PLANNED:</div>
                                         <div class="mt-2 mb-2 h5 text-center">
                                             <c:choose>
                                                 <c:when test="${param.containsKey('edit')}">
@@ -259,6 +259,22 @@
                                                     ${department.area} <span>m<sup>2</sup></span>
                                                 </c:otherwise>
                                             </c:choose>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 p-0">
+                                        <div class="myTitleSmall small m-0 pl-1">AREA USED BY ROOMS:</div>
+                                        <div class="mt-2 mb-2 h5 text-center">
+                                            <c:set var="areaOfRooms" value="${0}"/>
+                                            <c:forEach items="${department.roomList}" var="room">
+                                                <c:set var="areaOfRooms" value="${areaOfRooms+room.area}"/>
+                                            </c:forEach>
+                                            <c:set var="areaUsedTextColor" value="text-dark"/>
+                                            <c:choose>
+                                                <c:when test="${areaOfRooms > department.area}">
+                                                    <c:set var="areaUsedTextColor" value="text-danger"/>
+                                                </c:when>
+                                            </c:choose>
+                                            <span class="${areaUsedTextColor}">${areaOfRooms} <span>m<sup>2</sup></span></span>
                                         </div>
                                     </div>
                                 </div>
@@ -290,15 +306,15 @@
                             <c:forEach items="${department.roomList}" var="room">
                                 <div class="card-body">
                                         <div class="row border-top pt-3">
-                                        <a href="/rooms/details/${room.id}" class="col-sm-2">
+                                        <%--<a href="/rooms/details/${room.id}" class="col-sm-2">
                                                 ${room.number}
-                                        </a>
-                                        <a href="/rooms/details/${room.id}" class="col-sm-4">
+                                        </a>--%>
+                                        <a href="/rooms/details/${room.id}" class="col-sm-10">
                                                 ${room.roomCategory.name}
                                         </a>
-                                        <div class="col-sm-4">
+                                        <%--<div class="col-sm-4">
                                                 ${room.name}
-                                        </div>
+                                        </div>--%>
                                         <div class="col-sm-2 text-right">
                                             <c:set var="costOfRoom" value="${0}"/>
                                             <c:forEach items="${room.productList}" var="product">
