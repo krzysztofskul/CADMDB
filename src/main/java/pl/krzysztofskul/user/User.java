@@ -40,8 +40,8 @@ public class User {
     @OneToMany(mappedBy = "investor")
     private List<Hospital> hospitalListAsInvestor = new ArrayList<>();
 
-//    @ManyToOne
-//    private Investor investmentCompany;
+    @ManyToOne
+    private Investor investmentCompany;
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.PERSIST)
     private List<Hospital> hospitalManagingList = new ArrayList<>();
@@ -120,13 +120,13 @@ public class User {
         this.hospital = hospital;
     }
 
-//    public Investor getInvestmentCompany() {
-//        return investmentCompany;
-//    }
-//
-//    public void setInvestmentCompany(Investor investmentCompany) {
-//        this.investmentCompany = investmentCompany;
-//    }
+    public Investor getInvestmentCompany() {
+        return investmentCompany;
+    }
+
+    public void setInvestmentCompany(Investor investmentCompany) {
+        this.investmentCompany = investmentCompany;
+    }
 
     public List<Hospital> getHospitalListAsInvestor() {
         return hospitalListAsInvestor;

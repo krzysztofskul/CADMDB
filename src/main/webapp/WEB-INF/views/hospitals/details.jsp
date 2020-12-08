@@ -51,6 +51,8 @@
                             <c:when test="${param.containsKey('edit')}">
                                 <form:hidden path="id"/>
                                 <form:hidden path="investor.id"/>
+                                <form:hidden path="investmentCompany.id"/>
+                                <form:hidden path="manager.id"/>
                                 <h4><form:input path="name"/></h4>
                                 <c:forEach items="${validationErrors}" var="validationError">
                                     <c:if test="${validationError.field eq 'name'}">
@@ -277,6 +279,20 @@
 
                     <%-- INFO PAGE --%>
                     <div class="generalInfo">
+                        <%-- INVESTOR ROW --%>
+                        <div class="row pb-2">
+                            <div class="col-sm-12 p-0">
+                                <div class="myTitleSmall small m-0 pl-1">INVESTOR:</div>
+                                <div class="row mt-2 mb-2 h5 border-0">
+                                    <div class="col-sm-8">
+                                        ${hospital.investmentCompany.name}
+                                    </div>
+                                    <div>
+                                        <a href="/investors/details/${hospital.investmentCompany.id}" class="text-primary">DETAILS</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <%-- MANAGER ROW --%>
                         <div class="row pb-2">
                             <div class="col-sm-12 p-0">

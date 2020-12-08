@@ -30,8 +30,8 @@ public class Investor {
     @PrimaryKeyJoinColumn
     private CompanyAddress companyAddress = CompanyAddressDemoGenerator.getCompanyAddressDemo();
 
-//    @OneToMany(mappedBy = "investmentCompany")
-//    private List<User> employeeList = new ArrayList<>();
+    @OneToMany(mappedBy = "investmentCompany")
+    private List<User> employeeList = new ArrayList<>();
 
     @OneToMany(mappedBy = "investmentCompany")
     private List<Hospital> hospitalList = new ArrayList<>();
@@ -79,14 +79,13 @@ public class Investor {
         this.companyAddress = companyAddress;
     }
 
-//    public List<User> getEmployeeList() {
-//        return employeeList;
-//    }
-//
-//    public void setEmployeeList(List<User> employeeList) {
-//        this.employeeList = employeeList;
-//    }
-//
+    public List<User> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<User> employeeList) {
+        this.employeeList = employeeList;
+    }
 
     public List<Hospital> getHospitalList() {
         return hospitalList;
@@ -101,15 +100,15 @@ public class Investor {
      * additional methods
      */
 
-//    public void addEmployee(User employee) {
-//        this.employeeList.add(employee);
-//        employee.setInvestmentCompany(this);
-//    }
-//
-//    public void removeEmployee(User employee) {
-//        this.employeeList.remove(employee);
-//        employee.setInvestmentCompany(this);
-//    }
+    public void addEmployee(User employee) {
+        this.employeeList.add(employee);
+        employee.setInvestmentCompany(this);
+    }
+
+    public void removeEmployee(User employee) {
+        this.employeeList.remove(employee);
+        employee.setInvestmentCompany(this);
+    }
     
     public void addHospital(Hospital hospital) {
         this.hospitalList.add(hospital);

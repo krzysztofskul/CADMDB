@@ -229,6 +229,21 @@ public class InitTestDBService {
 
     }
 
+    public void addAndSaveUsersToInvestors() {
+        List<User> userList = userService.loadAll();
+        List<Investor> investorList = investorService.loadAll();
+
+        for (User user : userList) {
+            for (UserCategory userCategory : user.getUserCategoryList()) {
+                if (userCategory.getUserCategoryEnum().equals(UserCategoryEnum.INVESTOR_GUEST) || userCategory.getUserCategoryEnum().equals(UserCategoryEnum.INVESTOR)) {
+                    user.setInvestmentCompany(investorService.loadById(Long.parseLong(String.valueOf(new Random().nextInt(investorList.size())+1))));
+                }
+            }
+            userService.save(user);
+        }
+
+    }
+
     public void createProductCategories() {
         ProductCategory productCategory;
 

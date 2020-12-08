@@ -26,6 +26,7 @@ public class InitTestDBController {
             initTestDBService.saveInitTestUsers();
 
             initTestDBService.saveInitTestInvestors();
+            initTestDBService.addAndSaveUsersToInvestors();
 
             initTestDBService.saveInitTestDepartmentCategoryList();
             initTestDBService.saveInitTestRoomCategoryList();

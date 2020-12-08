@@ -24,24 +24,36 @@
         </div>
 
         <div class="text-center w-75 p-5 m-auto">
-        <c:forEach items="${investorsAll}" var="inverstor">
+        <c:forEach items="${investorsAll}" var="investor">
             <div class="card d-inline-block m-1" style="width: 300px; height: 250px">
                 <div class="card-header">
-                    <h5>${inverstor.name} ${inverstor.companyType}</h5>
+                    <h5>${investor.name} ${investor.companyType}</h5>
                 </div>
-                <div class="card-body text-left">
-                    <h5>${inverstor.companyAddress.country}</h5>
+                <div class="card-body p-3 text-left">
+                    <h5>${investor.companyAddress.country}</h5>
                     <p>
-                        ${inverstor.companyAddress.postalCode} ${inverstor.companyAddress.city}<br>
-                        ${inverstor.companyAddress.street}<span class="font-italic"> No.</span> ${inverstor.companyAddress.streetNo}
+                        ${investor.companyAddress.postalCode} ${investor.companyAddress.city}<br>
+                        ${investor.companyAddress.street}<span class="font-italic"> No.</span> ${investor.companyAddress.streetNo}
                     </p>
-                    <hr>
-                    <c:forEach items="${inverstor.hospitalList}" var="hospital">
-                        <p style="font-size: xx-small" class="p-0 m-0">${hospital.name}</p>
-                    </c:forEach>
+                    <%-- TEST --%>
+                    <div class="row m-0 p-0 text-center" style="font-size: xx-small">
+                        <div class="col-sm-6 p-0 m-0">
+                            <span>Hospital investments: ${investor.hospitalList.size()}</span>
+                            <%--<c:forEach items="${investor.hospitalList}" var="hospital">
+                                <p style="font-size: xx-small" class="p-0 m-0">${hospital.name}</p>
+                            </c:forEach>--%>
+                        </div>
+                        <div class="col-sm-6 p-0 m-0">
+                            <span>Employees: ${investor.employeeList.size()}</span>
+                            <%--<c:forEach items="${investor.employeeList}" var="employee">
+                                <p style="font-size: xx-small" class="p-0 m-0">${employee.nameFirst} ${employee.nameLast}</p>
+                            </c:forEach>--%>
+                        </div>
+                    </div>
+                    <%-- END TEST --%>
                 </div>
                 <div class="card-footer text-right">
-                    <a href="#" class="disabled">DETAILS</a>
+                    <a href="/investors/details/${investor.id}" class="disabled">DETAILS</a>
                 </div>
             </div>
         </c:forEach>

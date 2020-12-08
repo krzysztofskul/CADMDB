@@ -58,15 +58,15 @@
     - hospital status class/enum
     . hospital edit page to rebuild
         . add and dismiss user/employee functionality
-        - add users designers functionality ...
-    - add users role/category when set manager to hospital/department/room ...
-    . Investor (investment company) class updates ...
-        - add employees to investor companies
-        . add hospitals to investor companies ...
-            . test/demo init class update
-            - for user functionality ...
+        - add users designers functionality
+    - add users role/category when set manager to hospital/department/room
+    - add employee to investor (company) functionality
 
 /** TODO / DONE **/
+
+#0.6.5-SNAPSHOT-3
+    + front-end updates
+    + relationship between User (employee) and Investor (company) created
 
 #0.6.5-SNAPSHOT-2
     + Investor (investment company) class updates
@@ -74,7 +74,6 @@
     + relationship between Hospital and Investor (company) created
         + init test/demo class updated
     + other front-end updates
-
 
 #0.6.5-SNAPSHOT-1
     . hospital edit page rebuilt:

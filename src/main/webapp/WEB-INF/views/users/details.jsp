@@ -41,10 +41,31 @@
             <c:forEach items="${user.userCategoryList}" var="userCategory">
 
             <c:if test="${userLoggedInCategory.code eq 'INVESTOR (GUEST)' && userLoggedInCategory.code eq userCategory.code}">
+                <%-- INVESTMENT COMPANY WHERE USER IS HIRED (USER'S EMPLOYER) --%>
+                <div class="row">
+                    <div class="col-12">
+                        <h5>MY INVESTMENT COMPANY:</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card" style="width: 200px; height: 200px">
+                            <div class="card-header">${user.investmentCompany.name}</div>
+                            <div class="card-body" style="font-size: x-small">
+                                ${user.investmentCompany.companyAddress.country} <br>
+                                ${user.investmentCompany.companyAddress.postalCode} ${user.investmentCompany.companyAddress.city}
+                                ${user.investmentCompany.companyAddress.street} ${user.investmentCompany.companyAddress.streetNo}
+                            </div>
+                            <div class="card-footer"><a href="/investors/details/${user.investmentCompany.id}">DETAILS</a></div>
+
+                        </div>
+                    </div>
+                </div>
+                <hr>
                 <%-- HOSPITALS WHERE USER IS AN INVESTOR (USER'S INVESTMENTS) --%>
                 <div class="row">
                     <div class="col-12">
-                        <h5>MY INVESTMENTS:</h5>
+                        <h5>MY HOSPITAL INVESTMENTS:</h5>
                     </div>
                 </div>
                 <div class="row">
