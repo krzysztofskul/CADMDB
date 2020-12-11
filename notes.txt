@@ -64,6 +64,9 @@
 
 /** TODO / DONE **/
 
+#0.6.5-SNAPSHOT-5
+    + front-end updates
+
 #0.6.5-SNAPSHOT-4
     + front-end updates
         + area planned / area used calculation and information

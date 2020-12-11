@@ -14,7 +14,7 @@
 
     <jsp:include page="../header.jsp"/>
 
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="card">
 

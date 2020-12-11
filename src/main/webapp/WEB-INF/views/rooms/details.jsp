@@ -30,11 +30,13 @@
             <%-- HEADER 1 --%>
             <div class="card-header">
                 <div class="row">
-                    <div class="col-sm-2 border-right text-center mt-auto mb-auto h4">
-                        ${room.number}
+                    <div class="col-sm-2 border-right text-center mt-auto mb-auto">
+                        <div class="myTitleSmall">ROOM NUMBER</div>
+                        <h3>${room.number}</h3>
                     </div>
                     <div class="col-sm-6 mt-auto mb-auto">
-                        ${room.roomCategory.name} ${room.name}
+                        <div class="myTitleSmall">ROOM CATEGORY NAME</div>
+                        <h3>${room.roomCategory.name}</h3>
                     </div>
                     <%-- MENU --%>
                     <div class="col-sm-2">
@@ -106,30 +108,53 @@
                 <div>
                     <div class="col-sm-12 text-right mt-auto mb-auto">
                         <c:set var="costOfProducts" value="${0}"/>
+                        <c:set var="weightOfProducts" value="${0}"/>
+                        <c:set var="powerConnectionNeededOfProducts" value="${0}"/>
                         <c:forEach items="${room.productList}" var="product">
                             <c:set var="costOfProducts" value="${costOfProducts + product.price}"/>
+                            <c:set var="weightOfProducts" value="${weightOfProducts + product.weight}"/>
+                            <c:set var="powerConnectionNeededOfProducts" value="${powerConnectionNeededOfProducts + product.powerConnectionNeeded}"/>
                         </c:forEach>
-                        <span>ROOM INITIAL BUDGET:</span>
-                        <fmt:formatNumber
-                                type="currency"
-                                maxIntegerDigits="12"
-                                minIntegerDigits="1"
-                                maxFractionDigits="2"
-                                minFractionDigits="2"
-                                currencySymbol="zł"
-                                value="${room.budget+costOfProducts}"
-                        />
-                        <br>
-                        <span>ROOM ACTUAL BUDGET:</span>
-                        <fmt:formatNumber
-                                type="currency"
-                                maxIntegerDigits="12"
-                                minIntegerDigits="1"
-                                maxFractionDigits="2"
-                                minFractionDigits="2"
-                                currencySymbol="zł"
-                                value="${room.budget}"
-                        />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <span>ROOM INITIAL BUDGET:</span>
+                                <fmt:formatNumber
+                                        type="currency"
+                                        maxIntegerDigits="12"
+                                        minIntegerDigits="1"
+                                        maxFractionDigits="2"
+                                        minFractionDigits="2"
+                                        currencySymbol="zł"
+                                        value="${room.budget+costOfProducts}"
+                                />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <span>COST OF PRODUCTS:</span>
+                                <fmt:formatNumber
+                                        type="currency"
+                                        maxIntegerDigits="12"
+                                        minIntegerDigits="1"
+                                        maxFractionDigits="2"
+                                        minFractionDigits="2"
+                                        currencySymbol="zł"
+                                        value="${costOfProducts}"
+                                />
+                            </div>
+                            <div class="col-sm-4">
+                                <span>ROOM ACTUAL BUDGET:</span>
+                                <fmt:formatNumber
+                                        type="currency"
+                                        maxIntegerDigits="12"
+                                        minIntegerDigits="1"
+                                        maxFractionDigits="2"
+                                        minFractionDigits="2"
+                                        currencySymbol="zł"
+                                        value="${room.budget}"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -416,7 +441,7 @@
                             </div>
                         </div>
                     </c:when>
-                    <c:otherwise>
+                    <c:otherwise> <%-- info page --%>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col text-center">
@@ -426,20 +451,53 @@
                         </div>
                         <c:forEach items="${room.productList}" var="product">
                             <div class="card-body">
-                                <div class="row border-top pt-3">
+                                <div class="row h4 border-top border-bottom bg-light">
                                     <div class="col-sm-2">
                                         ${product.productCategory.code}
                                     </div>
-                                    <div class="col-sm-4">
-                                        ${product.productCategory.namePlural}
+                                    <div class="col-sm-10">
+                                        ${product.productCategory.nameSingular}
                                     </div>
-                                    <div class="col-sm-2">
-                                        ${product.manufacturer.name}
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="myTitleSmall">MANUFACTURER</div>
+                                        <h4>${product.manufacturer.name}</h4>
                                     </div>
-                                    <div class="col-sm-2">
-                                        ${product.modelName}
+                                    <div class="col-sm-6">
+                                        <div class="myTitleSmall">MODEL</div>
+                                        <h4>${product.modelName}</h4>
                                     </div>
-                                    <div class="col-sm-2 text-right">
+                                    <div class="col-sm-3 text-center">
+                                        <div class="myTitleSmall">ACTIONS</div>
+                                        <div>
+                                            <a href="#" class="col-sm-1 disabled"> <%--PRODUCT INFO --%>
+                                                <svg class="bi bi-info-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                    <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                                    <circle cx="8" cy="4.5" r="1"/>
+                                                </svg>
+                                            </a>
+                                            <a href="/rooms/changeProduct?roomId=${room.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE PRODUCT FROM THE SAME CATEGORY --%>
+                                                <svg class="bi bi-arrow-left-right" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+                                                    <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+                                                    <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                                </svg>
+                                            </a>
+                                            <a href="/rooms/delete/${room.id}/${product.id}?backToPage=rooms/details/${room.id}" class="col-sm-1 text-danger"><%--DEL PRODUCT --%>
+                                                <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                    <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                                                    <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 border-top">
+                                        Cost:
                                         <fmt:formatNumber
                                                 type="currency"
                                                 maxIntegerDigits="12"
@@ -451,40 +509,33 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-sm-8"></div>
-                                    <div class="col-sm-1"><%--PRODUCT INFO --%>
-                                        <svg class="bi bi-info-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                            <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
-                                            <circle cx="8" cy="4.5" r="1"/>
-                                        </svg>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        Weight: ${product.weight} kg
                                     </div>
-                                    <a href="/rooms/changeProduct?roomId=${room.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE PRODUCT FROM THE SAME CATEGORY --%>
-                                        <svg class="bi bi-arrow-left-right" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-                                            <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-                                            <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                                        </svg>
-                                    </a>
-                                    <a href="/rooms/delete/${room.id}/${product.id}?backToPage=rooms/details/${room.id}" class="col-sm-1"><%--DEL PRODUCT --%>
-                                        <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                            <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
-                                            <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
-                                        </svg>
-                                    </a>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        Installation type: ${product.installationType.toString()}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        Power connection: ${product.powerConnectionNeeded} W
+                                    </div>
                                 </div>
                             </div>
                         </c:forEach>
-                    </c:otherwise> <%--content eq productsList--%>
+                    </c:otherwise>
                 </c:choose>
             </div>
             <%-- FOOTER --%>
             <div class="card-footer">
                 <div class="row">
-                    <div class="col-sm-12 text-right">
-                        TOTAL COST OF PRODUCTS:
+                    <div class="col-sm-10 text-right">
+                        TOTAL COST OF PRODUCTS IN THIS ROOM:
+                    </div>
+                    <div class="col-sm-2">
                         <fmt:formatNumber
                                 type="currency"
                                 maxIntegerDigits="12"
@@ -494,6 +545,32 @@
                                 currencySymbol="zł"
                                 value="${costOfProducts}"
                         />
+                    </div>
+                    <div class="col-sm-10 text-right">
+                        TOTAL WEIGHT OF PRODUCTS IN THIS ROOM:
+                    </div>
+                    <div class="col-sm-2">
+                    <fmt:formatNumber
+                                type="number"
+                                maxIntegerDigits="12"
+                                minIntegerDigits="1"
+                                maxFractionDigits="0"
+                                minFractionDigits="0"
+                                value="${weightOfProducts}"
+                        /> kg
+                    </div>
+                    <div class="col-sm-10 text-right">
+                        TOTAL POWER CONNECTION NEEDED FOR PRODUCTS IN THIS ROOM:
+                    </div>
+                    <div class="col-sm-2">
+                        <fmt:formatNumber
+                                type="number"
+                                maxIntegerDigits="12"
+                                minIntegerDigits="1"
+                                maxFractionDigits="0"
+                                minFractionDigits="0"
+                                value="${powerConnectionNeededOfProducts}"
+                        /> W
                     </div>
                 </div>
             </div>

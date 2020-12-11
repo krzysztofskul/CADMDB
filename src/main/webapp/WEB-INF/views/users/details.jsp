@@ -63,15 +63,16 @@
                 </div>
                 <hr>
                 <%-- HOSPITALS WHERE USER IS AN INVESTOR (USER'S INVESTMENTS) --%>
-                <div class="row">
-                    <div class="col-12">
+                <div>
+                    <%--                <div class="row">--%>
+<%--                    <div class="col-12">--%>
                         <h5>MY HOSPITAL INVESTMENTS:</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="row">--%>
+<%--                    <div class="col-12">--%>
                         <c:forEach items="${user.hospitalListAsInvestor}" var="hospital">
-                            <div class="card ml-1 mr-1 border d-inline-block" style="width: 275px">
+                            <div class="card ml-1 mr-1 border d-inline-block" style="width: 300px; height: 300px">
                                 <div class="card-header" style="height: 175px">
                                     <p class="card-title font-weight-bold">${hospital.name}</p>
                                     <p class="card-text font-italic">${hospital.country}, ${hospital.postalCode} ${hospital.city}</p>
@@ -94,12 +95,12 @@
                                 </div>
                             </div>
                         </c:forEach>
-                        <div class="card ml-1 mr-1 mt-5 border" style="width: 275px; height: 250px">
-                            <div class="card-body text-center pt-5">
+                        <div class="card ml-1 mr-1 border d-inline-block position-absolute border-0" style="width: 300px; height: 300px">
+                            <div class="card-body text-center">
                                 <a href="/hospitals/new?investorId=${user.id}&demo=true&backToPage=/users/details/5"><img src="/resources/img/icons/plus-001.png" width="128" alt="ADD NEW HOSPITAL"/></a>
                             </div>
                         </div>
-                    </div>
+<%--                    </div>--%>
                 </div>
             </c:if>
 
