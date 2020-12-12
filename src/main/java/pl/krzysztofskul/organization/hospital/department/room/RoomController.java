@@ -8,6 +8,8 @@ import pl.krzysztofskul.manufacturer.ManufacturerService;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
+import pl.krzysztofskul.organization.organizationStatus.OrganizationStatus;
+import pl.krzysztofskul.organization.organizationStatus.OrganizationStatusService;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.ProductService;
 import pl.krzysztofskul.product.productCategory.ProductCategoryService;
@@ -29,6 +31,7 @@ public class RoomController {
     private ProductService productService;
     private ProductCategoryService productCategoryService;
     private ManufacturerService manufacturerService;
+    private OrganizationStatusService organizationStatusService;
 
     @Autowired
     public RoomController(
@@ -38,7 +41,8 @@ public class RoomController {
             RoomCategoryService roomCategoryService,
             ProductService productService,
             ProductCategoryService productCategoryService,
-            ManufacturerService manufacturerService
+            ManufacturerService manufacturerService,
+            OrganizationStatusService organizationStatusService
     ) {
         this.userService = userService;
         this.departmentService = departmentService;
@@ -47,6 +51,7 @@ public class RoomController {
         this.productService = productService;
         this.productCategoryService = productCategoryService;
         this.manufacturerService = manufacturerService;
+        this.organizationStatusService = organizationStatusService;
     }
 
     @ModelAttribute("allRoomCategories")
@@ -57,6 +62,11 @@ public class RoomController {
     @ModelAttribute("userHospitalManagerList")
     public List<User> getUserHospitalManagerList() {
         return userService.loadUserHospitalManagerList();
+    }
+
+    @ModelAttribute("organizationStatusList")
+    public List<OrganizationStatus> getAllOrganizationStatusList() {
+        return organizationStatusService.loadAll();
     }
 
     @GetMapping("/new")

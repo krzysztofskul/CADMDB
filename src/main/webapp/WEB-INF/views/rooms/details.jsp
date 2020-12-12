@@ -276,6 +276,24 @@
                         </c:if>
                         <div class="generalInfo">
                             <div class="row border-bottom pb-2">
+                                <c:choose>
+                                    <c:when test="${param.containsKey('edit')}">
+                                        <form:select path="organizationStatus.id" cssClass="w-100">
+                                            <c:forEach items="${organizationStatusList}" var="organizationStatus">
+                                                <form:option value="${organizationStatus.id}" label="${organizationStatus.toString()}"/>
+                                            </c:forEach>
+                                        </form:select>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="col-sm-12 p-0">
+                                            <div class="myTitleSmall">STATUS</div>
+                                            <div>${room.organizationStatus.toString()}</div>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </div>
+                            <div class="row border-bottom pb-2">
                                 <div class="col-sm-12 p-0">
                                     <div class="myTitleSmall small m-0 pl-1">MANAGER:</div>
                                     <div class="mt-2 mb-2 h5">

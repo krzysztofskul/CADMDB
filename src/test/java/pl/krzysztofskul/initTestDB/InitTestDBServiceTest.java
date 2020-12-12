@@ -14,6 +14,9 @@ import org.springframework.web.context.WebApplicationContext;
 import pl.krzysztofskul.AppConfig;
 import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.organization.hospital.HospitalService;
+import pl.krzysztofskul.organization.hospital.department.DepartmentService;
+import pl.krzysztofskul.organization.hospital.department.room.Room;
+import pl.krzysztofskul.organization.hospital.department.room.RoomService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 import pl.krzysztofskul.user.userCategory.UserCategory;
@@ -42,6 +45,10 @@ public class InitTestDBServiceTest {
     private UserService userService;
     @Autowired
     private HospitalService hospitalService;
+    @Autowired
+    private DepartmentService departmentService;
+    @Autowired
+    private RoomService roomService;
 
     @Before
     public void setup() throws Exception {
@@ -102,6 +109,17 @@ public class InitTestDBServiceTest {
 
     }
 
-
+    @Test
+    public void whenSaveInitTestHospitalsWithDepartmentsAndRoomsAndInvestors_shouldRoomsHaveSetOrganizationStatus() {
+        //given @Before: initTestDBService.saveInitTestHospitalsWithDepartmentsAndRoomsAndInvestors()
+        System.out.println("test");
+        //when
+        List<Room> roomList = roomService.loadAll();
+        //should
+        for (Room room : roomList) {
+            System.out.println("Test room from DB: "+room.getOrganizationStatus().toString());
+            Assert.assertNotNull(room.getOrganizationStatus());
+        }
+    }
 
 }

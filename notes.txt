@@ -61,11 +61,28 @@
         - add users designers functionality
     - add users role/category when set manager to hospital/department/room
     - add employee to investor (company) functionality
+    - organization status class ...
+        - hospitals
+        - departments
+        . rooms
+            . initDB
+            . change room status functionality at front-end
+            - change functionality for user
+    - room
+        - employees field to add
+        - designer field to add
+        - building contractor field to add
+        - simulation mode for products to buy
 
 /** TODO / DONE **/
 
+#0.6.5-SNAPSHOT-6
+    + organization status class added
+    + change room status functionality added at front-end
+
 #0.6.5-SNAPSHOT-5
     + front-end updates
+        + room details / products list page updates
 
 #0.6.5-SNAPSHOT-4
     + front-end updates

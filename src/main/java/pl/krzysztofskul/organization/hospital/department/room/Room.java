@@ -1,5 +1,6 @@
 package pl.krzysztofskul.organization.hospital.department.room;
 
+import pl.krzysztofskul.organization.organizationStatus.OrganizationStatus;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.organization.Organization;
 import pl.krzysztofskul.organization.hospital.department.Department;
@@ -50,6 +51,9 @@ public class Room extends Organization {
 
     @ManyToOne
     private RoomCategory roomCategory;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private OrganizationStatus organizationStatus;
 
     @ManyToMany
     @JoinTable(
@@ -116,6 +120,14 @@ public class Room extends Organization {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public OrganizationStatus getOrganizationStatus() {
+        return organizationStatus;
+    }
+
+    public void setOrganizationStatus(OrganizationStatus organizationStatus) {
+        this.organizationStatus = organizationStatus;
     }
 
     public List<Product> getProductList() {

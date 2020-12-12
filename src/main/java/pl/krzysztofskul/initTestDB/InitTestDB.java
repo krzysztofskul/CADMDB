@@ -13,6 +13,9 @@ import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.investor.Investor;
 import pl.krzysztofskul.organization.investor.InvestorDemoGenerator;
+import pl.krzysztofskul.organization.organizationStatus.OrganisationStatusSingleton;
+import pl.krzysztofskul.organization.organizationStatus.OrganizationStatus;
+import pl.krzysztofskul.organization.organizationStatus.OrganizationStatusEnum;
 import pl.krzysztofskul.product.InstallationType;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.productCategory.ProductCategory;
@@ -444,10 +447,28 @@ public class InitTestDB {
             room.setFloor(LoremIpsum.getInstance().getWords(1, 5));
             room.setNumber(String.valueOf(random.nextInt(999)+1));
 
+            room.setOrganizationStatus(getRandomOrganizationStatus());
+
             roomList.add(room);
         }
 
         return roomList;
+
+    }
+
+    private OrganizationStatus getRandomOrganizationStatus() {
+
+        int randomNumber = new Random().nextInt(OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationListSize());
+
+        switch (randomNumber) {
+            case 0: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.PLANNING);
+            case 1: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.DESIGNING);
+            case 2: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.DESIGNING_FINISHED);
+            case 3: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.CONSTRUCTION_WORKS);
+            case 4: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.CONSTRUCTION_WORKS_FINISHED);
+            case 5: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.EXPLOITATION);
+            default: return null;
+        }
 
     }
 
