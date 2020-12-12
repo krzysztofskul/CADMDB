@@ -89,6 +89,9 @@ public class RoomController {
             @ModelAttribute("room") Room room,
             @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
+        if (null == room.getUserManager().getId()) {
+            room.setUserManager(null);
+        }
         roomService.save(room);
         if (backToPage != null) {
             return "redirect:"+backToPage;

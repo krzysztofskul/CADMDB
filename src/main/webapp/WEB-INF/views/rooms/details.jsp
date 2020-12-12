@@ -300,13 +300,23 @@
                                         <c:choose>
                                             <c:when test="${param.containsKey('edit')}">
                                                 <form:select path="userManager.id" cssClass="w-100">
+                                                    <form:option value="${null}" label="NO MANAGER"/>
                                                     <c:forEach items="${userHospitalManagerList}" var="user">
                                                         <form:option value="${user.id}" label="${user.nameFirst} ${user.nameLast}"/>
                                                     </c:forEach>
                                                 </form:select>
                                             </c:when>
                                             <c:otherwise>
-                                                ${room.userManager.nameFirst} ${room.userManager.nameLast}
+                                                <c:choose>
+                                                    <c:when test="${room.userManager eq null}">
+                                                        NO MANAGER
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="text-danger">
+                                                            ${room.userManager.nameFirst} ${room.userManager.nameLast}
+                                                        </span>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>

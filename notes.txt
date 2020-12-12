@@ -76,6 +76,9 @@
 
 /** TODO / DONE **/
 
+#0.6.5-SNAPSHOT-7
+    + front-end and back-end bugs fixed
+
 #0.6.5-SNAPSHOT-6
     + organization status class added
     + change room status functionality added at front-end

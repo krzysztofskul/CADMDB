@@ -466,7 +466,7 @@ public class InitTestDB {
             case 2: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.DESIGNING_FINISHED);
             case 3: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.CONSTRUCTION_WORKS);
             case 4: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.CONSTRUCTION_WORKS_FINISHED);
-            case 5: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.EXPLOITATION);
+            case 5: return OrganisationStatusSingleton.getOrganisationStatusSingleton().getOrganizationStatus(OrganizationStatusEnum.IN_EXPLOITATION);
             default: return null;
         }
 
