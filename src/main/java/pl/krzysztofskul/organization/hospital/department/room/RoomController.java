@@ -66,7 +66,11 @@ public class RoomController {
 
     @ModelAttribute("organizationStatusList")
     public List<OrganizationStatus> getAllOrganizationStatusList() {
-        return organizationStatusService.loadAll();
+
+        List<OrganizationStatus> organizationStatusList = organizationStatusService.loadAll();
+        Collections.sort(organizationStatusList, (o1, o2) -> o1.getSequence()-o2.getSequence());
+
+        return organizationStatusList;
     }
 
     @GetMapping("/new")

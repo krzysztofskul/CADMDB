@@ -53,7 +53,7 @@
             - add department
             - add room
 
-#0.6.5-SNAPSHOT
+#0.7.0-SNAPSHOT
     - create demo mode
     - hospital status class/enum
     . hospital edit page to rebuild
@@ -75,6 +75,10 @@
         - simulation mode for products to buy
 
 /** TODO / DONE **/
+
+#0.6.5-FINAL
+    + back-end updates (organization status sort for room status editing)
+    + pom.xml
 
 #0.6.5-SNAPSHOT-7
     + front-end and back-end bugs fixed

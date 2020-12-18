@@ -13,6 +13,8 @@ public class OrganizationStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int sequence;
+
     private OrganizationStatusEnum organizationStatusEnum;
 
     @OneToMany(mappedBy = "organizationStatus")
@@ -33,6 +35,13 @@ public class OrganizationStatus {
         this.id = id;
     }
 
+    public int getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(int sequence) {
+        this.sequence = sequence;
+    }
 
     public OrganizationStatusEnum getOrganizationStatusEnum() {
         return organizationStatusEnum;
@@ -53,5 +62,27 @@ public class OrganizationStatus {
     @Override
     public String toString() {
         return this.getOrganizationStatusEnum().toString();
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.getOrganizationStatusEnum().equals(OrganizationStatusEnum.PLANNING)) {
+            this.sequence = 1;
+        }
+        if (this.getOrganizationStatusEnum().equals(OrganizationStatusEnum.DESIGNING)) {
+            this.sequence = 2;
+        }
+        if (this.getOrganizationStatusEnum().equals(OrganizationStatusEnum.DESIGNING_FINISHED)) {
+            this.sequence = 3;
+        }
+        if (this.getOrganizationStatusEnum().equals(OrganizationStatusEnum.CONSTRUCTION_WORKS)) {
+            this.sequence = 4;
+        }
+        if (this.getOrganizationStatusEnum().equals(OrganizationStatusEnum.CONSTRUCTION_WORKS_FINISHED)) {
+            this.sequence = 5;
+        }
+        if (this.getOrganizationStatusEnum().equals(OrganizationStatusEnum.IN_EXPLOITATION)) {
+            this.sequence = 6;
+        }
     }
 }

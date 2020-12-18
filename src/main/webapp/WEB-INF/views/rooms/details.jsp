@@ -280,7 +280,7 @@
                                     <c:when test="${param.containsKey('edit')}">
                                         <form:select path="organizationStatus.id" cssClass="w-100">
                                             <c:forEach items="${organizationStatusList}" var="organizationStatus">
-                                                <form:option value="${organizationStatus.id}" label="${organizationStatus.toString()}"/>
+                                                <form:option value="${organizationStatus.id}" label="${organizationStatus.sequence} ${organizationStatus.toString()}"/>
                                             </c:forEach>
                                         </form:select>
                                     </c:when>
