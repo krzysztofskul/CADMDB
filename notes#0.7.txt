@@ -1,6 +1,17 @@
 TODO:
 
 #0.7-SNAPSHOT:
+    - Socket.class -> front-end
+    - Socket.class -> products
+
+TODO/DONE:
+
+#0.7-SNAPSHOT-2:
+    + SocketController.class with @ResponseBody updates
+    + SocketControllerRest.class created
+    + pom.xml updates
+
+#0.7-SNAPSHOT:
     + Socket class added
     + create @ManyToMany relation for Room.class and Socket.class
         + test classes

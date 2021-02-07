@@ -1,10 +1,12 @@
 package pl.krzysztofskul.product.socket;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
 @DiscriminatorColumn(name = "socket_type",
         discriminatorType = DiscriminatorType.STRING
     )
-public /*abstract*/ class Socket {
+public /*abstract*/ class Socket implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +35,7 @@ public /*abstract*/ class Socket {
     private String dedicatedTo;
 
     @ManyToMany(mappedBy = "socketList")
+    @JsonIgnore
     private List<Room> roomList = new ArrayList<>();
 
     public Socket() {
