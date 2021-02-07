@@ -5,6 +5,7 @@ import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.organization.Organization;
 import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
+import pl.krzysztofskul.product.socket.Socket;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
@@ -13,6 +14,10 @@ import java.util.List;
 
 @Entity
 public class Room extends Organization {
+
+    /**
+     * PARAMETERS
+     */
 
     private String number;
 
@@ -63,8 +68,24 @@ public class Room extends Organization {
     )
     private List<Product> productList = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "rooms_sockets",
+            joinColumns = @JoinColumn(name = "room_id"),
+            inverseJoinColumns = @JoinColumn(name = "socket_id")
+    )
+    private List<Socket> socketList = new ArrayList<>();
+
+    /**
+     * CONSTRUCTORS
+     */
+
     public Room() {
     }
+
+    /**
+     * GETTERS AND SETTERS
+     */
 
     public String getNumber() {
         return number;
@@ -221,6 +242,18 @@ public class Room extends Organization {
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    public List<Socket> getSocketList() {
+        return socketList;
+    }
+
+    public void setSocketList(List<Socket> socketList) {
+        this.socketList = socketList;
+    }
+
+    /**
+     * OTHER METHODS
+     */
 
     public void addProduct(Product product) {
         this.productList.add(product);

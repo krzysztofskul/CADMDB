@@ -19,6 +19,8 @@ import pl.krzysztofskul.organization.organizationStatus.OrganizationStatusEnum;
 import pl.krzysztofskul.product.InstallationType;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.productCategory.ProductCategory;
+import pl.krzysztofskul.product.socket.Socket;
+import pl.krzysztofskul.product.socket.SocketDemoGenerator;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.userCategory.UserCategory;
 import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
@@ -454,6 +456,10 @@ public class InitTestDB {
 
         return roomList;
 
+    }
+
+    public List<Socket> createAndGetDemoSockets() {
+        return SocketDemoGenerator.getSocketDemoGenerator().getDemoSockets();
     }
 
     private OrganizationStatus getRandomOrganizationStatus() {

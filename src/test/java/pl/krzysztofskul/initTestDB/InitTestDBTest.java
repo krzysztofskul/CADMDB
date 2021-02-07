@@ -3,6 +3,8 @@ package pl.krzysztofskul.initTestDB;
 import org.junit.Test;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.organizationStatus.OrganizationStatus;
+import pl.krzysztofskul.product.socket.Socket;
+import pl.krzysztofskul.product.socket.SocketDemoGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +28,23 @@ public class InitTestDBTest {
         for (Room room : roomList) {
             assertNotNull(room.getOrganizationStatus());
         }
+    }
+
+    @Test
+    public void whenAddSocketsToRooms_shouldRoomsHaveSetSocketList() {
+        //given
+        List<Room> roomList = InitTestDB.getInitTestDBInstance().createAndGetInitTestRoomList(InitTestDB.getInitTestDBInstance().createAndGetInitTestRoomCategoryList());
+        List<Socket> socketList = SocketDemoGenerator.getSocketDemoGenerator().getDemoSockets();
+
+        // when
+        for (Room room : roomList) {
+            room.setSocketList(socketList);
+        }
+
+        // should
+        for (Room room : roomList) {
+            assertNotNull(room.getSocketList());
+        }
+
     }
 }

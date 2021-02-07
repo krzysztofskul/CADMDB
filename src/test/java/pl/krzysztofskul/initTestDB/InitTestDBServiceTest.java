@@ -17,6 +17,8 @@ import pl.krzysztofskul.organization.hospital.HospitalService;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.RoomService;
+import pl.krzysztofskul.product.socket.Socket;
+import pl.krzysztofskul.product.socket.SocketService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 import pl.krzysztofskul.user.userCategory.UserCategory;
@@ -49,6 +51,8 @@ public class InitTestDBServiceTest {
     private DepartmentService departmentService;
     @Autowired
     private RoomService roomService;
+    @Autowired
+    private SocketService socketService;
 
     @Before
     public void setup() throws Exception {
@@ -122,4 +126,20 @@ public class InitTestDBServiceTest {
         }
     }
 
+    @Test
+    public void whenSaveInitTestHospitalsWithDepartmentsAndRoomsAndInvestors_shouldRoomsHaveSetDemoSockets() {
+        //given
+        // @Before: initTestDBService.saveInitTestHospitalsWithDepartmentsAndRoomsAndInvestors()
+        for (Socket socket : InitTestDB.getInitTestDBInstance().createAndGetDemoSockets()) {
+            socketService.save(socket);
+        }
+
+        //when
+        List<Room> roomList = roomService.loadAll();
+
+        //should
+        for (Room room : roomList) {
+            Assert.assertNotNull(room.getSocketList());
+        }
+    }
 }

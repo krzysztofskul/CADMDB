@@ -1,0 +1,10 @@
+TODO:
+
+#0.7-SNAPSHOT:
+    + Socket class added
+    + create @ManyToMany relation for Room.class and Socket.class
+        + test classes
+        + test DB save/load
+    + AppConfig modifications
+    + lombok dependency added
+    + jackson dependency added

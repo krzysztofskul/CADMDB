@@ -39,6 +39,9 @@ public class InitTestDBController {
             //initTestDBService.addTestProductsToTestRooms();
             initTestDBService.addAndSaveInitTestProductsToRooms();
 
+            initTestDBService.saveDemoSocketsToDB();
+            initTestDBService.addAndSaveDemoSocketsToDemoRooms();
+
             initTestDBService.addAndSaveHospitalsToInvestors();
             initTestDBService.addAndSaveUsersToHospitals();
 

@@ -22,6 +22,8 @@ import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.ProductService;
 import pl.krzysztofskul.product.productCategory.ProductCategory;
 import pl.krzysztofskul.product.productCategory.ProductCategoryService;
+import pl.krzysztofskul.product.socket.Socket;
+import pl.krzysztofskul.product.socket.SocketService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 import pl.krzysztofskul.user.userCategory.UserCategory;
@@ -48,6 +50,7 @@ public class InitTestDBService {
     private HospitalService hospitalService;
     private DepartmentService departmentService;
     private RoomService roomService;
+    private SocketService socketService;
 
     @Autowired
     public InitTestDBService(
@@ -61,7 +64,8 @@ public class InitTestDBService {
             DepartmentCategoryService departmentCategoryService,
             HospitalService hospitalService,
             DepartmentService departmentService,
-            RoomService roomService
+            RoomService roomService,
+            SocketService socketService
     ) {
         this.companyTypeService = companyTypeService;
         this.userCategoryService = userCategoryService;
@@ -75,6 +79,7 @@ public class InitTestDBService {
         this.hospitalService = hospitalService;
         this.departmentService = departmentService;
         this.roomService = roomService;
+        this.socketService = socketService;
     }
 
     public void saveCompanyTypes() {
@@ -370,6 +375,21 @@ public class InitTestDBService {
             roomService.save(room);
         }
 
+    }
+
+    public void saveDemoSocketsToDB() {
+        for (Socket socket : InitTestDB.getInitTestDBInstance().createAndGetDemoSockets()) {
+            socketService.save(socket);
+        }
+    }
+
+    public void addAndSaveDemoSocketsToDemoRooms() {
+
+        List<Room> roomList = roomService.loadAll();
+        for (Room room : roomList) {
+            room.setSocketList(socketService.loadAll());
+            roomService.save(room);
+        }
     }
 
     public void setInitDBTrue(

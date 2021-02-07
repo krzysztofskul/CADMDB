@@ -96,7 +96,7 @@ public class AppConfig implements WebMvcConfigurer {
 
         dataSource.setUrl("jdbc:mysql://localhost:3306/cadmdb?useSSL=false");
         dataSource.setUsername("root");
-        dataSource.setPassword("coderslab");
+        dataSource.setPassword("@xDpo9Ec16N7&OP0");
 
 
 //        dataSource.setUrl("jdbc:mysql://"+HerokuConnectionData.getDATABASE());
