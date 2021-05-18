@@ -91,7 +91,7 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="/hospitals/details/${hospital.id}">DETAILS</a>
+                                    <a href="/hospitals/details/${hospital.id}?content=info">DETAILS</a>
                                 </div>
                             </div>
                         </c:forEach>

@@ -67,6 +67,12 @@ public class HospitalService {
         return hospital;
     }
 
+    public Hospital loadByIdWithDepartments(Long id) {
+        Hospital hospital = hospitalRepo.findById(id).get();
+        Hibernate.initialize(hospital.getDepartmentList());
+        return hospital;
+    }
+
     public Hospital loadByIdWithUsersWithDepartmentsItsRoomsAndItsProducts(Long id) {
         List<Hospital> hospitalList = loadAllHospitalsWithDepartments();
         for (Hospital hospital : hospitalList) {

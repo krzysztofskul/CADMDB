@@ -4,8 +4,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofskul
-  Date: 18.05.2021
-  Time: 23:21
+  Date: 01.06.2020
+  Time: 21:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
@@ -150,7 +150,7 @@
             </div>
             <c:if test="${param.get('content') ne null && param.get('content').toString() eq 'info' || !param.containsKey('content')}">
             <%-- AREA / BUDGET ETC.  --%>
-            <%--<div class="card-header">
+            <div class="card-header">
                 <div class="row">
                     <div class="col-sm-2 p-0 border-right">
                         <div class="myTitleSmall small m-0 pl-1">AREA PLANNED:</div>
@@ -241,7 +241,7 @@
                         </div>
                     </div>
                 </div>
-            </div>--%>
+            </div>
             <%-- REMARKS --%>
             <div class="card-header">
                 <div class="row">
@@ -263,7 +263,7 @@
             </c:if>
 
             <%-- HEADER 2 ( BUDGET INFO ) --%>
-            <%--<c:if test="${param.get('content') ne null && param.get('content').toString() eq 'departmentList'}"> &lt;%&ndash;if depratment list page&ndash;%&gt;
+            <c:if test="${param.get('content') ne null && param.get('content').toString() eq 'departmentList'}"> <%--if depratment list page--%>
             <div class="card-header">
                 <div>
                     <div class="col-sm-12 text-right mt-auto mb-auto">
@@ -299,7 +299,7 @@
                     </div>
                 </div>
             </div>
-            </c:if>--%>
+            </c:if>
 
             <%-- MAIN CONTENT --%>
             <div id="mainContent" class="container">
@@ -308,7 +308,7 @@
                 <c:if test="${param.containsKey('content') && param.get('content').toString() eq 'info' || !param.containsKey('content')}">
 
                     <%-- EDIT PAGE --%>
-                    <%--<c:if test="${param.containsKey('edit')}">
+                    <c:if test="${param.containsKey('edit')}">
                         <c:forEach items="${hospital.departmentList}" var="department">
                             <form:hidden path="departmentList" value="${department.id}" checked="checked"/>
                         </c:forEach>
@@ -323,14 +323,14 @@
                                 </form:button>
                             </div>
                         </div>
-                    </c:if>--%>
+                    </c:if>
 
                     <%-- INFO PAGE --%>
                     <div class="generalInfo">
                         <%-- INVESTOR ROW --%>
                         <div class="row pb-2">
                             <div class="col-sm-12 p-0">
-                                <div class="myTitleSmall small m-0 pl-1">HOSPITAL INVESTOR:</div>
+                                <div class="myTitleSmall small m-0 pl-1">INVESTOR:</div>
                                 <div class="row mt-2 mb-2 h5 border-0">
                                     <div class="col-sm-8">
                                         ${hospital.investmentCompany.name}
@@ -344,7 +344,7 @@
                         <%-- MANAGER ROW --%>
                         <div class="row pb-2">
                             <div class="col-sm-12 p-0">
-                                <div class="myTitleSmall small m-0 pl-1">HOSPITAL MANAGER:</div>
+                                <div class="myTitleSmall small m-0 pl-1">MANAGER:</div>
                                 <div class="row mt-2 mb-2 h5 border-0">
                                     <c:if test="${hospital.manager eq null}">
                                         <div class="col-8">NO MANAGER</div>
@@ -367,7 +367,7 @@
                         <%-- USERS ROW --%>
                         <div class="row border-bottom pb-2">
                             <div class="col-sm-12 p-0">
-                                <div class="myTitleSmall small m-0 pl-1">HOSPITAL USERS/EMPLOYEES:</div>
+                                <div class="myTitleSmall small m-0 pl-1">USERS / EMPLOYEES:</div>
                                 <div class="row mt-2 mb-2 h5 border-0">
                                     <div class="col-sm-12 border-0">
                                     <c:if test="${hospital.employeeList eq null || hospital.employeeList.size() == 0}">
@@ -457,7 +457,7 @@
                                     <h5>${department.departmentCategory.name}</h5>
                                 </a>
                                 <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>
-                                <%--<div class="col-sm-3 text-right border border-left-0">
+                                <div class="col-sm-3 text-right border border-left-0">
                                     <c:set var="costOfDepartment" value="${0}"/>
                                     <c:forEach items="${department.roomList}" var="room">
                                         <c:forEach items="${room.productList}" var="product">
@@ -475,32 +475,32 @@
                                                 value="${costOfDepartment}"
                                         />
                                     </h5>
-                                </div>--%>
+                                </div>
                             </div>
-                            <%--<div class="row mt-3">
+                            <div class="row mt-3">
                                 <div class="col-sm-8"></div>
-                                <div class="col-sm-1">&lt;%&ndash;DEPARTMENTS INFO &ndash;%&gt;
+                                <div class="col-sm-1"><%--DEPARTMENTS INFO --%>
                                     <svg class="bi bi-info-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                         <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
                                         <circle cx="8" cy="4.5" r="1"/>
                                     </svg>
                                 </div>
-                                <div href="#/rooms/changeProduct?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> &lt;%&ndash;CHANGE ROOM FROM THE SAME CATEGORY &ndash;%&gt;
+                                <div href="#/rooms/changeProduct?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE ROOM FROM THE SAME CATEGORY --%>
                                     <svg class="bi bi-arrow-left-right" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
                                         <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
                                         <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                     </svg>
                                 </div>
-                                <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospital.id}" class="col-sm-1 text-danger">&lt;%&ndash;DEL ROOM &ndash;%&gt;
+                                <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospital.id}" class="col-sm-1 text-danger"><%--DEL ROOM --%>
                                     <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                         <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
                                         <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
                                     </svg>
                                 </a>
-                            </div>--%>
+                            </div>
                         </div>
                     </c:forEach>
                 </c:if>
@@ -513,7 +513,7 @@
                     <div class="row">
                         <div class="col-sm-12 text-right">
                             TOTAL COST OF DEPARTMENTS:
-                            <%--<fmt:formatNumber
+                            <fmt:formatNumber
                                     type="currency"
                                     maxIntegerDigits="12"
                                     minIntegerDigits="1"
@@ -521,7 +521,7 @@
                                     minFractionDigits="2"
                                     currencySymbol="zł"
                                     value="${costOfDepartments}"
-                            />--%>
+                            />
                         </div>
                     </div>
                 </c:if>

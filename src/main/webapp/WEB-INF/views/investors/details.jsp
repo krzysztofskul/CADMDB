@@ -36,7 +36,7 @@
                                 <p>${hospital.name}</p>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/hospitals/details/${hospital.id}" class="text-primary">DETAILS</a>
+                                <a href="/hospitals/details/${hospital.id}?content=info" class="text-primary">DETAILS</a>
                             </div>
                             <div class="col-sm-2">
                                 <a href="#" class="text-danger">DELETE</a>

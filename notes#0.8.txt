@@ -1,0 +1,17 @@
+// todo:
+
+#0.8-X
+    - hospital details page to load faster
+        -/+ hospital controller updates
+        -/+ hospital details jsp updates
+    - hospital class to update
+        - actual cost of products to add
+    - departments class to update
+        - actual cost of products to add
+
+// todo/done:
+
+#0.8-X
+    + hospital details page to load faster
+        + hospital controller updates
+        + hospital details jsp updates

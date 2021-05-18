@@ -100,7 +100,7 @@ public class HospitalController {
                 //return "hospitals/details";
                 return "hospitals/details/"+hospital.getId()+"?content=info&edit=true&editUsers=true";
             } else if (null != content && content.contains("info")) {
-                return "hospitals/details";
+                return "details-deprecated20210518";
             } else {
                 return "hospitals/new";
             }
@@ -167,7 +167,20 @@ public class HospitalController {
             @RequestParam(name = "edit", required = false) boolean edit,
             @RequestParam(name = "editUsers", required = false) boolean editUsers
     ) {
-        Hospital hospital = hospitalService.loadByIdWithUsersWithDepartmentsItsRoomsAndItsProducts(id);
+        Hospital hospital;
+        switch (content) {
+            case "info":
+                hospital = hospitalService.loadByIdWithUsers(id);
+                break;
+            case "departmentList":
+                hospital = hospitalService.loadByIdWithDepartments(id);
+                break;
+            case "analysis":
+                hospital = hospitalService.loadByIdWithUsersWithDepartmentsItsRoomsAndItsProducts(id);
+                break;
+            default:
+                return "redirect:/errorPage?comment=no-page-or-hospital-found";
+        }
         if (hospital != null) {
             model.addAttribute("hospital", hospital);
             return "hospitals/details";
