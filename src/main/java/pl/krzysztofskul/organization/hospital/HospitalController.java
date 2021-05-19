@@ -182,8 +182,12 @@ public class HospitalController {
                 return "redirect:/errorPage?comment=no-page-or-hospital-found";
         }
         if (hospital != null) {
-            model.addAttribute("hospital", hospital);
-            return "hospitals/details";
+            // old:
+            //model.addAttribute("hospital", hospital);
+            //return "hospitals/details";
+            // new:
+            model.addAttribute("hospitalOrgUnit", hospital);
+            return "hospital-org-unit-details";
         } else {
             return "redirect:/errorPage?comment=no-hospital-found";
         }

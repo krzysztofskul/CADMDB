@@ -10,6 +10,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,12 @@ public class Hospital extends Organization {
     /**
      * PARAMS.
      */
+
+    // private BigDecimal budget //budget for equipment from super class
+
+    // private BigDecimal costOfDepartmentsPlan; // costs of equipment planned to buy to departments
+
+    // private BigDecimal costOfDepartmentsFinished; // cost of equipment already bought iin departments
 
     @NotBlank(message = "The hospital name cannot be blank!")
     private String name;
@@ -166,6 +173,7 @@ public class Hospital extends Organization {
         this.departmentList = departmentList;
         for (Department department : departmentList) {
             department.setHospital(this);
+            //this.costOfDepartmentsPlan += department.costOfRoomsPlan;
         }
     }
 
@@ -218,11 +226,13 @@ public class Hospital extends Organization {
 
     public void addDepartment(Department department) {
         this.departmentList.add(department);
+        //this.costOfDepartmentsPlan += department.costOfRoomsPlan
         department.setHospital(this);
     }
 
     public void removeDepartment(Department department) {
         this.departmentList.remove(department);
+        //this.costOfDepartmentsPlan -= department.costOfRoomsPlan
         department.setHospital(null);
     }
 
@@ -242,4 +252,7 @@ public class Hospital extends Organization {
 //        }
     }
 
+    public String getClassName() {
+        return "hospital";
+    }
 }

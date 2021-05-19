@@ -4,12 +4,24 @@
     - hospital details page to load faster
         -/+ hospital controller updates
         -/+ hospital details jsp updates
+        - hospital-unit-details.jsp page ... (details page for hospital/department/room) ...
+            + hospital content info
+            -/+ set parameter from controller: hospitalOrgUnit=hospital/department/room
+
     - hospital class to update
-        - actual cost of products to add
+        - actual cost of departments to add
     - departments class to update
+        - actual cost of rooms to add
+    - room class to update
         - actual cost of products to add
 
 // todo/done:
+
+#0.8-X
+    + hospital-unit-details.jsp page (details page for hospital/department/room) created
+        + updates for hospitalOrgUnit=hospital & content=info
+        + HospitalController class updates
+        + Hospital class updates / getClassName() method added
 
 #0.8-X
     + hospital details page to load faster
