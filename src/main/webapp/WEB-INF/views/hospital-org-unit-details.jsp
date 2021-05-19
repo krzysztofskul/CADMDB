@@ -59,6 +59,7 @@
 
                 <%-- HOSPITAL ORG UNIT INFORMATION + MENU ) --%>
                 <div class="card-header">
+                    <%-- INFORMATION: NAME ETC. + MENU--%>
                     <div class="row">
                         <%-- INFORMATION: NAME ETC. --%>
                         <div class="col-sm-1 border-right text-center mt-auto mb-auto h4">
@@ -105,7 +106,7 @@
                         <%-- MENU --%>
                         <div class="col-sm-3">
                             <c:if test="${param.containsKey('content') && param.containsValue('info') || !param.get('contains')}">
-                                <a href="/hospitals/details/${hospital.id}?content=info&edit=true&editUsers=true" class="btn float-right">
+                                <a href="/hospitals/details/${hospitalOrgUnit.id}?content=info&edit=true&editUsers=true" class="btn float-right">
                                     <span>EDIT</span><br>
                                     <svg class="bi bi-pencil" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
@@ -114,6 +115,10 @@
                                 </a>
                             </c:if>
                         </div>
+
+
+
+
                         <div class="col-sm-2 dropdown p-0 m-0 float-right">
                             <button class="btn <%--dropdown-toggle--%>" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span>MENU</span><br>
@@ -122,13 +127,13 @@
                                 </svg>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <a href="/departments/new?hospitalId=${hospital.id}&backToPage=/hospitals/details/${hospital.id}" class="dropdown-item" type="button">
+                                <a href="/departments/new?hospitalId=${hospitalOrgUnit.id}&backToPage=/hospitals/details/${hospitalOrgUnit.id}" class="dropdown-item" type="button">
                                     <svg class="text-success bi bi-plus-square-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
                                     </svg>
                                     <span class="small ml-2">ADD NEW DEPARTMENT</span>
                                 </a>
-                                <a href="/hospitals/details/${hospital.id}?content=info" class="dropdown-item" type="button">
+                                <a href="/hospitals/details/${hospitalOrgUnit.id}?content=info" class="dropdown-item" type="button">
                                     <svg class="text-info bi bi-info-square" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                         <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
@@ -136,7 +141,7 @@
                                     </svg>
                                     <span class="small ml-2">INFO</span>
                                 </a>
-                                <a href="/hospitals/details/${hospital.id}?content=departmentList" class="dropdown-item" type="button">
+                                <a href="/hospitals/details/${hospitalOrgUnit.id}?content=departmentList" class="dropdown-item" type="button">
                                     <svg class="text-info bi bi-card-list" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                                         <path fill-rule="evenodd" d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z"/>
@@ -146,7 +151,7 @@
                                     </svg>
                                     <span class="small ml-2">DEPARTMENTS LIST</span>
                                 </a>
-                                <a href="/hospitals/details/${hospital.id}?content=analysis" class="dropdown-item" type="button">
+                                <a href="/hospitals/details/${hospitalOrgUnit.id}?content=analysis" class="dropdown-item" type="button">
                                     <svg class="text-info bi bi-graph-up" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0 0h1v16H0V0zm1 15h15v1H1v-1z"/>
                                         <path fill-rule="evenodd" d="M14.39 4.312L10.041 9.75 7 6.707l-3.646 3.647-.708-.708L7 5.293 9.959 8.25l3.65-4.563.781.624z"/>
@@ -155,7 +160,7 @@
                                     <span class="small ml-2">ANALYSIS</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="/hospitals/delete/${hospital.id}" class="dropdown-item" type="button">
+                                <a href="/hospitals/delete/${hospitalOrgUnit.id}" class="dropdown-item" type="button">
                                     <svg class="text-danger bi bi-trash" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -164,6 +169,12 @@
                                 </a>
                             </div>
                         </div>
+
+
+
+
+
+
                     </div>
                     <%-- HOSPITAL INVESTOR ROW --%>
                     <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
@@ -337,7 +348,7 @@
                 </c:if>&ndash;%&gt;
                 </div>--%>
 
-                <%-- LIST OF SUB- HOSPITAL ORG UNITS (DEPRTMENTS/ROOMS/PRODUCTS) --%>
+                <%--MAIN CONTENT--%>
                 <%--<div id="mainContent" class="container">--%>
                 <div class="card-body">
 
@@ -369,19 +380,19 @@
                                 <div class="col-sm-12 p-0">
                                     <div class="myTitleSmall small m-0 pl-1">HOSPITAL MANAGER:</div>
                                     <div class="row mt-2 mb-2 h5 border-0">
-                                        <c:if test="${hospital.manager eq null}">
+                                        <c:if test="${hospitalOrgUnit.manager eq null}">
                                             <div class="col-8">NO MANAGER</div>
                                             <div class="col-4">
-                                                <a href="/hospitals/${hospital.id}/setManager" class="text-success">&#10010; SET MANAGER</a>
+                                                <a href="/hospitals/${hospitalOrgUnit.id}/setManager" class="text-success">&#10010; SET MANAGER</a>
                                             </div>
                                         </c:if>
-                                        <c:if test="${hospital.manager ne null}">
-                                            <div class="col-8">${hospital.manager.nameFirst} ${hospital.manager.nameLast}</div>
+                                        <c:if test="${hospitalOrgUnit.manager ne null}">
+                                            <div class="col-8">${hospitalOrgUnit.manager.nameFirst} ${hospitalOrgUnit.manager.nameLast}</div>
                                             <div class="col-2">
-                                                <a href="/hospitals/${hospital.id}/setManager" class="text-primary">&#8646; CHANGE MANAGER</a>
+                                                <a href="/hospitals/${hospitalOrgUnit.id}/setManager" class="text-primary">&#8646; CHANGE MANAGER</a>
                                             </div>
                                             <div class="col-2">
-                                                <a href="/hospitals/${hospital.id}/dismissManager" class="text-danger">&#10006; DISMISS MANAGER</a>
+                                                <a href="/hospitals/${hospitalOrgUnit.id}/dismissManager" class="text-danger">&#10006; DISMISS MANAGER</a>
                                             </div>
                                         </c:if>
                                     </div>
@@ -437,18 +448,28 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col text-center">
-                                    LIST OF DEPARTMENTS INSIDE THE HOSPITAL
+                                    <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
+                                        <c:set var="subOrgUnits" value="DEPARTMENTS"/>
+                                    </c:if>
+                                    <c:if test="${hospitalOrgUnit.className eq 'department'}">
+                                        <c:set var="subOrgUnits" value="ROOMS"/>
+                                    </c:if>
+                                    <c:if test="${hospitalOrgUnit.className eq 'room'}">
+                                        <c:set var="subOrgUnits" value="PRODUCTS"/>
+                                    </c:if>
+                                    LIST OF ${subOrgUnits}
                                 </div>
                             </div>
                         </div>
-                        <%--<c:forEach items="${hospital.departmentList}" var="department">
+                        <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
+                        <c:forEach items="${hospitalOrgUnit.departmentList}" var="department">
                         <div class="card-body">
                             <div class="row border-top pt-3">
                                 <a href="/departments/details/${department.id}" class="col-sm-7">
                                     <h5>${department.departmentCategory.name}</h5>
                                 </a>
                                 <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>
-                                    &lt;%&ndash;<div class="col-sm-3 text-right border border-left-0">
+                                    <%--<div class="col-sm-3 text-right border border-left-0">
                                         <c:set var="costOfDepartment" value="${0}"/>
                                         <c:forEach items="${department.roomList}" var="room">
                                             <c:forEach items="${room.productList}" var="product">
@@ -466,34 +487,35 @@
                                                     value="${costOfDepartment}"
                                             />
                                         </h5>
-                                    </div>&ndash;%&gt;
+                                    </div>--%>
                             </div>
-                                &lt;%&ndash;<div class="row mt-3">
-                                    <div class="col-sm-8"></div>
-                                    <div class="col-sm-1">&lt;%&ndash;DEPARTMENTS INFO &ndash;%&gt;
-                                        <svg class="bi bi-info-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                            <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
-                                            <circle cx="8" cy="4.5" r="1"/>
-                                        </svg>
-                                    </div>
-                                    <div href="#/rooms/changeProduct?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> &lt;%&ndash;CHANGE ROOM FROM THE SAME CATEGORY &ndash;%&gt;
-                                        <svg class="bi bi-arrow-left-right" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-                                            <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-                                            <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                                        </svg>
-                                    </div>
-                                    <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospital.id}" class="col-sm-1 text-danger">&lt;%&ndash;DEL ROOM &ndash;%&gt;
-                                        <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                            <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
-                                            <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
-                                        </svg>
-                                    </a>
-                                </div>&ndash;%&gt;
+                            <div class="row mt-3">
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-1"><%--DEPARTMENTS INFO --%>
+                                    <svg class="bi bi-info-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                        <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                        <circle cx="8" cy="4.5" r="1"/>
+                                    </svg>
+                                </div>
+                                <div href="#/rooms/changeProduct?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE ROOM FROM THE SAME CATEGORY --%>
+                                    <svg class="bi bi-arrow-left-right" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+                                        <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+                                        <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                </div>
+                                <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospitalOrgUnit.id}" class="col-sm-1 text-danger"><%--DEL ROOM --%>
+                                    <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                                        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                        </c:forEach>--%>
+                        </c:forEach>
+                        </c:if>
                     </c:if>
 
                     <%-- SUB-PAGES: ANALYSIS PAGE --%>
@@ -535,7 +557,7 @@
                     <c:if test="${param.containsKey('content') && param.get('content') eq 'departmentList'}">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                TOTAL COST OF DEPARTMENTS:
+                                TOTAL COST OF PRODUCTS:
                                     <%--<fmt:formatNumber
                                             type="currency"
                                             maxIntegerDigits="12"

@@ -5,7 +5,8 @@
         -/+ hospital controller updates
         -/+ hospital details jsp updates
         - hospital-unit-details.jsp page ... (details page for hospital/department/room) ...
-            + hospital content info
+            . hospital content info
+            + updates for hospitalOrgUnit=hospital & content=departmentList
             -/+ set parameter from controller: hospitalOrgUnit=hospital/department/room
 
     - hospital class to update
@@ -16,6 +17,9 @@
         - actual cost of products to add
 
 // todo/done:
+
+#0.8-X
+    + updates for hospitalOrgUnit=hospital & content=departmentList
 
 #0.8-X
     + hospital-unit-details.jsp page (details page for hospital/department/room) created
