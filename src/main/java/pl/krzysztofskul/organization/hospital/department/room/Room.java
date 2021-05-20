@@ -100,6 +100,14 @@ public class Room extends Organization {
     public Room() {
     }
 
+    @Override
+    public void setName(String name) {
+        if (null == name || name.equals("")) {
+            super.setName(this.getRoomCategory().getName());
+        }
+        super.setName(name);
+    }
+
     public String getCountry() {
         return country;
     }

@@ -1,14 +1,8 @@
 // todo:
 
-#0.8-X
     - hospital details page to load faster
-        -/+ hospital controller updates
-        -/+ hospital details jsp updates
-        - hospital-unit-details.jsp page updates... (details page for hospital/department/room) ...
-            . hospital content info
-            . updates for hospitalOrgUnit=hospital & content=departmentList
-            . updates for hospitalOrgUnit=hospital & content=analysis
-            -/+ set parameter from controller: hospitalOrgUnit=hospital/department/room
+        - hospital-unit-details.jsp page updates...
+            - add/delete elements
 
     - hospital class to update
         - actual cost of departments to add
@@ -18,6 +12,11 @@
         - actual cost of products to add
 
 // todo/done:
+
+#0.8-1
+    + hospital-org-unit-details.jsp properly displays
+        + hospital/department/room details info page
+        + hospital/department/room details list of departments/rooms/products page
 
 #0.8-X
     . hospital-unit-details.jsp page updates
