@@ -32,6 +32,12 @@ public class DepartmentService {
         return departmentRepo.findById(id).get();
     }
 
+    public Department loadByIdWithUsers(Long id) {
+        Department department = departmentRepo.findById(id).get();
+        //Hibernate.initialize(department.getUsers());
+        return department;
+    }
+
     public Department loadByIdWithRooms(Long id) {
         Department department = departmentRepo.findById(id).get();
         Hibernate.initialize(department.getRoomList());

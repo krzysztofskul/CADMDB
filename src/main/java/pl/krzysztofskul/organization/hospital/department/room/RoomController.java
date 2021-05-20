@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.manufacturer.ManufacturerService;
+import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
@@ -109,24 +110,27 @@ public class RoomController {
             @RequestParam(name = "content", required = false) String content,
             Model model
     ) {
-        if ("analysis".equals(content)) {
-            model.addAttribute("content", "analysis");
+        Room room;
+        if (content == null) {
+            content = "info";
         }
-        if ("productList".equals(content)) {
-            model.addAttribute("content", "productList");
+        switch (content) {
+            case "info":
+                room = roomService.loadByIdWithUsers(id);
+                break;
+            case "productList":
+            case "analysis":
+                room = roomService.loadByIdWithProducts(id);
+                break;
+            default:
+                return "redirect:/errorPage?comment=no-page-or-room-found";
         }
-        if ("info".equals(content)) {
-            model.addAttribute("content", "info");
+        if (room != null) {
+            model.addAttribute("hospitalOrgUnit", room);
+            return "hospital-org-unit-details";
+        } else {
+            return "redirect:/errorPage?comment=no-room-found";
         }
-        Room room = roomService.loadByIdWithProducts(id);
-        Collections.sort(room.getProductList(), new Comparator<Product>() {
-            @Override
-            public int compare(Product o1, Product o2) {
-                return o1.getProductCategory().getCode().compareTo(o2.getProductCategory().getCode());
-            }
-        });
-        model.addAttribute(room);
-        return "rooms/details";
     }
 
     @GetMapping("/addProduct")

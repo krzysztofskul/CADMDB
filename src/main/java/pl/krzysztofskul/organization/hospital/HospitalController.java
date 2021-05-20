@@ -163,11 +163,12 @@ public class HospitalController {
     public String details(
             @PathVariable Long id,
             Model model,
-            @RequestParam(name = "content", required = false) String content,
-            @RequestParam(name = "edit", required = false) boolean edit,
-            @RequestParam(name = "editUsers", required = false) boolean editUsers
+            @RequestParam(name = "content", required = false) String content
     ) {
         Hospital hospital;
+        if (content == null) {
+            content = "info";
+        }
         switch (content) {
             case "info":
                 hospital = hospitalService.loadByIdWithUsers(id);
@@ -182,10 +183,6 @@ public class HospitalController {
                 return "redirect:/errorPage?comment=no-page-or-hospital-found";
         }
         if (hospital != null) {
-            // old:
-            //model.addAttribute("hospital", hospital);
-            //return "hospitals/details";
-            // new:
             model.addAttribute("hospitalOrgUnit", hospital);
             return "hospital-org-unit-details";
         } else {

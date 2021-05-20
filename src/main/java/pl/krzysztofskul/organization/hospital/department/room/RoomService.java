@@ -37,6 +37,12 @@ public class RoomService {
         return roomRepo.findById(id).get();
     }
 
+    public Room loadByIdWithUsers(Long id) {
+        Room room = roomRepo.findById(id).get();
+        //Hibernate.initialize(room.geUserList());
+        return room;
+    }
+
     public void delete(Room room) {
         roomRepo.delete(room);
     }

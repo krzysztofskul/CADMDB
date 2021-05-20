@@ -42,14 +42,14 @@
                             <li class="breadcrumb-item"><a href="#">${hospitalOrgUnit.name}</a></li>
                             </c:if>
 
-                            <%--<c:if test="${hospitalOrgUnit eq Department.class}">
-                            <li class="breadcrumb-item"><a href="/hospitals/details/${department.hospital.id}">${department.hospital.name}</a></li>
-                            <li class="breadcrumb-item"><a href="#">${department.departmentCategory.name}</a></li>
+                            <c:if test="${hospitalOrgUnit.className eq 'department'}">
+                            <li class="breadcrumb-item"><a href="/hospitals/details/${hospitalOrgUnit.hospital.id}">${hospitalOrgUnit.hospital.name}</a></li>
+                            <li class="breadcrumb-item"><a href="#">${hospitalOrgUnit.departmentCategory.name}</a></li>
                             </c:if>
 
-                            <c:if test="${hospitalOrgUnit eq Room.class}">
+                            <%--<c:if test="${hospitalOrgUnit eq Room.class}">
                             <li class="breadcrumb-item"><a href="/hospitals/details/${room.department.hospital.id}" >${room.department.hospital.name}</a></li>
-                            <li class="breadcrumb-item"><a href="/departments/details/${room.department.id}">${room.department.departmentCategory.name}</a></li>
+                            <li class="breadcrumb-item"><a href="/departments/details/${room.department.id}?content=info">${room.department.departmentCategory.name}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">${room.number} ${room.roomCategory.name} ${room.name}</li>
                             </c:if>--%>
 
@@ -378,22 +378,24 @@
                             <%-- MANAGER ROW --%>
                             <div class="row pb-2">
                                 <div class="col-sm-12 p-0">
-                                    <div class="myTitleSmall small m-0 pl-1">HOSPITAL MANAGER:</div>
+                                    <div class="myTitleSmall small m-0 pl-1">MANAGER:</div>
                                     <div class="row mt-2 mb-2 h5 border-0">
-                                        <c:if test="${hospitalOrgUnit.manager eq null}">
-                                            <div class="col-8">NO MANAGER</div>
-                                            <div class="col-4">
-                                                <a href="/hospitals/${hospitalOrgUnit.id}/setManager" class="text-success">&#10010; SET MANAGER</a>
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${hospitalOrgUnit.manager ne null}">
-                                            <div class="col-8">${hospitalOrgUnit.manager.nameFirst} ${hospitalOrgUnit.manager.nameLast}</div>
-                                            <div class="col-2">
-                                                <a href="/hospitals/${hospitalOrgUnit.id}/setManager" class="text-primary">&#8646; CHANGE MANAGER</a>
-                                            </div>
-                                            <div class="col-2">
-                                                <a href="/hospitals/${hospitalOrgUnit.id}/dismissManager" class="text-danger">&#10006; DISMISS MANAGER</a>
-                                            </div>
+                                        <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
+                                            <c:if test="${hospitalOrgUnit.manager eq null}">
+                                                <div class="col-8">NO MANAGER</div>
+                                                <div class="col-4">
+                                                    <a href="/hospitals/${hospitalOrgUnit.id}/setManager" class="text-success">&#10010; SET MANAGER</a>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${hospitalOrgUnit.manager ne null}">
+                                                <div class="col-8">${hospitalOrgUnit.manager.nameFirst} ${hospitalOrgUnit.manager.nameLast}</div>
+                                                <div class="col-2">
+                                                    <a href="/hospitals/${hospitalOrgUnit.id}/setManager" class="text-primary">&#8646; CHANGE MANAGER</a>
+                                                </div>
+                                                <div class="col-2">
+                                                    <a href="/hospitals/${hospitalOrgUnit.id}/dismissManager" class="text-danger">&#10006; DISMISS MANAGER</a>
+                                                </div>
+                                            </c:if>
                                         </c:if>
                                     </div>
                                 </div>
@@ -401,38 +403,40 @@
                             <%-- USERS ROW --%>
                             <div class="row pb-2">
                                 <div class="col-sm-12 p-0">
-                                    <div class="myTitleSmall small m-0 pl-1">HOSPITAL USERS/EMPLOYEES:</div>
+                                    <div class="myTitleSmall small m-0 pl-1">USERS/EMPLOYEES:</div>
                                     <div class="row mt-2 mb-2 h5 border-0">
                                         <div class="col-sm-12 border-0">
-                                            <c:if test="${hospitalOrgUnit.employeeList eq null || hospitalOrgUnit.employeeList.size() == 0}">
-                                                <div class="row border-0">
-                                                    <div class="col-sm-8">NO USERS / EMPLOYEES</div>
-                                                    <div class="col-sm-4">
-                                                        <a href="/hospitals/${hospitalOrgUnit.id}/addEmployee" class="text-success">&#10010; ADD USER / EMPLOYEE</a>
-                                                    </div>
-                                                </div>
-                                            </c:if>
-                                            <c:if test="${hospitalOrgUnit.employeeList ne null &&  hospitalOrgUnit.employeeList.size() != 0}">
-                                                <div class="row border-0">
-                                                    <div class="col-sm-8">${hospitalOrgUnit.employeeList.size()} users / employees</div>
-                                                    <div class="col-sm-4">
-                                                            <%--<a href="#" class="text-primary">&#8646; EDIT USERS / EMPLOYEES</a>--%>
-                                                        <a href="/hospitals/${hospitalOrgUnit.id}/addEmployee" class="text-success">&#10010; ADD USER / EMPLOYEE</a>
-                                                    </div>
-                                                </div>
-                                                <c:forEach items="${hospitalOrgUnit.employeeList}" var="employee">
-                                                    <div class="row pt-1 pb-1 m-auto">
-                                                        <div class="col-sm-1 text-black-50">
-                                                                ${employee.id}
-                                                        </div>
-                                                        <div class="col-sm-9">
-                                                                ${employee.nameFirst} ${employee.nameLast}
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <a href="/hospitals/${hospitalOrgUnit.id}/dismissEmployee?userId=${employee.id}" class="btn btn-danger">DISMISS</a>
+                                            <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
+                                                <c:if test="${hospitalOrgUnit.employeeList eq null || hospitalOrgUnit.employeeList.size() == 0}">
+                                                    <div class="row border-0">
+                                                        <div class="col-sm-8">NO USERS / EMPLOYEES</div>
+                                                        <div class="col-sm-4">
+                                                            <a href="/hospitals/${hospitalOrgUnit.id}/addEmployee" class="text-success">&#10010; ADD USER / EMPLOYEE</a>
                                                         </div>
                                                     </div>
-                                                </c:forEach>
+                                                </c:if>
+                                                <c:if test="${hospitalOrgUnit.employeeList ne null &&  hospitalOrgUnit.employeeList.size() != 0}">
+                                                    <div class="row border-0">
+                                                        <div class="col-sm-8">${hospitalOrgUnit.employeeList.size()} users / employees</div>
+                                                        <div class="col-sm-4">
+                                                                <%--<a href="#" class="text-primary">&#8646; EDIT USERS / EMPLOYEES</a>--%>
+                                                            <a href="/hospitals/${hospitalOrgUnit.id}/addEmployee" class="text-success">&#10010; ADD USER / EMPLOYEE</a>
+                                                        </div>
+                                                    </div>
+                                                    <c:forEach items="${hospitalOrgUnit.employeeList}" var="employee">
+                                                        <div class="row pt-1 pb-1 m-auto">
+                                                            <div class="col-sm-1 text-black-50">
+                                                                    ${employee.id}
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                    ${employee.nameFirst} ${employee.nameLast}
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <a href="/hospitals/${hospitalOrgUnit.id}/dismissEmployee?userId=${employee.id}" class="btn btn-danger">DISMISS</a>
+                                                            </div>
+                                                        </div>
+                                                    </c:forEach>
+                                                </c:if>
                                             </c:if>
                                         </div>
                                     </div>
@@ -465,7 +469,7 @@
                         <c:forEach items="${hospitalOrgUnit.departmentList}" var="department">
                         <div class="card-body">
                             <div class="row border-top pt-3">
-                                <a href="/departments/details/${department.id}" class="col-sm-7">
+                                <a href="/departments/details/${department.id}?content=info" class="col-sm-7">
                                     <h5>${department.departmentCategory.name}</h5>
                                 </a>
                                 <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>
@@ -519,9 +523,9 @@
                     </c:if>
 
                     <%-- SUB-PAGES: ANALYSIS PAGE --%>
-                    <%--<c:if test="${param.get('content') ne null && param.get('content').toString() eq 'analysis'}">
+                    <c:if test="${param.get('content') ne null && param.get('content').toString() eq 'analysis'}">
 
-                        <c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfDepartments / (hospital.budget+costOfDepartments) * 100}"/>
+                        <%--<c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfDepartments / (hospital.budget+costOfDepartments) * 100}"/>
                         <c:choose>
                             <c:when test="${ratioCostOfProductsToHospitalBudget > 100}">
                                 <c:set var="progressBarHospital" value="bg-danger"/>
@@ -538,17 +542,17 @@
                             <c:otherwise>
                                 <c:set var="progressBarHospital" value="bg-info"/>
                             </c:otherwise>
-                        </c:choose>
+                        </c:choose>--%>
 
                         <div class="m-5">
                             <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS HOSPITAL / HOSPITAL INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
-                                <div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfDepartments / (hospital.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <%--<div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfDepartments / (hospital.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
-                                </div>
+                                </div>--%>
                             </div>
                         </div>
-                    </c:if>--%>
+                    </c:if>
 
                 </div>
 

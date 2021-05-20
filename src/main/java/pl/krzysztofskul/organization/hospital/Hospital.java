@@ -28,7 +28,7 @@ public class Hospital extends Organization {
 
     // private BigDecimal costOfDepartmentsFinished; // cost of equipment already bought iin departments
 
-    @NotBlank(message = "The hospital name cannot be blank!")
+    @NotBlank(message = "The name cannot be blank!")
     private String name;
 
     @NotBlank(message = "Country cannot be blank!")

@@ -82,12 +82,32 @@ public class DepartmentController {
     @GetMapping("/details/{id}")
     public String departmentDetails(
             @PathVariable Long id,
-//            @RequestParam(required = false) String content,
-//            @RequestParam(required = false) String edit,
+            @RequestParam(required = false) String content,
             Model model
     ) {
-        model.addAttribute("department", departmentService.loadByIdWithRoomsAndItsProducts(id));
-        return "departments/details";
+        Department department;
+        if (content == null) {
+            content = "info";
+        }
+        switch (content) {
+            case "info":
+                department = departmentService.loadByIdWithUsers(id);
+                break;
+            case "roomList":
+                department = departmentService.loadByIdWithRooms(id);
+                break;
+            case "analysis":
+                department = departmentService.loadByIdWithRoomsAndItsProducts(id);
+                break;
+            default:
+                return "redirect:/errorPage?comment=no-page-or-department-found";
+        }
+        if (department != null) {
+            model.addAttribute("hospitalOrgUnit", department);
+            return "hospital-org-unit-details";
+        } else {
+            return "redirect:/errorPage?comment=no-department-found";
+        }
     }
 
     @GetMapping("/delete/{id}")

@@ -4,9 +4,10 @@
     - hospital details page to load faster
         -/+ hospital controller updates
         -/+ hospital details jsp updates
-        - hospital-unit-details.jsp page ... (details page for hospital/department/room) ...
+        - hospital-unit-details.jsp page updates... (details page for hospital/department/room) ...
             . hospital content info
-            + updates for hospitalOrgUnit=hospital & content=departmentList
+            . updates for hospitalOrgUnit=hospital & content=departmentList
+            . updates for hospitalOrgUnit=hospital & content=analysis
             -/+ set parameter from controller: hospitalOrgUnit=hospital/department/room
 
     - hospital class to update
@@ -19,7 +20,12 @@
 // todo/done:
 
 #0.8-X
-    + updates for hospitalOrgUnit=hospital & content=departmentList
+    . hospital-unit-details.jsp page updates
+        + updates for hospitalOrgUnit=hospital & content=analysis
+        + updates for hospitalOrgUnit=department & content=info
+
+#0.8-X
+    + updates for hospitalOrgUnit=hospital & content=info
 
 #0.8-X
     + hospital-unit-details.jsp page (details page for hospital/department/room) created
