@@ -3,6 +3,7 @@ package pl.krzysztofskul;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.krzysztofskul.organization.hospital.HospitalService;
+import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.RoomService;
@@ -49,10 +50,17 @@ public class ProductManager {
         }
         room.setCostOfProductsActual(costOfProducts);
         roomService.save(room);
+        recalculateCostsInDepartment(room.getDepartment().getId());
     }
 
-    public void recalculateCostsInDepartment() {
-
+    public void recalculateCostsInDepartment(Long departmentId) {
+        BigDecimal costOfRooms = BigDecimal.ZERO;
+        Department department = departmentService.loadByIdWithRooms(departmentId);
+        for (Room room : department.getRoomList()) {
+            costOfRooms = costOfRooms.add(room.getCostOfProductsActual());
+        }
+        department.setCostOfProductsActual(costOfRooms);
+        departmentService.save(department);
     }
 
     public void recalculateCostsInHospital() {

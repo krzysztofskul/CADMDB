@@ -502,13 +502,13 @@
                                             <h5>${room.number} ${room.name}</h5>
                                         </a>
                                         <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>
-                                            <%--<div class="col-sm-3 text-right border border-left-0">
-                                                <c:set var="costOfDepartment" value="${0}"/>
+                                            <div class="col-sm-3 text-right border border-left-0">
+                                                <%--<c:set var="costOfDepartment" value="${0}"/>
                                                 <c:forEach items="${department.roomList}" var="room">
                                                     <c:forEach items="${room.productList}" var="product">
                                                         <c:set var="costOfDepartment" value="${costOfDepartment + product.price}"/>
                                                     </c:forEach>
-                                                </c:forEach>
+                                                </c:forEach>--%>
                                                 <h5>
                                                     <fmt:formatNumber
                                                             type="currency"
@@ -517,10 +517,10 @@
                                                             maxFractionDigits="2"
                                                             minFractionDigits="2"
                                                             currencySymbol="zł"
-                                                            value="${costOfDepartment}"
+                                                            value="${room.costOfProductsActual}"
                                                     />
                                                 </h5>
-                                            </div>--%>
+                                            </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-sm-8"></div>
@@ -554,30 +554,25 @@
                             <c:forEach items="${hospitalOrgUnit.productList}" var="product">
                                 <div class="card-body">
                                     <div class="row border-top pt-3">
-                                        <a href="/products/${product.id}" class="col-sm-7">
-                                            <h5>${product.productCategory.nameSingular}</h5>
-                                            <h6>${product.manufacturer.name} ${product.modelName}</h6>
-                                        </a>
-                                            <%--<div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>--%>
-                                            <%--<div class="col-sm-3 text-right border border-left-0">
-                                                <c:set var="costOfDepartment" value="${0}"/>
-                                                <c:forEach items="${department.roomList}" var="room">
-                                                    <c:forEach items="${room.productList}" var="product">
-                                                        <c:set var="costOfDepartment" value="${costOfDepartment + product.price}"/>
-                                                    </c:forEach>
-                                                </c:forEach>
-                                                <h5>
-                                                    <fmt:formatNumber
-                                                            type="currency"
-                                                            maxIntegerDigits="12"
-                                                            minIntegerDigits="1"
-                                                            maxFractionDigits="2"
-                                                            minFractionDigits="2"
-                                                            currencySymbol="zł"
-                                                            value="${costOfDepartment}"
-                                                    />
-                                                </h5>
-                                            </div>--%>
+                                        <div class="col-sm-9">
+                                            <a href="/products/${product.id}" class="col-sm-7">
+                                                <h5>${product.productCategory.nameSingular}</h5>
+                                                <h6>${product.manufacturer.name} ${product.modelName}</h6>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                <fmt:formatNumber
+                                                        type="currency"
+                                                        maxIntegerDigits="12"
+                                                        minIntegerDigits="1"
+                                                        maxFractionDigits="2"
+                                                        minFractionDigits="2"
+                                                        currencySymbol="zł"
+                                                        value="${product.price}"
+                                                />
+                                            </h5>
+                                        </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-sm-8"></div>
@@ -661,20 +656,35 @@
                             </div>
                         </div>
                     </c:if>
-                    <c:if test="${param.containsKey('content') && param.get('content') eq 'productList'}">
+                    <c:if test="${param.containsKey('content') && param.get('content') eq 'roomList'}">
                         <div class="row">
-                            <div class="col-sm-12 text-right bg-danger">
-                                TOTAL COST OF PRODUCTS:
-                                    <%--<fmt:formatNumber
+                            <div class="col-sm-12 text-right">
+                                TOTAL COST OF PRODUCTS INSIDE ROOMS OF THIS DEPARTMENT:
+                                    <fmt:formatNumber
                                             type="currency"
                                             maxIntegerDigits="12"
                                             minIntegerDigits="1"
                                             maxFractionDigits="2"
                                             minFractionDigits="2"
                                             currencySymbol="zł"
-                                            value="${costOfDepartments}"
-                                    />--%>
-                                ${hospitalOrgUnit.costOfProductsActual}
+                                            value="${hospitalOrgUnit.costOfProductsActual}"
+                                    />
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="${param.containsKey('content') && param.get('content') eq 'productList'}">
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                TOTAL COST OF PRODUCTS:
+                                    <fmt:formatNumber
+                                            type="currency"
+                                            maxIntegerDigits="12"
+                                            minIntegerDigits="1"
+                                            maxFractionDigits="2"
+                                            minFractionDigits="2"
+                                            currencySymbol="zł"
+                                            value="${hospitalOrgUnit.costOfProductsActual}"
+                                    />
                             </div>
                         </div>
                     </c:if>

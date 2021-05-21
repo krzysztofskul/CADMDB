@@ -44,8 +44,6 @@ public class Room extends Organization {
     @ManyToOne
     private User userManager;
 
-    private BigDecimal costOfProductsActual = BigDecimal.ZERO;
-
     private float area;
 
     private float height;
@@ -178,14 +176,6 @@ public class Room extends Organization {
     /**
      * GETTERS AND SETTERS
      */
-
-    public BigDecimal getCostOfProductsActual() {
-        return costOfProductsActual;
-    }
-
-    public void setCostOfProductsActual(BigDecimal costOfProductsActual) {
-        this.costOfProductsActual = costOfProductsActual;
-    }
 
     public String getNumber() {
         return number;

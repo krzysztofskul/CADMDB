@@ -18,6 +18,8 @@ public class Organization {
 
     private BigDecimal budget;
 
+    private BigDecimal costOfProductsActual = BigDecimal.ZERO;
+
     public Organization() {
     }
 
@@ -43,6 +45,14 @@ public class Organization {
 
     public void setBudget(BigDecimal budget) {
         this.budget = budget;
+    }
+
+    public BigDecimal getCostOfProductsActual() {
+        return costOfProductsActual;
+    }
+
+    public void setCostOfProductsActual(BigDecimal costOfProductsActual) {
+        this.costOfProductsActual = costOfProductsActual;
     }
 
     public void addToBudget(BigDecimal amount) {

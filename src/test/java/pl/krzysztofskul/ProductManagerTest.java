@@ -13,6 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import pl.krzysztofskul.initTestDB.InitTestDBController;
+import pl.krzysztofskul.organization.hospital.department.Department;
+import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.RoomService;
 import pl.krzysztofskul.product.Product;
@@ -38,6 +40,8 @@ public class ProductManagerTest {
 
     @Autowired
     private RoomService roomService;
+    @Autowired
+    private DepartmentService departmentService;
 
     @Before
     public void setup() throws Exception {
@@ -82,6 +86,21 @@ public class ProductManagerTest {
         BigDecimal costOfProductsActualInRoom = roomFromDB.getCostOfProductsActual();
 
         Assert.assertEquals(costOfProductsAddedToRoom, costOfProductsActualInRoom);
+
+    }
+
+    @Test
+    @Order(4)
+    public void whenAddProductToDepartmentRooms_costsOfDepartmentShouldBeRecalculated() {
+
+        Department department = departmentService.loadByIdWithRoomsAndItsProducts(Long.parseLong("1"));
+        BigDecimal costsOfProducts = department.getCostOfProductsActual();
+        for (Room room : department.getRoomList()) {
+            productManager.addProductToRoom(Long.parseLong("1"), room.getId());
+        }
+        department = departmentService.loadByIdWithRoomsAndItsProducts(Long.parseLong("1"));
+        Assert.assertTrue(department.getCostOfProductsActual().compareTo(costsOfProducts) > 0 );
+
 
     }
 

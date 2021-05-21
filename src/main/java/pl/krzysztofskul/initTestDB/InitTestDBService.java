@@ -3,6 +3,7 @@ package pl.krzysztofskul.initTestDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.krzysztofskul.ProductManager;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.manufacturer.ManufacturerService;
 import pl.krzysztofskul.organization.companyType.CompanyTypeService;
@@ -38,6 +39,7 @@ import java.util.Random;
 @Transactional
 public class InitTestDBService {
 
+    private ProductManager productManager;
     private CompanyTypeService companyTypeService;
     private UserCategoryService userCategoryService;
     private UserService userService;
@@ -54,6 +56,7 @@ public class InitTestDBService {
 
     @Autowired
     public InitTestDBService(
+            ProductManager productManager,
             CompanyTypeService companyTypeService,
             UserCategoryService userCategoryService,
             UserService userService,
@@ -67,6 +70,7 @@ public class InitTestDBService {
             RoomService roomService,
             SocketService socketService
     ) {
+        this.productManager = productManager;
         this.companyTypeService = companyTypeService;
         this.userCategoryService = userCategoryService;
         this.userService = userService;
@@ -373,6 +377,9 @@ public class InitTestDBService {
                 }
             }
             roomService.save(room);
+        }
+        for (Room room : roomList) {
+            productManager.addProductToRoom(Long.parseLong("1"), room.getId());
         }
 
     }

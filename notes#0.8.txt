@@ -6,8 +6,7 @@
         . product manager test class created
         . add product to room method created
         . recalculation costs of products in the room
-        - add product
-        - remove product
+        . recalculation costs of products in the department ...
 
     - hospital details page to load faster
         - hospital-unit-details.jsp page updates...
@@ -23,6 +22,10 @@
         - actual cost of products to add
 
 // todo/done:
+
+#0.8-1.X
+    - add product to room manager -> calculate costs for department and hospital ...
+        + recalculation costs of products in the department
 
 #0.8-1.X
     - add product to room manager -> calculate costs for department and hospital ...
