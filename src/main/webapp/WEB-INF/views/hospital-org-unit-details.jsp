@@ -56,19 +56,19 @@
                             <li class="breadcrumb-item"><a href="/hospitals/all">Hospitals</a></li>
 
                             <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
-                            <li class="breadcrumb-item"><a href="#" disabled="true">${hospitalOrgUnit.name}</a></li>
+                            <li class="breadcrumb-item"><p>${hospitalOrgUnit.name}</p></li>
                             </c:if>
 
                             <c:if test="${hospitalOrgUnit.className eq 'department'}">
                             <li class="breadcrumb-item"><a href="/hospitals/details/${hospitalOrgUnit.hospital.id}">${hospitalOrgUnit.hospital.name}</a></li>
-                            <li class="breadcrumb-item"><a href="#" disabled>${hospitalOrgUnit.departmentCategory.name}</a></li>
+                            <li class="breadcrumb-item"><p>${hospitalOrgUnit.departmentCategory.name}</p></li>
                             </c:if>
 
-                            <%--<c:if test="${hospitalOrgUnit.className eq 'room'}">
+                            <c:if test="${hospitalOrgUnit.className eq 'room'}">
                             <li class="breadcrumb-item"><a href="/hospitals/details/${hospitalOrgUnit.department.hospital.id}" >${hospitalOrgUnit.department.hospital.name}</a></li>
                             <li class="breadcrumb-item"><a href="/departments/details/${hospitalOrgUnit.department.id}?content=info">${hospitalOrgUnit.department.departmentCategory.name}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">${hospitalOrgUnit.number} ${hospitalOrgUnit.hospitalOrgUnitCategory.name} ${hospitalOrgUnit.name}</li>
-                            </c:if>--%>
+                            <li class="breadcrumb-item disabled" aria-current="page"><p>${hospitalOrgUnit.number} ${hospitalOrgUnit.roomCategory.name}</p></li>
+                            </c:if>
 
                         </ol>
                     </nav>
@@ -315,46 +315,6 @@
                     </c:if>
                 </div>
 
-                <%-- HEADER 2 ( BUDGET INFO )  todo: del? --%>
-                <%--<div class="card-header">
-                &lt;%&ndash;<c:if test="${param.get('content') ne null && param.get('content').toString() eq 'departmentList'}"> &lt;%&ndash;if depratment list page&ndash;%&gt;
-
-                    <div>
-                        <div class="col-sm-12 text-right mt-auto mb-auto">
-                            <c:set var="costOfDepartments" value="${0}"/>
-                            <c:forEach items="${hospital.departmentList}" var="department">
-                                <c:forEach items="${department.roomList}" var="room">
-                                    <c:forEach items="${room.productList}" var="product">
-                                        <c:set var="costOfDepartments" value="${costOfDepartments + product.price}"/>
-                                    </c:forEach>
-                                </c:forEach>
-                            </c:forEach>
-                            <span>HOSPITAL INITIAL BUDGET:</span>
-                            <fmt:formatNumber
-                                    type="currency"
-                                    maxIntegerDigits="12"
-                                    minIntegerDigits="1"
-                                    maxFractionDigits="2"
-                                    minFractionDigits="2"
-                                    currencySymbol="zł"
-                                    value="${hospital.budget+costOfDepartments}"
-                            />
-                            <br>
-                            <span>HOSPITAL ACTUAL BUDGET:</span>
-                            <fmt:formatNumber
-                                    type="currency"
-                                    maxIntegerDigits="12"
-                                    minIntegerDigits="1"
-                                    maxFractionDigits="2"
-                                    minFractionDigits="2"
-                                    currencySymbol="zł"
-                                    value="${hospital.budget}"
-                            />
-                        </div>
-                    </div>
-                </c:if>&ndash;%&gt;
-                </div>--%>
-
                 <%--MAIN CONTENT--%>
                 <%--<div id="mainContent" class="container">--%>
                 <div class="card-body">
@@ -362,7 +322,7 @@
                     <%-- SUB-PAGES: INFO & EDIT PAGE--%>
                     <c:if test="${param.containsKey('content') && param.get('content').toString() eq 'info' || !param.containsKey('content')}">
 
-                        <%-- EDIT PAGE --%>
+                        <%-- EDIT PAGE --%> <%--todo--%>
                         <%--<c:if test="${param.containsKey('edit')}">
                             <c:forEach items="${hospital.departmentList}" var="department">
                                 <form:hidden path="departmentList" value="${department.id}" checked="checked"/>
@@ -539,7 +499,7 @@
                                 <div class="card-body">
                                     <div class="row border-top pt-3">
                                         <a href="/rooms/details/${room.id}?content=info" class="col-sm-7">
-                                            <h5>${room.name}</h5>
+                                            <h5>${room.number} ${room.name}</h5>
                                         </a>
                                         <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>
                                             <%--<div class="col-sm-3 text-right border border-left-0">
@@ -698,6 +658,23 @@
                                             currencySymbol="zł"
                                             value="${costOfDepartments}"
                                     />--%>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="${param.containsKey('content') && param.get('content') eq 'productList'}">
+                        <div class="row">
+                            <div class="col-sm-12 text-right bg-danger">
+                                TOTAL COST OF PRODUCTS:
+                                    <%--<fmt:formatNumber
+                                            type="currency"
+                                            maxIntegerDigits="12"
+                                            minIntegerDigits="1"
+                                            maxFractionDigits="2"
+                                            minFractionDigits="2"
+                                            currencySymbol="zł"
+                                            value="${costOfDepartments}"
+                                    />--%>
+                                ${hospitalOrgUnit.costOfProductsActual}
                             </div>
                         </div>
                     </c:if>

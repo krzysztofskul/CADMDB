@@ -81,20 +81,26 @@ public class ProductService {
      */
 
     public void addProductToRoom(Long productId, Long roomId) {
+
+        // add product to roomList
+        // re-calculate costs of room
+        // re-calculate costs of department
+        // re-calculate costs od hospital
+
         Product product = this.loadById(productId);
         Room room = roomService.loadById(roomId);
-        Department department = departmentService.loadById(room.getDepartment().getId());
-        Hospital hospital = hospitalService.loadById(department.getHospital().getId());
+        //Department department = departmentService.loadById(room.getDepartment().getId());
+        //Hospital hospital = hospitalService.loadById(department.getHospital().getId());
 
         room.addProduct(product);
         room.setBudget(room.getBudget().subtract(product.getPrice()));
-        department.setBudget(department.getBudget().subtract(product.getPrice()));
-        hospital.setBudget(hospital.getBudget().subtract(product.getPrice()));
+        //department.setBudget(department.getBudget().subtract(product.getPrice()));
+        //hospital.setBudget(hospital.getBudget().subtract(product.getPrice()));
 
         this.save(product);
         roomService.save(room);
-        departmentService.save(department);
-        hospitalService.save(hospital);
+        //departmentService.save(department);
+        //hospitalService.save(hospital);
 
     }
 

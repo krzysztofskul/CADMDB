@@ -10,6 +10,7 @@ import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,8 @@ public class Room extends Organization {
 
     @ManyToOne
     private User userManager;
+
+    private BigDecimal costOfProductsActual = BigDecimal.ZERO;
 
     private float area;
 
@@ -176,7 +179,13 @@ public class Room extends Organization {
      * GETTERS AND SETTERS
      */
 
+    public BigDecimal getCostOfProductsActual() {
+        return costOfProductsActual;
+    }
 
+    public void setCostOfProductsActual(BigDecimal costOfProductsActual) {
+        this.costOfProductsActual = costOfProductsActual;
+    }
 
     public String getNumber() {
         return number;
@@ -247,11 +256,13 @@ public class Room extends Organization {
     }
 
     public void setProductList(List<Product> productList) {
-        setLoadActual(0f);
+        /*todo: move to ProductService*/
+        /*setLoadActual(0f);
         this.productList = productList;
         for (Product product : this.productList) {
             this.loadActual += product.getWeight();
-        }
+        }*/
+        this.productList = productList;
     }
 
     public RoomCategory getRoomCategory() {
