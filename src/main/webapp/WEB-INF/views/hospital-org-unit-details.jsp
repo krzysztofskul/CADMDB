@@ -146,7 +146,7 @@
                                     </svg>
                                     <span class="small ml-2">ADD NEW ${subOrgUnit}</span>
                                 </a>
-                                <a href="/hospitals/details/${hospitalOrgUnit.id}?content=info" class="dropdown-item" type="button">
+                                <a href="/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=info" class="dropdown-item" type="button">
                                     <svg class="text-info bi bi-info-square" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                         <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
@@ -164,7 +164,7 @@
                                     </svg>
                                     <span class="small ml-2">${subOrgUnits} LIST</span>
                                 </a>
-                                <a href="/hospitals/details/${hospitalOrgUnit.id}?content=analysis" class="dropdown-item" type="button">
+                                <a href="/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=analysis" class="dropdown-item" type="button">
                                     <svg class="text-info bi bi-graph-up" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0 0h1v16H0V0zm1 15h15v1H1v-1z"/>
                                         <path fill-rule="evenodd" d="M14.39 4.312L10.041 9.75 7 6.707l-3.646 3.647-.708-.708L7 5.293 9.959 8.25l3.65-4.563.781.624z"/>
@@ -607,31 +607,31 @@
                     <%-- SUB-PAGES: ANALYSIS PAGE --%>
                     <c:if test="${param.get('content') ne null && param.get('content').toString() eq 'analysis'}">
 
-                        <%--<c:set var="ratioCostOfProductsToHospitalBudget" value="${costOfDepartments / (hospital.budget+costOfDepartments) * 100}"/>
+                        <c:set var="ratioCostOfProducts" value="${hospitalOrgUnit.costOfProductsActual / hospitalOrgUnit.budget * 100}"/>
                         <c:choose>
-                            <c:when test="${ratioCostOfProductsToHospitalBudget > 100}">
+                            <c:when test="${ratioCostOfProducts > 100}">
                                 <c:set var="progressBarHospital" value="bg-danger"/>
                             </c:when>
-                            <c:when test="${ratioCostOfProductsToHospitalBudget.toString() eq '100.00'}">
+                            <c:when test="${ratioCostOfProducts.toString() eq '100.00'}">
                                 <c:set var="progressBarHospital" value="bg-warning border border-danger"/>
                             </c:when>
-                            <c:when test="${ratioCostOfProductsToHospitalBudget < 100 && ratioCostOfProductsToHospitalBudget > 75}">
+                            <c:when test="${ratioCostOfProducts < 100 && ratioCostOfProducts > 75}">
                                 <c:set var="progressBarHospital" value="bg-warning"/>
                             </c:when>
-                            <c:when test="${ratioCostOfProductsToHospitalBudget < 75}">
+                            <c:when test="${ratioCostOfProducts < 75}">
                                 <c:set var="progressBarHospital" value="bg-success"/>
                             </c:when>
                             <c:otherwise>
                                 <c:set var="progressBarHospital" value="bg-info"/>
                             </c:otherwise>
-                        </c:choose>--%>
+                        </c:choose>
 
                         <div class="m-5">
-                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS HOSPITAL / HOSPITAL INITIAL BUDGET [%]</div>
+                            <div class="ml-5 mt-5">COST OF PRODUCTS IN THIS ${hospitalOrgUnit.className.toUpperCase()} / ${hospitalOrgUnit.className.toUpperCase()} INITIAL BUDGET [%]</div>
                             <div class="progress ml-5 mr-5" style="height: 50px">
-                                <%--<div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${costOfDepartments / (hospital.budget+costOfRooms) * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                    <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProductsToHospitalBudget} %</p>
-                                </div>--%>
+                                <div class="progress-bar ${progressBarHospital}" role="progressbar" style="width: ${ratioCostOfProducts}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                    <p class="position-absolute mt-auto mb-auto text-dark font-weight-bold ml-1">${ratioCostOfProducts} %</p>
+                                </div>
                             </div>
                         </div>
                     </c:if>
