@@ -290,7 +290,7 @@
                                                 maxFractionDigits="2"
                                                 minFractionDigits="2"
                                                 currencySymbol="zł"
-                                                value="${hospital.budget - hospitalCostOfProducts}"
+                                                value="${hospitalOrgUnit.costOfProductsActual}"
                                         />
                                     </span>
                                 </div>
@@ -445,14 +445,14 @@
                                 <a href="/departments/details/${department.id}?content=info" class="col-sm-7">
                                     <h5>${department.departmentCategory.name}</h5>
                                 </a>
-                                <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>
+                                <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS IN THE DEPRTMENT:</div>
                                     <%--<div class="col-sm-3 text-right border border-left-0">
                                         <c:set var="costOfDepartment" value="${0}"/>
                                         <c:forEach items="${department.roomList}" var="room">
                                             <c:forEach items="${room.productList}" var="product">
                                                 <c:set var="costOfDepartment" value="${costOfDepartment + product.price}"/>
                                             </c:forEach>
-                                        </c:forEach>
+                                        </c:forEach>--%>
                                         <h5>
                                             <fmt:formatNumber
                                                     type="currency"
@@ -461,10 +461,10 @@
                                                     maxFractionDigits="2"
                                                     minFractionDigits="2"
                                                     currencySymbol="zł"
-                                                    value="${costOfDepartment}"
+                                                    value="${department.costOfProductsActual}"
                                             />
                                         </h5>
-                                    </div>--%>
+                                    <%--</div>--%>
                             </div>
                             <div class="row mt-3">
                                 <div class="col-sm-8"></div>
@@ -643,16 +643,16 @@
                     <c:if test="${param.containsKey('content') && param.get('content') eq 'departmentList'}">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                TOTAL COST OF PRODUCTS:
-                                    <%--<fmt:formatNumber
-                                            type="currency"
-                                            maxIntegerDigits="12"
-                                            minIntegerDigits="1"
-                                            maxFractionDigits="2"
-                                            minFractionDigits="2"
-                                            currencySymbol="zł"
-                                            value="${costOfDepartments}"
-                                    />--%>
+                                TOTAL COST OF PRODUCTS INSIDE DEPARTMENTS OF THIS HOSPITAL:
+                                <fmt:formatNumber
+                                        type="currency"
+                                        maxIntegerDigits="12"
+                                        minIntegerDigits="1"
+                                        maxFractionDigits="2"
+                                        minFractionDigits="2"
+                                        currencySymbol="zł"
+                                        value="${hospitalOrgUnit.costOfProductsActual}"
+                                />
                             </div>
                         </div>
                     </c:if>
