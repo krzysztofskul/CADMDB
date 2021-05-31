@@ -1,14 +1,22 @@
 // todo:
 
 #0.8-1.2-X
-    - remove product from room
-        - recalculation costs for room/department/hospital
+    - remove product from room 
+        . junit test
+            . recalculation costs for room/department/hospital
+        - front end functionality
 
-    - add room/department functionality check/updates
+    - add product to room 
+        - front end functionality check/updates
 
     - edit hospital/department/room functionality updates
 
 // todo/done:
+
+#0.8-1.2-X
+    - remove product from room 
+        + junit test
+            + recalculation costs for room/department/hospital
 
 #0.8-1.1
     + add product to room manager -> re-calculate costs for room, department and hospital

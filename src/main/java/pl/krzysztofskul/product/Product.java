@@ -150,6 +150,7 @@ public class Product {
 
     public void removeRoom(Room room) {
         this.roomList.remove(room);
+        room.removeProduct(this);
     }
 
 }

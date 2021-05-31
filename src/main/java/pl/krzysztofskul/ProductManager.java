@@ -12,7 +12,6 @@ import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.product.ProductService;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.List;
 
 @Service
@@ -41,11 +40,16 @@ public class ProductManager {
     };
 
     public void removeProductFromRoom(Long productId, Long roomId) {
-
+        Product product = productService.loadByIdWithRoomList(productId);
+        Room room = roomService.loadByIdWithProducts(roomId);
+        List<Product> productList = room.getProductList();
+        productList.removeIf(productInRoom -> productInRoom.getId().equals(productId));
+        room.setProductList(productList);
+        recalculateCostsInRoom(room);
     };
 
     public void recalculateCostsInRoom(Room room) {
-        BigDecimal costOfProducts = room.getCostOfProductsActual();
+        BigDecimal costOfProducts = BigDecimal.ZERO;
         for (Product product : room.getProductList()) {
             costOfProducts = costOfProducts.add(product.getPrice());
         }

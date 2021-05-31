@@ -366,18 +366,22 @@ public class InitTestDBService {
                 List<Product> anaestheticWorkstationsToAdd = productCategoryService.loadByCode("AH1000").getProductList();
                 if (!room.getProductList().containsAll(operatingTablesToAdd)) {
                     if (operatingTablesToAdd.size() != 0) {
-                        room.addProduct(operatingTablesToAdd.get(new Random().nextInt(operatingTablesToAdd.size())));
+                        //room.addProduct(operatingTablesToAdd.get(new Random().nextInt(operatingTablesToAdd.size())));
+                        productManager.addProductToRoom(operatingTablesToAdd.get(new Random().nextInt(operatingTablesToAdd.size())).getId(), room.getId());
                     }
                     if (operatingLampsToAdd.size() != 0) {
-                        room.addProduct(operatingLampsToAdd.get(new Random().nextInt(operatingLampsToAdd.size())));
+                        //room.addProduct(operatingLampsToAdd.get(new Random().nextInt(operatingLampsToAdd.size())));
+                        productManager.addProductToRoom(operatingLampsToAdd.get(new Random().nextInt(operatingLampsToAdd.size())).getId(), room.getId());
                     }
                     if (anaestheticWorkstationsToAdd.size() != 0) {
-                        room.addProduct(anaestheticWorkstationsToAdd.get(new Random().nextInt(anaestheticWorkstationsToAdd.size())));
+                        //room.addProduct(anaestheticWorkstationsToAdd.get(new Random().nextInt(anaestheticWorkstationsToAdd.size())));
+                        productManager.addProductToRoom(anaestheticWorkstationsToAdd.get(new Random().nextInt(anaestheticWorkstationsToAdd.size())).getId(), room.getId());
                     }
                 }
             }
             roomService.save(room);
         }
+
         for (Room room : roomList) {
             productManager.addProductToRoom(Long.parseLong("1"), room.getId());
         }
