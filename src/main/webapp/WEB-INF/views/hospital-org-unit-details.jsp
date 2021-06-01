@@ -173,7 +173,7 @@
                                     <span class="small ml-2">ANALYSIS</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="/hospitals/delete/${hospitalOrgUnit.id}" class="dropdown-item" type="button">
+                                <a href="/${hospitalOrgUnit.className}/delete/${hospitalOrgUnit.id}" class="dropdown-item" type="button">
                                     <svg class="text-danger bi bi-trash" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -424,15 +424,6 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col text-center">
-                                    <%--<c:if test="${hospitalOrgUnit.className eq 'hospital'}">
-                                        <c:set var="subOrgUnits" value="DEPARTMENTS"/>
-                                    </c:if>
-                                    <c:if test="${hospitalOrgUnit.className eq 'department'}">
-                                        <c:set var="subOrgUnits" value="ROOMS"/>
-                                    </c:if>
-                                    <c:if test="${hospitalOrgUnit.className eq 'room'}">
-                                        <c:set var="subOrgUnits" value="PRODUCTS"/>
-                                    </c:if>--%>
                                     LIST OF ${subOrgUnits}
                                 </div>
                             </div>
@@ -442,10 +433,10 @@
                         <c:forEach items="${hospitalOrgUnit.departmentList}" var="department">
                         <div class="card-body">
                             <div class="row border-top pt-3">
-                                <a href="/departments/details/${department.id}?content=info" class="col-sm-7">
+                                <a href="/departments/details/${department.id}?content=roomList" class="col-sm-7">
                                     <h5>${department.departmentCategory.name}</h5>
                                 </a>
-                                <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS IN THE DEPRTMENT:</div>
+                                <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS IN THE DEPARTMENT:</div>
                                     <%--<div class="col-sm-3 text-right border border-left-0">
                                         <c:set var="costOfDepartment" value="${0}"/>
                                         <c:forEach items="${department.roomList}" var="room">
@@ -498,7 +489,7 @@
                             <c:forEach items="${hospitalOrgUnit.roomList}" var="room">
                                 <div class="card-body">
                                     <div class="row border-top pt-3">
-                                        <a href="/rooms/details/${room.id}?content=info" class="col-sm-7">
+                                        <a href="/rooms/details/${room.id}?content=productList" class="col-sm-7">
                                             <h5>${room.number} ${room.name}</h5>
                                         </a>
                                         <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>
@@ -531,14 +522,14 @@
                                                 <circle cx="8" cy="4.5" r="1"/>
                                             </svg>
                                         </div>
-                                        <div href="#/rooms/changeProduct?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE ROOM FROM THE SAME CATEGORY --%>
+                                        <div href="#/rooms/changeRoom?roomId=${department.id}&productId=${product.id}&category=${product.productCategory.code}"  class="col-sm-1"> <%--CHANGE ROOM FROM THE SAME CATEGORY --%>
                                             <svg class="bi bi-arrow-left-right" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
                                                 <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
                                                 <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                             </svg>
                                         </div>
-                                        <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospitalOrgUnit.id}" class="col-sm-1 text-danger"><%--DEL ROOM --%>
+                                        <a href="/rooms/delete/${room.id}?backToPage=/departments/details/${hospitalOrgUnit.id}" class="col-sm-1 text-danger"><%--DEL ROOM --%>
                                             <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                                 <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
@@ -590,7 +581,7 @@
                                                 <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                             </svg>
                                         </div>
-                                        <a href="/departments/delete/${department.id}?backToPage=/hospitals/details/${hospitalOrgUnit.id}" class="col-sm-1 text-danger"><%--DEL ROOM --%>
+                                        <a href="/products/delete/${product.id}/from/${hospitalOrgUnit.id}?backToPage=/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=productList" class="col-sm-1 text-danger"><%--DEL ROOM --%>
                                             <svg class="bi bi-x-square" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                                 <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>

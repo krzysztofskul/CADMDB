@@ -4,10 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.krzysztofskul.ProductManager;
 import pl.krzysztofskul.organization.hospital.Hospital;
 import pl.krzysztofskul.organization.hospital.HospitalService;
 import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategory;
 import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategoryService;
+import pl.krzysztofskul.organization.hospital.department.room.Room;
+import pl.krzysztofskul.organization.hospital.department.room.RoomService;
+import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
@@ -17,6 +21,8 @@ import java.util.List;
 @RequestMapping("/departments")
 public class DepartmentController {
 
+    private ProductManager productManager;
+    private RoomService roomService;
     private DepartmentCategoryService departmentCategoryService;
     private DepartmentService departmentService;
     private HospitalService hospitalService;
@@ -24,11 +30,13 @@ public class DepartmentController {
 
     @Autowired
     public DepartmentController(
-            DepartmentCategoryService departmentCategoryService,
+            ProductManager productManager, RoomService roomService, DepartmentCategoryService departmentCategoryService,
             DepartmentService departmentService,
             HospitalService hospitalService,
             UserService userService
     ) {
+        this.productManager = productManager;
+        this.roomService = roomService;
         this.departmentCategoryService = departmentCategoryService;
         this.departmentService = departmentService;
         this.hospitalService = hospitalService;
@@ -115,7 +123,15 @@ public class DepartmentController {
             @PathVariable(name = "id") Long departmentId,
             @RequestParam(name = "backToPage") String backToPage
     ) {
-        departmentService.delete(departmentService.loadById(departmentId));
+        Department departmentToDel = departmentService.loadByIdWithRoomsAndItsProducts(departmentId);
+
+        for (Room room : departmentToDel.getRoomList()) {
+            for (Product product : room.getProductList()) {
+                productManager.removeProductFromRoom(product.getId(), room.getId());
+            }
+            //roomService.delete(room);
+        }
+        departmentService.delete(departmentToDel);
         return "redirect:"+backToPage;
     }
 

@@ -1,20 +1,31 @@
 // todo:
 
-#0.8-1.2-X
-    - remove product from room 
-        . junit test
-            . recalculation costs for room/department/hospital
-        - front end functionality
+#0.8-1.3-X
+    - remove hospital func.
+        - calculate costs of investor
 
     - add product to room 
         - front end functionality check/updates
+
+    - connect ProductManager and ProductService into one class?
 
     - edit hospital/department/room functionality updates
 
 // todo/done:
 
+#0.8-1.2
+    + remove product from room
+        . junit test
+            . recalculation costs for room/department/hospital
+        + front end functionality
+            + remove product button update -> controller update
+
+    + remove room/department functionality
+        + front end updates
+        + recalculation the costs of products in department/hospital
+
 #0.8-1.2-X
-    - remove product from room 
+    - remove product from room
         + junit test
             + recalculation costs for room/department/hospital
 

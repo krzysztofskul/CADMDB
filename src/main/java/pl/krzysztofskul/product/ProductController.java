@@ -3,6 +3,7 @@ package pl.krzysztofskul.product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.krzysztofskul.ProductManager;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.manufacturer.ManufacturerService;
 import pl.krzysztofskul.product.productCategory.ProductCategory;
@@ -16,15 +17,18 @@ public class ProductController {
 
     private ManufacturerService manufacturerService;
     private ProductService productService;
+    private ProductManager productManager;
     private ProductCategoryService productCategoryService;
 
     public ProductController(
             ManufacturerService manufacturerService,
             ProductService productService,
+            ProductManager productManager,
             ProductCategoryService productCategoryService
     ) {
         this.manufacturerService = manufacturerService;
         this.productService = productService;
+        this.productManager = productManager;
         this.productCategoryService = productCategoryService;
     }
 
@@ -71,6 +75,16 @@ public class ProductController {
     ) {
         productService.save(product);
         return "redirect:/manufacturers/all";
+    }
+
+    @GetMapping("/delete/{productId}/from/{roomId}")
+    public String deleteProductFromRoom(
+            @PathVariable Long productId,
+            @PathVariable Long roomId,
+            @RequestParam String backToPage
+    ) {
+        productManager.removeProductFromRoom(productId, roomId);
+        return "redirect:"+backToPage;
     }
 
 }

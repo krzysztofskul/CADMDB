@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.krzysztofskul.ProductManager;
 import pl.krzysztofskul.manufacturer.ManufacturerService;
-import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
@@ -18,7 +18,6 @@ import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -30,6 +29,7 @@ public class RoomController {
     private RoomService roomService;
     private RoomCategoryService roomCategoryService;
     private ProductService productService;
+    private ProductManager productManager;
     private ProductCategoryService productCategoryService;
     private ManufacturerService manufacturerService;
     private OrganizationStatusService organizationStatusService;
@@ -41,7 +41,7 @@ public class RoomController {
             RoomService roomService,
             RoomCategoryService roomCategoryService,
             ProductService productService,
-            ProductCategoryService productCategoryService,
+            ProductManager productManager, ProductCategoryService productCategoryService,
             ManufacturerService manufacturerService,
             OrganizationStatusService organizationStatusService
     ) {
@@ -50,6 +50,7 @@ public class RoomController {
         this.roomService = roomService;
         this.roomCategoryService = roomCategoryService;
         this.productService = productService;
+        this.productManager = productManager;
         this.productCategoryService = productCategoryService;
         this.manufacturerService = manufacturerService;
         this.organizationStatusService = organizationStatusService;
@@ -192,7 +193,12 @@ public class RoomController {
             @PathVariable Long roomId,
             @RequestParam String backToPage
     ) {
-        roomService.delete(roomService.loadById(roomId));
+        Room roomToDelete = roomService.loadByIdWithProducts(roomId);
+
+        for (Product product : roomToDelete.getProductList()) {
+            productManager.removeProductFromRoom(product.getId(), roomId);
+        }
+        roomService.delete(roomToDelete);
         return "redirect:"+backToPage;
     }
 
