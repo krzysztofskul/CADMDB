@@ -6,7 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import pl.krzysztofskul.ProductManager;
+import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
+import pl.krzysztofskul.organization.hospital.department.room.Room;
+import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 import javax.servlet.http.HttpSession;
@@ -24,15 +28,17 @@ public class HospitalController {
 
     private HospitalService hospitalService;
     private DepartmentService departmentService;
+    private ProductManager productManager;
     private UserService userService;
 
     public HospitalController(
             HospitalService hospitalService,
             DepartmentService departmentService,
-            UserService userService
+            ProductManager productManager, UserService userService
     ) {
         this.hospitalService = hospitalService;
         this.departmentService = departmentService;
+        this.productManager = productManager;
         this.userService = userService;
     }
 
@@ -219,15 +225,24 @@ public class HospitalController {
 
     @GetMapping("/delete/{id}")
     public String delete(
-            @PathVariable Long id
+            @PathVariable Long id,
+            @RequestParam String backToPage
     ) {
         Hospital hospital = hospitalService.loadByIdWithUsersWithDepartmentsItsRoomsAndItsProducts(id);
+
+        for (Department department : hospital.getDepartmentList()) {
+            for (Room room : department.getRoomList()) {
+                for (Product product : room.getProductList()) {
+                    productManager.removeProductFromRoom(product.getId(), room.getId());
+                }
+            }
+        }
 
         for (User user : hospital.getEmployeeList()) {
             user.setHospital(null);
         }
         hospitalService.delete(hospital);
-        return "redirect:/hospitals/all";
+        return "redirect:"+backToPage;
     }
 
     @GetMapping("/{hospitalId}/setManager")

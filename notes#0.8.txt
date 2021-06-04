@@ -1,17 +1,23 @@
 // todo:
 
-#0.8-1.3-X
-    - remove hospital func.
-        - calculate costs of investor
+#
 
-    - add product to room 
+    - add product to room
         - front end functionality check/updates
 
     - connect ProductManager and ProductService into one class?
 
     - edit hospital/department/room functionality updates
 
+#
+    - redirect to error page when go to not existing room/department/hospital from web browser address line
+
 // todo/done:
+
+#0.8-1.3
+    + remove hospital func.
+        + remove from db
+        + redirect to the page from which hospital has been deleted
 
 #0.8-1.2
     + remove product from room
