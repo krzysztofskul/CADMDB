@@ -140,7 +140,16 @@
                                 </svg>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <a href="/departments/new?hospitalId=${hospitalOrgUnit.id}&backToPage=/hospitals/details/${hospitalOrgUnit.id}" class="dropdown-item" type="button">
+                                <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
+                                    <c:set var="hrefNew" value="/departments/new?hospitalId=${hospitalOrgUnit.id}&backToPage=/hospitals/details/${hospitalOrgUnit.id}"/>
+                                </c:if>
+                                <c:if test="${hospitalOrgUnit.className eq 'department'}">
+                                    <c:set var="hrefNew" value="/rooms/new?departmentId=${hospitalOrgUnit.id}&backToPage=/departments/details/${hospitalOrgUnit.id}"/>
+                                </c:if>
+                                <c:if test="${hospitalOrgUnit.className eq 'room'}">
+                                    <c:set var="hrefNew" value="/rooms/addProduct?roomId=${hospitalOrgUnit.id}&backToPage=/rooms/details/${hospitalOrgUnit.id}"/>
+                                </c:if>
+                                <a href="${hrefNew}" class="dropdown-item" type="button">
                                     <svg class="text-success bi bi-plus-square-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
                                     </svg>
@@ -499,7 +508,8 @@
                                 <div class="card-body">
                                     <div class="row border-top pt-3">
                                         <a href="/rooms/details/${room.id}?content=productList" class="col-sm-7">
-                                            <h5>${room.number} ${room.name}</h5>
+                                            <h5>${room.number} ${room.roomCategory.name}</h5>
+                                            <p>${room.name}</p>
                                         </a>
                                         <div class="col-sm-2 border border-right-0 bg-light text-right" style="font-size: 14px">COSTS OF PRODUCTS:</div>
                                             <div class="col-sm-3 text-right border border-left-0">

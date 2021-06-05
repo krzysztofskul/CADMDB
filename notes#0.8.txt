@@ -2,17 +2,20 @@
 
 #
 
-    - add product to room
-        - front end functionality check/updates
-
     - connect ProductManager and ProductService into one class?
 
     - edit hospital/department/room functionality updates
 
 #
+    - edit hospital/department/room functionality
+
+#
     - redirect to error page when go to not existing room/department/hospital from web browser address line
 
 // todo/done:
+
+#0.8-1.4
+    + add product to room functionality updates
 
 #0.8-1.3
     + remove hospital func.

@@ -95,9 +95,9 @@ public class RoomController {
             @ModelAttribute("room") Room room,
             @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
-        if (null == room.getUserManager().getId()) {
-            room.setUserManager(null);
-        }
+//        if (null == room.getUserManager().getId()) {
+//            room.setUserManager(null);
+//        }
         roomService.save(room);
         if (backToPage != null) {
             return "redirect:"+backToPage;
@@ -153,8 +153,10 @@ public class RoomController {
             @RequestParam(name = "backToPage", required = false) String backToPage
     ) {
         for (Product productToAdd : productsToAdd) {
-            productService.addProductToRoom(productToAdd.getId(), room.getId());
+            //productService.addProductToRoom(productToAdd.getId(), room.getId());
+            productManager.addProductToRoom(productToAdd.getId(), room.getId());
         }
+
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }
