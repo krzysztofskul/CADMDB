@@ -1,18 +1,18 @@
 // todo:
 
-#
-
-    - connect ProductManager and ProductService into one class?
-
-    - edit hospital/department/room functionality updates
-
-#
+#0.8-3
     - edit hospital/department/room functionality
 
 #
+    - connect ProductManager and ProductService into one class?
     - redirect to error page when go to not existing room/department/hospital from web browser address line
+    - move manufacturer package to organization -> create inheritance
 
 // todo/done:
+
+#0.8-2
+    + department / room address copy from hospital if is not set
+    + hospital path update
 
 #0.8-1.4
     + add product to room functionality updates

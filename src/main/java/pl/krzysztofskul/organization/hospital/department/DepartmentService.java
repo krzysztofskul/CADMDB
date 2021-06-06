@@ -21,6 +21,30 @@ public class DepartmentService {
     }
 
     public void save(Department department) {
+        if (department.getCountry() == null) {
+            department.setCountry(department.getHospital().getCountry());
+        }
+        if (department.getPostalCode() == null) {
+            department.setPostalCode(department.getHospital().getPostalCode());
+        }
+        if (department.getCity() == null) {
+            department.setCity(department.getHospital().getCity());
+        }
+        if (department.getStreet() == null) {
+            department.setStreet(department.getHospital().getStreet());
+        }
+        if (department.getStreetNo() == null) {
+            department.setStreetNo(department.getHospital().getStreetNo());
+        }
+        if (department.getPhone() == null) {
+            department.setPhone(department.getHospital().getPhone());
+        }
+        if (department.getEmail() == null) {
+            department.setEmail(department.getHospital().getEmail());
+        }
+        if (department.getWww() == null) {
+            department.setWww(department.getHospital().getWww());
+        }
         departmentRepo.save(department);
     }
 

@@ -53,7 +53,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
 
-                            <li class="breadcrumb-item"><a href="/hospitals/all">Hospitals</a></li>
+                            <li class="breadcrumb-item"><a href="/investors/details/${sessionScope.userLoggedIn.investmentCompany.id}">${sessionScope.userLoggedIn.investmentCompany.name}</a></li>
 
                             <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
                             <li class="breadcrumb-item"><p>${hospitalOrgUnit.name}</p></li>

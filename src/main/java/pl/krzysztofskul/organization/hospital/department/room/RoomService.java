@@ -25,7 +25,31 @@ public class RoomService {
     }
 
     public void save(Room room) {
-            room.setDepartment(departmentService.loadByIdWithHospitalAndItsDepartmentList(room.getDepartment().getId()));
+        room.setDepartment(departmentService.loadByIdWithHospitalAndItsDepartmentList(room.getDepartment().getId()));
+        if (room.getCountry() == null) {
+            room.setCountry(room.getDepartment().getCountry());
+        }
+        if (room.getPostalCode() == null) {
+            room.setPostalCode(room.getDepartment().getPostalCode());
+        }
+        if (room.getCity() == null) {
+            room.setCity(room.getDepartment().getCity());
+        }
+        if (room.getStreet() == null) {
+            room.setStreet(room.getDepartment().getStreet());
+        }
+        if (room.getStreetNo() == null) {
+            room.setStreetNo(room.getDepartment().getStreetNo());
+        }
+        if (room.getPhone() == null) {
+            room.setPhone(room.getDepartment().getPhone());
+        }
+        if (room.getEmail() == null) {
+            room.setEmail(room.getDepartment().getEmail());
+        }
+        if (room.getWww() == null) {
+            room.setWww(room.getDepartment().getWww());
+        }
         roomRepo.save(room);
     }
 
