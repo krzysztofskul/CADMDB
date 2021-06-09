@@ -1,7 +1,9 @@
 // todo:
 
 #0.8-3
-    - edit hospital/department/room functionality
+    . edit hospital info functionality
+    - edit department functionality
+    - edit room functionality
 
 #
     - connect ProductManager and ProductService into one class?
@@ -9,6 +11,9 @@
     - move manufacturer package to organization -> create inheritance
 
 // todo/done:
+
+#0.8-3-X
+    + edit hospital info functionality
 
 #0.8-2
     + department / room address copy from hospital if is not set

@@ -16,7 +16,7 @@
 
     <jsp:include page="./header.jsp"/>
 
-    <form:form modelAttribute="hospitalOrgUnit" method="post" action="/${hospitalOrgUnit}/details/">
+    <form:form modelAttribute="hospitalOrgUnit" method="post" action="/${hospitalOrgUnit.className}s/details/">
 
         <%-- CHECK THE USER'S CATEGORY --%>
         <c:set var="userCategoryList" value="${sessionScope.userLoggedIn.userCategoryList}" scope="session"/>
@@ -89,6 +89,7 @@
                                     <form:hidden path="investor.id"/>
                                     <form:hidden path="investmentCompany.id"/>
                                     <form:hidden path="manager.id"/>
+                                    <form:hidden path="costOfProductsActual"/>
                                     <h4><form:input path="name"/></h4>
                                     <c:forEach items="${validationErrors}" var="validationError">
                                         <c:if test="${validationError.field eq 'name'}">
@@ -339,16 +340,11 @@
 
                     <%-- SUB-PAGES: INFO & EDIT PAGE--%>
                     <c:if test="${param.containsKey('content') && param.get('content').toString() eq 'info' || !param.containsKey('content')}">
-
-                        <%-- EDIT PAGE --%> <%--todo--%>
-                        <%--<c:if test="${param.containsKey('edit')}">
-                            <c:forEach items="${hospital.departmentList}" var="department">
-                                <form:hidden path="departmentList" value="${department.id}" checked="checked"/>
-                            </c:forEach>
-                            <input type="hidden" name="backToPage" value="/hospitals/details/${hospital.id}?content=info">
-                            <div class="row mt-2">
+                        <c:if test="${param.containsKey('edit') && hospitalOrgUnit.className eq 'hospital'}">
+                            <input type="hidden" name="backToPage" value="/hospitals/details/${hospitalOrgUnit.id}?content=info">
+                            <div class="row mt-2 mb-5">
                                 <div class="col-sm-12">
-                                    <a href="/hospitals/details/${hospital.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
+                                    <a href="/hospitals/details/${hospitalOrgUnit.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
                                         CANCEL
                                     </a>
                                     <form:button class="btn btn-outline-success float-right d-inline-block">
@@ -356,7 +352,7 @@
                                     </form:button>
                                 </div>
                             </div>
-                        </c:if>--%>
+                        </c:if>
 
                         <%-- INFO PAGE --%>
                         <div class="generalInfo">
