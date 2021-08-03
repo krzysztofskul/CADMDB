@@ -46,7 +46,7 @@ public class User {
     @OneToMany(mappedBy = "manager", cascade = CascadeType.PERSIST)
     private List<Hospital> hospitalManagingList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userManager")
+    @OneToMany(mappedBy = "userManager", cascade = CascadeType.PERSIST)
     private List<Department> departmentManagingList = new ArrayList<>();
 
     @OneToMany(mappedBy = "userManager")

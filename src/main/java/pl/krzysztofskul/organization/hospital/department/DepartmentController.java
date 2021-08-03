@@ -3,6 +3,8 @@ package pl.krzysztofskul.organization.hospital.department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.ProductManager;
 import pl.krzysztofskul.organization.hospital.Hospital;
@@ -15,6 +17,8 @@ import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -116,6 +120,33 @@ public class DepartmentController {
         } else {
             return "redirect:/errorPage?comment=no-department-found";
         }
+    }
+
+    @PostMapping("/details")
+    public String newHospital(
+            @ModelAttribute("department") @Valid Department department, BindingResult bindingResult,
+            @RequestParam(name = "content", required = false) String content,
+            @RequestParam(name = "backToPage", required = false) String backToPage,
+            Model model,
+            HttpSession httpSession
+    ) {
+
+        if (bindingResult.hasErrors()) {
+            if (backToPage.contains("/departments/details")) {
+                model.addAttribute("department", department);
+                //http://localhost:8080
+                List<ObjectError> validationErrors = bindingResult.getAllErrors();
+                httpSession.setAttribute("validationErrors", validationErrors);
+                return "redirect:/departments/details/"+department.getId()+"?content=info&edit=true&editUsers=true";
+            }
+
+        }
+        httpSession.setAttribute("validationErrors", null);
+        departmentService.save(department);
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
+        return "redirect:/users/details/"+department.getId();
     }
 
     @GetMapping("/delete/{id}")

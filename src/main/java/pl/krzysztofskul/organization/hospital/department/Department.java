@@ -19,7 +19,7 @@ public class Department extends Organization {
 
     private float area;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private User userManager;
 
     @ManyToOne

@@ -86,9 +86,17 @@
                             <c:choose>
                                 <c:when test="${param.containsKey('edit')}">
                                     <form:hidden path="id"/>
-                                    <form:hidden path="investor.id"/>
-                                    <form:hidden path="investmentCompany.id"/>
-                                    <form:hidden path="manager.id"/>
+                                    <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
+                                        <form:hidden path="investor.id"/>
+                                        <form:hidden path="investmentCompany.id"/>
+                                        <form:hidden path="manager.id"/>
+                                    </c:if>
+                                    <c:if test="${hospitalOrgUnit.className eq 'department'}">
+                                        <form:hidden path="hospital.id"/>
+                                        <form:hidden path="departmentCategory.id"/>
+                                        <form:hidden path="userManager.id"/>
+                                    </c:if>
+
                                     <form:hidden path="costOfProductsActual"/>
                                     <h4><form:input path="name"/></h4>
                                     <c:forEach items="${validationErrors}" var="validationError">
@@ -124,7 +132,7 @@
                         <%-- MENU --%>
                         <div class="col-sm-3">
                             <c:if test="${param.containsKey('content') && param.containsValue('info') || !param.get('contains')}">
-                                <a href="/hospitals/details/${hospitalOrgUnit.id}?content=info&edit=true&editUsers=true" class="btn float-right">
+                                <a href="/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=info&edit=true&editUsers=true" class="btn float-right">
                                     <span>EDIT</span><br>
                                     <svg class="bi bi-pencil" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
@@ -340,11 +348,11 @@
 
                     <%-- SUB-PAGES: INFO & EDIT PAGE--%>
                     <c:if test="${param.containsKey('content') && param.get('content').toString() eq 'info' || !param.containsKey('content')}">
-                        <c:if test="${param.containsKey('edit') && hospitalOrgUnit.className eq 'hospital'}">
-                            <input type="hidden" name="backToPage" value="/hospitals/details/${hospitalOrgUnit.id}?content=info">
+                        <c:if test="${param.containsKey('edit')}">
+                            <input type="hidden" name="backToPage" value="/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=info">
                             <div class="row mt-2 mb-5">
                                 <div class="col-sm-12">
-                                    <a href="/hospitals/details/${hospitalOrgUnit.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
+                                    <a href="/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
                                         CANCEL
                                     </a>
                                     <form:button class="btn btn-outline-success float-right d-inline-block">
