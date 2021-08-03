@@ -146,7 +146,8 @@ public class DepartmentController {
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }
-        return "redirect:/users/details/"+department.getId();
+        User userLoggedIn = (User) httpSession.getAttribute("userLoggedIn");
+        return "redirect:/users/details/"+userLoggedIn.getId();
     }
 
     @GetMapping("/delete/{id}")

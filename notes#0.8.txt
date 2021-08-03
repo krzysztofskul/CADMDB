@@ -1,13 +1,9 @@
 // todo:
 
-#0.8-4
+#0.9
     - edit department's manager and employees
     - edit room's manager and employees
-
-#0.8-3
-    . edit hospital info functionality
-    . edit department info functionality
-    - edit room info functionality
+    - edit room's specific information (wall, ceiling etc.)
 
 #
     - connect ProductManager and ProductService into one class?
@@ -16,9 +12,10 @@
 
 // todo/done:
 
-#0.8-3-X
+#0.8-FINAL
     + edit hospital info functionality
     + edit department info functionality
+    + edit room info functionality
 
 #0.8-2
     + department / room address copy from hospital if is not set

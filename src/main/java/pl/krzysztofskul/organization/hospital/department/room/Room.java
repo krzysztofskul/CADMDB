@@ -25,7 +25,7 @@ public class Room extends Organization {
 
     private String fullPath;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private User userManager;
 
     private float area;

@@ -3,9 +3,12 @@ package pl.krzysztofskul.organization.hospital.department.room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.ProductManager;
 import pl.krzysztofskul.manufacturer.ManufacturerService;
+import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
@@ -17,6 +20,8 @@ import pl.krzysztofskul.product.productCategory.ProductCategoryService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 
@@ -132,6 +137,33 @@ public class RoomController {
         } else {
             return "redirect:/errorPage?comment=no-room-found";
         }
+    }
+
+    @PostMapping("/details")
+    public String newHospital(
+            @ModelAttribute("room") @Valid Room room, BindingResult bindingResult,
+            @RequestParam(name = "content", required = false) String content,
+            @RequestParam(name = "backToPage", required = false) String backToPage,
+            Model model,
+            HttpSession httpSession
+    ) {
+
+        if (bindingResult.hasErrors()) {
+            if (backToPage.contains("/rooms/details")) {
+                model.addAttribute("room", room);
+                List<ObjectError> validationErrors = bindingResult.getAllErrors();
+                httpSession.setAttribute("validationErrors", validationErrors);
+                return "redirect:/rooms/details/"+room.getId()+"?content=info&edit=true&editUsers=true";
+            }
+
+        }
+        httpSession.setAttribute("validationErrors", null);
+        roomService.save(room);
+        if (backToPage != null) {
+            return "redirect:"+backToPage;
+        }
+        User userLoggedIn = (User) httpSession.getAttribute("userLoggedIn");
+        return "redirect:/users/details/"+userLoggedIn.getId();
     }
 
     @GetMapping("/addProduct")

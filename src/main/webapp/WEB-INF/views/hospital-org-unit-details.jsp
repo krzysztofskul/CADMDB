@@ -96,8 +96,28 @@
                                         <form:hidden path="departmentCategory.id"/>
                                         <form:hidden path="userManager.id"/>
                                     </c:if>
-
+                                    <c:if test="${hospitalOrgUnit.className eq 'room'}">
+                                        <form:hidden path="department.id"/>
+                                        <form:hidden path="roomCategory.id"/>
+                                        <form:hidden path="organizationStatus.id"/>
+                                        <form:hidden path="userManager.id"/>
+                                        <form:hidden path="fullPath"/>
+                                        <form:hidden path="height"/>
+                                        <form:hidden path="loadActual"/>
+                                        <form:hidden path="loadCapacity"/>
+                                        <form:hidden path="temperature"/>
+                                        <form:hidden path="illumination"/>
+                                        <form:hidden path="airChanges"/>
+                                        <form:hidden path="airConditioning"/>
+                                        <form:hidden path="floor"/>
+                                        <form:hidden path="ceiling"/>
+                                        <form:hidden path="walls"/>
+                                        <form:hidden path="illumination"/>
+                                    </c:if>
                                     <form:hidden path="costOfProductsActual"/>
+                                    <c:if test="${hospitalOrgUnit.className eq 'room'}">
+                                        <h4><form:input path="number"/></h4>
+                                    </c:if>
                                     <h4><form:input path="name"/></h4>
                                     <c:forEach items="${validationErrors}" var="validationError">
                                         <c:if test="${validationError.field eq 'name'}">

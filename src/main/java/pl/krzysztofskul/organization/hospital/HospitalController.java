@@ -220,7 +220,8 @@ public class HospitalController {
         if (backToPage != null) {
             return "redirect:"+backToPage;
         }
-        return "redirect:/users/details/"+hospital.getId();
+        User userLoggedIn = (User) httpSession.getAttribute("userLoggedIn");
+        return "redirect:/users/details/"+userLoggedIn.getId();
     }
 
     @GetMapping("/delete/{id}")
