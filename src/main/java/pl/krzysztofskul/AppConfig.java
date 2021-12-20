@@ -74,6 +74,7 @@ public class AppConfig implements WebMvcConfigurer {
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
+        properties.setProperty("hibernate.jdbc.time_zone", "UTC");
         return properties;
     }
 
@@ -94,11 +95,17 @@ public class AppConfig implements WebMvcConfigurer {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
-        dataSource.setUrl("jdbc:mysql://localhost:3306/cadmdb?useSSL=false");
-        dataSource.setUsername("root");
-        dataSource.setPassword("@xDpo9Ec16N7&OP0");
+        /* local DB */
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/cadmdb?useSSL=false");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("@xDpo9Ec16N7&OP0");
 
+        /* remote DB Amazon AWS */
+        dataSource.setUrl("jdbc:mysql://db202112201508.cn58moquguac.eu-central-1.rds.amazonaws.com:3306/cadmdb?useSSL=false");
+        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
+        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
 
+        /* remote DB Heroku */
 //        dataSource.setUrl("jdbc:mysql://"+HerokuConnectionData.getDATABASE());
 //        dataSource.setUsername(HerokuConnectionData.getUSER());
 //        dataSource.setPassword(HerokuConnectionData.getPASSWORD());

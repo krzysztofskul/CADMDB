@@ -12,6 +12,9 @@
 
 // todo/done:
 
+#0.8.1-FINAL
+    + Amazon AWS configuration
+
 #0.8-FINAL
     + edit hospital info functionality
     + edit department info functionality

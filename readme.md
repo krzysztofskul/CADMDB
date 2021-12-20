@@ -1,5 +1,5 @@
 # CADMDB (in progress..)
-DEMO PAGE : https://cadmdb.herokuapp.com/
+DEMO PAGE : http://cadmdb2-env.eba-zyvkc6t6.eu-central-1.elasticbeanstalk.com/
 
 ## IDEA
 The main idea of the application is to help going through the planning process of hospitals departments' and rooms' structure as well as calculating costs of medical devices.
