@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.krzysztofskul.initTestDB.InitTestDB;
+import pl.krzysztofskul.initTestDB.InitTestDBService;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
 import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
@@ -14,10 +15,12 @@ import javax.servlet.http.HttpSession;
 public class LogInController {
 
     private UserService userService;
+    private InitTestDBService initTestDBService;
 
     @Autowired
-    public LogInController(UserService userService) {
+    public LogInController(UserService userService, InitTestDBService initTestDBService) {
         this.userService = userService;
+        this.initTestDBService = initTestDBService;
     }
 
 //    @GetMapping("/register")
@@ -29,7 +32,7 @@ public class LogInController {
             HttpSession httpSession
     ) {
 
-        if (!InitTestDB.isInitDB()) {
+        if (!InitTestDB.isInitDB() && !initTestDBService.isInitTestDBInitiated()) {
             return "redirect:/";
         }
 
@@ -43,7 +46,7 @@ public class LogInController {
             HttpSession httpSession
     ) {
 
-        if (!InitTestDB.isInitDB()) {
+        if (!InitTestDB.isInitDB() && !initTestDBService.isInitTestDBInitiated()) {
             return "redirect:/";
         }
 

@@ -1,0 +1,9 @@
+TODO (to commit):
+
+#
+
+TODO / DONE (committed):
+
+# 1.0-1
+    + InitTestDB.class @Entity for checking if DB is initiated in the DB
+    + Authorization filter added

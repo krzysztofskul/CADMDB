@@ -10,7 +10,6 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 

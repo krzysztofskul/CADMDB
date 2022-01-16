@@ -39,6 +39,7 @@ import java.util.Random;
 @Transactional
 public class InitTestDBService {
 
+    private InitTestDBRepo initTestDBRepo;
     private ProductManager productManager;
     private CompanyTypeService companyTypeService;
     private UserCategoryService userCategoryService;
@@ -56,6 +57,7 @@ public class InitTestDBService {
 
     @Autowired
     public InitTestDBService(
+            InitTestDBRepo initTestDBRepo,
             ProductManager productManager,
             CompanyTypeService companyTypeService,
             UserCategoryService userCategoryService,
@@ -70,6 +72,7 @@ public class InitTestDBService {
             RoomService roomService,
             SocketService socketService
     ) {
+        this.initTestDBRepo = initTestDBRepo;
         this.productManager = productManager;
         this.companyTypeService = companyTypeService;
         this.userCategoryService = userCategoryService;
@@ -84,6 +87,14 @@ public class InitTestDBService {
         this.departmentService = departmentService;
         this.roomService = roomService;
         this.socketService = socketService;
+    }
+
+    public void saveInitTestDBEntity(InitTestDBEntity initTestDBEntity) {
+        initTestDBRepo.save(initTestDBEntity);
+    }
+
+    public boolean isInitTestDBInitiated() {
+        return initTestDBRepo.findById(Long.parseLong("1")).isPresent();
     }
 
     public void saveCompanyTypes() {

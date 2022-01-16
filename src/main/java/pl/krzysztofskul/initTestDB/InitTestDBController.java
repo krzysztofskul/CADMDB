@@ -21,7 +21,7 @@ public class InitTestDBController {
     @GetMapping("/initTestDB")
     public String initTestDB(HttpSession httpSession) {
 
-        if (!InitTestDB.isInitDB()) {
+        if (!InitTestDB.isInitDB() && !initTestDBService.isInitTestDBInitiated()) {
             initTestDBService.saveInitTestUsersCategory();
             initTestDBService.saveInitTestUsers();
 
@@ -44,6 +44,8 @@ public class InitTestDBController {
 
             initTestDBService.addAndSaveHospitalsToInvestors();
             initTestDBService.addAndSaveUsersToHospitals();
+
+            initTestDBService.saveInitTestDBEntity(new InitTestDBEntity(Long.parseLong("1"), true));
 
             if (httpSession != null) {
                 initTestDBService.setInitDBTrue(httpSession);

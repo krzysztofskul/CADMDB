@@ -9,8 +9,6 @@ import pl.krzysztofskul.product.socket.Socket;
 import pl.krzysztofskul.user.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 

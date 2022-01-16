@@ -8,7 +8,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysztofskul.ProductManager;
 import pl.krzysztofskul.manufacturer.ManufacturerService;
-import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;

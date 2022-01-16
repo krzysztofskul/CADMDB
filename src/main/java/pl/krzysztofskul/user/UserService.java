@@ -4,12 +4,9 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.krzysztofskul.organization.hospital.Hospital;
-import pl.krzysztofskul.organization.hospital.HospitalRepo;
 import pl.krzysztofskul.user.userCategory.UserCategoryEnum;
 import pl.krzysztofskul.user.userCategory.UserCategoryService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

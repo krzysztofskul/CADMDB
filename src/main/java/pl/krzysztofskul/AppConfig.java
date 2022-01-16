@@ -70,7 +70,8 @@ public class AppConfig implements WebMvcConfigurer {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "drop-and-create");
+//        properties.setProperty("hibernate.hbm2ddl.auto", "drop-and-create");
+        properties.setProperty("hibernate.hbm2ddl.auto", "validate");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
@@ -96,14 +97,14 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         /* local DB */
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/cadmdb?useSSL=false");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("@xDpo9Ec16N7&OP0");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/cadmdb?useSSL=false");
+        dataSource.setUsername("root");
+        dataSource.setPassword("@xDpo9Ec16N7&OP0"); // randomly generated password for tests at localhost
 
         /* remote DB Amazon AWS */
-        dataSource.setUrl("jdbc:mysql://db202112201508.cn58moquguac.eu-central-1.rds.amazonaws.com:3306/cadmdb?useSSL=false");
-        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
-        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
+//        dataSource.setUrl("jdbc:mysql://"+AmazonAwsConnectionData.getDATABASE());
+//        dataSource.setUsername(System.getProperty("RDS_USERNAME"));
+//        dataSource.setPassword(System.getProperty("RDS_PASSWORD"));
 
         /* remote DB Heroku */
 //        dataSource.setUrl("jdbc:mysql://"+HerokuConnectionData.getDATABASE());
