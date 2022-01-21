@@ -1,8 +1,14 @@
 TODO (to commit):
 
 #
+    - create a relationship for DepartmentCategory and MedicalFunctionTag
 
 TODO / DONE (committed):
+
+# 1.0-2
+    + MedicalFunctionTagEnum.class and MedicalFunctionTag.class created
+    + department category init test updates
+    + department category pl/en updates
 
 # 1.0-1
     + InitTestDB.class @Entity for checking if DB is initiated in the DB

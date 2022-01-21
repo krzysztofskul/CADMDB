@@ -17,6 +17,14 @@ public class DepartmentCategory {
 
     private String name;
 
+    private String namePL;
+
+    private String nameEN;
+
+    private String descriptionPL;
+
+    private String getDescriptionEN;
+
     @OneToMany(mappedBy = "departmentCategory")
     private List<Department> departmentList = new ArrayList<>();
 
@@ -26,6 +34,12 @@ public class DepartmentCategory {
     public DepartmentCategory(String code, String name) {
         this.code = code;
         this.name = name;
+    }
+
+    public DepartmentCategory(String code, String namePL, String nameEN) {
+        this.code = code;
+        this.namePL = namePL;
+        this.nameEN = nameEN;
     }
 
     public Long getId() {
@@ -50,6 +64,38 @@ public class DepartmentCategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNamePL() {
+        return namePL;
+    }
+
+    public void setNamePL(String namePL) {
+        this.namePL = namePL;
+    }
+
+    public String getNameEN() {
+        return nameEN;
+    }
+
+    public void setNameEN(String nameEN) {
+        this.nameEN = nameEN;
+    }
+
+    public String getDescriptionPL() {
+        return descriptionPL;
+    }
+
+    public void setDescriptionPL(String descriptionPL) {
+        this.descriptionPL = descriptionPL;
+    }
+
+    public String getGetDescriptionEN() {
+        return getDescriptionEN;
+    }
+
+    public void setGetDescriptionEN(String getDescriptionEN) {
+        this.getDescriptionEN = getDescriptionEN;
     }
 
     public List<Department> getDepartmentList() {
