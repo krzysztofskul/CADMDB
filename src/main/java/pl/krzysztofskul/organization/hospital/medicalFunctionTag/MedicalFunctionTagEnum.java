@@ -1,4 +1,4 @@
-package pl.krzysztofskul.organization.hospital.medicalFunction;
+package pl.krzysztofskul.organization.hospital.medicalFunctionTag;
 
 public enum MedicalFunctionTagEnum {
 
