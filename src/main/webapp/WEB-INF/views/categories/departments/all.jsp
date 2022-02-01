@@ -25,9 +25,12 @@
 
                 <div class="card border-dark m-3 d-inline-block" style="width: 18rem; height: 12rem; overflow: hidden">
                     <div class="card-header">${departmentCategory.name}</div>
-                    <div class="card-body text-dark">
-                        <h5 class="card-title">Lorem ipsum</h5>
-                        <p class="card-text">Lorem ipsum</p>
+                    <div class="card-body text-dark text-left">
+                        <%--<h5 class="card-title">Lorem ipsum</h5>
+                        <p class="card-text">Lorem ipsum</p>--%>
+                        <c:forEach items="${departmentCategory.medicalFunctionTagList}" var="medicalFunctionTag">
+                            <div class="border m-1 p-1 d-inline-block">${medicalFunctionTag.nameEN}</div>
+                        </c:forEach>
                     </div>
                 </div>
 

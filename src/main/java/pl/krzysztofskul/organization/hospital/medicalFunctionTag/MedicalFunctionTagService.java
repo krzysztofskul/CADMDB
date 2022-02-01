@@ -25,6 +25,14 @@ public class MedicalFunctionTagService {
         return medicalFunctionTagRepo.findAll();
     }
 
+    public MedicalFunctionTag loadById(Long id) {
+        return medicalFunctionTagRepo.findById(id).get();
+    }
+
+    public MedicalFunctionTag loadByNameEN(String nameEN) {
+        return medicalFunctionTagRepo.findByNameEN(nameEN);
+    }
+
     public void init() {
         for (MedicalFunctionTag medicalFunctionTag : MedicalFunctionTagInit.getMedicalFunctionTagInit().initAndGet()) {
             medicalFunctionTagRepo.save(medicalFunctionTag);

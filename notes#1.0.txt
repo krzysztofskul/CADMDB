@@ -2,12 +2,16 @@ TODO (to commit):
 
 #
 
-    - create a relationship for DepartmentCategory/RoomCategory/ProductCategory and MedicalFunctionTag
-    - create DepartmentCategory controller
+    - create a relationship for RoomCategory/ProductCategory and MedicalFunctionTag
+    - edit departmentcategory funcitionality
 
     - validation for deleting MedicalFunctionTags
 
 TODO / DONE (committed):
+
+# 1.0-5
+    + created an @ManyToMany relationship for DepartmentCategory and MedicalFunctionTag
+    + front-end updates
 
 # 1.0-4
     + initTestDB functionality updated

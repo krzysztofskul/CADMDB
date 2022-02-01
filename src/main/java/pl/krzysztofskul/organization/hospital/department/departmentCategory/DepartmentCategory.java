@@ -1,6 +1,7 @@
 package pl.krzysztofskul.organization.hospital.department.departmentCategory;
 
 import pl.krzysztofskul.organization.hospital.department.Department;
+import pl.krzysztofskul.organization.hospital.medicalFunctionTag.MedicalFunctionTag;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class DepartmentCategory {
 
     @OneToMany(mappedBy = "departmentCategory")
     private List<Department> departmentList = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "departmentCategoryList")
+    private List<MedicalFunctionTag> medicalFunctionTagList = new ArrayList<>();
 
     public DepartmentCategory() {
     }
@@ -105,4 +109,27 @@ public class DepartmentCategory {
     public void setDepartmentList(List<Department> departmentList) {
         this.departmentList = departmentList;
     }
+
+    public List<MedicalFunctionTag> getMedicalFunctionTagList() {
+        return medicalFunctionTagList;
+    }
+
+    public void setMedicalFunctionTagList(List<MedicalFunctionTag> medicalFunctionTagList) {
+        this.medicalFunctionTagList = medicalFunctionTagList;
+    }
+
+    /**
+     * methods
+     */
+
+    public void addMedicalFunctionTag(MedicalFunctionTag medicalFunctionTag) {
+        this.medicalFunctionTagList.add(medicalFunctionTag);
+        medicalFunctionTag.getDepartmentCategoryList().add(this);
+    }
+
+    public void removeMedicalFunctionTag(MedicalFunctionTag medicalFunctionTag) {
+        this.medicalFunctionTagList.remove(medicalFunctionTag);
+        medicalFunctionTag.getDepartmentCategoryList().remove(this);
+    }
+
 }

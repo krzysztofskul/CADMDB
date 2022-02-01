@@ -164,6 +164,17 @@ public class InitTestDBService {
 
     public void saveInitTestDepartmentCategoryList() {
         for (DepartmentCategory departmentCategory : InitTestDB.getInitTestDBInstance().createAndGetInitTestDepartmentCategoryList()) {
+            if (departmentCategory.getName().contains("Ward")) {
+                departmentCategory.addMedicalFunctionTag(medicalFunctionTagService.loadByNameEN("CONSULTATIONS"));
+                departmentCategory.addMedicalFunctionTag(medicalFunctionTagService.loadByNameEN("DIAGNOSTICS"));
+            }
+            if (departmentCategory.getName().contains("Administration")) {
+                departmentCategory.addMedicalFunctionTag(medicalFunctionTagService.loadByNameEN("OFFICE"));
+            }
+            if (departmentCategory.getName().contains("Operating theater")) {
+                departmentCategory.addMedicalFunctionTag(medicalFunctionTagService.loadByNameEN("OPERATIONS"));
+                departmentCategory.addMedicalFunctionTag(medicalFunctionTagService.loadByNameEN("SURGERY"));
+            }
             departmentCategoryService.save(departmentCategory);
         }
     }

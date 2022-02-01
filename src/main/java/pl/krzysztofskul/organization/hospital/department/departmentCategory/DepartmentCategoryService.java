@@ -1,5 +1,6 @@
 package pl.krzysztofskul.organization.hospital.department.departmentCategory;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,11 @@ public class DepartmentCategoryService {
     }
 
     public List<DepartmentCategory> loadAll() {
-        return departmentCategoryRepo.findAll();
+        List<DepartmentCategory> departmentCategoryList = departmentCategoryRepo.findAll();
+        for (DepartmentCategory departmentCategory : departmentCategoryList) {
+            Hibernate.initialize(departmentCategory.getMedicalFunctionTagList());
+        }
+        return departmentCategoryList;
     }
 
     public DepartmentCategory loadById(Long id) {

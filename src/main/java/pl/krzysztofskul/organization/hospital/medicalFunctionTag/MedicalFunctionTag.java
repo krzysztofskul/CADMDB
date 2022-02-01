@@ -1,9 +1,10 @@
 package pl.krzysztofskul.organization.hospital.medicalFunctionTag;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.krzysztofskul.organization.hospital.department.departmentCategory.DepartmentCategory;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class MedicalFunctionTag {
@@ -22,6 +23,14 @@ public class MedicalFunctionTag {
 
     private String medicalFunctionTagDescriptionPL;
     private String medicalFunctionTagDescriptionEN;
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "medicalfunctiontags_departmentcategories",
+            joinColumns = @JoinColumn(name = "medicaltfunctiontag_id"),
+            inverseJoinColumns = @JoinColumn(name = "departmentcategory_id")
+    )
+    private List<DepartmentCategory> departmentCategoryList = new ArrayList<>();
 
     /**
      * CONSTRUCTORS
@@ -106,4 +115,13 @@ public class MedicalFunctionTag {
     public void setMedicalFunctionTagDescriptionEN(String medicalFunctionTagDescriptionEN) {
         this.medicalFunctionTagDescriptionEN = medicalFunctionTagDescriptionEN;
     }
+
+    public List<DepartmentCategory> getDepartmentCategoryList() {
+        return departmentCategoryList;
+    }
+
+    public void setDepartmentCategoryList(List<DepartmentCategory> departmentCategoryList) {
+        this.departmentCategoryList = departmentCategoryList;
+    }
+
 }

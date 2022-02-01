@@ -397,8 +397,6 @@ public class InitTestDB {
         departmentCategoryList.add(new DepartmentCategory("W-G", "Ward (geriatric)"));
         departmentCategoryList.add(new DepartmentCategory("W-PS", "Ward (psychiatry)"));
 
-
-
         return departmentCategoryList;
     }
 
