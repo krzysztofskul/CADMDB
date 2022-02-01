@@ -17,6 +17,7 @@ import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.RoomService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
+import pl.krzysztofskul.organization.hospital.medicalFunctionTag.MedicalFunctionTagService;
 import pl.krzysztofskul.organization.investor.Investor;
 import pl.krzysztofskul.organization.investor.InvestorService;
 import pl.krzysztofskul.product.Product;
@@ -40,6 +41,7 @@ import java.util.Random;
 public class InitTestDBService {
 
     private InitTestDBRepo initTestDBRepo;
+    private MedicalFunctionTagService medicalFunctionTagService;
     private ProductManager productManager;
     private CompanyTypeService companyTypeService;
     private UserCategoryService userCategoryService;
@@ -58,7 +60,7 @@ public class InitTestDBService {
     @Autowired
     public InitTestDBService(
             InitTestDBRepo initTestDBRepo,
-            ProductManager productManager,
+            MedicalFunctionTagService medicalFunctionTagService, ProductManager productManager,
             CompanyTypeService companyTypeService,
             UserCategoryService userCategoryService,
             UserService userService,
@@ -73,6 +75,7 @@ public class InitTestDBService {
             SocketService socketService
     ) {
         this.initTestDBRepo = initTestDBRepo;
+        this.medicalFunctionTagService = medicalFunctionTagService;
         this.productManager = productManager;
         this.companyTypeService = companyTypeService;
         this.userCategoryService = userCategoryService;
@@ -95,6 +98,10 @@ public class InitTestDBService {
 
     public boolean isInitTestDBInitiated() {
         return initTestDBRepo.findById(Long.parseLong("1")).isPresent();
+    }
+
+    public void setMedicalFunctionTagService() {
+        medicalFunctionTagService.init();
     }
 
     public void saveCompanyTypes() {

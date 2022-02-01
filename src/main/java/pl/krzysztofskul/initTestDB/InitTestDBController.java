@@ -22,6 +22,7 @@ public class InitTestDBController {
     public String initTestDB(HttpSession httpSession) {
 
         if (!InitTestDB.isInitDB() && !initTestDBService.isInitTestDBInitiated()) {
+            initTestDBService.setMedicalFunctionTagService();
             initTestDBService.saveInitTestUsersCategory();
             initTestDBService.saveInitTestUsers();
 

@@ -27,6 +27,15 @@
                 </c:otherwise>
             </c:choose>
             <a class="nav-link ${status}" href="/initTestDB">INIT. TEST DB</a>
+        </nav>
+        <nav class="nav">
+            <a class="nav-link disabled" href="#">HOSPITAL CATEGORIES</a>
+            <a class="nav-link active" href="/categories/departments/all">DEPARTMENTS' CATEGORIES</a>
+            <a class="nav-link disabled" href="/categories/rooms">ROMS' CATEGORIES</a>
+            <a class="nav-link disabled" href="/categories/products">PRODUCTS' CATEGORIES</a>
+            <a class="nav-link active" href="/medical-function-tags/all">TAGS</a>
+        </nav>
+        <nav class="nav">
             <a class="nav-link active" href="/investors/all">INVESTORS</a>
             <a class="nav-link active" href="/hospitals/all">HOSPITALS</a>
             <a class="nav-link active" href="/manufacturers/all">MANUFACTURERS</a>

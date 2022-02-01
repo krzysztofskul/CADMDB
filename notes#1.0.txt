@@ -1,10 +1,18 @@
 TODO (to commit):
 
 #
-    - create a relationship for DepartmentCategory and MedicalFunctionTag
+
+    - create a relationship for DepartmentCategory/RoomCategory/ProductCategory and MedicalFunctionTag
     - create DepartmentCategory controller
 
+    - validation for deleting MedicalFunctionTags
+
 TODO / DONE (committed):
+
+# 1.0-4
+    + initTestDB functionality updated
+    + main menu updated
+    + DepartmentCategoryController.class added
 
 # 1.0-3
     + created the MedicalFunctionTag init, service, repo, controller classes
