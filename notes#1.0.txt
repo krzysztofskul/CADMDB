@@ -9,6 +9,9 @@ TODO (to commit):
 
 TODO / DONE (committed):
 
+# 1.0-6
+    + front-end updates at user derails page
+
 # 1.0-5
     + created an @ManyToMany relationship for DepartmentCategory and MedicalFunctionTag
     + front-end updates
