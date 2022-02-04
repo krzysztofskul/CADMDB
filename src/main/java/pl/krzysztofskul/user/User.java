@@ -37,11 +37,11 @@ public class User {
     @ManyToOne
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "investor")
-    private List<Hospital> hospitalListAsInvestor = new ArrayList<>();
+    @OneToMany(mappedBy = "userInvestor")
+    private List<Hospital> hospitalListWhereAsUserInvestor = new ArrayList<>();
 
     @ManyToOne
-    private Investor investmentCompany;
+    private Investor investorCompany;
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.PERSIST)
     private List<Hospital> hospitalManagingList = new ArrayList<>();
@@ -120,21 +120,50 @@ public class User {
         this.hospital = hospital;
     }
 
-    public Investor getInvestmentCompany() {
-        return investmentCompany;
-    }
+	/**
+	 * @return the investorCompany
+	 */
+	public Investor getInvestorCompany() {
+		return investorCompany;
+	}
 
-    public void setInvestmentCompany(Investor investmentCompany) {
-        this.investmentCompany = investmentCompany;
-    }
+	/**
+	 * @param investorCompany the investorCompany to set
+	 */
+	public void setInvestorCompany(Investor investorCompany) {
+		this.investorCompany = investorCompany;
+	}
+    
+//    public Investor getInvestmentCompany() {
+//        return investorCompany;
+//    }
+//
+//    public void setInvestmentCompany(Investor investmentCompany) {
+//        this.investorCompany = investmentCompany;
+//    }
 
-    public List<Hospital> getHospitalListAsInvestor() {
-        return hospitalListAsInvestor;
-    }
+	
+	/**
+	 * @return the hospitalListWhereAsUserInvestor
+	 */
+	public List<Hospital> getHospitalListWhereAsUserInvestor() {
+		return hospitalListWhereAsUserInvestor;
+	}
 
-    public void setHospitalListAsInvestor(List<Hospital> hospitalListAsInvestor) {
-        this.hospitalListAsInvestor = hospitalListAsInvestor;
-    }
+	/**
+	 * @param hospitalListWhereAsUserInvestor the hospitalListWhereAsUserInvestor to set
+	 */
+	public void setHospitalListWhereAsUserInvestor(List<Hospital> hospitalListWhereAsUserInvestor) {
+		this.hospitalListWhereAsUserInvestor = hospitalListWhereAsUserInvestor;
+	}
+	
+//    public List<Hospital> getHospitalListAsInvestor() {
+//        return hospitalListWhereAsUserInvestor;
+//    }
+//
+//    public void setHospitalListAsInvestor(List<Hospital> hospitalListAsInvestor) {
+//        this.hospitalListWhereAsUserInvestor = hospitalListAsInvestor;
+//    }
 
     public List<Hospital> getHospitalManagingList() {
         return hospitalManagingList;
@@ -167,6 +196,8 @@ public class User {
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
+    
+    
 
     /** METHODS */
 
@@ -179,11 +210,10 @@ public class User {
         userCategoryList.add(userCategory);
     }
 
-    public void addHospitalToHospitalsAsInvestor(Hospital hospital) {
-        hospitalListAsInvestor.add(hospital);
-        hospital.setInvestor(this);
+    public void addHospitalToUserAsInvestor(Hospital hospital) {
+        this.hospitalListWhereAsUserInvestor.add(hospital);
+        hospital.setUserInvestor(this);
     }
-
 
 
 }

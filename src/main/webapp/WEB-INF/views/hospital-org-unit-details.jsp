@@ -53,7 +53,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
 
-                            <li class="breadcrumb-item"><a href="/investors/details/${sessionScope.userLoggedIn.investmentCompany.id}">${sessionScope.userLoggedIn.investmentCompany.name}</a></li>
+                            <li class="breadcrumb-item"><a href="/investors/details/${sessionScope.userLoggedIn.investorCompany.id}">${sessionScope.userLoggedIn.investorCompany.name}</a></li>
 
                             <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
                             <li class="breadcrumb-item"><p>${hospitalOrgUnit.name}</p></li>
@@ -87,8 +87,8 @@
                                 <c:when test="${param.containsKey('edit')}">
                                     <form:hidden path="id"/>
                                     <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
-                                        <form:hidden path="investor.id"/>
-                                        <form:hidden path="investmentCompany.id"/>
+                                        <form:hidden path="usrinvestor.id"/>
+                                        <form:hidden path="investorCompany.id"/>
                                         <form:hidden path="manager.id"/>
                                     </c:if>
                                     <c:if test="${hospitalOrgUnit.className eq 'department'}">
@@ -237,10 +237,10 @@
                             <div class="myTitleSmall small m-0 pl-1">HOSPITAL INVESTOR:</div>
                             <div class="row mt-2 mb-2 h5 border-0">
                                 <div class="col-sm-8">
-                                        ${hospitalOrgUnit.investmentCompany.name}
+                                        ${hospitalOrgUnit.investorCompany.name}
                                 </div>
                                 <div>
-                                    <a href="/investors/details/${hospitalOrgUnit.investmentCompany.id}" class="text-primary">DETAILS</a>
+                                    <a href="/investors/details/${hospitalOrgUnit.investorCompany.id}" class="text-primary">DETAILS</a>
                                 </div>
                             </div>
                         </div>

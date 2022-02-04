@@ -189,7 +189,7 @@ public class InitTestDBService {
                 hospital
             );
             Investor investorToSet = investorService.loadById((long) new Random().nextInt(investorsAmount)+1);
-            hospital.setInvestmentCompany(investorToSet);
+            hospital.setInvestorCompany(investorToSet);
             for (Department department : hospital.getDepartmentList()) {
                 addAndSaveInitTestRoomsToDepartment(
                     InitTestDB.getInitTestDBInstance().createAndGetInitTestRoomList(
@@ -228,7 +228,7 @@ public class InitTestDBService {
         for (User investor : investorList) {
             for (int i = 0; i < 2; i++) {
                 if (hospitalList.size() > 0  && null != hospitalList.get(0)) {
-                    investor.addHospitalToHospitalsAsInvestor(hospitalList.get(0));
+                    investor.addHospitalToUserAsInvestor(hospitalList.get(0));
                     hospitalList.remove(0);
                 }
             }
@@ -274,7 +274,7 @@ public class InitTestDBService {
         for (User user : userList) {
             for (UserCategory userCategory : user.getUserCategoryList()) {
                 if (userCategory.getUserCategoryEnum().equals(UserCategoryEnum.INVESTOR_GUEST) || userCategory.getUserCategoryEnum().equals(UserCategoryEnum.INVESTOR)) {
-                    user.setInvestmentCompany(investorService.loadById(Long.parseLong(String.valueOf(new Random().nextInt(investorList.size())+1))));
+                    user.setInvestorCompany(investorService.loadById(Long.parseLong(String.valueOf(new Random().nextInt(investorList.size())+1))));
                 }
             }
             userService.save(user);

@@ -57,15 +57,15 @@
                                 <img src="/resources/img/logo_002.png" alt="AVATAR" width="100%" style="border: 2px black solid"/>
                             </div>
                             <div class="col-9">
-                                <h5>${user.investmentCompany.name}</h5>
+                                <h5>${user.investorCompany.name}</h5>
                                 <hr>
                                 <p>
-                                    ${user.investmentCompany.companyAddress.country} <br>
-                                    ${user.investmentCompany.companyAddress.postalCode} ${user.investmentCompany.companyAddress.city}, <br>
-                                    ${user.investmentCompany.companyAddress.street} no. ${user.investmentCompany.companyAddress.streetNo}
+                                    ${user.investorCompany.companyAddress.country} <br>
+                                    ${user.investorCompany.companyAddress.postalCode} ${user.investorCompany.companyAddress.city}, <br>
+                                    ${user.investorCompany.companyAddress.street} no. ${user.investorCompany.companyAddress.streetNo}
                                 </p>
                                 <hr>
-                                <div><a href="/investors/details/${user.investmentCompany.id}">DETAILS</a></div>
+                                <div><a href="/investors/details/${user.investorCompany.id}">DETAILS</a></div>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         <h3 class="text-right">MY HOSPITAL INVESTMENTS</h3>
                     </div>
                     <div class="card-body ml-auto mr-auto text-center">
-                        <c:forEach items="${user.hospitalListAsInvestor}" var="hospital">
+                        <c:forEach items="${user.hospitalListWhereAsUserInvestor}" var="hospital">
                             <div class="card m-2 mb-5 border d-inline-block" style="width: 300px; height: 300px">
                                 <div class="card-header" style="height: 200px">
                                     <p class="card-title font-weight-bold">${hospital.name}</p>
@@ -104,7 +104,7 @@
                         </c:forEach>
                         <div class="card m-2 mb-5 border d-inline-block" style="width: 300px; height: 300px">
                             <div class="card-header text-center" style="height: 200px">
-                                <a href="/hospitals/new?investorId=${user.id}&demo=true&backToPage=/users/details/5">
+                                <a href="/hospitals/new?userInvestorId=${user.id}&demo=true&backToPage=/users/details/5">
                                     <img src="/resources/img/icons/plus-001.png" width="128" alt="ADD NEW HOSPITAL"/>
                                 </a>
                             </div>

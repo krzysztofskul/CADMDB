@@ -59,7 +59,7 @@ public class UserService {
 
     public User loadByIdWithHospitalsManagingList(Long userId) {
         User user = loadById(userId);
-        Hibernate.initialize(user.getHospitalListAsInvestor());
+        Hibernate.initialize(user.getHospitalListWhereAsUserInvestor());
         Hibernate.initialize(user.getHospitalManagingList());
         Hibernate.initialize(user.getDepartmentManagingList());
         Hibernate.initialize(user.getRoomManagingList());
@@ -69,7 +69,7 @@ public class UserService {
     public User loadByIdWithHospitalsManagingListAndUserCategoryList(Long userId) {
         User user = loadByIdWithHospitalsManagingList(userId);
         Hibernate.initialize(user.getUserCategoryList());
-        Hibernate.initialize(user.getHospitalListAsInvestor());
+        Hibernate.initialize(user.getHospitalListWhereAsUserInvestor());
         return user;
     }
 
@@ -89,14 +89,14 @@ public class UserService {
             case INVESTOR: {
                 List<User> userList = userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("INVESTOR"));
                 for (User user : userList) {
-                    Hibernate.initialize(user.getHospitalListAsInvestor());
+                    Hibernate.initialize(user.getHospitalListWhereAsUserInvestor());
                 }
                 return userList;
             }
             case INVESTOR_GUEST: {
                 List<User> userList = userRepo.findAllByUserCategoryListContains(userCategoryService.loadByCode("INVESTOR (GUEST)"));
                 for (User user : userList) {
-                    Hibernate.initialize(user.getHospitalListAsInvestor());
+                    Hibernate.initialize(user.getHospitalListWhereAsUserInvestor());
                 }
                 return userList;
             }

@@ -56,10 +56,10 @@ public class Hospital extends Organization {
     private List<Department> departmentList = new ArrayList<>();
 
     @ManyToOne
-    private User investor;
+    private User userInvestor;
 
-    @ManyToOne
-    private Investor investmentCompany;
+    @ManyToOne()
+    private Investor investorCompany;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User manager;
@@ -176,22 +176,51 @@ public class Hospital extends Organization {
         }
     }
 
-    public User getInvestor() {
-        return investor;
-    }
+//    public User getInvestor() {
+//        return userInvestor;
+//    }
+//
+//    public void setInvestor(User investor) {
+//        this.userInvestor = investor;
+//    }
+//
+//    public Investor getInvestmentCompany() {
+//        return investorCompany;
+//    }
+//
+//    public void setInvestmentCompany(Investor investmentCompany) {
+//        this.investorCompany = investmentCompany;
+//    }
 
-    public void setInvestor(User investor) {
-        this.investor = investor;
-    }
+	/**
+	 * @return the userInvestor
+	 */
+	public User getUserInvestor() {
+		return userInvestor;
+	}
 
-    public Investor getInvestmentCompany() {
-        return investmentCompany;
-    }
+	/**
+	 * @param userInvestor the userInvestor to set
+	 */
+	public void setUserInvestor(User userInvestor) {
+		this.userInvestor = userInvestor;
+	}
 
-    public void setInvestmentCompany(Investor investmentCompany) {
-        this.investmentCompany = investmentCompany;
-    }
+	/**
+	 * @return the investorCompany
+	 */
+	public Investor getInvestorCompany() {
+		return investorCompany;
+	}
 
+	/**
+	 * @param investorCompany the investorCompany to set
+	 */
+	public void setInvestorCompany(Investor investorCompany) {
+		this.investorCompany = investorCompany;
+	}
+    
+    
     public User getManager() {
         return manager;
     }
@@ -254,4 +283,7 @@ public class Hospital extends Organization {
     public String getClassName() {
         return "hospital";
     }
+    
+    
+    
 }

@@ -1,13 +1,17 @@
 TODO (to commit):
 
-#
-
+#	
     - create a relationship for RoomCategory/ProductCategory and MedicalFunctionTag
     - edit departmentcategory funcitionality
 
     - validation for deleting MedicalFunctionTags
 
 TODO / DONE (committed):
+
+# 1.0-7 (Eclipse commit)
+	+ fixed a functionality of creating a new hospital by the user-investor
+	+ front-end updates
+	+ back-end updates
 
 # 1.0-6
     + front-end updates at user derails page
