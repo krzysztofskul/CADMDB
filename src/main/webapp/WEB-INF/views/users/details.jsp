@@ -28,8 +28,8 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-3">
-                            <img src="/resources/img/avatars/img_avatar_someone.png" alt="AVATAR" width="100%"/>
+                        <div class="col-3 bg-light">
+                            <img src="/resources/img/avatars/img_avatar_someone.png" alt="LOGO" width="100%"/>
                         </div>
                         <div class="col-9">
                             <h5>${user.nameFirst} ${user.nameLast}</h5>
@@ -53,8 +53,8 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-3">
-                                <img src="/resources/img/logo_002.png" alt="AVATAR" width="100%" style="border: 2px black solid"/>
+                            <div class="col-3" style="border: 1px solid lightgray">
+                                <img src="/resources/img/logo_002.png" alt="LOGO" width="100%"/>
                             </div>
                             <div class="col-9">
                                 <h5>${user.investorCompany.name}</h5>

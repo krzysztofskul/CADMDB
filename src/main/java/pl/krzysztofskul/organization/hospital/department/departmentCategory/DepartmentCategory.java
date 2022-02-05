@@ -2,6 +2,7 @@ package pl.krzysztofskul.organization.hospital.department.departmentCategory;
 
 import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.medicalFunctionTag.MedicalFunctionTag;
+import pl.krzysztofskul.organization.hospital.medicalFunctionTag.MedicalFunctionTagEnum;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -123,8 +124,12 @@ public class DepartmentCategory {
      */
 
     public void addMedicalFunctionTag(MedicalFunctionTag medicalFunctionTag) {
-        this.medicalFunctionTagList.add(medicalFunctionTag);
-        medicalFunctionTag.getDepartmentCategoryList().add(this);
+    	
+    	if (!this.getMedicalFunctionTagList().contains(medicalFunctionTag)) {
+            this.medicalFunctionTagList.add(medicalFunctionTag);
+            medicalFunctionTag.getDepartmentCategoryList().add(this);    		
+    	}
+
     }
 
     public void removeMedicalFunctionTag(MedicalFunctionTag medicalFunctionTag) {

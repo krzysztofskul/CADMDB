@@ -13,7 +13,8 @@ public enum MedicalFunctionTagEnum {
     OPERATIONS ("OPERACYJNE", "OPERATIONS", null, null),
     SURGERY ("CHIRURGICZNE", "SURGERY", null, null),
     STERILIZATION_HYGIENIC_SANITARY ("HIGIENICZNO-SANITARNE", "STERILIZATION HYGIENIC SANITARY", null, null),
-    LABORATORY ("LABORATORYJNE", "LABORATORY", null, null);
+    LABORATORY ("LABORATORYJNE", "LABORATORY", null, null),
+	MEDICAL ("MEDYCZNE", "MEDICAL", null, null);
 
     public String namePL;
     public String nameEN;

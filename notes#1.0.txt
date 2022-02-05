@@ -8,6 +8,12 @@ TODO (to commit):
 
 TODO / DONE (committed):
 
+# 1.0-8 (Eclipse commit)
+	+ MedicalFunctionTags and DepartmentCategories updates
+		+ medical tag created
+		+ add medical tag automatically when chose specific tags
+	+ front-end updates (user details page)
+
 # 1.0-7 (Eclipse commit)
 	+ fixed a functionality of creating a new hospital by the user-investor
 	+ front-end updates
