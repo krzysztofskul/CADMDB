@@ -73,6 +73,19 @@
                         </ol>
                     </nav>
                 </div>
+                <c:if test="${param.containsKey('edit')}">
+                      <input type="hidden" name="backToPage" value="/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=info">
+                      <div class="row mt-2 mb-5">
+                          <div class="col-sm-12">
+                              <a href="/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
+                                  CANCEL
+                              </a>
+                              <form:button class="btn btn-outline-success float-right d-inline-block">
+                                  SAVE
+                              </form:button>
+                          </div>
+                      </div>
+                  </c:if>
 
                 <%-- HOSPITAL ORG UNIT INFORMATION + MENU ) --%>
                 <div class="card-header">
@@ -87,9 +100,11 @@
                                 <c:when test="${param.containsKey('edit')}">
                                     <form:hidden path="id"/>
                                     <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
-                                        <form:hidden path="usrinvestor.id"/>
+                                        <form:hidden path="userInvestor.id"/>
                                         <form:hidden path="investorCompany.id"/>
-                                        <form:hidden path="manager.id"/>
+                                        <c:if test="${hospitalOrgUnit.manager ne null}">
+                                        	<form:hidden path="manager.id"/>
+                                        </c:if>
                                     </c:if>
                                     <c:if test="${hospitalOrgUnit.className eq 'department'}">
                                         <form:hidden path="hospital.id"/>
@@ -368,19 +383,6 @@
 
                     <%-- SUB-PAGES: INFO & EDIT PAGE--%>
                     <c:if test="${param.containsKey('content') && param.get('content').toString() eq 'info' || !param.containsKey('content')}">
-                        <c:if test="${param.containsKey('edit')}">
-                            <input type="hidden" name="backToPage" value="/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=info">
-                            <div class="row mt-2 mb-5">
-                                <div class="col-sm-12">
-                                    <a href="/${hospitalOrgUnit.className}s/details/${hospitalOrgUnit.id}?content=info" class="btn btn-outline-warning float-left d-inline-block">
-                                        CANCEL
-                                    </a>
-                                    <form:button class="btn btn-outline-success float-right d-inline-block">
-                                        SAVE
-                                    </form:button>
-                                </div>
-                            </div>
-                        </c:if>
 
                         <%-- INFO PAGE --%>
                         <div class="generalInfo">
@@ -390,14 +392,14 @@
                                     <div class="myTitleSmall small m-0 pl-1">MANAGER:</div>
                                     <div class="row mt-2 mb-2 h5 border-0">
                                         <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
-                                            <c:if test="${hospitalOrgUnit.manager eq null}">
+                                            <c:if test="${hospitalOrgUnit.manager eq null || hospitalOrgUnit.manager.id eq null}">
                                                 <div class="col-8">NO MANAGER</div>
                                                 <div class="col-4">
                                                     <a href="/hospitals/${hospitalOrgUnit.id}/setManager" class="text-success">&#10010; SET MANAGER</a>
                                                 </div>
                                             </c:if>
-                                            <c:if test="${hospitalOrgUnit.manager ne null}">
-                                                <div class="col-8">${hospitalOrgUnit.manager.nameFirst} ${hospitalOrgUnit.manager.nameLast}</div>
+                                            <c:if test="${hospitalOrgUnit.manager ne null && hospitalOrgUnit.manager.id ne null}">
+                                                <div class="col-8">${hospitalOrgUnit.manager.id} | ${hospitalOrgUnit.manager.nameFirst} ${hospitalOrgUnit.manager.nameLast}</div>
                                                 <div class="col-2">
                                                     <a href="/hospitals/${hospitalOrgUnit.id}/setManager" class="text-primary">&#8646; CHANGE MANAGER</a>
                                                 </div>

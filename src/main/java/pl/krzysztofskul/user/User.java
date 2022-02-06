@@ -43,13 +43,13 @@ public class User {
     @ManyToOne
     private Investor investorCompany;
 
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "manager")
     private List<Hospital> hospitalManagingList = new ArrayList<>();
 
     @OneToMany(mappedBy = "userManager", cascade = CascadeType.PERSIST)
     private List<Department> departmentManagingList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userManager")
+    @OneToMany(mappedBy = "userManager", cascade = CascadeType.PERSIST)
     private List<Room> roomManagingList = new ArrayList<>();
 
     @ManyToOne
@@ -205,6 +205,11 @@ public class User {
         hospitalManagingList.add(hospital);
         hospital.setManager(this);
     }
+    
+    public void removeHospitalFromUserManagingList(Hospital hospital) {
+		hospitalManagingList.remove(hospital);
+		hospital.setManager(null);
+	}
 
     public void addUserCategory(UserCategory userCategory) {
         userCategoryList.add(userCategory);

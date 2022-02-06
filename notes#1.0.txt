@@ -1,12 +1,19 @@
 TODO (to commit):
 
 #	
+
     - create a relationship for RoomCategory/ProductCategory and MedicalFunctionTag
     - edit departmentcategory funcitionality
 
     - validation for deleting MedicalFunctionTags
 
 TODO / DONE (committed):
+
+# 1.0-9 (Eclipse commit)
+	+ front-end updates (hospital-org-unit-details.jsp)
+	+ fixed bugs when save edited hospital info
+		+ no redirect to the page after save
+		+ assign correct manager or no manager when edit hospital info
 
 # 1.0-8 (Eclipse commit)
 	+ MedicalFunctionTags and DepartmentCategories updates
