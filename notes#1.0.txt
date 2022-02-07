@@ -2,12 +2,22 @@ TODO (to commit):
 
 #	
 
+	- grid view of departments in hospital
+	- budget calculation updates
+
     - create a relationship for RoomCategory/ProductCategory and MedicalFunctionTag
     - edit departmentcategory funcitionality
 
     - validation for deleting MedicalFunctionTags
 
 TODO / DONE (committed):
+
+# 1.0-10 (Eclipse commit)
+	+ front-end updates
+		+ new java script file created: /js/departments/new.js
+	+ new department page updated
+		+ updated accessible budget for departments when adding new department to the hospital
+	+ updated costs of departments in the hospital when delete the department
 
 # 1.0-9 (Eclipse commit)
 	+ front-end updates (hospital-org-unit-details.jsp)

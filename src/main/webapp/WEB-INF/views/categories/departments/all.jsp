@@ -16,8 +16,8 @@
 
     <div class="container-fluid">
         <header class="text-center">
-            <h2>Lista ustandaryzowanych kategorii oddziałów szpitalnych</h2>
-            <h3>The list of standardised departments' categories</h3>
+            <h2>The list of standardised departments' categories</h2>
+            <h4>Lista ustandaryzowanych kategorii oddziałów szpitalnych</h4>
         </header>
 
         <main class="text-center">

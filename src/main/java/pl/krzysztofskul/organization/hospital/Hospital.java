@@ -10,6 +10,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +71,7 @@ public class Hospital extends Organization {
     @Column(length = 2048)
     private String remarks;
 
+    private BigDecimal costOfDepartments = BigDecimal.ZERO;
 
     /**
      * CONSTRUCTORS
@@ -249,6 +251,20 @@ public class Hospital extends Organization {
     }
 
     /**
+	 * @return the costOfDepartments
+	 */
+	public BigDecimal getCostOfDepartments() {
+		return costOfDepartments;
+	}
+
+	/**
+	 * @param costOfDepartments the costOfDepartments to set
+	 */
+	public void setCostOfDepartments(BigDecimal costOfDepartments) {
+		this.costOfDepartments = costOfDepartments;
+	}
+
+	/**
      * ADDITIONAL METHODS
      */
 

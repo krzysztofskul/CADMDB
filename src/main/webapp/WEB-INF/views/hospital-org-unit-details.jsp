@@ -92,8 +92,17 @@
                     <%-- INFORMATION: NAME ETC. + MENU--%>
                     <div class="row">
                         <%-- INFORMATION: NAME ETC. --%>
-                        <div class="col-sm-1 border-right text-center mt-auto mb-auto h4">
-                                <%--${hospital.number}--%>
+                        <div class="col-sm-1 border-right text-center mt-auto mb-auto h1">
+	                        <c:if test="${hospitalOrgUnit.className eq 'hospital'}">
+	                        	<H6>HOSPITAL ICON</H6>
+	                        </c:if>
+	                        <c:if test="${hospitalOrgUnit.className eq 'department'}">
+	                        	<H6>DEPARTMENT ICON</H6>
+	                        </c:if>
+							<c:if test="${hospitalOrgUnit.className eq 'room'}">
+	                        	<H6>ROOM ICON</H6>
+	                        </c:if>
+	                        <span style="font-size: 10px" hidden="true">ID: ${hospitalOrgUnit.id}</span>
                         </div>
                         <div class="col-sm-6 mt-auto mb-auto">
                             <c:choose>
@@ -243,6 +252,13 @@
                                     <span class="small ml-2">DELETE ${hospitalOrgUnit.className.toUpperCase()}</span>
                                 </a>
                             </div>
+                        	<!-- GRID VIEW BUTTON -->
+							<a href="#" class="btn float-right disabled">
+	                            <span>GRID VIEW</span><br>
+	                            <svg class="bi bi-grid" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-grid" viewBox="0 0 16 16">
+  									<path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+								</svg>
+							</a>
                         </div>
                     </div>
                     <%-- HOSPITAL INVESTOR ROW --%>
@@ -307,11 +323,35 @@
                         <%-- BUDGET ETC.--%>
                         <div class="row mt-1 pt-2 border-top">
                             <div class="col-sm-3 p-0 border-right">
-                                <div class="myTitleSmall small m-0 pl-1">INITIAL BUDGET FOR MEDICAL EQUIPMENT:</div>
+                                <div class="myTitleSmall small m-0 pl-1" style="font-weight: bold">BUDGET:</div>
                                 <div class="mt-2 mb-2 h5 text-center">
                                     <c:choose>
                                         <c:when test="${param.containsKey('edit')}">
-                                            <form:input path="budget" cssClass="w-75"/> <span>m<sup>2</sup></span>
+                                            <form:input path="budget" cssClass="w-75"/> <span>zł</sup></span>
+                                        </c:when>
+                                        <c:otherwise>
+                                        	<span style="font-weight: bold">
+	                                            <fmt:formatNumber
+	                                                    type="currency"
+	                                                    maxIntegerDigits="12"
+	                                                    minIntegerDigits="1"
+	                                                    maxFractionDigits="2"
+	                                                    minFractionDigits="2"
+	                                                    currencySymbol="zł"
+	                                                    value="${hospitalOrgUnit.budget}"
+	                                            />
+                                            </span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-3 p-0 border-right">
+                                <div class="myTitleSmall small m-0 pl-1">COST OF DEPARTMENTS:</div>
+                                <div class="mt-2 mb-2 h5 text-center">
+                                    <c:choose>
+                                        <c:when test="${param.containsKey('edit')}">
+                                            <form:input path="costOfDepartments" cssClass="w-75"/> <span>zł</sup></span>
                                         </c:when>
                                         <c:otherwise>
                                             <fmt:formatNumber
@@ -321,12 +361,13 @@
                                                     maxFractionDigits="2"
                                                     minFractionDigits="2"
                                                     currencySymbol="zł"
-                                                    value="${hospitalOrgUnit.budget}"
+                                                    value="${hospitalOrgUnit.costOfDepartments}"
                                             />
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
                             </div>
+                            
                             <div class="col-sm-3 p-0 border-right">
                                 <div class="myTitleSmall small m-0 pl-1">COST OF MEDICAL EQUIPMENT:</div>
                                 <div class="mt-2 mb-2 h5 text-center">

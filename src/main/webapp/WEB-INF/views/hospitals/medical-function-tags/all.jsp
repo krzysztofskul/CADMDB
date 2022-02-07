@@ -27,15 +27,12 @@
             <div class="card d-inline-block m-2" style="width: 350px; height: 165px;">
                 <div class="row no-gutters">
                     <div class="col-sm-3 bg-light" style="height: 162px">
-                        <%--<img class="card-img" src="#" alt="TAG">--%>
                         <div class="bg-light"></div>
                     </div>
                     <div class="col-sm-8">
                         <div class="card-body">
-                            <h5 class="card-title">${medicalFunctionTag.namePL}</h5>
-                            <p class="card-title">${medicalFunctionTag.nameEN}</p>
-                            <%--<p class="card-text">Suresh Dasari is a founder and technical lead developer in tutlane.</p>
-                            <a href="#" class="btn btn-primary">View Profile</a>--%>
+                            <h5 class="card-title">${medicalFunctionTag.nameEN}</h5>
+                            <h6 class="card-title">${medicalFunctionTag.namePL}</h6>
                         </div>
                     </div>
                     <div class="col-1">
