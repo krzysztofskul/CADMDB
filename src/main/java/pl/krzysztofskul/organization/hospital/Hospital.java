@@ -57,12 +57,12 @@ public class Hospital extends Organization {
     private List<Department> departmentList = new ArrayList<>();
 
     @ManyToOne
-    private User investor;
+    private User userInvestor;
 
-    @ManyToOne
-    private Investor investmentCompany;
+    @ManyToOne()
+    private Investor investorCompany;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
     private User manager;
 
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.PERSIST)
@@ -71,6 +71,7 @@ public class Hospital extends Organization {
     @Column(length = 2048)
     private String remarks;
 
+    private BigDecimal costOfDepartments = BigDecimal.ZERO;
 
     /**
      * CONSTRUCTORS
@@ -177,22 +178,51 @@ public class Hospital extends Organization {
         }
     }
 
-    public User getInvestor() {
-        return investor;
-    }
+//    public User getInvestor() {
+//        return userInvestor;
+//    }
+//
+//    public void setInvestor(User investor) {
+//        this.userInvestor = investor;
+//    }
+//
+//    public Investor getInvestmentCompany() {
+//        return investorCompany;
+//    }
+//
+//    public void setInvestmentCompany(Investor investmentCompany) {
+//        this.investorCompany = investmentCompany;
+//    }
 
-    public void setInvestor(User investor) {
-        this.investor = investor;
-    }
+	/**
+	 * @return the userInvestor
+	 */
+	public User getUserInvestor() {
+		return userInvestor;
+	}
 
-    public Investor getInvestmentCompany() {
-        return investmentCompany;
-    }
+	/**
+	 * @param userInvestor the userInvestor to set
+	 */
+	public void setUserInvestor(User userInvestor) {
+		this.userInvestor = userInvestor;
+	}
 
-    public void setInvestmentCompany(Investor investmentCompany) {
-        this.investmentCompany = investmentCompany;
-    }
+	/**
+	 * @return the investorCompany
+	 */
+	public Investor getInvestorCompany() {
+		return investorCompany;
+	}
 
+	/**
+	 * @param investorCompany the investorCompany to set
+	 */
+	public void setInvestorCompany(Investor investorCompany) {
+		this.investorCompany = investorCompany;
+	}
+    
+    
     public User getManager() {
         return manager;
     }
@@ -221,6 +251,20 @@ public class Hospital extends Organization {
     }
 
     /**
+	 * @return the costOfDepartments
+	 */
+	public BigDecimal getCostOfDepartments() {
+		return costOfDepartments;
+	}
+
+	/**
+	 * @param costOfDepartments the costOfDepartments to set
+	 */
+	public void setCostOfDepartments(BigDecimal costOfDepartments) {
+		this.costOfDepartments = costOfDepartments;
+	}
+
+	/**
      * ADDITIONAL METHODS
      */
 
@@ -255,4 +299,7 @@ public class Hospital extends Organization {
     public String getClassName() {
         return "hospital";
     }
+    
+    
+    
 }

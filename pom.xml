@@ -6,7 +6,7 @@
 
     <groupId>pl.krzysztofskul</groupId>
     <artifactId>CADMDB</artifactId>
-    <version>0.8.1-FINAL</version>
+    <version>1.0-SNAPSHOT</version>
 
     <packaging>war</packaging>
 
@@ -78,8 +78,8 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <!--<version>5.1.39</version>-->
-            <version>8.0.17</version>
+            <version>5.1.39</version>
+            <!--<version>8.0.17</version>-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
         <dependency>

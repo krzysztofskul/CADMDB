@@ -17,6 +17,7 @@ import pl.krzysztofskul.organization.hospital.department.room.Room;
 import pl.krzysztofskul.organization.hospital.department.room.RoomService;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategory;
 import pl.krzysztofskul.organization.hospital.department.room.roomCategory.RoomCategoryService;
+import pl.krzysztofskul.organization.hospital.medicalFunctionTag.MedicalFunctionTagService;
 import pl.krzysztofskul.organization.investor.Investor;
 import pl.krzysztofskul.organization.investor.InvestorService;
 import pl.krzysztofskul.product.Product;
@@ -39,6 +40,8 @@ import java.util.Random;
 @Transactional
 public class InitTestDBService {
 
+    private InitTestDBRepo initTestDBRepo;
+    private MedicalFunctionTagService medicalFunctionTagService;
     private ProductManager productManager;
     private CompanyTypeService companyTypeService;
     private UserCategoryService userCategoryService;
@@ -56,7 +59,8 @@ public class InitTestDBService {
 
     @Autowired
     public InitTestDBService(
-            ProductManager productManager,
+            InitTestDBRepo initTestDBRepo,
+            MedicalFunctionTagService medicalFunctionTagService, ProductManager productManager,
             CompanyTypeService companyTypeService,
             UserCategoryService userCategoryService,
             UserService userService,
@@ -70,6 +74,8 @@ public class InitTestDBService {
             RoomService roomService,
             SocketService socketService
     ) {
+        this.initTestDBRepo = initTestDBRepo;
+        this.medicalFunctionTagService = medicalFunctionTagService;
         this.productManager = productManager;
         this.companyTypeService = companyTypeService;
         this.userCategoryService = userCategoryService;
@@ -84,6 +90,18 @@ public class InitTestDBService {
         this.departmentService = departmentService;
         this.roomService = roomService;
         this.socketService = socketService;
+    }
+
+    public void saveInitTestDBEntity(InitTestDBEntity initTestDBEntity) {
+        initTestDBRepo.save(initTestDBEntity);
+    }
+
+    public boolean isInitTestDBInitiated() {
+        return initTestDBRepo.findById(Long.parseLong("1")).isPresent();
+    }
+
+    public void setMedicalFunctionTagService() {
+        medicalFunctionTagService.init();
     }
 
     public void saveCompanyTypes() {
@@ -147,6 +165,18 @@ public class InitTestDBService {
     public void saveInitTestDepartmentCategoryList() {
         for (DepartmentCategory departmentCategory : InitTestDB.getInitTestDBInstance().createAndGetInitTestDepartmentCategoryList()) {
             departmentCategoryService.save(departmentCategory);
+            
+            if (departmentCategory.getName().contains("Ward")) {
+            	departmentCategoryService.addMedicalFunctionTagAndSaveDepartmentCategory(departmentCategory.getId(), medicalFunctionTagService.loadByNameEN("CONSULTATIONS"));
+            	departmentCategoryService.addMedicalFunctionTagAndSaveDepartmentCategory(departmentCategory.getId(), medicalFunctionTagService.loadByNameEN("DIAGNOSTICS"));
+            }
+            if (departmentCategory.getName().contains("Administration")) {
+            	departmentCategoryService.addMedicalFunctionTagAndSaveDepartmentCategory(departmentCategory.getId(), medicalFunctionTagService.loadByNameEN("OFFICE"));
+            }
+            if (departmentCategory.getName().contains("Operating theater")) {
+            	departmentCategoryService.addMedicalFunctionTagAndSaveDepartmentCategory(departmentCategory.getId(), medicalFunctionTagService.loadByNameEN("OPERATIONS"));
+            	departmentCategoryService.addMedicalFunctionTagAndSaveDepartmentCategory(departmentCategory.getId(), medicalFunctionTagService.loadByNameEN("SURGERY"));
+            }
         }
     }
 
@@ -160,7 +190,7 @@ public class InitTestDBService {
                 hospital
             );
             Investor investorToSet = investorService.loadById((long) new Random().nextInt(investorsAmount)+1);
-            hospital.setInvestmentCompany(investorToSet);
+            hospital.setInvestorCompany(investorToSet);
             for (Department department : hospital.getDepartmentList()) {
                 addAndSaveInitTestRoomsToDepartment(
                     InitTestDB.getInitTestDBInstance().createAndGetInitTestRoomList(
@@ -199,7 +229,7 @@ public class InitTestDBService {
         for (User investor : investorList) {
             for (int i = 0; i < 2; i++) {
                 if (hospitalList.size() > 0  && null != hospitalList.get(0)) {
-                    investor.addHospitalToHospitalsAsInvestor(hospitalList.get(0));
+                    investor.addHospitalToUserAsInvestor(hospitalList.get(0));
                     hospitalList.remove(0);
                 }
             }
@@ -245,7 +275,7 @@ public class InitTestDBService {
         for (User user : userList) {
             for (UserCategory userCategory : user.getUserCategoryList()) {
                 if (userCategory.getUserCategoryEnum().equals(UserCategoryEnum.INVESTOR_GUEST) || userCategory.getUserCategoryEnum().equals(UserCategoryEnum.INVESTOR)) {
-                    user.setInvestmentCompany(investorService.loadById(Long.parseLong(String.valueOf(new Random().nextInt(investorList.size())+1))));
+                    user.setInvestorCompany(investorService.loadById(Long.parseLong(String.valueOf(new Random().nextInt(investorList.size())+1))));
                 }
             }
             userService.save(user);

@@ -386,6 +386,17 @@ public class InitTestDB {
         departmentCategoryList.add(new DepartmentCategory("OT", "Operating theater"));
         departmentCategoryList.add(new DepartmentCategory("ICU", "Intensive care unit"));
         departmentCategoryList.add(new DepartmentCategory("E", "Emergency department"));
+        departmentCategoryList.add(new DepartmentCategory("P", "Post-operative care unit"));
+        departmentCategoryList.add(new DepartmentCategory("DI", "Diagnostic imaging"));
+        departmentCategoryList.add(new DepartmentCategory("R", "Radiology"));
+
+        departmentCategoryList.add(new DepartmentCategory("W", "Ward"));
+        departmentCategoryList.add(new DepartmentCategory("W-M", "Ward (maternity)"));
+        departmentCategoryList.add(new DepartmentCategory("W-N", "Ward (neonatology)"));
+        departmentCategoryList.add(new DepartmentCategory("W-P", "Ward (pediatric)"));
+        departmentCategoryList.add(new DepartmentCategory("W-G", "Ward (geriatric)"));
+        departmentCategoryList.add(new DepartmentCategory("W-PS", "Ward (psychiatry)"));
+
         return departmentCategoryList;
     }
 

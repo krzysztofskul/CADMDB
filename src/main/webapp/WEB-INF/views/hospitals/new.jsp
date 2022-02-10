@@ -22,7 +22,8 @@
             </div>
             <div class="card-body">
                 <form:hidden path="id"/>
-                <form:hidden path="investor.id"/>
+                <form:hidden path="userInvestor.id"/>
+                <form:hidden path="investorCompany.id"/>
 
                 <div class="form-group">
                     <label for="name">NAME:</label>

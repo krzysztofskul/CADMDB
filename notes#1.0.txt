@@ -1,0 +1,63 @@
+TODO (to commit):
+
+#	
+
+	- grid view of departments in hospital
+	- budget calculation updates
+
+    - create a relationship for RoomCategory/ProductCategory and MedicalFunctionTag
+    - edit departmentcategory funcitionality
+
+    - validation for deleting MedicalFunctionTags
+
+TODO / DONE (committed):
+
+# 1.0-10 (Eclipse commit)
+	+ front-end updates
+		+ new java script file created: /js/departments/new.js
+	+ new department page updated
+		+ updated accessible budget for departments when adding new department to the hospital
+	+ updated costs of departments in the hospital when delete the department
+
+# 1.0-9 (Eclipse commit)
+	+ front-end updates (hospital-org-unit-details.jsp)
+	+ fixed bugs when save edited hospital info
+		+ no redirect to the page after save
+		+ assign correct manager or no manager when edit hospital info
+
+# 1.0-8 (Eclipse commit)
+	+ MedicalFunctionTags and DepartmentCategories updates
+		+ medical tag created
+		+ add medical tag automatically when chose specific tags
+	+ front-end updates (user details page)
+
+# 1.0-7 (Eclipse commit)
+	+ fixed a functionality of creating a new hospital by the user-investor
+	+ front-end updates
+	+ back-end updates
+
+# 1.0-6
+    + front-end updates at user derails page
+
+# 1.0-5
+    + created an @ManyToMany relationship for DepartmentCategory and MedicalFunctionTag
+    + front-end updates
+
+# 1.0-4
+    + initTestDB functionality updated
+    + main menu updated
+    + DepartmentCategoryController.class added
+
+# 1.0-3
+    + created the MedicalFunctionTag init, service, repo, controller classes
+    + created jsp view for medical-function-tags
+    + front-end updates
+
+# 1.0-2
+    + MedicalFunctionTagEnum.class and MedicalFunctionTag.class created
+    + department category init test updates
+    + department category pl/en updates
+
+# 1.0-1
+    + InitTestDB.class @Entity for checking if DB is initiated in the DB
+    + Authorization filter added

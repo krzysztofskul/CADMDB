@@ -30,10 +30,10 @@ public class Investor {
     @PrimaryKeyJoinColumn
     private CompanyAddress companyAddress = CompanyAddressDemoGenerator.getCompanyAddressDemo();
 
-    @OneToMany(mappedBy = "investmentCompany")
+    @OneToMany(mappedBy = "investorCompany")
     private List<User> employeeList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "investmentCompany")
+    @OneToMany(mappedBy = "investorCompany")
     private List<Hospital> hospitalList = new ArrayList<>();
 
     /**
@@ -102,22 +102,22 @@ public class Investor {
 
     public void addEmployee(User employee) {
         this.employeeList.add(employee);
-        employee.setInvestmentCompany(this);
+        employee.setInvestorCompany(this);
     }
 
     public void removeEmployee(User employee) {
         this.employeeList.remove(employee);
-        employee.setInvestmentCompany(this);
+        employee.setInvestorCompany(this);
     }
     
     public void addHospital(Hospital hospital) {
         this.hospitalList.add(hospital);
-        hospital.setInvestmentCompany(this);
+        hospital.setInvestorCompany(this);
     }
 
     public void removeHospital(Hospital hospital) {
         this.hospitalList.remove(hospital);
-        hospital.setInvestmentCompany(this);
+        hospital.setInvestorCompany(this);
     }
     
 }

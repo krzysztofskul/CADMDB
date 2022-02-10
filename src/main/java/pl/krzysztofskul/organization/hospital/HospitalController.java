@@ -10,6 +10,7 @@ import pl.krzysztofskul.ProductManager;
 import pl.krzysztofskul.organization.hospital.department.Department;
 import pl.krzysztofskul.organization.hospital.department.DepartmentService;
 import pl.krzysztofskul.organization.hospital.department.room.Room;
+import pl.krzysztofskul.organization.investor.Investor;
 import pl.krzysztofskul.product.Product;
 import pl.krzysztofskul.user.User;
 import pl.krzysztofskul.user.UserService;
@@ -53,7 +54,7 @@ public class HospitalController {
     @GetMapping("/new")
     public String newHospital(
             Model model,
-            @RequestParam(name = "investorId", required = false) Long investorId,
+            @RequestParam(name = "userInvestorId", required = false) Long userInvestorId,
             @RequestParam(name = "demo", required = false) String demo
     ) {
 
@@ -81,8 +82,11 @@ public class HospitalController {
             newHospital = new Hospital();
         }
 
-        if (investorId != null) {
-            newHospital.setInvestor(userService.loadById(investorId));
+        if (userInvestorId != null) {
+        	User userInvestor = userService.loadById(userInvestorId);
+        	Investor investorCompany = userInvestor.getInvestorCompany();
+            newHospital.setUserInvestor(userInvestor);
+            newHospital.setInvestorCompany(investorCompany);
         }
 
         model.addAttribute("hospital", newHospital);
@@ -113,11 +117,11 @@ public class HospitalController {
 
         }
 
-        if (hospital.getInvestor() != null) {
-            User investor = userService.loadByIdWithHospitalsManagingList(hospital.getInvestor().getId());
-            investor.addHospitalToHospitalsAsInvestor(hospital);
-            userService.save(investor);
-        }
+//        if (hospital.getUserInvestor() != null) {
+//            User investor = userService.loadByIdWithHospitalsManagingList(hospital.getUserInvestor().getId());
+//            investor.addHospitalToUserAsInvestor(hospital);
+//            userService.save(investor);
+//        }
 
 
         for (User user : userService.loadAll()) {

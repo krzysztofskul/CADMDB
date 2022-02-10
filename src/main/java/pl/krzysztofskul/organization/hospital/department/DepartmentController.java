@@ -84,6 +84,12 @@ public class DepartmentController {
             @ModelAttribute("department") Department department,
             @RequestParam(required = false) String backToPage
     ) {
+    	// re-calculate cost of departments in hospital
+    	Hospital hospital = hospitalService.loadById(department.getHospital().getId());
+    	hospital.setCostOfDepartments(hospital.getCostOfDepartments().add(department.getBudget()));
+    	hospitalService.save(hospital);
+    	
+    	// save department
         departmentService.save(department);
         if (backToPage != null) {
             return "redirect:"+backToPage;
@@ -163,7 +169,15 @@ public class DepartmentController {
             }
             //roomService.delete(room);
         }
+        
+    	// re-calculate cost of departments in hospital
+    	Hospital hospital = hospitalService.loadById(departmentToDel.getHospital().getId());
+    	hospital.setCostOfDepartments(hospital.getCostOfDepartments().subtract(departmentToDel.getBudget()));
+    	hospitalService.save(hospital);
+        
+    	// delete department
         departmentService.delete(departmentToDel);
+        
         return "redirect:"+backToPage;
     }
 
