@@ -1,0 +1,15 @@
+------------------------------------------------
+TODO:
+------------------------------------------------
+
+#2.0-SNAPSHOT
+	- new idea for class structure
+		+ crested draft for Person / User / Employee classes
+
+------------------------------------------------
+DONE:
+------------------------------------------------
+
+#2.0-SNAPSHOT
+	- new idea for class structure
+		+ crested draft for Person / User / Employee classes
