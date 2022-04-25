@@ -1,18 +1,18 @@
 package pl.krzysztofskul.person.user;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.person.Person;
+import pl.krzysztofskul.person.employee.Employee;
 
 @Entity
 public class User extends Person {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	
 	private String nickname;
 	
@@ -20,20 +20,73 @@ public class User extends Person {
 	
 	private String password;
 	
-	/*
-	 * enum UserRole .Admin .User
-	 */
-	//private UserRole userRole;
+	private UserRole userRole;
 	
-	/*
-	 * 
-	 */
-	//private Emoplyee emploeyee;
-		// private Company comapny
-		/*
-		 * enum EmplyeeRole .InvestorCompanyEmployee .ClinicEmployee .EquipmentManufacturerEmployee .EquipmentSupplierEmployee .Architect/Designer .Contractor
-		 */
-		// private EmployeeRole employeeRole
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "employee_id", referencedColumnName = "id")
+	private Employee emploeyee;
+
+	public User() {
+		super();
+	}
+
+	public User(String nickname, String email, String password, UserRole userRole) {
+		super();
+		this.nickname = nickname;
+		this.email = email;
+		this.password = password;
+		this.userRole = userRole;
+	}
+
+	public User(String nickname, String email, String password, UserRole userRole, Employee emploeyee) {
+		super();
+		this.nickname = nickname;
+		this.email = email;
+		this.password = password;
+		this.userRole = userRole;
+		this.emploeyee = emploeyee;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
+	}
+
+	public Employee getEmploeyee() {
+		return emploeyee;
+	}
+
+	public void setEmploeyee(Employee emploeyee) {
+		this.emploeyee = emploeyee;
+	}
+
 	
 	
 }
