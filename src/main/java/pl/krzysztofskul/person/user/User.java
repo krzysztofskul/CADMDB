@@ -29,6 +29,19 @@ public class User extends Person {
 	public User() {
 		super();
 	}
+	
+	
+	public User(String nameFirst, String nameLast, String nickname, String email, String password, UserRole userRole,
+			Employee emploeyee) {
+		super(nameFirst, nameLast);
+		this.nickname = nickname;
+		this.email = email;
+		this.password = password;
+		this.userRole = userRole;
+		this.emploeyee = emploeyee;
+	}
+
+
 
 	public User(String nickname, String email, String password, UserRole userRole) {
 		super();

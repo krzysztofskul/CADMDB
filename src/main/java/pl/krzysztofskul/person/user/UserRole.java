@@ -5,8 +5,8 @@ public enum UserRole {
 	ADMIN("ADMIN", "Admin", "Admin"), 
 	USER("USER", "User", "U¿ytkownik"), 
 	GUEST("GUEST", "Guest", "Goœæ"), 
-	GUEST_ADMIN("GUEST-ADMIN", "Guest as Admin)", "Goœæ jako Admin)"), 
-	GUEST_USER("GUEST-USER", "Guest as User", "Goœæ jako U¿ytkownik");
+	GUEST_ADMIN("GUEST-ADMIN", "Admin as a guest)", "Admin jako goœæ"), 
+	GUEST_USER("GUEST-USER", "User as a guest", "U¿ytkownik jako goœæ");
 
 	private String code;
 	private String userRoleToStringEN;

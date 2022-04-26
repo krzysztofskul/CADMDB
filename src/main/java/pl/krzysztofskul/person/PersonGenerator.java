@@ -10,15 +10,16 @@ import pl.krzysztofskul.person.user.UserRole;
 
 public class PersonGenerator {
 
-	private static PersonGenerator personGenerator;
+	public static PersonGenerator personGenerator;
 	
 	private Set<User> demoUsers = new HashSet<User>();
 
 	private PersonGenerator() {
 		super();
+		this.setDemoUsers();
 	}
 	
-	public PersonGenerator getPersonGenerator() {
+	public static PersonGenerator getPersonGenerator() {
 		if (null == personGenerator) {
 			personGenerator = new PersonGenerator();
 		}
@@ -28,13 +29,16 @@ public class PersonGenerator {
 		return demoUsers;
 	}
 
-	public void setDemoUsers() {
+	private void setDemoUsers() {
 		for (UserRole userRole : UserRole.values()) {
 			demoUsers.add(new User(
-					LoremIpsum.getInstance().getName(),
+					LoremIpsum.getInstance().getFirstName(),
+					LoremIpsum.getInstance().getLastName(),
+					LoremIpsum.getInstance().getWords(1),
 					LoremIpsum.getInstance().getEmail(),
 					LoremIpsum.getInstance().getWords(1),
-					userRole
+					userRole,
+					null
 				)
 			);			
 		}
