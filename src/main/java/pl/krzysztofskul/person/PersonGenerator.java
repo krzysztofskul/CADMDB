@@ -5,11 +5,12 @@ import java.util.Set;
 
 import com.thedeanda.lorem.LoremIpsum;
 
+import pl.krzysztofskul.healthcareUnit.company.Company;
 import pl.krzysztofskul.person.employee.Employee;
 import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
 
-public class PersonGenerator {
+public class PersonGenerator<T> {
 
 	/*
 	 * param.
@@ -17,8 +18,9 @@ public class PersonGenerator {
 	
 	public static PersonGenerator personGenerator;
 	
-	private Set<User> demoUsers = new HashSet<User>();
+	private Set<User<T>> demoUsers = new HashSet<User<T>>();
 	private Set<Employee> demoEmployees = new HashSet<Employee>();
+	private Set<Company<T>> demoCompanies = new HashSet<Company<T>>();
 
 	/*
 	 * constr.
@@ -44,13 +46,13 @@ public class PersonGenerator {
 	 * getters and setters and other methods
 	 */
 	
-	public Set<User> getDemoUsers() {
+	public Set<User<T>> getDemoUsers() {
 		return demoUsers;
 	}
-
+	
 	private void setDemoUsers() {
 		for (UserRole userRole : UserRole.values()) {
-			this.demoUsers.add(new User(
+			this.demoUsers.add(new User<T>(
 					LoremIpsum.getInstance().getFirstName(),
 					LoremIpsum.getInstance().getLastName(),
 					LoremIpsum.getInstance().getWords(1),

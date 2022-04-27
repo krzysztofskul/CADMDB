@@ -1,4 +1,4 @@
-package pl.krzysztofskul.healthcareUnit.company.investor;
+package pl.krzysztofskul.investor;
 
 import javax.persistence.Entity;
 

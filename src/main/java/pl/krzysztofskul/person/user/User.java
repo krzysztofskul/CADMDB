@@ -6,13 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.person.Person;
 import pl.krzysztofskul.person.employee.Employee;
 
 @Entity
-public class User extends Person {
+public class User<T> extends Person {
 	
 	private String nickname;
 	
@@ -26,6 +27,9 @@ public class User extends Person {
 	@JoinColumn(name = "employee_id", referencedColumnName = "id")
 	private Employee emploeyee;
 
+	@ManyToOne
+	private T company;
+	
 	public User() {
 		super();
 	}

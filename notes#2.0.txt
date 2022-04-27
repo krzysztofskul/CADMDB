@@ -4,14 +4,19 @@ TODO:
 
 #2.0-SNAPSHOT (new idea for class structure)
 	- create new class structure (https://lucid.app/lucidchart/fbae8b5c-9764-47df-ab97-aa612de7e973/edit?invitationId=inv_9cc9bd8c-030d-477a-a271-7a1b0554c094)
+
 	- create demo companies and demo employees
-	- update User.class (connection with COmpany.class)
 	- create CompanyDemoGenerator and ComapnyTests
-	- create JPA REPOfor user, employee, company classes
+	- create JPA REPO for user, employee, company classes
 
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ updated User.class (connection with Company.class)	
+	+ updated PersonGenerator.class wit generic type of Company in User and Employee
+	+ updated PersonGeneratorTest
 
 #2.0-SNAPSHOT
 	+ created Comapny.class, Hospital.class, Investor.class (with inheritance)
