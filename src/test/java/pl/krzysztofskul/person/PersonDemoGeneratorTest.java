@@ -12,13 +12,13 @@ import org.junit.runners.MethodSorters;
 import pl.krzysztofskul.person.user.User;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PersonGeneratorTest<T> {
+public class PersonDemoGeneratorTest<T> {
 
 	@Test
 	public void test01_GetPersonGenerator() {
-		assertTrue(PersonGenerator.personGenerator == null);
-		PersonGenerator.getPersonGenerator();
-		assertTrue(PersonGenerator.personGenerator != null);
+		assertTrue(PersonDemoGenerator.personDemoGenerator == null);
+		PersonDemoGenerator.getPersonGenerator();
+		assertTrue(PersonDemoGenerator.personDemoGenerator != null);
 	}
 	
 	@Test
@@ -28,11 +28,11 @@ public class PersonGeneratorTest<T> {
 	
 	@Test
 	public void test03_GetDemoUsers() {
-		assertTrue(PersonGenerator.getPersonGenerator().getDemoUsers() != null);
-		assertTrue(PersonGenerator.getPersonGenerator().getDemoUsers().size() > 0);
+		assertTrue(PersonDemoGenerator.getPersonGenerator().getDemoUsers() != null);
+		assertTrue(PersonDemoGenerator.getPersonGenerator().getDemoUsers().size() > 0);
 		System.out.println("---------- DEMO USERS -------------");
 		
-		Set<User<T>> users = PersonGenerator.getPersonGenerator().getDemoUsers();
+		Set<User<T>> users = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
 		for (User<T> user : users) {
 			System.out.println(

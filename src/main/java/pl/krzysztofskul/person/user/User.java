@@ -104,6 +104,15 @@ public class User<T> extends Person {
 		this.emploeyee = emploeyee;
 	}
 
+
+	public T getCompany() {
+		return company;
+	}
+
+	public void setCompany(T company) {
+		this.company = company;
+	}
+
 	
 	
 }

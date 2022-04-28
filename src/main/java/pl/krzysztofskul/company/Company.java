@@ -1,4 +1,4 @@
-package pl.krzysztofskul.healthcareUnit.company;
+package pl.krzysztofskul.company;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -182,5 +182,13 @@ public abstract class Company<T> {
 		this.employeeList = employeeList;
 	}
 	
+	/*
+	 * func.
+	 */
+	
+	public void addUser(User user) {
+		this.userList.add(user);
+		user.setCompany(this);
+	}
 	
 }

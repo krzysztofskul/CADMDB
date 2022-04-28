@@ -5,28 +5,26 @@ import java.util.Set;
 
 import com.thedeanda.lorem.LoremIpsum;
 
-import pl.krzysztofskul.healthcareUnit.company.Company;
 import pl.krzysztofskul.person.employee.Employee;
 import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
 
-public class PersonGenerator<T> {
+public class PersonDemoGenerator<T> {
 
 	/*
 	 * param.
 	 */
 	
-	public static PersonGenerator personGenerator;
+	public static PersonDemoGenerator personDemoGenerator;
 	
 	private Set<User<T>> demoUsers = new HashSet<User<T>>();
 	private Set<Employee> demoEmployees = new HashSet<Employee>();
-	private Set<Company<T>> demoCompanies = new HashSet<Company<T>>();
 
 	/*
 	 * constr.
 	 */
 	
-	private PersonGenerator() {
+	private PersonDemoGenerator() {
 		super();
 		this.setDemoUsers();
 		this.setDemoEmployees();
@@ -36,11 +34,11 @@ public class PersonGenerator<T> {
 	 * methods
 	 */
 	
-	public static PersonGenerator getPersonGenerator() {
-		if (null == personGenerator) {
-			personGenerator = new PersonGenerator();
+	public static PersonDemoGenerator getPersonGenerator() {
+		if (null == personDemoGenerator) {
+			personDemoGenerator = new PersonDemoGenerator();
 		}
-		return personGenerator;}
+		return personDemoGenerator;}
 
 	/*
 	 * getters and setters and other methods

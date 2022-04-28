@@ -4,14 +4,25 @@ TODO:
 
 #2.0-SNAPSHOT (new idea for class structure)
 	- create new class structure (https://lucid.app/lucidchart/fbae8b5c-9764-47df-ab97-aa612de7e973/edit?invitationId=inv_9cc9bd8c-030d-477a-a271-7a1b0554c094)
+	
+	+ created CompanyDemoGenerator
+		+ create demo companies
+		- add demo user to the demo company ...
+		- create demo employees ...	
 
-	- create demo companies and demo employees
-	- create CompanyDemoGenerator and ComapnyTests
+	- create CompanyDemoTest
+
 	- create JPA REPO for user, employee, company classes
 
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ created CompanyDemoGenerator
+		+ create demo companies
+	+ created CompanyTypeEnum
+	+ updated packages folders tree
 
 #2.0-SNAPSHOT
 	+ updated User.class (connection with Company.class)	
