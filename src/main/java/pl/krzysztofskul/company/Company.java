@@ -43,7 +43,7 @@ public abstract class Company<T> {
 	private String phoneNo;
 
 	@OneToMany(mappedBy="company")
-	private List<User> userList = new ArrayList<User>();
+	private List<User<T>> userList = new ArrayList<User<T>>();
 	
 	@OneToMany(mappedBy="company")
 	private List<Employee<T>> employeeList = new ArrayList<Employee<T>>();
@@ -56,7 +56,10 @@ public abstract class Company<T> {
 		super();
 	}
 	
-	
+	public <T> Company(User user) {
+		super();
+		this.addUser(user);;
+	}
 	
 	public Company(String name, String country, String postalCode, String city, String street, String streetNo) {
 		super();
@@ -70,7 +73,7 @@ public abstract class Company<T> {
 
 
 
-	public Company(String name, String country, String postalCode, String city, String street, List<User> userList,
+	public Company(String name, String country, String postalCode, String city, String street, List<User<T>> userList,
 			List<Employee<T>> employeeList) {
 		super();
 		this.name = name;
@@ -166,11 +169,11 @@ public abstract class Company<T> {
 		this.phoneNo = phoneNo;
 	}
 
-	public List<User> getUserList() {
+	public List<User<T>> getUserList() {
 		return userList;
 	}
 
-	public void setUserList(List<User> userList) {
+	public void setUserList(List<User<T>> userList) {
 		this.userList = userList;
 	}
 
@@ -186,7 +189,7 @@ public abstract class Company<T> {
 	 * func.
 	 */
 	
-	public void addUser(User user) {
+	public void addUser(User<T> user) {
 		this.userList.add(user);
 		user.setCompany(this);
 	}

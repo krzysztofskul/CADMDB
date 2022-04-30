@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import pl.krzysztofskul.company.Company;
 import pl.krzysztofskul.person.Person;
 import pl.krzysztofskul.person.employee.Employee;
 
@@ -28,7 +29,7 @@ public class User<T> extends Person {
 	private Employee emploeyee;
 
 	@ManyToOne
-	private T company;
+	private Company<T> company;
 	
 	public User() {
 		super();
@@ -105,14 +106,13 @@ public class User<T> extends Person {
 	}
 
 
-	public T getCompany() {
+	public Company<T> getCompany() {
 		return company;
 	}
 
-	public void setCompany(T company) {
-		this.company = company;
+	public void setCompany(Company<T> company2) {
+		this.company = company2;
 	}
-
 	
 	
 }

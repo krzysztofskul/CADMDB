@@ -3,7 +3,9 @@ package pl.krzysztofskul.person.user;
 public enum UserRole {
 	
 	ADMIN("ADMIN", "Admin", "Admin"), 
+	ADMIN_DEMO("ADMIN-DEMO", "Demo admin", "Admin demo"), 
 	USER("USER", "User", "U¿ytkownik"), 
+	USER_DEMO("USER-DEMO", "Demo user", "U¿ytkownik demo"), 
 	GUEST("GUEST", "Guest", "Goœæ"), 
 	GUEST_ADMIN("GUEST-ADMIN", "Admin as a guest)", "Admin jako goœæ"), 
 	GUEST_USER("GUEST-USER", "User as a guest", "U¿ytkownik jako goœæ");

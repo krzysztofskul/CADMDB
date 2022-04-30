@@ -10,9 +10,11 @@ import java.util.Set;
 import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.investor.Investor;
+import pl.krzysztofskul.person.PersonDemoGenerator;
 import pl.krzysztofskul.person.user.User;
+import pl.krzysztofskul.person.user.UserRole;
 
-public class CompanyDemoGenerator {
+public class CompanyDemoGenerator<T> {
 
 	private static CompanyDemoGenerator companyDemoGenerator;
 	
@@ -37,12 +39,12 @@ public class CompanyDemoGenerator {
 	 * getters and setters
 	 */
 	
-	public static Set<Company> getDemoCompanies() {
+	public Set<Company> getDemoCompanies() {
 		return demoCompanies;
 	}
 
-	private static void setDemoCompanies(Set<Company> demoCompanies) {
-		setDemoInvestors(2);
+	private void setDemoCompanies(Set<Company> demoCompanies) {
+		setDemoInvestors();
 		setDemoHospitals();
 	}
 	
@@ -50,18 +52,21 @@ public class CompanyDemoGenerator {
 	 * func.
 	 */
 	
-    public static String getRandomCompanyType() {
+    public String getRandomCompanyType() {
     	List<String> companyTypes = new ArrayList<String>();
     	for (CompanyTypeEnum comapnyType : CompanyTypeEnum.values()) {
-			companyTypes.add(comapnyType.toString());
+			companyTypes.add(comapnyType.getName());
 		}
 
     	return companyTypes.get(new Random().nextInt(companyTypes.size()+1));
     }
 	
-	private static void setDemoInvestors(int number) {
-		for (int i = 0; i < number; i++) {
-			Investor investor = new Investor();
+	private void setDemoInvestors() {
+		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
+		usersAsUserDemoRole.removeIf(u -> u.getUserRole() != UserRole.USER_DEMO);
+		
+		for (User<T> user : usersAsUserDemoRole) {
+			Investor<T> investor = new Investor(user);
 			investor.setName(LoremIpsum.getInstance().getTitle(1) + " " + getRandomCompanyType());
 			investor.setCountry(LoremIpsum.getInstance().getCountry());
 			investor.setPostalCode(LoremIpsum.getInstance().getZipCode());
@@ -69,16 +74,12 @@ public class CompanyDemoGenerator {
 			investor.setStreet(LoremIpsum.getInstance().getName()+" street");
 			investor.setStreetNo("no. " + new Random().nextInt(200)+1);
 			investor.setWww(LoremIpsum.getInstance().getUrl());
-			investor.setWww(LoremIpsum.getInstance().getEmail());
-			investor.setWww(LoremIpsum.getInstance().getPhone());
+			investor.setEmail(LoremIpsum.getInstance().getEmail());
+			investor.setPhoneNo(LoremIpsum.getInstance().getPhone());
 		}
 	}
-	
-	private static void companyAddUser(Company company, User user) {
-		// todo
-	}
 
-	private static void setDemoHospitals() {
+	private void setDemoHospitals() {
 		// todo
 	}
 	

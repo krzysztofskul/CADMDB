@@ -6,7 +6,7 @@ import java.util.Random;
 
 public enum CompanyTypeEnum {
 
-    PL_SP_ZOO ("PL_SP_ZOO", "Sp z o.o."),
+    PL_SP_ZOO ("PL_SP_ZOO", "Sp. z o.o."),
 
     PL_SA ("PL_SA", "S.A."),
 

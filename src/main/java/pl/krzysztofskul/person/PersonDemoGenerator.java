@@ -1,7 +1,11 @@
 package pl.krzysztofskul.person;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
+import java.util.regex.Pattern;
+
+import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
 import com.thedeanda.lorem.LoremIpsum;
 
