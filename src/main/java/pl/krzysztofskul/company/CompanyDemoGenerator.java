@@ -11,6 +11,7 @@ import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.investor.Investor;
 import pl.krzysztofskul.person.PersonDemoGenerator;
+import pl.krzysztofskul.person.employee.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
 
@@ -58,29 +59,35 @@ public class CompanyDemoGenerator<T> {
 			companyTypes.add(comapnyType.getName());
 		}
 
-    	return companyTypes.get(new Random().nextInt(companyTypes.size()+1));
+    	return companyTypes.get(new Random().nextInt(companyTypes.size()));
     }
 	
 	private void setDemoInvestors() {
 		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
-		usersAsUserDemoRole.removeIf(u -> u.getUserRole() != UserRole.USER_DEMO);
+		usersAsUserDemoRole.removeIf(u -> u.getUserRole() != UserRole.USER_DEMO || u.getEmploeyee().getJobTitle() != JobTitleEnum.MANAGER_IN_INVESTMENT_COMPANY);
 		
 		for (User<T> user : usersAsUserDemoRole) {
 			Investor<T> investor = new Investor(user);
-			investor.setName(LoremIpsum.getInstance().getTitle(1) + " " + getRandomCompanyType());
-			investor.setCountry(LoremIpsum.getInstance().getCountry());
-			investor.setPostalCode(LoremIpsum.getInstance().getZipCode());
-			investor.setCity(LoremIpsum.getInstance().getCity());
-			investor.setStreet(LoremIpsum.getInstance().getName()+" street");
-			investor.setStreetNo("no. " + new Random().nextInt(200)+1);
-			investor.setWww(LoremIpsum.getInstance().getUrl());
-			investor.setEmail(LoremIpsum.getInstance().getEmail());
-			investor.setPhoneNo(LoremIpsum.getInstance().getPhone());
+			setCompanyDemoAddressDetails(investor);
 		}
 	}
-
+	
 	private void setDemoHospitals() {
 		// todo
 	}
+	
+	private void setCompanyDemoAddressDetails(Company company) {
+		company.setName(LoremIpsum.getInstance().getTitle(1) + " " + getRandomCompanyType());
+		company.setCountry(LoremIpsum.getInstance().getCountry());
+		company.setPostalCode(LoremIpsum.getInstance().getZipCode());
+		company.setCity(LoremIpsum.getInstance().getCity());
+		company.setStreet(LoremIpsum.getInstance().getName()+" street");
+		company.setStreetNo("no. " + new Random().nextInt(200)+1);
+		company.setWww(LoremIpsum.getInstance().getUrl());
+		company.setEmail(LoremIpsum.getInstance().getEmail());
+		company.setPhoneNo(LoremIpsum.getInstance().getPhone());
+	}
+
+
 	
 }

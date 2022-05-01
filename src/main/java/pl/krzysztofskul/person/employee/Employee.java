@@ -5,6 +5,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.person.Person;
+import pl.krzysztofskul.person.PersonDemoGenerator;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
@@ -15,7 +16,7 @@ public class Employee<T> extends Person {
 	private T company;
 	
 	// todo: change for JobTitle.enum
-	private String jobTitle;
+	private JobTitleEnum jobTitle;
 	
 	@OneToOne(mappedBy = "employee")
 	private User user;
@@ -23,8 +24,13 @@ public class Employee<T> extends Person {
 	public Employee() {
 		super();
 	}
+	
+	public Employee(User user) {
+		super();
+		this.user = user;
+	}
 
-	public Employee(T company, String jobTitle, User user) {
+	public Employee(T company, JobTitleEnum jobTitle, User user) {
 		super();
 		this.company = company;
 		this.jobTitle = jobTitle;
@@ -39,11 +45,11 @@ public class Employee<T> extends Person {
 		this.company = company;
 	}
 
-	public String getJobTitle() {
+	public JobTitleEnum getJobTitle() {
 		return jobTitle;
 	}
 
-	public void setJobTitle(String jobTitle) {
+	public void setJobTitle(JobTitleEnum jobTitle) {
 		this.jobTitle = jobTitle;
 	}
 

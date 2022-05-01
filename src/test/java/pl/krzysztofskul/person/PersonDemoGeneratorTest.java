@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import pl.krzysztofskul.company.CompanyDemoGenerator;
+import pl.krzysztofskul.person.employee.Employee;
 import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
 
@@ -41,11 +42,26 @@ public class PersonDemoGeneratorTest<T> {
 					"-------------\n" +
 					user.getNameFirst()+" "+user.getNameLast()+" \n "+user.getNickname()+" \n "+user.getUserRole().getUserRoleToStringPL()+" \n "+user.getUserRole().getUserRoleToStringEN()+" \n Employee object: "+user.getEmploeyee());	
 		}
-		
 	}
 
 	@Test
-	public void test04_givenDemoUsersAndDemoInvestor_whenCreateDemoCompanies_shouldBeDemoInvestrorConnectedWithDemoUser() {
+	public void test04_GetDemoEmployees() {
+		System.out.println("---------- DEMO EMPLOYEES -------------");
+		Set<Employee<T>> employees = PersonDemoGenerator.getPersonGenerator().getDemoEmployees();
+		for (Employee<T> employee : employees) {
+			System.out.println(
+					"-------------\n" +
+					"name and surname: "+employee.getNameFirst()+" "+employee.getNameLast()+"\n"+
+					"connectesd with user: "+employee.getUser()+"\n"+
+					"job title EN: "+employee.getJobTitle().getNameEN()+"\n"+
+					"job title PL: "+employee.getJobTitle().getNamePL()+"\n"+
+					"company: "+employee.getCompany()
+			);	
+		}
+	}
+	
+	@Test
+	public void test05_givenDemoUsersAndDemoInvestor_whenCreateDemoCompanies_shouldBeDemoInvestrorConnectedWithDemoUser() {
 		PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		CompanyDemoGenerator.getCompanyDemoGenerator().getDemoCompanies();
 		Set<User<T>> users = PersonDemoGenerator.getPersonGenerator().getDemoUsers();

@@ -5,11 +5,15 @@ TODO:
 #2.0-SNAPSHOT (new idea for class structure)
 	- create new class structure (https://lucid.app/lucidchart/fbae8b5c-9764-47df-ab97-aa612de7e973/edit?invitationId=inv_9cc9bd8c-030d-477a-a271-7a1b0554c094)
 	
-	+ created CompanyDemoGenerator
-		- create demo hospitals	
+
+	. created CompanyDemoGenerator
+		. updated CompanyDemoGenerator.class
+		- create demo hospitals - setDemoHospitals() ...
 		- create demo employees	
-		- create tests for demo comapanies
+		- create tests for demo companies
 		- create connection between Investor and Hospital
+		- create connection between User and Employee
+			. created JobTitleEnum.class
 
 	- create CompanyDemoTest
 
@@ -19,6 +23,13 @@ TODO:
 DONE:
 ------------------------------------------------
 
+#2.0-SNAPSHOT
+	+ updated JobTitleEnum.class
+	+ created JobTitleEnum.class
+	+ updated CompanyDemoGenerator.class
+	+ updated PersonDemoGenerator.class
+	+ updated PersonDemoGeneratorTest.class
+	
 #2.0-SNAPSHOT
 	+ created function which adds demo user to demo company
 	+ created demo companies

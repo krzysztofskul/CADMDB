@@ -61,6 +61,13 @@ public abstract class Company<T> {
 		this.addUser(user);;
 	}
 	
+	
+	
+	public Company(List<Employee<T>> employeeList) {
+		super();
+		this.employeeList = employeeList;
+	}
+
 	public Company(String name, String country, String postalCode, String city, String street, String streetNo) {
 		super();
 		this.name = name;
@@ -81,7 +88,7 @@ public abstract class Company<T> {
 		this.postalCode = postalCode;
 		this.city = city;
 		this.street = street;
-		this.userList = userList;
+//		this.userList = userList;
 		this.employeeList = employeeList;
 	}
 
@@ -193,5 +200,6 @@ public abstract class Company<T> {
 		this.userList.add(user);
 		user.setCompany(this);
 	}
+	
 	
 }
