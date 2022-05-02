@@ -10,7 +10,7 @@ import java.util.Set;
 import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.designingoffice.DesigningOffice;
-import pl.krzysztofskul.healthcareUnit.hospital.Hospital;
+import pl.krzysztofskul.healthcare.hospital.Hospital;
 import pl.krzysztofskul.investmentcompany.InvestmentCompany;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.person.PersonDemoGenerator;

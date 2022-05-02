@@ -1,4 +1,4 @@
-package pl.krzysztofskul.healthcareUnit.hospital;
+package pl.krzysztofskul.healthcare.hospital;
 
 import java.util.List;
 

@@ -5,7 +5,6 @@ TODO:
 #2.0-SNAPSHOT (new idea for class structure)
 	- create new class structure (https://lucid.app/lucidchart/fbae8b5c-9764-47df-ab97-aa612de7e973/edit?invitationId=inv_9cc9bd8c-030d-477a-a271-7a1b0554c094)
 	
-	- change healthcareUnit package for healthcare
 	- change class Employee to Employment ...
 
 	- create JPA REPO for user, employee, company classes
@@ -13,6 +12,9 @@ TODO:
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ changed healthcareUnit package for healthcare
 
 #2.0-SNAPSHOT
 	+ created Investment.class
