@@ -1,16 +1,29 @@
 package pl.krzysztofskul.investmentcompany;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 
 import pl.krzysztofskul.company.Company;
+import pl.krzysztofskul.investment.Investment;
 import pl.krzysztofskul.person.employee.Employee;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
 public class InvestmentCompany<T> extends Company<InvestmentCompany> {
 
+	/*
+	 * params.
+	 */
+	
+	private Set<Investment> investments = new HashSet<Investment>();
+	
+	/*
+	 * constr.
+	 */
+	
 	public InvestmentCompany() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -32,8 +45,16 @@ public class InvestmentCompany<T> extends Company<InvestmentCompany> {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
+	/*
+	 * getters and setters
+	 */
 	
+	public Set<Investment> getInvestments() {
+		return investments;
+	}
+
+	public void setInvestments(Set<Investment> investments) {
+		this.investments = investments;
+	}
 	
 }

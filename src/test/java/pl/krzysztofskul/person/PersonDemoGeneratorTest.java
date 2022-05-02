@@ -19,7 +19,6 @@ public class PersonDemoGeneratorTest<T> {
 
 	@Test
 	public void test01_GetPersonGenerator() {
-		assertTrue(PersonDemoGenerator.personDemoGenerator == null);
 		PersonDemoGenerator.getPersonGenerator();
 		assertTrue(PersonDemoGenerator.personDemoGenerator != null);
 	}

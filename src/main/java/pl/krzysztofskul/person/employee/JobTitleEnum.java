@@ -12,7 +12,7 @@ public enum JobTitleEnum {
     MANAGER_IN_HOSPITAL ("MANAGER IN HOSPITAL", "Manager in hospital", "Kierownik/Dyrektor szpitala"),
     MANAGER_IN_CLINIC ("MANAGER IN CLINIC", "Managerin clinic", "Kierownik/Dyrektor przychodni"),
     MANAGER_IN_DESIGNINIG_OFFICE ("MANAGER IN DESIGNNING OFFICE", "Manager in designing office", "Kierownik/Dyrektor biura projektowego"),
-    MANAGER_IN_EQUIPMENT_MANUFACTURER ("MANAGER IN MANUFACTURER", "Manager in manufacturer", "Kierownik/Dyrektor producenta wyposa¿enia"),
+    MANAGER_IN_MANUFACTURER ("MANAGER IN MANUFACTURER", "Manager in manufacturer", "Kierownik/Dyrektor producenta wyposa¿enia"),
     MANAGER_IN_CONTRACTOR ("MANAGER IN CONTRACTOR", "Manager in contractor company", "Kierownik/Dyrektor podwykonawcy"),
 
     DOCTOR ("DOCTOR", "Doctor", "Lekarz"),

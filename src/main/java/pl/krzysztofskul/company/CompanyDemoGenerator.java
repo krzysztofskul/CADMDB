@@ -9,12 +9,15 @@ import java.util.Set;
 
 import com.thedeanda.lorem.LoremIpsum;
 
+import pl.krzysztofskul.designingoffice.DesigningOffice;
 import pl.krzysztofskul.healthcareUnit.hospital.Hospital;
 import pl.krzysztofskul.investmentcompany.InvestmentCompany;
+import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.person.PersonDemoGenerator;
 import pl.krzysztofskul.person.employee.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
+import pl.krzysztofskul.subcontractor.Subcontractor;
 
 public class CompanyDemoGenerator<T> {
 
@@ -46,8 +49,11 @@ public class CompanyDemoGenerator<T> {
 	}
 
 	private void setDemoCompanies(Set<Company> demoCompanies) {
-		setDemoInvestmentCompanys();
+		setDemoManufacturers();
+		setDemoInvestmentCompanies();
 		setDemoHospitals();
+		setDemoDesigningOffices();
+		setDemoSubcontractors();
 	}
 	
 	/*
@@ -63,14 +69,48 @@ public class CompanyDemoGenerator<T> {
     	return companyTypes.get(new Random().nextInt(companyTypes.size()));
     }
 	
-	private void setDemoInvestmentCompanys() {
+	private void setDemoInvestmentCompanies() {
 		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
 		for (User<T> user : usersAsUserDemoRole) {
 			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_INVESTMENT_COMPANY) {
 				InvestmentCompany<T> investmentCompany = new InvestmentCompany(user);
-				investmentCompany = (InvestmentCompany<T>) setCompanyDemoAddressDetails(investmentCompany);
+				investmentCompany = (InvestmentCompany<T>) getCompanyDemoAddressDetails(investmentCompany);
 				demoCompanies.add(investmentCompany);
+			}
+		}
+	}
+	
+	private void setDemoManufacturers() {
+		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
+		
+		for (User<T> user : usersAsUserDemoRole) {
+			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_MANUFACTURER) {
+				Manufacturer manufacturer = new Manufacturer(user);
+				manufacturer = (Manufacturer) getCompanyDemoAddressDetails(manufacturer);
+				demoCompanies.add(manufacturer);
+			}
+		}
+	}
+	private void setDemoDesigningOffices() {
+		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
+		
+		for (User<T> user : usersAsUserDemoRole) {
+			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_MANUFACTURER) {
+				DesigningOffice designingOffice = new DesigningOffice(user);
+				designingOffice = (DesigningOffice) getCompanyDemoAddressDetails(designingOffice);
+				demoCompanies.add(designingOffice);
+			}
+		}
+	}
+	private void setDemoSubcontractors() {
+		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
+		
+		for (User<T> user : usersAsUserDemoRole) {
+			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_MANUFACTURER) {
+				Subcontractor subcontractor = new Subcontractor(user);
+				subcontractor = (Subcontractor) getCompanyDemoAddressDetails(subcontractor);
+				demoCompanies.add(subcontractor);
 			}
 		}
 	}
@@ -81,13 +121,13 @@ public class CompanyDemoGenerator<T> {
 		for (User<T> user : usersAsUserDemoRole) {
 			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_HOSPITAL) {
 			Hospital<T> hospital = new Hospital(user);
-			hospital = (Hospital<T>) setCompanyDemoAddressDetails(hospital);
+			hospital = (Hospital<T>) getCompanyDemoAddressDetails(hospital);
 			demoCompanies.add(hospital);
 			}
 		}
 	}
 	
-	private Company setCompanyDemoAddressDetails(Company company) {
+	private Company getCompanyDemoAddressDetails(Company company) {
 		company.setName(LoremIpsum.getInstance().getTitle(1) + " " + getRandomCompanyType());
 		company.setCountry(LoremIpsum.getInstance().getCountry());
 		company.setPostalCode(LoremIpsum.getInstance().getZipCode());
