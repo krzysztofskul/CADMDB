@@ -9,7 +9,8 @@ import java.util.Set;
 
 import com.thedeanda.lorem.LoremIpsum;
 
-import pl.krzysztofskul.investor.Investor;
+import pl.krzysztofskul.healthcareUnit.hospital.Hospital;
+import pl.krzysztofskul.investmentcompany.InvestmentCompany;
 import pl.krzysztofskul.person.PersonDemoGenerator;
 import pl.krzysztofskul.person.employee.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
@@ -45,7 +46,7 @@ public class CompanyDemoGenerator<T> {
 	}
 
 	private void setDemoCompanies(Set<Company> demoCompanies) {
-		setDemoInvestors();
+		setDemoInvestmentCompanys();
 		setDemoHospitals();
 	}
 	
@@ -62,21 +63,31 @@ public class CompanyDemoGenerator<T> {
     	return companyTypes.get(new Random().nextInt(companyTypes.size()));
     }
 	
-	private void setDemoInvestors() {
+	private void setDemoInvestmentCompanys() {
 		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
-		usersAsUserDemoRole.removeIf(u -> u.getUserRole() != UserRole.USER_DEMO || u.getEmploeyee().getJobTitle() != JobTitleEnum.MANAGER_IN_INVESTMENT_COMPANY);
 		
 		for (User<T> user : usersAsUserDemoRole) {
-			Investor<T> investor = new Investor(user);
-			setCompanyDemoAddressDetails(investor);
+			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_INVESTMENT_COMPANY) {
+				InvestmentCompany<T> investmentCompany = new InvestmentCompany(user);
+				investmentCompany = (InvestmentCompany<T>) setCompanyDemoAddressDetails(investmentCompany);
+				demoCompanies.add(investmentCompany);
+			}
 		}
 	}
 	
 	private void setDemoHospitals() {
-		// todo
+		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
+		
+		for (User<T> user : usersAsUserDemoRole) {
+			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_HOSPITAL) {
+			Hospital<T> hospital = new Hospital(user);
+			hospital = (Hospital<T>) setCompanyDemoAddressDetails(hospital);
+			demoCompanies.add(hospital);
+			}
+		}
 	}
 	
-	private void setCompanyDemoAddressDetails(Company company) {
+	private Company setCompanyDemoAddressDetails(Company company) {
 		company.setName(LoremIpsum.getInstance().getTitle(1) + " " + getRandomCompanyType());
 		company.setCountry(LoremIpsum.getInstance().getCountry());
 		company.setPostalCode(LoremIpsum.getInstance().getZipCode());
@@ -86,6 +97,7 @@ public class CompanyDemoGenerator<T> {
 		company.setWww(LoremIpsum.getInstance().getUrl());
 		company.setEmail(LoremIpsum.getInstance().getEmail());
 		company.setPhoneNo(LoremIpsum.getInstance().getPhone());
+		return company;
 	}
 
 

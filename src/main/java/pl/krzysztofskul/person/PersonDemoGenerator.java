@@ -9,6 +9,7 @@ import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
 import com.thedeanda.lorem.LoremIpsum;
 
+import pl.krzysztofskul.company.Company;
 import pl.krzysztofskul.person.employee.Employee;
 import pl.krzysztofskul.person.employee.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
@@ -22,8 +23,8 @@ public class PersonDemoGenerator<T> {
 	
 	public static PersonDemoGenerator personDemoGenerator;
 	
-	private Set<User<T>> demoUsers = new HashSet<User<T>>();
-	private Set<Employee> demoEmployees = new HashSet<Employee>();
+	private static Set<User<Company>> demoUsers = new HashSet<User<Company>>();
+	private static Set<Employee> demoEmployees = new HashSet<Employee>();
 
 	/*
 	 * constr.
@@ -49,7 +50,7 @@ public class PersonDemoGenerator<T> {
 	 * getters and setters and other methods
 	 */
 	
-	public Set<User<T>> getDemoUsers() {
+	public Set<User<Company>> getDemoUsers() {
 		return demoUsers;
 	}
 	
@@ -62,10 +63,7 @@ public class PersonDemoGenerator<T> {
 					break;				
 				}
 				case "USER-DEMO": {
-					/*
-					 * create one demo user for each company type (investor, hospital, manufacturer etc.)
-					 */
-					createUserDemo(userRole, 6);
+					createUserDemo(userRole);
 					break;				
 				}
 						
@@ -75,7 +73,7 @@ public class PersonDemoGenerator<T> {
 		}
 
 	}
-		private void createUserDemo(UserRole userRole, int number) {
+		private void createUserDemo(UserRole userRole) {
 		//for (int i = 0; i < number; i++) {
 		for (JobTitleEnum jobTitleEnum : JobTitleEnum.values()) {
 			User user = new User<T>(
