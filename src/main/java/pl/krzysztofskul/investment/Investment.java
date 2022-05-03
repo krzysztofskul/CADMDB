@@ -17,7 +17,7 @@ public class Investment {
 	private InvestmentCompany investmentCompany;
 	
 	//hospital, clinic or ambulatory
-	private Object healthcareUnit;
+	private Object healthcare;
 	
 	private BigDecimal budget;
 
@@ -41,12 +41,12 @@ public class Investment {
 		this.investmentCompany = investmentCompany;
 	}
 
-	public Object getHealthcareUnit() {
-		return healthcareUnit;
+	public Object getHealthcare() {
+		return healthcare;
 	}
 
-	public void setHealthcareUnit(Object healthcareUnit) {
-		this.healthcareUnit = healthcareUnit;
+	public void setHealthcare(Object healthcare) {
+		this.healthcare = healthcare;
 	}
 
 	public BigDecimal getBudget() {

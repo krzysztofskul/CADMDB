@@ -3,10 +3,18 @@ TODO:
 ------------------------------------------------
 
 #2.0-SNAPSHOT (new idea for class structure)
-	- create new class structure (https://lucid.app/lucidchart/fbae8b5c-9764-47df-ab97-aa612de7e973/edit?invitationId=inv_9cc9bd8c-030d-477a-a271-7a1b0554c094)
+	. create new class structure (https://lucid.app/lucidchart/fbae8b5c-9764-47df-ab97-aa612de7e973/edit?invitationId=inv_9cc9bd8c-030d-477a-a271-7a1b0554c094)
+	
+	- create categories and sub-categories for:
+		- product names
+		- medical functions
+		- medicine branches
+		- patient ages
 
-	- create product categories
-	- create demo products
+	. created product class
+		- create relation with manufacturer(offer/trade), healthcare, categories
+		
+	- create department and room classes
 	
 	- create JPA REPO for user, employee, company classes
 
@@ -14,6 +22,10 @@ TODO:
 DONE:
 ------------------------------------------------
 
+#2.0-SNAPSHOT
+	+ created product class
+	+ plan for class structure updated
+	
 #2.0-SNAPSHOT
 	+ changed class Employee to Employment
 	+ changed the workflow for tests: create user -> create company with employment
