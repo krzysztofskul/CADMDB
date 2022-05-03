@@ -5,10 +5,11 @@ import java.util.List;
 import javax.persistence.Entity;
 
 import pl.krzysztofskul.company.Company;
+import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
-public class Subcontractor extends Company {
+public class Subcontractor<T> extends Company<Subcontractor> {
 
 	public Subcontractor() {
 		super();
@@ -36,6 +37,11 @@ public class Subcontractor extends Company {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	public Subcontractor(User user, JobTitleEnum jobTitleEnum) {
+		super(user, jobTitleEnum);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	
 }

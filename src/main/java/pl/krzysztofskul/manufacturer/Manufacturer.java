@@ -7,10 +7,11 @@ import java.util.Set;
 import javax.persistence.Entity;
 
 import pl.krzysztofskul.company.Company;
+import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
-public class Manufacturer extends Company {
+public class Manufacturer<T> extends Company<Manufacturer> {
 
 	/*
 	 * params.
@@ -48,6 +49,11 @@ public class Manufacturer extends Company {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	public Manufacturer(User user, JobTitleEnum jobTitleEnum) {
+		super(user, jobTitleEnum);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	
 }

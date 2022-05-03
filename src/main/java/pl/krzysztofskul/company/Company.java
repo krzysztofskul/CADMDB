@@ -12,7 +12,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 
-import pl.krzysztofskul.person.employee.Employee;
+
+import pl.krzysztofskul.person.employment.Employment;
+import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 //@MappedSuperclass
@@ -46,7 +48,7 @@ public abstract class Company<T> {
 	private List<User<T>> userList = new ArrayList<User<T>>();
 	
 	@OneToMany(mappedBy="company")
-	private List<Employee<T>> employeeList = new ArrayList<Employee<T>>();
+	private List<Employment<T>> employeeList = new ArrayList<Employment<T>>();
 
 	/*
 	 * constr.
@@ -58,12 +60,15 @@ public abstract class Company<T> {
 	
 	public <T> Company(User user) {
 		super();
-		this.addUser(user);;
 	}
 	
+	public <T> Company(User user, JobTitleEnum jobTitleEnum) {
+		super();
+		this.addUser(user, jobTitleEnum);
+		
+	}
 	
-	
-	public Company(List<Employee<T>> employeeList) {
+	public Company(List<Employment<T>> employeeList) {
 		super();
 		this.employeeList = employeeList;
 	}
@@ -81,14 +86,13 @@ public abstract class Company<T> {
 
 
 	public Company(String name, String country, String postalCode, String city, String street, List<User<T>> userList,
-			List<Employee<T>> employeeList) {
+			List<Employment<T>> employeeList) {
 		super();
 		this.name = name;
 		this.country = country;
 		this.postalCode = postalCode;
 		this.city = city;
 		this.street = street;
-//		this.userList = userList;
 		this.employeeList = employeeList;
 	}
 
@@ -184,11 +188,11 @@ public abstract class Company<T> {
 		this.userList = userList;
 	}
 
-	public List<Employee<T>> getEmployeeList() {
+	public List<Employment<T>> getEmployeeList() {
 		return employeeList;
 	}
 
-	public void setEmployeeList(List<Employee<T>> employeeList) {
+	public void setEmployeeList(List<Employment<T>> employeeList) {
 		this.employeeList = employeeList;
 	}
 	
@@ -196,9 +200,11 @@ public abstract class Company<T> {
 	 * func.
 	 */
 	
-	public void addUser(User<T> user) {
+	public void addUser(User<T> user, JobTitleEnum jobTitleEnum) {
+		user.getEmployment().setCompany(this);
+		user.getEmployment().setJobTitle(jobTitleEnum);;
 		this.userList.add(user);
-		user.setCompany(this);
+		user.getEmployment().setCompany(this);
 	}
 	
 	

@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import pl.krzysztofskul.person.PersonDemoGenerator;
-import pl.krzysztofskul.person.employee.Employee;
+import pl.krzysztofskul.person.employment.Employment;
 import pl.krzysztofskul.person.user.User;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -30,7 +30,6 @@ public class CompanyDemoGeneratorTest {
 			for (User user : users) {
 				System.out.println("\tuser: "+user.getNameFirst()+" "+user.getNameLast());
 				System.out.println("\tuser role: "+user.getUserRole().getUserRoleToStringPL());
-				System.out.println("\tjob title: "+user.getEmploeyee().getJobTitle().getNamePL());
 			}
 		} 
 		

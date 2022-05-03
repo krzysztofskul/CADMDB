@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 
 import pl.krzysztofskul.investmentcompany.InvestmentCompany;
-import pl.krzysztofskul.person.employee.Employee;
+import pl.krzysztofskul.person.employment.Employment;
 
 @Entity
 public class Investment {

@@ -5,7 +5,8 @@ import java.util.List;
 import javax.persistence.Entity;
 
 import pl.krzysztofskul.company.Company;
-import pl.krzysztofskul.person.employee.Employee;
+import pl.krzysztofskul.person.employment.Employment;
+import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
@@ -17,7 +18,7 @@ public class Hospital<T> extends Company<Hospital> {
 	}
 
 	public Hospital(String name, String country, String postalCode, String city, String street,
-			List<User<Hospital>> userList, List<Employee<Hospital>> employeeList) {
+			List<User<Hospital>> userList, List<Employment<Hospital>> employeeList) {
 		super(name, country, postalCode, city, street, userList, employeeList);
 		// TODO Auto-generated constructor stub
 	}
@@ -29,6 +30,16 @@ public class Hospital<T> extends Company<Hospital> {
 
 	public Hospital(User<Hospital> user) {
 		super(user);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Hospital(List<Employment<Hospital>> employeeList) {
+		super(employeeList);
+		// TODO Auto-generated constructor stub
+	}
+
+	public <T> Hospital(User user, JobTitleEnum jobTitleEnum) {
+		super(user, jobTitleEnum);
 		// TODO Auto-generated constructor stub
 	}
 

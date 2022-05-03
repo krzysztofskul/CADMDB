@@ -14,7 +14,7 @@ import pl.krzysztofskul.healthcare.hospital.Hospital;
 import pl.krzysztofskul.investmentcompany.InvestmentCompany;
 import pl.krzysztofskul.manufacturer.Manufacturer;
 import pl.krzysztofskul.person.PersonDemoGenerator;
-import pl.krzysztofskul.person.employee.JobTitleEnum;
+import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
 import pl.krzysztofskul.subcontractor.Subcontractor;
@@ -73,10 +73,11 @@ public class CompanyDemoGenerator<T> {
 		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
 		for (User<T> user : usersAsUserDemoRole) {
-			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_INVESTMENT_COMPANY) {
-				InvestmentCompany<T> investmentCompany = new InvestmentCompany(user);
+			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
+				InvestmentCompany<T> investmentCompany = new InvestmentCompany(user, JobTitleEnum.MANAGER_IN_INVESTMENT_COMPANY);
 				investmentCompany = (InvestmentCompany<T>) getCompanyDemoAddressDetails(investmentCompany);
 				demoCompanies.add(investmentCompany);
+				break;
 			}
 		}
 	}
@@ -85,10 +86,11 @@ public class CompanyDemoGenerator<T> {
 		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
 		for (User<T> user : usersAsUserDemoRole) {
-			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_MANUFACTURER) {
-				Manufacturer manufacturer = new Manufacturer(user);
+			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
+				Manufacturer manufacturer = new Manufacturer(user, JobTitleEnum.MANAGER_IN_MANUFACTURER);
 				manufacturer = (Manufacturer) getCompanyDemoAddressDetails(manufacturer);
 				demoCompanies.add(manufacturer);
+				break;
 			}
 		}
 	}
@@ -96,10 +98,11 @@ public class CompanyDemoGenerator<T> {
 		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
 		for (User<T> user : usersAsUserDemoRole) {
-			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_MANUFACTURER) {
-				DesigningOffice designingOffice = new DesigningOffice(user);
+			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
+				DesigningOffice designingOffice = new DesigningOffice(user, JobTitleEnum.MANAGER_IN_DESIGNINIG_OFFICE);
 				designingOffice = (DesigningOffice) getCompanyDemoAddressDetails(designingOffice);
 				demoCompanies.add(designingOffice);
+				break;
 			}
 		}
 	}
@@ -107,10 +110,11 @@ public class CompanyDemoGenerator<T> {
 		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
 		for (User<T> user : usersAsUserDemoRole) {
-			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_MANUFACTURER) {
-				Subcontractor subcontractor = new Subcontractor(user);
+			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
+				Subcontractor subcontractor = new Subcontractor(user, JobTitleEnum.MANAGER_IN_SUBCONTRACTOR);
 				subcontractor = (Subcontractor) getCompanyDemoAddressDetails(subcontractor);
 				demoCompanies.add(subcontractor);
+				break;
 			}
 		}
 	}
@@ -119,10 +123,11 @@ public class CompanyDemoGenerator<T> {
 		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
 		for (User<T> user : usersAsUserDemoRole) {
-			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmploeyee().getJobTitle() == JobTitleEnum.MANAGER_IN_HOSPITAL) {
-			Hospital<T> hospital = new Hospital(user);
+			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
+			Hospital<T> hospital = new Hospital(user, JobTitleEnum.MANAGER_IN_HOSPITAL);
 			hospital = (Hospital<T>) getCompanyDemoAddressDetails(hospital);
 			demoCompanies.add(hospital);
+			break;
 			}
 		}
 	}

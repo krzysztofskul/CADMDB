@@ -9,8 +9,9 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import pl.krzysztofskul.company.Company;
 import pl.krzysztofskul.company.CompanyDemoGenerator;
-import pl.krzysztofskul.person.employee.Employee;
+import pl.krzysztofskul.person.employment.Employment;
 import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
 
@@ -40,56 +41,36 @@ public class PersonDemoGeneratorTest<T> {
 			System.out.println(
 					"-------------\n" +
 					user.getNameFirst()+" "+user.getNameLast()+
-					" \n "+user.getNickname()+
-					" \n "+user.getUserRole().getUserRoleToStringPL()+
-					" \n "+user.getUserRole().getUserRoleToStringEN()+
-					" \n Employee object: "+user.getEmploeyee()+
-					" \n Employee details: "+user.getEmploeyee().getJobTitle().getNamePL()+
-					" \n Employee details: "+user.getEmploeyee().getCompany()
+					"\n\t"+user.getNickname()+
+					"\n\t"+user.getUserRole().getCode()+
+					"\n\t company: "+user.getEmployment().getCompany()+
+					"\n\t job title: "+user.getEmployment().getJobTitle()
 				);	
-		}
-	}
-
-	@Test
-	public void test04_GetDemoEmployees() {
-		System.out.println("---------- DEMO EMPLOYEES -------------");
-		Set<Employee<T>> employees = PersonDemoGenerator.getPersonGenerator().getDemoEmployees();
-		for (Employee<T> employee : employees) {
-			System.out.println(
-					"-------------\n" +
-					"name and surname: "+employee.getNameFirst()+" "+employee.getNameLast()+"\n"+
-					"connectesd with user: "+employee.getUser()+"\n"+
-					"job title EN: "+employee.getJobTitle().getNameEN()+"\n"+
-					"job title PL: "+employee.getJobTitle().getNamePL()+"\n"+
-					"company: "+employee.getCompany()
-			);	
 		}
 	}
 	
 	@Test
-	public void test05_givenDemoUsersAndDemoInvestor_whenCreateDemoCompanies_shouldCompanyBeConnectedWithDemoUser() {
+	public void test04_givenDemoUsersAndDemoInvestor_whenCreateDemoCompanies_shouldCompanyBeConnectedWithDemoUser() {
 		PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		CompanyDemoGenerator.getCompanyDemoGenerator().getDemoCompanies();
 		Set<User<T>> users = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		//users.removeIf(u -> u.getUserRole() != UserRole.USER_DEMO);
-		System.out.println("---------- USER DEMO CONNECTED WITH COMPANY-------------");
+		System.out.println("---------- DEMO USERS CONNECTED WITH COMPANIES -------------");
 		for (User<T> user : users) {
-			if (user.getUserRole() == UserRole.USER_DEMO & user.getCompany() != null) {
+			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmployment().getCompany() != null) {
 				System.out.println(
-						"-------------\n" +
-						user.getNameFirst()+" "
-								+user.getNameLast()
-								+" \n "+user.getNickname()
-								+" \n "+user.getEmail()
-								+" \n "+user.getUserRole().getUserRoleToStringPL()
-								+" \n "+user.getUserRole().getUserRoleToStringEN()
-								+" \n Employee (object): "+user.getEmploeyee()
-								+" \n Comapny (object): "+user.getCompany().getName()+ " / " + user.getCompany().getClass().toString()
-							);	
-				assertTrue(user.getCompany() != null);				
+					"-------------\n" 
+					+user.getNameFirst()+" "+user.getNameLast()
+					+"\n "+user.getNickname()
+					+"\n "+user.getEmail()
+					+"\n "+user.getUserRole().getCode()
+					+"\n\t Comapny name: "+((Company<T>) user.getEmployment().getCompany()).getName()
+					+"\n\t Job title: "+user.getEmployment().getJobTitle()
+				);	
+				assertTrue(user.getEmployment().getCompany() != null);				
 			}
 
 		}
 	}
-
+	
 }

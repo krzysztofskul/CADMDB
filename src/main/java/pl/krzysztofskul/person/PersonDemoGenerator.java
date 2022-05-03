@@ -10,8 +10,8 @@ import org.springframework.core.type.filter.RegexPatternTypeFilter;
 import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.company.Company;
-import pl.krzysztofskul.person.employee.Employee;
-import pl.krzysztofskul.person.employee.JobTitleEnum;
+import pl.krzysztofskul.person.employment.Employment;
+import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
 
@@ -22,9 +22,7 @@ public class PersonDemoGenerator<T> {
 	 */
 	
 	public static PersonDemoGenerator personDemoGenerator;
-	
 	private static Set<User<Company>> demoUsers = new HashSet<User<Company>>();
-	private static Set<Employee> demoEmployees = new HashSet<Employee>();
 
 	/*
 	 * constr.
@@ -33,7 +31,6 @@ public class PersonDemoGenerator<T> {
 	private PersonDemoGenerator() {
 		super();
 		this.setDemoUsers();
-		this.setDemoEmployees();
 	}
 	
 	/*
@@ -74,7 +71,6 @@ public class PersonDemoGenerator<T> {
 
 	}
 		private void createUserDemo(UserRole userRole) {
-		//for (int i = 0; i < number; i++) {
 		for (JobTitleEnum jobTitleEnum : JobTitleEnum.values()) {
 			User user = new User<T>(
 					LoremIpsum.getInstance().getFirstName(),
@@ -82,12 +78,8 @@ public class PersonDemoGenerator<T> {
 					LoremIpsum.getInstance().getWords(1),
 					LoremIpsum.getInstance().getEmail(),
 					LoremIpsum.getInstance().getWords(1),
-					userRole,
-					null
+					userRole
 			);
-			Employee employee = new Employee(null, jobTitleEnum, user);
-			this.addDemoEmployee(employee);
-			user.setEmploeyee(employee);
 			this.demoUsers.add(user);	
 		}
 	}
@@ -95,19 +87,6 @@ public class PersonDemoGenerator<T> {
 	private void createAdminDemo(UserRole userRole) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	public Set<Employee> getDemoEmployees() {
-		return demoEmployees;
-	}
-
-	public void setDemoEmployees() {
-	
-	}
-	
-	public void addDemoEmployee(Employee demoEmployee) {
-		this.demoEmployees.add(demoEmployee);
-	}
-	
+	}	
 	
 }

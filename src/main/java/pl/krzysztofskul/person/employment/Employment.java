@@ -1,6 +1,9 @@
-package pl.krzysztofskul.person.employee;
+package pl.krzysztofskul.person.employment;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -9,32 +12,54 @@ import pl.krzysztofskul.person.PersonDemoGenerator;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
-public class Employee<T> extends Person {
+public class Employment<T> {
 
-	// todo: move to Person.class (?)
+	/*
+	 * params.
+	 */
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
 	@ManyToOne
 	private T company;
 	
-	// todo: change for JobTitle.enum
 	private JobTitleEnum jobTitle;
 	
-	@OneToOne(mappedBy = "employee")
+	@OneToOne(mappedBy = "employment")
 	private User user;
 
-	public Employee() {
+	/*
+	 * constr.
+	 */
+	
+	public Employment() {
 		super();
 	}
 	
-	public Employee(User user) {
+	public Employment(User user) {
 		super();
 		this.user = user;
 	}
 
-	public Employee(T company, JobTitleEnum jobTitle, User user) {
+	public Employment(T company, JobTitleEnum jobTitle, User user) {
 		super();
 		this.company = company;
 		this.jobTitle = jobTitle;
 		this.user = user;
+	}
+
+	/*
+	 * getters and setters
+	 */
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public T getCompany() {
