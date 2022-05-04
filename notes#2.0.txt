@@ -7,9 +7,13 @@ TODO:
 	
 	- create categories and sub-categories for:
 		- product names
+		- department names
+		- room names
 		. medical functions
 		- medicine branches
 		. patient ages
+
+	- update FunctionalCategoryGeneratorTest for sub-category tests ...
 
 	. created product class
 		- create relation with manufacturer(offer/trade), healthcare, categories
@@ -21,6 +25,11 @@ TODO:
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ created FunctionalCategory class		
+	+ created FunctionalCategoryGenerator class
+	+ created FunctionalCategoryGeneratorTest
 
 #2.0-SNAPSHOT
 	+ created categories and sub-categories for:

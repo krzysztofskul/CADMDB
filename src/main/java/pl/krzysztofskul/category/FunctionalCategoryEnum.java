@@ -7,7 +7,7 @@ public enum FunctionalCategoryEnum implements CategoryEnumOperations {
 	TECHNICAL ("TECH", "Technical", "Techniczne", "Lorepm ipsum...", "Lorepm ipsum..."),
 	SANITARY ("SANIT", "Sanitary", "Sanitarne", "Lorepm ipsum...", "Lorepm ipsum..."),
 	PHARAMCY ("PHARM", "Pharmaceutic", "Apteczne", "Lorepm ipsum...", "Lorepm ipsum..."),
-	ADMINISTRATION ("ADMIN", "Administration/Office", "Administracyjne/Biurowe", "Lorepm ipsum...", "Lorepm ipsum...");
+	ADMINISTRATION ("ADM/OFFICE", "Administration/Office", "Administracyjne/Biurowe", "Lorepm ipsum...", "Lorepm ipsum...");
 	
 	/**
 	 * PARAMS.
