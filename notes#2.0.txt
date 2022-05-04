@@ -7,9 +7,9 @@ TODO:
 	
 	- create categories and sub-categories for:
 		- product names
-		- medical functions
+		. medical functions
 		- medicine branches
-		- patient ages
+		. patient ages
 
 	. created product class
 		- create relation with manufacturer(offer/trade), healthcare, categories
@@ -21,6 +21,11 @@ TODO:
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ created categories and sub-categories for:
+		+ medical functions
+		+ patient ages
 
 #2.0-SNAPSHOT
 	+ created product class
