@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class FunctionalCategory {
+public class FunctionalCategory<T> {
 
 	/**
 	 * params.
@@ -19,11 +19,9 @@ public class FunctionalCategory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private FunctionalCategoryEnum functionalCategoryEnum;
+	private T functionalCategoryEnum;
 	
-	private Set<FunctionalMedicalSubcategoryEnum> functionalMedicalSubcategoryEnums = new HashSet<FunctionalMedicalSubcategoryEnum>();
-	private Set<FunctionalSanitarySubcategoryEnum> functionalSanitarySubcategoryEnums = new HashSet<FunctionalSanitarySubcategoryEnum>();
-	
+	private Set<T> functionalSubCategory = new HashSet<T>();
 	
 	/**
 	 * constr.
@@ -31,6 +29,11 @@ public class FunctionalCategory {
 	
 	public FunctionalCategory() {
 		super();
+	}
+
+	public FunctionalCategory(T functionalCategoryEnum) {
+		super();
+		this.functionalCategoryEnum = functionalCategoryEnum;
 	}
 
 	/**
@@ -45,33 +48,22 @@ public class FunctionalCategory {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public Set<T> getFunctionalSubCategory() {
+		return functionalSubCategory;
+	}
 
-	public FunctionalCategoryEnum getFunctionalCategoryEnum() {
+	public void setFunctionalSubCategory(Set<T> functionalSubCategory) {
+		this.functionalSubCategory = functionalSubCategory;
+	}
+
+	public T getFunctionalCategoryEnum() {
 		return functionalCategoryEnum;
 	}
 
-	public void setFunctionalCategoryEnum(FunctionalCategoryEnum functionalCategoryEnum) {
+	public void setFunctionalCategoryEnum(T functionalCategoryEnum) {
 		this.functionalCategoryEnum = functionalCategoryEnum;
 	}
-	
-	public Set<FunctionalMedicalSubcategoryEnum> getFunctionalMedicalSubcategoryEnums() {
-		return functionalMedicalSubcategoryEnums;
-	}
-
-	public void setFunctionalMedicalSubcategoryEnums(
-			Set<FunctionalMedicalSubcategoryEnum> functionalMedicalSubcategoryEnums) {
-		this.functionalMedicalSubcategoryEnums = functionalMedicalSubcategoryEnums;
-	}
-
-	public Set<FunctionalSanitarySubcategoryEnum> getFunctionalSanitarySubcategoryEnums() {
-		return functionalSanitarySubcategoryEnums;
-	}
-
-	public void setFunctionalSanitarySubcategoryEnums(
-			Set<FunctionalSanitarySubcategoryEnum> functionalSanitarySubcategoryEnums) {
-		this.functionalSanitarySubcategoryEnums = functionalSanitarySubcategoryEnums;
-	}
-	
 	
 	
 }

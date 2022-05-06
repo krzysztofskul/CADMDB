@@ -16,21 +16,15 @@ public class FunctionalCategoryGeneratorTest {
 		Set<FunctionalCategory> defaultFunctionalCategories = FunctionalCategoryGenerator.getFunctionalCategoryGenerator().getDefaultFunctionalCategories();
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("-------------- DEFAULT FUNCTIONAL CATEGORIES --------------");
-		System.out.println("-----------------------------------------------------------");
+		System.out.println("------------------with sub-categories----------------------");
 		for (FunctionalCategory defaultFunctionalCategory : defaultFunctionalCategories) {
-			System.out.println("- "+defaultFunctionalCategory.getFunctionalCategoryEnum().getCode());
-			if (null != defaultFunctionalCategory.getFunctionalMedicalSubcategoryEnums()) {
-				for (FunctionalMedicalSubcategoryEnum functionalMedicalSubcategoryEnum : defaultFunctionalCategory.getFunctionalMedicalSubcategoryEnums()) {
-					System.out.println("\t-- "+functionalMedicalSubcategoryEnum.getCode());
+			System.out.println("- "+ defaultFunctionalCategory.getFunctionalCategoryEnum());			
+			if (null != defaultFunctionalCategory.getFunctionalSubCategory()) {			
+				Set<FunctionalCategory> functionalSubCategories = defaultFunctionalCategory.getFunctionalSubCategory();				
+				for (FunctionalCategory functionalSubCategory: functionalSubCategories) {
+					System.out.println("\t-- "+functionalSubCategory.getFunctionalCategoryEnum());
 				}
-
-			}
-			if (null != defaultFunctionalCategory.getFunctionalSanitarySubcategoryEnums()) {
-				for (FunctionalSanitarySubcategoryEnum functionalSanitarySubcategoryEnum : defaultFunctionalCategory.getFunctionalSanitarySubcategoryEnums()) {
-					System.out.println("\t-- "+functionalSanitarySubcategoryEnum.getCode());
-				}
-				
-			}
+			}		
 		}
 		
 	}

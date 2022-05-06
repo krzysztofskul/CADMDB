@@ -13,8 +13,6 @@ TODO:
 		- medicine branches
 		. patient ages
 
-	- update FunctionalCategor with <T> generic type for medical-, sanitar- sub-categories
-
 	. created product class
 		- create relation with manufacturer(offer/trade), healthcare, categories
 		
@@ -25,6 +23,10 @@ TODO:
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ updated FunctionalCategory class with <T> generic type for medical-, sanitary- sub-categories with inheritance
+	+ updated tests for default functional categories and sub-categories
 
 #2.0-SNAPSHOT
 	+ updated FunctionalCategory class with sub-categories
