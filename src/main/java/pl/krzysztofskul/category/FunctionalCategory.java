@@ -1,5 +1,8 @@
 package pl.krzysztofskul.category;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +21,9 @@ public class FunctionalCategory {
 	
 	private FunctionalCategoryEnum functionalCategoryEnum;
 	
-	private FunctionalCategory functionalParentCategory;
-	private FunctionalCategory functionalSubCategory;
+	private Set<FunctionalMedicalSubcategoryEnum> functionalMedicalSubcategoryEnums = new HashSet<FunctionalMedicalSubcategoryEnum>();
+	private Set<FunctionalSanitarySubcategoryEnum> functionalSanitarySubcategoryEnums = new HashSet<FunctionalSanitarySubcategoryEnum>();
+	
 	
 	/**
 	 * constr.
@@ -49,21 +53,25 @@ public class FunctionalCategory {
 	public void setFunctionalCategoryEnum(FunctionalCategoryEnum functionalCategoryEnum) {
 		this.functionalCategoryEnum = functionalCategoryEnum;
 	}
-
-	public FunctionalCategory getFunctionalParentCategory() {
-		return functionalParentCategory;
+	
+	public Set<FunctionalMedicalSubcategoryEnum> getFunctionalMedicalSubcategoryEnums() {
+		return functionalMedicalSubcategoryEnums;
 	}
 
-	public void setFunctionalParentCategory(FunctionalCategory functionalParentCategory) {
-		this.functionalParentCategory = functionalParentCategory;
+	public void setFunctionalMedicalSubcategoryEnums(
+			Set<FunctionalMedicalSubcategoryEnum> functionalMedicalSubcategoryEnums) {
+		this.functionalMedicalSubcategoryEnums = functionalMedicalSubcategoryEnums;
 	}
 
-	public FunctionalCategory getFunctionalSubCategory() {
-		return functionalSubCategory;
+	public Set<FunctionalSanitarySubcategoryEnum> getFunctionalSanitarySubcategoryEnums() {
+		return functionalSanitarySubcategoryEnums;
 	}
 
-	public void setFunctionalSubCategory(FunctionalCategory functionalSubCategory) {
-		this.functionalSubCategory = functionalSubCategory;
+	public void setFunctionalSanitarySubcategoryEnums(
+			Set<FunctionalSanitarySubcategoryEnum> functionalSanitarySubcategoryEnums) {
+		this.functionalSanitarySubcategoryEnums = functionalSanitarySubcategoryEnums;
 	}
+	
+	
 	
 }

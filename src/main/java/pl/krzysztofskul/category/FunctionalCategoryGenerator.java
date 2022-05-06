@@ -36,6 +36,20 @@ public class FunctionalCategoryGenerator {
 		for (FunctionalCategoryEnum functionalCategoryEnum : FunctionalCategoryEnum.values()) {
 			FunctionalCategory functionalCategory = new FunctionalCategory();
 			functionalCategory.setFunctionalCategoryEnum(functionalCategoryEnum);
+			switch (functionalCategory.getFunctionalCategoryEnum()) {
+			case MEDICAL:
+					for (FunctionalMedicalSubcategoryEnum functionalMedicalSubcategoryEnum : FunctionalMedicalSubcategoryEnum.values()) {
+						functionalCategory.getFunctionalMedicalSubcategoryEnums().add(functionalMedicalSubcategoryEnum);
+					}
+				break;
+			case SANITARY:
+				for (FunctionalSanitarySubcategoryEnum functionalSanitarySubcategoryEnum: FunctionalSanitarySubcategoryEnum.values()) {
+					functionalCategory.getFunctionalSanitarySubcategoryEnums().add(functionalSanitarySubcategoryEnum);
+				}
+			break;
+			default:
+				break;
+			}
 			defaultFunctionalCategories.add(functionalCategory);
 		}
 	}

@@ -18,9 +18,21 @@ public class FunctionalCategoryGeneratorTest {
 		System.out.println("-------------- DEFAULT FUNCTIONAL CATEGORIES --------------");
 		System.out.println("-----------------------------------------------------------");
 		for (FunctionalCategory defaultFunctionalCategory : defaultFunctionalCategories) {
-			System.out.println(defaultFunctionalCategory.getFunctionalCategoryEnum().getCode());
-			
+			System.out.println("- "+defaultFunctionalCategory.getFunctionalCategoryEnum().getCode());
+			if (null != defaultFunctionalCategory.getFunctionalMedicalSubcategoryEnums()) {
+				for (FunctionalMedicalSubcategoryEnum functionalMedicalSubcategoryEnum : defaultFunctionalCategory.getFunctionalMedicalSubcategoryEnums()) {
+					System.out.println("\t-- "+functionalMedicalSubcategoryEnum.getCode());
+				}
+
+			}
+			if (null != defaultFunctionalCategory.getFunctionalSanitarySubcategoryEnums()) {
+				for (FunctionalSanitarySubcategoryEnum functionalSanitarySubcategoryEnum : defaultFunctionalCategory.getFunctionalSanitarySubcategoryEnums()) {
+					System.out.println("\t-- "+functionalSanitarySubcategoryEnum.getCode());
+				}
+				
+			}
 		}
+		
 	}
 
 }

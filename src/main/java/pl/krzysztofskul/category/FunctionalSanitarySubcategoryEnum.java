@@ -2,12 +2,10 @@ package pl.krzysztofskul.category;
 
 public enum FunctionalSanitarySubcategoryEnum implements CategoryEnumOperations {
 	
-	NEWBORN ("NEWBORN", "Newborn", "Nowordkowe", "Lorem ipsum...", "Lorem ipsum..."),
-	NEONATAL ("NEONATAL", "Neonatal", "Neonatalogiczne", "Lorem ipsum..deko.", "Lorem ipsum..."),
-	INFANT ("INFANT", "Infant", "Niemowlêce", "Lorem ipsum..deko.", "Lorem ipsum..."),
-	CHILD ("CHILD", "Child", "Dzieciêce", "Lorem ipsum...", "Lorem ipsum..."),
-	ADULT ("ADULT", "Adult", "Doroœli", "Lorem ipsum...", "Lorem ipsum..."),
-	GERIATRIC ("GERIATRIC", "Geriatric", "Geriatryczne", "Lorem ipsum...", "Lorem ipsum...");
+	HYGIENIC ("HYGIEN", "Hyginic", "Higieniczne", "Lorem ipsum...", "Lorem ipsum..."),
+	CLEANING ("CLEAN", "Cleaning", "Myj¹ce", "Lorem ipsum..deko.", "Lorem ipsum..."),
+	DECONTAMINANTION ("DECONT", "Decontaminantion", "Dekontaminuj¹ce", "Lorem ipsum..deko.", "Lorem ipsum..."),
+	STERILIZATION ("STERIL", "Sterilization", "Sterylizuj¹ce", "Lorem ipsum...", "Lorem ipsum...");
 
 	private String code;
 	private String nameEN;
