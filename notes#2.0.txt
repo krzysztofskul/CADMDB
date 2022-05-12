@@ -5,6 +5,12 @@ TODO:
 #2.0-SNAPSHOT (new idea for class structure)
 	. create new class structure (https://lucid.app/lucidchart/fbae8b5c-9764-47df-ab97-aa612de7e973/edit?invitationId=inv_9cc9bd8c-030d-477a-a271-7a1b0554c094)
 	
+	. created Healthcare class which extends Company class
+		. updated Hospital class to extend Healthcare class
+		- create Clinic class to extend Healthcare class
+		- create department and room classes extend Healthcare class
+		- create interfaces for healthcare sub-classes
+	
 	- create categories and sub-categories for:
 		- product names
 		- department names
@@ -15,14 +21,17 @@ TODO:
 
 	. created product class
 		- create relation with manufacturer(offer/trade), healthcare, categories
-		
-	- create department and room classes
 	
 	- create JPA REPO for user, employee, company classes
 
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ created Healthcare class which extends Company class
+	+ updated Hospital class to extend Healthcare class
+	+ updated CompanyDemoGenerator and CompanyDemoGeneratorTest
 
 #2.0-SNAPSHOT
 	+ updated FunctionalCategory class with <T> generic type for medical-, sanitary- sub-categories with inheritance

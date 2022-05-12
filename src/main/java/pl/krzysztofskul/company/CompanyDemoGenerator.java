@@ -125,6 +125,10 @@ public class CompanyDemoGenerator<T> {
 		for (User<T> user : usersAsUserDemoRole) {
 			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
 			Hospital<T> hospital = new Hospital(user, JobTitleEnum.MANAGER_IN_HOSPITAL);
+			hospital.setArea(new Random().nextInt(900)+100);
+			hospital.setElectricalPowerConnectionValue(						
+						new Random().nextInt(500000)+5000
+					);
 			hospital = (Hospital<T>) getCompanyDemoAddressDetails(hospital);
 			demoCompanies.add(hospital);
 			break;
