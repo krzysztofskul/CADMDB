@@ -6,13 +6,14 @@ TODO:
 	. create new class structure (https://lucid.app/lucidchart/fbae8b5c-9764-47df-ab97-aa612de7e973/edit?invitationId=inv_9cc9bd8c-030d-477a-a271-7a1b0554c094)
 	
 	. created Healthcare class which extends Company class
-		- create department and room classes extend Healthcare class
+		. create department and room classes extend Healthcare class
+			- update test for hospital/clinic with departments and rooms ...
 		- create interfaces for healthcare sub-classes
 	
 	- create categories and sub-categories for:
 		- product names
-		- department names
-		- room names
+		. department names
+		. room names
 		. medical functions
 		- medicine branches
 		. patient ages
@@ -25,6 +26,11 @@ TODO:
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ create department and room classes extend Healthcare class
+	+ department names
+	+ room names
 
 #2.0-SNAPSHOT
 	+ created Clinic class which extends Healthcare class
