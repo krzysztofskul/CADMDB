@@ -7,7 +7,10 @@ import java.util.Set;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;import pl.krzysztofskul.healthcare.hospital.Hospital;
+import org.junit.runners.MethodSorters;
+
+import pl.krzysztofskul.healthcare.clinic.Clinic;
+import pl.krzysztofskul.healthcare.hospital.Hospital;
 import pl.krzysztofskul.person.PersonDemoGenerator;
 import pl.krzysztofskul.person.employment.Employment;
 import pl.krzysztofskul.person.user.User;
@@ -28,6 +31,11 @@ public class CompanyDemoGeneratorTest {
 				Hospital companyHospital = (Hospital) company;
 				System.out.println("\t Area: "+companyHospital.getArea() + " m2");
 				System.out.println("\t Electrical power connection value: "+companyHospital.getElectricalPowerConnectionValue() + " VA");
+			}
+			if (company.getClass().getName().contains("Clinic")) {
+				Clinic companyClinic = (Clinic) company;
+				System.out.println("\t Area: "+companyClinic.getArea() + " m2");
+				System.out.println("\t Electrical power connection value: "+companyClinic.getElectricalPowerConnectionValue() + " VA");
 			}
 			List<User> users = company.getUserList();
 			assertTrue(users.size() > 0);

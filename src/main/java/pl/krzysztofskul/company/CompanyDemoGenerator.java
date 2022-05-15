@@ -10,6 +10,7 @@ import java.util.Set;
 import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.designingoffice.DesigningOffice;
+import pl.krzysztofskul.healthcare.clinic.Clinic;
 import pl.krzysztofskul.healthcare.hospital.Hospital;
 import pl.krzysztofskul.investmentcompany.InvestmentCompany;
 import pl.krzysztofskul.manufacturer.Manufacturer;
@@ -52,12 +53,13 @@ public class CompanyDemoGenerator<T> {
 		setDemoManufacturers();
 		setDemoInvestmentCompanies();
 		setDemoHospitals();
+		setDemoClinics();
 		setDemoDesigningOffices();
 		setDemoSubcontractors();
 	}
 	
 	/*
-	 * func.
+	 * methods and functions.
 	 */
 	
     public String getRandomCompanyType() {
@@ -125,7 +127,7 @@ public class CompanyDemoGenerator<T> {
 		for (User<T> user : usersAsUserDemoRole) {
 			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
 			Hospital<T> hospital = new Hospital(user, JobTitleEnum.MANAGER_IN_HOSPITAL);
-			hospital.setArea(new Random().nextInt(900)+100);
+			hospital.setArea(new Random().nextInt(500)+500);
 			hospital.setElectricalPowerConnectionValue(						
 						new Random().nextInt(500000)+5000
 					);
@@ -136,6 +138,22 @@ public class CompanyDemoGenerator<T> {
 		}
 	}
 	
+	private void setDemoClinics() {
+		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
+		
+		for (User<T> user : usersAsUserDemoRole) {
+			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
+			Clinic<T> clinic= new Clinic(user, JobTitleEnum.MANAGER_IN_CLINIC);
+			clinic.setArea(new Random().nextInt(250)+250);
+			clinic.setElectricalPowerConnectionValue(						
+						new Random().nextInt(100000)+1000
+					);
+			clinic = (Clinic<T>) getCompanyDemoAddressDetails(clinic);
+			demoCompanies.add(clinic);
+			break;
+			}
+		}
+	}
 	private Company getCompanyDemoAddressDetails(Company company) {
 		company.setName(LoremIpsum.getInstance().getTitle(1) + " " + getRandomCompanyType());
 		company.setCountry(LoremIpsum.getInstance().getCountry());
