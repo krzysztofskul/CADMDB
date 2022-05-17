@@ -4,6 +4,7 @@ import pl.krzysztofskul.category.CategoryEnumOperations;
 
 public enum DepartmentNameStandarizedEnum implements CategoryEnumOperations {
 	
+	DEMO_DEPARTMENT ("DEMO", "Demo department", "Oddzia³ demonstracyjny", null, null),
 	ADMINISTRATION ("ADM", "Administration", "Dzia³ administracji", null, null),
 	OPERATING_THEATER("OR", "Operating theater", "Blok operacyjny", null, null),
 	ICU ("ICU", "Intensive care unit", "Oddzia³ intensywnej terapii", null, null),
@@ -34,32 +35,27 @@ public enum DepartmentNameStandarizedEnum implements CategoryEnumOperations {
 
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return code;
 	}
 
 	@Override
 	public String getNameEN() {
-		// TODO Auto-generated method stub
-		return null;
+		return nameEN;
 	}
 
 	@Override
 	public String getNamePL() {
-		// TODO Auto-generated method stub
-		return null;
+		return namePL;
 	}
 
 	@Override
 	public String getDescriptionEN() {
-		// TODO Auto-generated method stub
-		return null;
+		return getDescriptionEN();
 	}
 
 	@Override
 	public String getDescriptionPL() {
-		// TODO Auto-generated method stub
-		return null;
+		return descriptionPL;
 	}
 
 	

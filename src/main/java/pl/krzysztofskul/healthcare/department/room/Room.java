@@ -32,6 +32,11 @@ public class Room extends Healthcare{
 		super();
 	}
 
+	public Room(RoomNameStandarizedEnum roomNameStandarizedEnum) {
+		super();
+		this.setNameStandarized(roomNameStandarizedEnum);
+	}
+
 	/**
 	 * getters and setters
 	 */

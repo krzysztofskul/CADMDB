@@ -36,6 +36,15 @@ public class Department<T> extends Healthcare {
 		super();
 	}
 	
+	
+	
+	public Department(DepartmentNameStandarizedEnum nameStandarized) {
+		super();
+		this.nameStandarized = nameStandarized;
+	}
+
+
+
 	/**
 	 * getters and setters
 	 */
@@ -72,6 +81,12 @@ public class Department<T> extends Healthcare {
 		this.rooms = rooms;
 	}
 	
+	/**
+	 * methods
+	 */
 	
-	
+	public void addRoom(Room room) {
+		this.rooms.add(room);
+		room.setDepartment(this);
+	}
 }

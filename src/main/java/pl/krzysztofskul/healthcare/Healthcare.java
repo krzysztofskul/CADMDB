@@ -1,8 +1,11 @@
 package pl.krzysztofskul.healthcare;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import pl.krzysztofskul.company.Company;
+import pl.krzysztofskul.healthcare.department.Department;
 import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
@@ -35,6 +38,8 @@ public class Healthcare extends Company {
 	
 	// budget for construction
 	//private BigDecimal budgetConstruction;
+	
+	private Set<Department> departments = new HashSet<Department>();
 	
 	/**
 	 * constr.
@@ -90,5 +95,23 @@ public class Healthcare extends Company {
 	public void setArea(int area) {
 		this.area = area;
 	}
+
+	public Set<Department> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(Set<Department> departments) {
+		this.departments = departments;
+	}
+	
+	/**
+	 * methods and functions
+	 */
+	
+	public void addDepartment(Department department) {
+		this.departments.add(department);
+		department.setHealthcareCompany(this);
+	}
+	
 	
 }

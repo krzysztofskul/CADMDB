@@ -4,7 +4,7 @@ import pl.krzysztofskul.category.CategoryEnumOperations;
 
 public enum RoomNameStandarizedEnum implements CategoryEnumOperations {
 
-	DEMO ("DEMO", "Demo room", "Pomieszczenie przyk³adowe", null, null),
+	DEMO_ROOM ("DEMO", "Demo room", "Pomieszczenie przyk³adowe", null, null),
 	REGISTRATION ("REGISTRATION", "Registration", "Recepcja", null, null),
 	SECRETARIAT ("SECRETARIAT", "Secretary's office", "Sekretariat", null, null),
 	TECHNICAL_ROOM ("TECH", "Technical room", "Pomieszczenie techniczne", null, null),
@@ -31,31 +31,26 @@ public enum RoomNameStandarizedEnum implements CategoryEnumOperations {
 
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return code;
 	}
 
 	@Override
 	public String getNameEN() {
-		// TODO Auto-generated method stub
-		return null;
+		return nameEN;
 	}
 
 	@Override
 	public String getNamePL() {
-		// TODO Auto-generated method stub
-		return null;
+		return namePL;
 	}
 
 	@Override
 	public String getDescriptionEN() {
-		// TODO Auto-generated method stub
-		return null;
+		return descriptionEN;
 	}
 
 	@Override
 	public String getDescriptionPL() {
-		// TODO Auto-generated method stub
-		return null;
+		return descriptionPL;
 	}
 }

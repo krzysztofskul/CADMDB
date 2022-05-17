@@ -1,6 +1,7 @@
 package pl.krzysztofskul.company;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +11,12 @@ import java.util.Set;
 import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.designingoffice.DesigningOffice;
+import pl.krzysztofskul.healthcare.Healthcare;
 import pl.krzysztofskul.healthcare.clinic.Clinic;
+import pl.krzysztofskul.healthcare.department.Department;
+import pl.krzysztofskul.healthcare.department.DepartmentNameStandarizedEnum;
+import pl.krzysztofskul.healthcare.department.room.Room;
+import pl.krzysztofskul.healthcare.department.room.RoomNameStandarizedEnum;
 import pl.krzysztofskul.healthcare.hospital.Hospital;
 import pl.krzysztofskul.investmentcompany.InvestmentCompany;
 import pl.krzysztofskul.manufacturer.Manufacturer;
@@ -20,7 +26,7 @@ import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
 import pl.krzysztofskul.subcontractor.Subcontractor;
 
-public class CompanyDemoGenerator<T> {
+public class CompanyDemoGenerator<T, E> {
 
 	private static CompanyDemoGenerator companyDemoGenerator;
 	
@@ -132,6 +138,7 @@ public class CompanyDemoGenerator<T> {
 						new Random().nextInt(500000)+5000
 					);
 			hospital = (Hospital<T>) getCompanyDemoAddressDetails(hospital);
+			setDemoDepartments(hospital);
 			demoCompanies.add(hospital);
 			break;
 			}
@@ -149,11 +156,31 @@ public class CompanyDemoGenerator<T> {
 						new Random().nextInt(100000)+1000
 					);
 			clinic = (Clinic<T>) getCompanyDemoAddressDetails(clinic);
+			setDemoDepartments(clinic);
 			demoCompanies.add(clinic);
 			break;
 			}
 		}
 	}
+	
+	private void setDemoDepartments(Healthcare healthcare) {
+		DepartmentNameStandarizedEnum[] departmentsToAdd = new DepartmentNameStandarizedEnum[1];
+		if (healthcare.getClass().getName().contains("Hospital")) {
+			departmentsToAdd = DepartmentNameStandarizedEnum.values();
+		} 
+		if (healthcare.getClass().getName().contains("Clinic")) {
+			departmentsToAdd[0] = DepartmentNameStandarizedEnum.DEMO_DEPARTMENT;
+		}
+		for (DepartmentNameStandarizedEnum departmentNameStandarizedEnum : departmentsToAdd) {
+			healthcare.addDepartment(new Department(departmentNameStandarizedEnum));
+		}
+		for (Department department : healthcare.getDepartments()) {
+			for (RoomNameStandarizedEnum roomNameStandarizedEnum : RoomNameStandarizedEnum.values()) {
+				department.addRoom(new Room(roomNameStandarizedEnum));
+			}
+		} 
+	}
+	
 	private Company getCompanyDemoAddressDetails(Company company) {
 		company.setName(LoremIpsum.getInstance().getTitle(1) + " " + getRandomCompanyType());
 		company.setCountry(LoremIpsum.getInstance().getCountry());
@@ -167,6 +194,15 @@ public class CompanyDemoGenerator<T> {
 		return company;
 	}
 
-
+	private void addDemoDepartmentToHealthcare(T healthcare, Department department) {
+		if (healthcare.getClass().getName().contains("Hospital")) {
+			Hospital hospital = (Hospital) healthcare;
+			hospital.addDepartment(department);
+		}
+		if (healthcare.getClass().getName().contains("Clinic")) {
+			Clinic clinic = (Clinic) healthcare;
+			clinic.addDepartment(department);
+		}
+	}
 	
 }
