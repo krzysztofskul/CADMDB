@@ -8,7 +8,7 @@ TODO:
 	. created Healthcare class which extends Company class
 		- create interfaces for healthcare sub-classes
 		- create HealthcareCompany class (?)
-			- update Set<Departments> in Hospital, Clinic, Department, Room classes
+			
 	
 	- create categories and sub-categories for:
 		- product names
@@ -26,6 +26,9 @@ TODO:
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ updated Set<Departments> in Hospital, Clinic, Department, Room classes
 
 #2.0-SNAPSHOT
 	+ updated company demo generator and tests for hospital/clinic with departments and rooms

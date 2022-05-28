@@ -65,8 +65,4 @@ public class Room extends Healthcare{
 		this.nameStandarized = nameStandarized;
 	}
 	
-
-	
-	
-	
 }

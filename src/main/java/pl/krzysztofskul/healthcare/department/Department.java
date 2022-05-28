@@ -26,6 +26,10 @@ public class Department<T> extends Healthcare {
 	
 	private DepartmentNameStandarizedEnum nameStandarized;
 	
+	private Department parentDepartment;
+	
+	private Set<Department> subDepartments = new HashSet<Department>();
+	
 	private Set<Room> rooms = new HashSet<Room>();
 	
 	/**
@@ -81,6 +85,22 @@ public class Department<T> extends Healthcare {
 		this.rooms = rooms;
 	}
 	
+	public Department getParentDepartment() {
+		return parentDepartment;
+	}
+
+	public void setParentDepartment(Department parentDepartment) {
+		this.parentDepartment = parentDepartment;
+	}
+
+	public Set<Department> getSubDepartments() {
+		return subDepartments;
+	}
+
+	public void setSubDepartments(Set<Department> subDepartments) {
+		this.subDepartments = subDepartments;
+	}
+
 	/**
 	 * methods
 	 */
@@ -88,5 +108,10 @@ public class Department<T> extends Healthcare {
 	public void addRoom(Room room) {
 		this.rooms.add(room);
 		room.setDepartment(this);
+	}
+	
+	public void addSubDepartment(Department subDepartment) {
+		this.subDepartments.add(subDepartment);
+		subDepartment.setParentDepartment(subDepartment);
 	}
 }

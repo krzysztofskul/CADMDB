@@ -53,9 +53,21 @@ public class CompanyDemoGeneratorTest {
 	}
 
 	private void printDepartments(Healthcare healthcare) {
-		if (healthcare.getDepartments() != null & healthcare.getDepartments().size() > 0) {
+		
+		Set<Department> departments = null;
+		
+		if (healthcare.getClass().getName().contains("Hospital")) {
+			Hospital h = (Hospital) healthcare;
+			departments = h.getDepartments();
+		}
+		if (healthcare.getClass().getName().contains("Clinic")) {
+			Clinic c = (Clinic) healthcare;
+			departments = c.getDepartments();
+		}		
+		
+		if (departments != null & departments.size() > 0) {
 			System.out.println("\t  Departments:");
-			for (Department department : healthcare.getDepartments()) {
+			for (Department department : departments) {
 				System.out.println("\t\t "+department.getNameStandarized().getNameEN());
 				if (department.getRooms() != null & department.getRooms().size() > 0) {
 					System.out.println("\t\t\t Rooms:");

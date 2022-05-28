@@ -165,20 +165,43 @@ public class CompanyDemoGenerator<T, E> {
 	
 	private void setDemoDepartments(Healthcare healthcare) {
 		DepartmentNameStandarizedEnum[] departmentsToAdd = new DepartmentNameStandarizedEnum[1];
+		
 		if (healthcare.getClass().getName().contains("Hospital")) {
-			departmentsToAdd = DepartmentNameStandarizedEnum.values();
+			departmentsToAdd = DepartmentNameStandarizedEnum.values();	
+			Hospital healthcareHospital = (Hospital) healthcare;
+			for (DepartmentNameStandarizedEnum departmentNameStandarizedEnum : departmentsToAdd) {	
+					healthcareHospital.addDepartment(new Department(departmentNameStandarizedEnum));
+					
+			}
+			Set<Department> departments = healthcareHospital.getDepartments();
+			for (Department department : departments) {
+				for (RoomNameStandarizedEnum roomNameStandarizedEnum : RoomNameStandarizedEnum.values()) {
+					department.addRoom(new Room(roomNameStandarizedEnum));
+				}
+			} 
+			healthcare = healthcareHospital;
 		} 
+		
+		
 		if (healthcare.getClass().getName().contains("Clinic")) {
 			departmentsToAdd[0] = DepartmentNameStandarizedEnum.DEMO_DEPARTMENT;
-		}
-		for (DepartmentNameStandarizedEnum departmentNameStandarizedEnum : departmentsToAdd) {
-			healthcare.addDepartment(new Department(departmentNameStandarizedEnum));
-		}
-		for (Department department : healthcare.getDepartments()) {
-			for (RoomNameStandarizedEnum roomNameStandarizedEnum : RoomNameStandarizedEnum.values()) {
-				department.addRoom(new Room(roomNameStandarizedEnum));
+			
+			Clinic healthcareClinic = (Clinic) healthcare;
+			for (DepartmentNameStandarizedEnum departmentNameStandarizedEnum : departmentsToAdd) {	
+					healthcareClinic.addDepartment(new Department(departmentNameStandarizedEnum));
+					
 			}
-		} 
+			Set<Department> departments = healthcareClinic.getDepartments();
+			for (Department department : departments) {
+				for (RoomNameStandarizedEnum roomNameStandarizedEnum : RoomNameStandarizedEnum.values()) {
+					department.addRoom(new Room(roomNameStandarizedEnum));
+				}
+			} 
+			healthcare = healthcareClinic; 
+			
+		}
+
+
 	}
 	
 	private Company getCompanyDemoAddressDetails(Company company) {

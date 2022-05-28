@@ -39,8 +39,6 @@ public class Healthcare extends Company {
 	// budget for construction
 	//private BigDecimal budgetConstruction;
 	
-	private Set<Department> departments = new HashSet<Department>();
-	
 	/**
 	 * constr.
 	 */
@@ -94,23 +92,6 @@ public class Healthcare extends Company {
 
 	public void setArea(int area) {
 		this.area = area;
-	}
-
-	public Set<Department> getDepartments() {
-		return departments;
-	}
-
-	public void setDepartments(Set<Department> departments) {
-		this.departments = departments;
-	}
-	
-	/**
-	 * methods and functions
-	 */
-	
-	public void addDepartment(Department department) {
-		this.departments.add(department);
-		department.setHealthcareCompany(this);
 	}
 	
 	

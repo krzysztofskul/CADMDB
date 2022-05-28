@@ -1,11 +1,14 @@
 package pl.krzysztofskul.healthcare.hospital;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 
 import pl.krzysztofskul.company.Company;
 import pl.krzysztofskul.healthcare.Healthcare;
+import pl.krzysztofskul.healthcare.department.Department;
 import pl.krzysztofskul.person.employment.Employment;
 import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
@@ -13,6 +16,8 @@ import pl.krzysztofskul.person.user.User;
 @Entity
 public class Hospital<T> extends Healthcare {
 
+	private Set<Department> departments = new HashSet<Department>();
+	
 	public Hospital() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -44,6 +49,21 @@ public class Hospital<T> extends Healthcare {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Set<Department> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(Set<Department> departments) {
+		this.departments = departments;
+	}
 	
+	/**
+	 * methods and functions
+	 */
+	
+	public void addDepartment(Department department) {
+		this.departments.add(department);
+		department.setHealthcareCompany(this);
+	}
 	
 }
