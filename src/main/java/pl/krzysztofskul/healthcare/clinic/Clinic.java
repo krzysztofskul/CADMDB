@@ -12,7 +12,7 @@ import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
-public class Clinic<T> extends Healthcare {
+public class Clinic extends Healthcare {
 
 	private Set<Department> departments = new HashSet<Department>();
 	

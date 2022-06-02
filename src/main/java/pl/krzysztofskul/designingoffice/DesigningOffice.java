@@ -9,7 +9,7 @@ import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
-public class DesigningOffice<T> extends Company<DesigningOffice> {
+public class DesigningOffice<T> extends Company {
 
 	public DesigningOffice() {
 		super();

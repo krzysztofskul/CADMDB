@@ -13,7 +13,7 @@ import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
-public class InvestmentCompany<T> extends Company<InvestmentCompany> {
+public class InvestmentCompany extends Company {
 
 	/*
 	 * params.
@@ -31,7 +31,7 @@ public class InvestmentCompany<T> extends Company<InvestmentCompany> {
 	}
 
 	public InvestmentCompany(String name, String country, String postalCode, String city, String street,
-			List<User<InvestmentCompany>> userList, List<Employment<InvestmentCompany>> employeeList) {
+			List<User> userList, List<Employment> employeeList) {
 		super(name, country, postalCode, city, street, userList, employeeList);
 		// TODO Auto-generated constructor stub
 	}
@@ -46,7 +46,7 @@ public class InvestmentCompany<T> extends Company<InvestmentCompany> {
 		// TODO Auto-generated constructor stub
 	}
 
-	public InvestmentCompany(List<Employment<InvestmentCompany>> employeeList) {
+	public InvestmentCompany(List<Employment> employeeList) {
 		super(employeeList);
 		// TODO Auto-generated constructor stub
 	}

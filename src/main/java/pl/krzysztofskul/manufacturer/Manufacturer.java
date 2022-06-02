@@ -11,7 +11,7 @@ import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
-public class Manufacturer<T> extends Company<Manufacturer> {
+public class Manufacturer extends Company {
 
 	/*
 	 * params.

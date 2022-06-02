@@ -16,7 +16,7 @@ import pl.krzysztofskul.person.user.User;
 import pl.krzysztofskul.person.user.UserRole;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PersonDemoGeneratorTest<T> {
+public class PersonDemoGeneratorTest {
 
 	@Test
 	public void test01_GetPersonGenerator() {
@@ -35,9 +35,9 @@ public class PersonDemoGeneratorTest<T> {
 		assertTrue(PersonDemoGenerator.getPersonGenerator().getDemoUsers().size() > 0);
 		System.out.println("---------- DEMO USERS -------------");
 		
-		Set<User<T>> users = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
+		Set<User> users = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
-		for (User<T> user : users) {
+		for (User user : users) {
 			System.out.println(
 					"-------------\n" +
 					user.getNameFirst()+" "+user.getNameLast()+
@@ -53,10 +53,10 @@ public class PersonDemoGeneratorTest<T> {
 	public void test04_givenDemoUsersAndDemoInvestor_whenCreateDemoCompanies_shouldCompanyBeConnectedWithDemoUser() {
 		PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		CompanyDemoGenerator.getCompanyDemoGenerator().getDemoCompanies();
-		Set<User<T>> users = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
+		Set<User> users = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		//users.removeIf(u -> u.getUserRole() != UserRole.USER_DEMO);
 		System.out.println("---------- DEMO USERS CONNECTED WITH COMPANIES -------------");
-		for (User<T> user : users) {
+		for (User user : users) {
 			if (user.getUserRole() == UserRole.USER_DEMO & user.getEmployment().getCompany() != null) {
 				System.out.println(
 					"-------------\n" 
@@ -64,7 +64,7 @@ public class PersonDemoGeneratorTest<T> {
 					+"\n "+user.getNickname()
 					+"\n "+user.getEmail()
 					+"\n "+user.getUserRole().getCode()
-					+"\n\t Comapny name: "+((Company<T>) user.getEmployment().getCompany()).getName()
+					+"\n\t Comapny name: "+((Company) user.getEmployment().getCompany()).getName()
 					+"\n\t Job title: "+user.getEmployment().getJobTitle()
 				);	
 				assertTrue(user.getEmployment().getCompany() != null);				

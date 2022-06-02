@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import pl.krzysztofskul.company.Company;
 import pl.krzysztofskul.healthcare.Healthcare;
@@ -14,8 +15,9 @@ import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 @Entity
-public class Hospital<T> extends Healthcare {
+public class Hospital extends Healthcare<Hospital> {
 
+	@OneToMany(mappedBy = "healthcareCompany")
 	private Set<Department> departments = new HashSet<Department>();
 	
 	public Hospital() {

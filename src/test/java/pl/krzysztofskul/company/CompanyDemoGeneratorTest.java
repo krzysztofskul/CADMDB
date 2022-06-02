@@ -42,12 +42,12 @@ public class CompanyDemoGeneratorTest {
 				System.out.println("\t Electrical power connection value: "+companyClinic.getElectricalPowerConnectionValue() + " VA");
 				printDepartments(companyClinic);
 			}
-			List<User> users = company.getUserList();
-			assertTrue(users.size() > 0);
-			for (User user : users) {
-				System.out.println("\tuser: "+user.getNameFirst()+" "+user.getNameLast());
-				System.out.println("\tuser role: "+user.getUserRole().getUserRoleToStringPL());
-			}
+//			List<User> users = company.getUserList();
+//			assertTrue(users.size() > 0);
+//			for (User user : users) {
+//				System.out.println("\tuser: "+user.getNameFirst()+" "+user.getNameLast());
+//				System.out.println("\tuser role: "+user.getUserRole().getUserRoleToStringPL());
+//			}
 		} 
 		
 	}

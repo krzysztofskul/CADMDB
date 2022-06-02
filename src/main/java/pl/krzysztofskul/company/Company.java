@@ -18,9 +18,9 @@ import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
 //@MappedSuperclass
-//@Entity
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Company<T> {
+public abstract class Company {
 
 	/*
 	 * param.
@@ -44,11 +44,11 @@ public abstract class Company<T> {
 	private String email;
 	private String phoneNo;
 
-	@OneToMany(mappedBy="company")
-	private List<User<T>> userList = new ArrayList<User<T>>();
+//	@OneToMany(mappedBy="company")
+//	private List<User> userList = new ArrayList<User>();
 	
 	@OneToMany(mappedBy="company")
-	private List<Employment<T>> employeeList = new ArrayList<Employment<T>>();
+	private List<Employment> employeeList = new ArrayList<Employment>();
 
 	/*
 	 * constr.
@@ -58,17 +58,17 @@ public abstract class Company<T> {
 		super();
 	}
 	
-	public <T> Company(User user) {
+	public Company(User user) {
 		super();
 	}
 	
-	public <T> Company(User user, JobTitleEnum jobTitleEnum) {
+	public Company(User user, JobTitleEnum jobTitleEnum) {
 		super();
 		this.addUser(user, jobTitleEnum);
 		
 	}
 	
-	public Company(List<Employment<T>> employeeList) {
+	public Company(List<Employment> employeeList) {
 		super();
 		this.employeeList = employeeList;
 	}
@@ -85,8 +85,8 @@ public abstract class Company<T> {
 
 
 
-	public Company(String name, String country, String postalCode, String city, String street, List<User<T>> userList,
-			List<Employment<T>> employeeList) {
+	public Company(String name, String country, String postalCode, String city, String street, List<User> userList,
+			List<Employment> employeeList) {
 		super();
 		this.name = name;
 		this.country = country;
@@ -180,19 +180,19 @@ public abstract class Company<T> {
 		this.phoneNo = phoneNo;
 	}
 
-	public List<User<T>> getUserList() {
-		return userList;
-	}
+//	public List<User> getUserList() {
+//		return userList;
+//	}
+//
+//	public void setUserList(List<User> userList) {
+//		this.userList = userList;
+//	}
 
-	public void setUserList(List<User<T>> userList) {
-		this.userList = userList;
-	}
-
-	public List<Employment<T>> getEmployeeList() {
+	public List<Employment> getEmployeeList() {
 		return employeeList;
 	}
 
-	public void setEmployeeList(List<Employment<T>> employeeList) {
+	public void setEmployeeList(List<Employment> employeeList) {
 		this.employeeList = employeeList;
 	}
 	
@@ -200,10 +200,10 @@ public abstract class Company<T> {
 	 * func.
 	 */
 	
-	public void addUser(User<T> user, JobTitleEnum jobTitleEnum) {
+	public void addUser(User user, JobTitleEnum jobTitleEnum) {
 		user.getEmployment().setCompany(this);
 		user.getEmployment().setJobTitle(jobTitleEnum);;
-		this.userList.add(user);
+		//this.userList.add(user);
 		user.getEmployment().setCompany(this);
 	}
 	

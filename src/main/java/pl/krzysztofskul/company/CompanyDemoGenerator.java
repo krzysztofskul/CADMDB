@@ -82,8 +82,8 @@ public class CompanyDemoGenerator<T, E> {
 		
 		for (User<T> user : usersAsUserDemoRole) {
 			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
-				InvestmentCompany<T> investmentCompany = new InvestmentCompany(user, JobTitleEnum.MANAGER_IN_INVESTMENT_COMPANY);
-				investmentCompany = (InvestmentCompany<T>) getCompanyDemoAddressDetails(investmentCompany);
+				InvestmentCompany investmentCompany = new InvestmentCompany(user, JobTitleEnum.MANAGER_IN_INVESTMENT_COMPANY);
+				investmentCompany = (InvestmentCompany) getCompanyDemoAddressDetails(investmentCompany);
 				demoCompanies.add(investmentCompany);
 				break;
 			}
@@ -117,7 +117,7 @@ public class CompanyDemoGenerator<T, E> {
 	private void setDemoSubcontractors() {
 		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
-		for (User<T> user : usersAsUserDemoRole) {
+		for (User user : usersAsUserDemoRole) {
 			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
 				Subcontractor subcontractor = new Subcontractor(user, JobTitleEnum.MANAGER_IN_SUBCONTRACTOR);
 				subcontractor = (Subcontractor) getCompanyDemoAddressDetails(subcontractor);
@@ -132,12 +132,12 @@ public class CompanyDemoGenerator<T, E> {
 		
 		for (User<T> user : usersAsUserDemoRole) {
 			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
-			Hospital<T> hospital = new Hospital(user, JobTitleEnum.MANAGER_IN_HOSPITAL);
+			Hospital hospital = new Hospital(user, JobTitleEnum.MANAGER_IN_HOSPITAL);
 			hospital.setArea(new Random().nextInt(500)+500);
 			hospital.setElectricalPowerConnectionValue(						
 						new Random().nextInt(500000)+5000
 					);
-			hospital = (Hospital<T>) getCompanyDemoAddressDetails(hospital);
+			hospital = (Hospital) getCompanyDemoAddressDetails(hospital);
 			setDemoDepartments(hospital);
 			demoCompanies.add(hospital);
 			break;
@@ -146,16 +146,16 @@ public class CompanyDemoGenerator<T, E> {
 	}
 	
 	private void setDemoClinics() {
-		Set<User<T>> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
+		Set<User> usersAsUserDemoRole = PersonDemoGenerator.getPersonGenerator().getDemoUsers();
 		
-		for (User<T> user : usersAsUserDemoRole) {
+		for (User user : usersAsUserDemoRole) {
 			if (user.getUserRole() == UserRole.USER_DEMO & null == user.getEmployment().getCompany()) {
-			Clinic<T> clinic= new Clinic(user, JobTitleEnum.MANAGER_IN_CLINIC);
+			Clinic clinic= new Clinic(user, JobTitleEnum.MANAGER_IN_CLINIC);
 			clinic.setArea(new Random().nextInt(250)+250);
 			clinic.setElectricalPowerConnectionValue(						
 						new Random().nextInt(100000)+1000
 					);
-			clinic = (Clinic<T>) getCompanyDemoAddressDetails(clinic);
+			clinic = (Clinic) getCompanyDemoAddressDetails(clinic);
 			setDemoDepartments(clinic);
 			demoCompanies.add(clinic);
 			break;

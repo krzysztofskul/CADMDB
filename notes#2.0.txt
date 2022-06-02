@@ -4,11 +4,11 @@ TODO:
 
 #2.0-SNAPSHOT (new idea for class structure)
 	. create new class structure (https://lucid.app/lucidchart/fbae8b5c-9764-47df-ab97-aa612de7e973/edit?invitationId=inv_9cc9bd8c-030d-477a-a271-7a1b0554c094)
+	. created AppConfig and AppInitializer
 	
 	. created Healthcare class which extends Company class
 		- create interfaces for healthcare sub-classes
 		- create HealthcareCompany class (?)
-			
 	
 	- create categories and sub-categories for:
 		- product names
@@ -22,10 +22,21 @@ TODO:
 		- create relation with manufacturer(offer/trade), healthcare, categories
 	
 	- create JPA REPO for user, employee, company classes
+		- Company/InvestmentCompany 
+			. service
+			. repo
+			- tests ...
+	
+	- update hibernate inheritance for Company/Healthcare/Hospital/Department
+		- Generic type problem for relationship between eg. Hospital/Departments ...
 
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ created AppConfig and AppInitializer
+	+ created InvestmentCompany service and repository class
 
 #2.0-SNAPSHOT
 	+ updated Set<Departments> in Hospital, Clinic, Department, Room classes

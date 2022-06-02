@@ -8,7 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+import org.hibernate.annotations.Type;
+
 public class FunctionalCategory<T> {
 
 	/**

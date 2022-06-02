@@ -10,7 +10,7 @@ import pl.krzysztofskul.healthcare.department.Department;
 import pl.krzysztofskul.healthcare.department.DepartmentNameStandarizedEnum;
 
 @Entity
-public class Room extends Healthcare{
+public class Room extends Healthcare {
 
 	/**
 	 * params.

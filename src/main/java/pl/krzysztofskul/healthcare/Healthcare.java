@@ -4,6 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+
 import pl.krzysztofskul.company.Company;
 import pl.krzysztofskul.healthcare.department.Department;
 import pl.krzysztofskul.person.employment.JobTitleEnum;
@@ -17,7 +21,9 @@ import pl.krzysztofskul.person.user.User;
  *	ex. hospital, clinic, ambulatory, hospital departments and rooms.
  *
  */
-public class Healthcare extends Company {
+@MappedSuperclass
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Healthcare<T> extends Company {
 
 	/**
 	 * params.
