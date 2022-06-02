@@ -17,10 +17,10 @@ import pl.krzysztofskul.person.employment.Employment;
 import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
-//@MappedSuperclass
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Company {
+@MappedSuperclass
+//@Entity
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Company {
 
 	/*
 	 * param.

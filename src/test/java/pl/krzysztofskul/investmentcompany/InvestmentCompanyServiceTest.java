@@ -50,7 +50,6 @@ public class InvestmentCompanyServiceTest {
 				assertTrue(
 							investmentCompanyService.save((InvestmentCompany) company).getId() > 0
 						);
-				
 			}
 		}
 		

@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import pl.krzysztofskul.company.Company;
+import pl.krzysztofskul.manufacturer.product.Product;
 import pl.krzysztofskul.person.employment.JobTitleEnum;
 import pl.krzysztofskul.person.user.User;
 
@@ -17,7 +19,8 @@ public class Manufacturer extends Company {
 	 * params.
 	 */
 	
-	private Set<Object> products = new HashSet<Object>();
+	@OneToMany
+	private Set<Product> products = new HashSet<Product>();
 	
 	/*
 	 * constr.

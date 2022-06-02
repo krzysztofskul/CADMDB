@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import pl.krzysztofskul.manufacturer.Manufacturer;
 
@@ -21,10 +22,11 @@ public class Product {
 	/*
 	 * todo: create enum for standarized product names
 	 */
-	private Object nameCategorized;
+	private String nameCategorized;
 	
 	private String nameModel;
 	
+	@ManyToOne
 	private Manufacturer manufacturer;
 
 	/**
@@ -56,14 +58,14 @@ public class Product {
 	/**
 	 * @return the nameCategorized
 	 */
-	public Object getNameCategorized() {
+	public String getNameCategorized() {
 		return nameCategorized;
 	}
 
 	/**
 	 * @param nameCategorized the nameCategorized to set
 	 */
-	public void setNameCategorized(Object nameCategorized) {
+	public void setNameCategorized(String nameCategorized) {
 		this.nameCategorized = nameCategorized;
 	}
 

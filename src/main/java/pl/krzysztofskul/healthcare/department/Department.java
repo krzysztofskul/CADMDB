@@ -30,7 +30,7 @@ public class Department<T> extends Healthcare<Department> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
 	
-	@ManyToOne(targetEntity  = Company.class)
+	@ManyToOne(targetEntity  = Healthcare.class)
 	private T healthcareCompany;
 	
 	private DepartmentNameStandarizedEnum nameStandarized;

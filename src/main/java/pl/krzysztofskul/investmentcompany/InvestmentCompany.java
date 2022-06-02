@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import pl.krzysztofskul.company.Company;
 import pl.krzysztofskul.investment.Investment;
@@ -18,7 +19,7 @@ public class InvestmentCompany extends Company {
 	/*
 	 * params.
 	 */
-	
+	@OneToMany
 	private Set<Investment> investments = new HashSet<Investment>();
 	
 	/*

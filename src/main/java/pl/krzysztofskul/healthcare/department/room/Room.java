@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import pl.krzysztofskul.healthcare.Healthcare;
 import pl.krzysztofskul.healthcare.department.Department;
@@ -20,6 +21,7 @@ public class Room extends Healthcare {
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
 	
+	@ManyToOne
 	private Department department;
 	
 	private RoomNameStandarizedEnum nameStandarized;

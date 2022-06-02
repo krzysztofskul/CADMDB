@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.Type;
 
 import pl.krzysztofskul.company.Company;
+import pl.krzysztofskul.healthcare.Healthcare;
 import pl.krzysztofskul.person.Person;
 import pl.krzysztofskul.person.PersonDemoGenerator;
 import pl.krzysztofskul.person.user.User;
@@ -25,7 +26,7 @@ public class Employment<T> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(targetEntity = Company.class)
+	@ManyToOne(targetEntity = Healthcare.class)
 	private T company;
 	
 	private JobTitleEnum jobTitle;

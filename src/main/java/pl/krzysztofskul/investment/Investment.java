@@ -6,11 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
 
 import pl.krzysztofskul.company.Company;
+import pl.krzysztofskul.healthcare.Healthcare;
 import pl.krzysztofskul.investmentcompany.InvestmentCompany;
 import pl.krzysztofskul.person.employment.Employment;
 
@@ -25,10 +27,11 @@ public class Investment<T> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@ManyToOne
 	private InvestmentCompany investmentCompany;
 	
 	//hospital, clinic or ambulatory
-	@OneToOne(targetEntity = Company.class)
+	@OneToOne(targetEntity = Healthcare.class)
 	private T healthcare;
 	
 	private BigDecimal budget;

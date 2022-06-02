@@ -21,18 +21,21 @@ TODO:
 	. created product class
 		- create relation with manufacturer(offer/trade), healthcare, categories
 	
-	- create JPA REPO for user, employee, company classes
-		- Company/InvestmentCompany 
-			. service
-			. repo
-			- tests ...
+	- create repo, service and test classes for:
+		. Company/InvestmentCompany
+		- Hospital ...
+		- Clinic etc. 
 	
-	- update hibernate inheritance for Company/Healthcare/Hospital/Department
-		- Generic type problem for relationship between eg. Hospital/Departments ...
 
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ updated hibernate inheritance for Company/Healthcare/Hospital/Clinic/Department and InvestmentCompany
+		+ generic type problem for relationship between eg. Hospital/Departments resolved
+		+ created @Inheritance(strategy = InheritanceType.JOINED) for Healthcare class
+	+ created test for InvestmentCompanyGenerator
 
 #2.0-SNAPSHOT
 	+ created AppConfig and AppInitializer
