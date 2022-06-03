@@ -32,6 +32,9 @@ DONE:
 ------------------------------------------------
 
 #2.0-SNAPSHOT
+	+ created index.jsp and HomePageController.class
+
+#2.0-SNAPSHOT
 	+ cerated Healthcare repo, service and test classes (for Hospital and Clinic)
 	+ CompanyDemoGenerator class and test updated
 
