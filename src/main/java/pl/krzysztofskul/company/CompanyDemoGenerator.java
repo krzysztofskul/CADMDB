@@ -2,6 +2,7 @@ package pl.krzysztofskul.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -217,6 +218,16 @@ public class CompanyDemoGenerator<T, E> {
 		return company;
 	}
 
+
+	public Set<InvestmentCompany> getDemoInvestmentCompanies() {
+		Set<Company> companies = getDemoCompanies();
+		companies.removeIf(c -> !c.getClass().getName().contains("InvestmentCompany"));
+		Set<InvestmentCompany> investmentCompanies = new HashSet<InvestmentCompany>();
+		companies.forEach(c -> investmentCompanies.add((InvestmentCompany) c));
+		return investmentCompanies;
+	}
+	
+	
 	private void addDemoDepartmentToHealthcare(T healthcare, Department department) {
 		if (healthcare.getClass().getName().contains("Hospital")) {
 			Hospital hospital = (Hospital) healthcare;
@@ -227,5 +238,14 @@ public class CompanyDemoGenerator<T, E> {
 			clinic.addDepartment(department);
 		}
 	}
+
 	
+	public Set<Healthcare> getDemoHealthcareSet() {
+		Set<Company> companies = getDemoCompanies();
+		companies.removeIf(c -> !c.getClass().getName().contains("Hospital") & !c.getClass().getName().contains("Clinic"));
+		Set<Healthcare> healthcares = new HashSet<Healthcare>();
+		companies.forEach(c -> healthcares.add((Healthcare) c));
+		return healthcares;
+	}
+
 }

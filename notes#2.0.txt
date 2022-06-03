@@ -23,13 +23,17 @@ TODO:
 	
 	- create repo, service and test classes for:
 		. Company/InvestmentCompany
-		- Hospital ...
-		- Clinic etc. 
-	
+		. Healthcares
+		- other classes
+
 
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ cerated Healthcare repo, service and test classes (for Hospital and Clinic)
+	+ CompanyDemoGenerator class and test updated
 
 #2.0-SNAPSHOT
 	+ updated hibernate inheritance for Company/Healthcare/Hospital/Clinic/Department and InvestmentCompany

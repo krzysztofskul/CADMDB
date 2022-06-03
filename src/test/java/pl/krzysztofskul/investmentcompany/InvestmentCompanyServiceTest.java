@@ -43,14 +43,14 @@ public class InvestmentCompanyServiceTest {
 	@Test
 	public void test01_givenInvestmentCompany_whenSaveToDb_shouldReturnIdGreaterThanZero() {
 		CompanyDemoGenerator.getCompanyDemoGenerator();
-		List<Company> companyList = List.copyOf(CompanyDemoGenerator.getCompanyDemoGenerator().getDemoCompanies());
+		List<InvestmentCompany> investmentCompanyList = List.copyOf(CompanyDemoGenerator.getCompanyDemoGenerator().getDemoInvestmentCompanies());
 		
-		for (Company company : companyList) {
-			if (company.getClass().getName().contains("InvestmentCompany")) {
+		for (InvestmentCompany investmentCompany : investmentCompanyList) {
+			
 				assertTrue(
-							investmentCompanyService.save((InvestmentCompany) company).getId() > 0
+							investmentCompanyService.save(investmentCompany).getId() > 0
 						);
-			}
+			
 		}
 		
 	}
