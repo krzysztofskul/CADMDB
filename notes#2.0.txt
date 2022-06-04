@@ -33,6 +33,12 @@ DONE:
 ------------------------------------------------
 
 #2.0-SNAPSHOT
+	+ front-end updates
+		+ home page
+		+ main menu created
+		+ boostrap udates to version 4.6.1
+
+#2.0-SNAPSHOT
 	+ applied bootstrap and css file
 	+ HomepPege controller updated
 	+ Healthcare service and test updated

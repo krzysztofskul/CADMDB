@@ -7,9 +7,15 @@
 </head>
 <body>
 
-	<section class="test">
-		<p>test footer</p>
-	</section>
+	<div class="container-fluid footer">
+	
+		<!-- <section class="test">
+			<p>test footer</p>
+		</section> -->
+		
+		<p class="font-italic">krzysztofskul 2022</p>
+		
+	</div>
 
 </body>
 </html>

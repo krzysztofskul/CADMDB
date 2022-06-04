@@ -22,7 +22,7 @@ public class HomePageController {
 		this.healthcareService = healthcareService;
 	}
 
-	@GetMapping("/")
+	@GetMapping({"/", "/home"})
 	public String index() {
 		return "index";
 	}

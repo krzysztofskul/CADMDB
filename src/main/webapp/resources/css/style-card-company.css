@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.card.company {
+	width: 400px;
+	display: inline-block;
+}
+
+.card.company .card-footer {
+	text-align: right;
+}

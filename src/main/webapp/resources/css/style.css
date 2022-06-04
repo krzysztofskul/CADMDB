@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.header {
+	border-top: 5px solid #f2f2f2;
+	border-bottom: 1px solid #f2f2f2;
+	height: 175px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.menu-main {
+	margin-bottom: 5px;
+}
+
+.footer {
+	margin-top: 5px;
+	border-top: 1px solid #f2f2f2;
+	height: 75px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: right;
+}
