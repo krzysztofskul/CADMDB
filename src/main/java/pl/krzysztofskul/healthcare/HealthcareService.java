@@ -1,5 +1,7 @@
 package pl.krzysztofskul.healthcare;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +21,11 @@ public class HealthcareService<T> {
 	public Healthcare save(Healthcare<T> healthcare) {
 		healthcareRepo.save(healthcare);
 		return healthcare;
-		
+	}
+	
+	public List<Healthcare> loadAll() {
+		List<Healthcare> healthcareList = healthcareRepo.findAll(); 
+		return healthcareRepo.findAll();
 	}
 	
 }

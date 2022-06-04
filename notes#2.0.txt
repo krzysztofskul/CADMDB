@@ -27,9 +27,16 @@ TODO:
 		- other classes
 
 
+
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	+ applied bootstrap and css file
+	+ HomepPege controller updated
+	+ Healthcare service and test updated
+	+ created header and footer jsp
 
 #2.0-SNAPSHOT
 	+ created index.jsp and HomePageController.class
