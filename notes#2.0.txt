@@ -24,16 +24,24 @@ TODO:
 	- create repo, service and test classes for:
 		. Company/InvestmentCompany
 		. Healthcares
+		- Investments
 		- other classes
-
+		
+	- update the demo investment generator
+		- when create demo hospital create the investment object also...
 
 ------------------------------------------------
 DONE:
 ------------------------------------------------
 
 #2.0-SNAPSHOT
-	- created controller, service, repo classes for investment company
-	- init demo database functionality created
+	+ created jsp files for a new investment company and for a details of investment company
+	+ updated InvestmentComapny service and controller
+	+ main menu jsp file updated
+
+#2.0-SNAPSHOT
+	+ created controller, service, repo classes for investment company
+	+ init demo database functionality created
 
 #2.0-SNAPSHOT
 	+ front-end updates

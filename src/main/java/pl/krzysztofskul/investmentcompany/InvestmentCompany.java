@@ -19,7 +19,7 @@ public class InvestmentCompany extends Company {
 	/*
 	 * params.
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "investmentCompany")
 	private Set<Investment> investments = new HashSet<Investment>();
 	
 	/*

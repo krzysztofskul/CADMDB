@@ -24,7 +24,7 @@
 					<p>${investmentCompany.street}, ${investmentCompany.streetNo}</p>
 				</div>
 				<div class="card-footer">
-					<a href="#">DETAILS</a>
+					<a href="/investment-company/details/${investmentCompany.id}">DETAILS</a>
 				</div>
 			</div>
 		</c:forEach>

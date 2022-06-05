@@ -34,5 +34,9 @@ public class InvestmentCompanyService {
 	public List<InvestmentCompany> loadAll() {
 		return investmentCompanyRepo.findAll();
 	}
+
+	public InvestmentCompany loadById(Long id) {
+		return investmentCompanyRepo.findById(id).get();
+	}
 	
 }

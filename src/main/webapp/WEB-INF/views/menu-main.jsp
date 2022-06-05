@@ -23,9 +23,6 @@
 	        <a class="nav-link" href="/investment-company/all">INVESTMENT COMPANIES</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">INVESTMENTS</a>
-	      </li>
-	      <li class="nav-item">
 	        <a class="nav-link" href="#">HOSPITALS</a>
 	      </li>
 	      <li class="nav-item">
@@ -41,7 +38,7 @@
 	        <a class="nav-link" href="#">DESIGNING OFFICES</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">SUBCONRACTORS</a>
+	        <a class="nav-link" href="#">SUBCONTRACTORS</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link disabled" href="#">USERS</a>

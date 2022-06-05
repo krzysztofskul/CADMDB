@@ -27,6 +27,10 @@ public class Investment<T> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	//private String name;
+	
+	//private String status;
+	
 	@ManyToOne
 	private InvestmentCompany investmentCompany;
 	
