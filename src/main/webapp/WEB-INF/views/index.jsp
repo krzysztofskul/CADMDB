@@ -12,7 +12,7 @@
 
 	<jsp:include page="header.jsp"/>
 
-	<div class="container-fluid ml-auto mr-auto">
+	<div class="container-fluid main-content">
 
 		<%-- <section class="test">
 			<h1>TEST CADmedica LOREM IPSUM...</h1>

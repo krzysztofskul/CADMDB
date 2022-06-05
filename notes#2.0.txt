@@ -27,10 +27,13 @@ TODO:
 		- other classes
 
 
-
 ------------------------------------------------
 DONE:
 ------------------------------------------------
+
+#2.0-SNAPSHOT
+	- created controller, service, repo classes for investment company
+	- init demo database functionality created
 
 #2.0-SNAPSHOT
 	+ front-end updates

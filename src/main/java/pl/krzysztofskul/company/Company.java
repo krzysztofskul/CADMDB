@@ -207,5 +207,4 @@ public class Company {
 		user.getEmployment().setCompany(this);
 	}
 	
-	
 }
