@@ -94,9 +94,10 @@ public class AppConfig implements WebMvcConfigurer {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
-        dataSource.setUrl("jdbc:mysql://localhost:3306/cadmdb?useSSL=false");
+        /* local DB */
+        dataSource.setUrl("jdbc:mysql://localhost:3306/cadmdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Warsaw");
         dataSource.setUsername("root");
-        dataSource.setPassword("@xDpo9Ec16N7&OP0");
+        dataSource.setPassword("OfreL73#&"); // randomly generated password for tests at localhost
 
 
 //        dataSource.setUrl("jdbc:mysql://"+HerokuConnectionData.getDATABASE());
