@@ -94,7 +94,7 @@ public class InitTestDBServiceTest {
         boolean isAnyInvestorHasHospital = false;
 
         for (Hospital hospital : hospitalList) {
-            if (hospital.getInvestor() != null) {
+            if (hospital.getInvestorCompany() != null) {
                 isAnyHospitalHasInvestor = true;
                 break;
             }
@@ -102,7 +102,7 @@ public class InitTestDBServiceTest {
 
         for (User investor : investorList) {
 
-            if (investor.getHospitalListAsInvestor() != null) {
+            if (investor.getHospitalListWhereAsUserInvestor() != null) {
                 isAnyInvestorHasHospital = true;
                 break;
             }
