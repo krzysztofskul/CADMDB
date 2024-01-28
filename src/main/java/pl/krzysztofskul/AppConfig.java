@@ -67,9 +67,9 @@ public class AppConfig implements WebMvcConfigurer {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         /* local DB */
-        dataSource.setUrl("jdbc:mysql://localhost:3306/cadmdb?useSSL=false");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/cadmdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Europe/Warsaw");
         dataSource.setUsername("root");
-        dataSource.setPassword("@xDpo9Ec16N7&OP0"); // randomly generated password for tests at localhost
+        dataSource.setPassword("OfreL73#&"); // randomly generated password for tests at localhost
 
         /* remote DB Amazon AWS */
 //        dataSource.setUrl("jdbc:mysql://"+AmazonAwsConnectionData.getDATABASE());
